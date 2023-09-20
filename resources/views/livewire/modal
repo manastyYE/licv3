@@ -1,0 +1,65 @@
+ <div class="fixed inset-0 z-[100] flex flex-col items-center justify-center overflow-hidden px-4 py-6 sm:px-5"
+    x-data="{show : false ,name : 'add'}" x-show="show"
+    x-on:open-modal.window="show = ($event.detail.name === name)" x-on:close-modal.window="show = false"
+    x-on:close-modal.window="show = false" x-on:keydown.escape.window="show = false" style="display: none;"
+    x-transition.duration
+    >
+        <div class="absolute inset-0 bg-slate-900/60 transition-opacity duration-300"
+           ></div>
+        <div class="relative w-full max-w-lg origin-top rounded-lg bg-white transition-all duration-300 dark:bg-navy-700"
+>
+            <div class="flex justify-between rounded-t-lg bg-slate-200 px-4 py-3 dark:bg-navy-800 sm:px-5">
+                <h3 class="text-base font-medium text-slate-700 dark:text-navy-100">
+                    Edit Pin
+                </h3>
+                <button x-on:click="$dispatch('close-modal')"
+                    class="btn -ml-1.5 h-7 w-7 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4.5 w-4.5" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            <div class="px-4 py-4 sm:px-5">
+
+                <form>
+                    <div class="form-group row">
+                        <div class="col">
+                            <label for="no">الاسم الكامل </label>
+                            <input type="text" id="fullname" class="form-control" wire:model="name">
+                            @error('name')
+                            <span class="text-danger" style="font-size: 11.5px;">{{ $message }}</span>
+                            @enderror
+                        </div>
+                    </div>
+                    <br>
+
+                    <div class="form-group row">
+                        <div class="col">
+                            <label for="phone"> رقم القاتف</label>
+                            <input type="text" id="name" class="form-control" wire:model="price">
+                            @error('price')
+                            <span class="text-danger" style="font-size: 11.5px;">{{ $message }}</span>
+                            @enderror
+                        </div>
+                    </div>
+                    <br>
+                    <div class=" space-x-reverse space-x-2 text-right">
+                        <button x-on:click="$dispatch('close-modal')"
+                            class="btn min-w-[7rem] rounded-full border border-slate-300 font-medium text-slate-800 hover:bg-slate-150 focus:bg-slate-150 active:bg-slate-150/80 dark:border-navy-450 dark:text-navy-50 dark:hover:bg-navy-500 dark:focus:bg-navy-500 dark:active:bg-navy-500/90">
+                            Cancel
+                        </button>
+                        <button 
+                        wire:click.prevent="storeStudentData" 
+                            class="btn min-w-[7rem] rounded-full bg-primary font-medium text-white hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90">
+                            Apply
+                        </button>
+                    </div>
+
+                    
+                </form>
+                
+            </div>
+        </div>
+    </div>
+</div>
