@@ -30,6 +30,7 @@ class Hoods extends Component
         //Add Student Data
         $hood = new Hood();
         $hood->name = $this->name;
+        $hood->directorate_id=1;
         $hood->save();
 
         session()->flash('message', 'تمت عملية اضافة وحدة الجوار الجديدة');
@@ -69,6 +70,7 @@ class Hoods extends Component
 
         $hood = Hood::where('id', $this->hood_edit_id)->first();
         $hood->name = $this->name;
+        
         $hood->save();
 
         session()->flash('message', 'تم تعديل بيانات وحدة الجوار بنجاح ');

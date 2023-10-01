@@ -54,4 +54,13 @@ class ShowPagesController extends Controller
         Auth::guard('user')->logout();
         return redirect()->route('user.login');
     }
+    public function show_hoods_view(){
+        return view('hoods');
+    }
+    public function show_all_orgs(){
+        return view('orgs.show_orgs');
+    } 
+    public function getorg($id){
+        return view('orgs.show_org_dtl',['id'=>$id]);
+    }
 }

@@ -15,4 +15,7 @@ class OrgBillboard extends Model
         'wideth',
         'count',
     ];
+    public function billboard(){
+        return $this->belongsTo(Billboard::class);
+    }
 }
