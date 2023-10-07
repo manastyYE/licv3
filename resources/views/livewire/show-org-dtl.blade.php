@@ -300,33 +300,56 @@
         </div>
     </div>
     <div wire:ignore.self>
-        <x-modaladd title="إضافة  شارع جديد " name="add-org-board-modal">
+        <x-modaladd title="إضافة  لوحة لمنشأة{{ $org->org_name }} " name="add-org-board-modal">
             @slot('body')
             {{-- <x-slot:body> --}}
                 <form>
                     <div class="p-2 space-y-6">
                         <label class="block">
-                            <span>  اسم الشارع </span>
-                            <input wire:model='name'
+                            <span>  نوع اللوحة  </span>
+                            <input wire:model='billboard_id'
                                 class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
-                                placeholder="اسم الشارع" type="text" />
+                                placeholder="نوع اللوحة " type="text" />
                         </label>
-                        @error('name')
+                        @error('billboard_id')
                         <span class="text-tiny+ text-error">
                             {{ $message }}
                         </span>
                         @enderror
                         <label class="block">
-                            <span>  وحدة الجوار </span>
-                            <input wire:model='hood_unit_id'
+                            <span>  الطول  </span>
+                            <input wire:model='height'
                                 class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
-                                placeholder="رسوم النظافة" type="text" />
+                                placeholder=" الطول" type="text" />
                         </label>
-                        @error('hood_unit_id')
+                        @error('height')
                         <span class="text-tiny+ text-error">
                             {{ $message }}
                         </span>
                         @enderror
+                        <label class="block">
+                            <span> العرض  </span>
+                            <input wire:model='wideth'
+                                class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
+                                placeholder="العرض" type="text" />
+                        </label>
+                        @error('wideth')
+                        <span class="text-tiny+ text-error">
+                            {{ $message }}
+                        </span>
+                        @enderror
+                        <label class="block">
+                            <span> العدد  </span>
+                            <input wire:model='count'
+                                class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
+                                placeholder=" العدد" type="text" />
+                        </label>
+                        @error('count')
+                        <span class="text-tiny+ text-error">
+                            {{ $message }}
+                        </span>
+                        @enderror
+
 
                     </div>
 
@@ -336,7 +359,7 @@
                             class="btn bg-slate-150 font-medium text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90">
                             الغاء
                         </button>
-                        <button type="button" wire:click.prevent='storeStudentData'
+                        <button type="button" wire:click.prevent='storeOrgBillBoardData'
                             class="btn bg-primary font-medium text-white hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90">
                             حفظ
                         </button>
@@ -359,60 +382,85 @@
         </x-modaladd>
     </div>
     <div wire:ignore.self>
-        <x-modaladd title="تعديل  شارع " name="edit-org-board-modal">
-            {{-- @slot('body') --}}
-            <x-slot:body>
+        
+        <x-modaladd title="تعديل  لوحة لمنشأة{{ $org->org_name }} " name="edit-org-board-modal">
+            @slot('body')
+            {{-- <x-slot:body> --}}
                 <form>
                     <div class="p-2 space-y-6">
                         <label class="block">
-                            <span>  الشارع </span>
-                            <input wire:model='edname'
+                            <span> نوع اللوحة </span>
+                            <input wire:model='ed_billboard_id'
                                 class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
-                                placeholder="اسم الشارع" type="text" />
+                                placeholder="نوع اللوحة " type="text" />
                         </label>
-                        @error('edname')
+                        @error('ed_billboard_id')
                         <span class="text-tiny+ text-error">
                             {{ $message }}
                         </span>
                         @enderror
                         <label class="block">
-                            <span> رسوم النظافة </span>
-                            <input wire:model='edhood_unit_id'
+                            <span> الطول </span>
+                            <input wire:model='ed_height'
                                 class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
-                                placeholder="رسوم النظافة" type="text" />
+                                placeholder=" الطول" type="text" />
                         </label>
-                        @error('edhood_unit_id')
+                        @error('ed_height')
                         <span class="text-tiny+ text-error">
                             {{ $message }}
                         </span>
                         @enderror
-
+                        <label class="block">
+                            <span> العرض </span>
+                            <input wire:model='ed_wideth'
+                                class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
+                                placeholder="العرض" type="text" />
+                        </label>
+                        @error('ed_wideth')
+                        <span class="text-tiny+ text-error">
+                            {{ $message }}
+                        </span>
+                        @enderror
+                        <label class="block">
+                            <span> العدد </span>
+                            <input wire:model='ed_count'
+                                class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
+                                placeholder=" العدد" type="text" />
+                        </label>
+                        @error('ed_count')
+                        <span class="text-tiny+ text-error">
+                            {{ $message }}
+                        </span>
+                        @enderror
+        
+        
                     </div>
-
+        
                     <!-- Modal footer -->
                     <div class="items-center p-4  border-gray-200 rounded-b dark:border-gray-700">
                         <button type="button" data-dismiss="modal"
                             class="btn bg-slate-150 font-medium text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90">
                             الغاء
                         </button>
-                        <button type="button" wire:click.prevent='editStudentData'
+                        <button type="button" wire:click.prevent='editOrgBillboardData'
                             class="btn bg-primary font-medium text-white hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90">
-                            تعديل
+                            حفظ
                         </button>
                     </div>
-
+        
                 </form>
                 <div>
                     @if (session('sec'))
                     <span class="text-green-500 text-xs">{{ session('sec') }}</span>
-
+        
                     @endif
                 </div>
-
-                {{-- @endslot --}}
-            </x-slot:body>
+        
+                @endslot
+                {{--
+            </x-slot:body> --}}
             {{-- @slot('footer')
-
+        
             @endslot --}}
         </x-modaladd>
     </div>
@@ -428,38 +476,13 @@
             <p class="mt-2">
                 هل انت متأكد من انك تريد حذف هذه البيانات
             </p>
-            <button wire:click="deleteStudentData"
+            <button wire:click="deleteOrgBillboardData"
                 class="btn mt-6 bg-success font-medium text-white hover:bg-success-focus focus:bg-success-focus active:bg-success-focus/90">
                 نعم انا متأكد
             </button>
         </div>
         @endslot
     </x-modaldel>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
