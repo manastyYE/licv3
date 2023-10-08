@@ -205,7 +205,8 @@ class AddOrg extends Component
 
             $hood_unit = Street::find($this->street_id);
             $this->hood_unit_id = $hood_unit->hood_unit_id;
-            $this->hood_unit_no=$hood_unit->no;
+            $hood_unit_no=HoodUnit::find($this->hood_unit_id);
+            $this->hood_unit_no=$hood_unit_no->no;
         } else {
             $this->hood_unit_id = '';
         }

@@ -33,6 +33,13 @@ class Org extends Model
         
     ];
 
-	
-	
+	public function org_type(){
+        return $this->belongsTo(OrgType::class);
+    }
+    public function street(){
+        return $this->belongsTo(Street::class);
+    }
+	public function building_type(){
+        return $this->belongsTo(BuildingType::class);   
+    }
 }
