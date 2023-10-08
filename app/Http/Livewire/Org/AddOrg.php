@@ -166,6 +166,24 @@ class AddOrg extends Component
             ]
             );
             
+                $this->org_name = '';
+                $this->owner_name = '';
+                $this->owner_phone = '';
+                $this->owner_img = '';
+                $this->card_type = '';
+                $this->card_number = '';
+                $this->building_type_id = '';
+                $this->isowner = '';
+                $this->org_type_id = '';
+                $this->hood_unit_id = '';
+                $this->street_id = '';
+                $this->personal_card = '';
+                $this->rent_contract= '';
+                $this->ad_board = '';
+                $this->previous_license = '';
+                $this->comm_record = '';
+                $this->start_date = '';
+                $this->fire_ext = '';
             
             session()->flash('message', 'تمت عملية اضافة المنشأة   ');
     }
