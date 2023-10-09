@@ -27,7 +27,7 @@ Route::controller(ShowPagesController::class)->prefix('admin')->group(
         Route::get('/org','show_all_orgs')->name('orgs.show');
         Route::get('/org_type','show_org_type')->name('org_type');
         Route::get('/alogin','adminlogin')->name('admin.login');
-        Route::get('/')
+    
         Route::get('/dashboard','showdashboard')->name('dashboard');
         Route::get('/hoods','show_hoods_view')->name('hoods');
         Route::get('/{id}','getorg');
