@@ -25,10 +25,13 @@ class ShowOrgDtl extends Component
     {
         //on form submit validation
         $this->validate([
-            'name' => 'required|unique:org_types,name',
-            'price' => 'required',
+            
 
-
+            
+            'billboard_id' => 'required',
+            'height' => 'required',
+            'wideth'=>'required|numeric',
+            'count'=>'required|numeric',
 
         ]);
 
@@ -37,7 +40,7 @@ class ShowOrgDtl extends Component
         $orgbillboard->org_id = $this->org_id;
         $orgbillboard->billboard_id = $this->billboard_id;
         $orgbillboard->height = $this->height;
-        $orgbillboard->wideth = $this->wideth;
+        $orgbillboard->width = $this->wideth;
         $orgbillboard->count = $this->count;
         $orgbillboard->save();
 

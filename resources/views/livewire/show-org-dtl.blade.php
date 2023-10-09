@@ -255,12 +255,12 @@
                                 </td>
 
                                 <td class="gridjs-td">{{ $p->height }}</td>
-                                <td class="gridjs-td">{{ $p->wideth }}</td>
+                                <td class="gridjs-td">{{ $p->width }}</td>
                                 
-                                <td class="gridjs-td">{{ ($p->height)*($p->wideth) }}</td>
+                                <td class="gridjs-td">{{ ($p->height)*($p->width) }}</td>
                                 <td class="gridjs-td">{{ $p->count }}</td>
                                 <td class="gridjs-td">{{ $p->billboard->price }}</td>
-                                <td class="gridjs-td">{{ ($p->height)*($p->wideth)*($p->billboard->price)*($p->count) }}</td>
+                                <td class="gridjs-td">{{ ($p->height)*($p->width)*($p->billboard->price)*($p->count) }}</td>
                                 <td class="gridjs-td"><span>
                                         <div class="flex justify-center space-x-2">
                                             <button type="button" wire:click='setname({{ $p->id }})' x-data
@@ -306,10 +306,16 @@
                 <form>
                     <div class="p-2 space-y-6">
                         <label class="block">
-                            <span>  نوع اللوحة  </span>
-                            <input wire:model='billboard_id'
-                                class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
-                                placeholder="نوع اللوحة " type="text" />
+                            <span> نوع اللوحة </span>
+                            <select wire:model='billboard_id'
+                                class="form-select mt-1.5 w-full rounded-lg border border-slate-300 bg-white px-3 py-2 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:bg-navy-700 dark:hover:border-navy-400 dark:focus:border-accent">
+                                <option value="" disabled> اختر نوع اللوحة </option>
+                                @forelse ($bill as $b )
+                                    <option value="{{ $b->id }}">{{ $b->name }}</option>
+                                @empty
+                                    
+                                @endforelse
+                            </select>
                         </label>
                         @error('billboard_id')
                         <span class="text-tiny+ text-error">
