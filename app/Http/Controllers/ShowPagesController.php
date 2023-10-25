@@ -64,6 +64,6 @@ class ShowPagesController extends Controller
         return view('orgs.show_org_dtl',['id'=>$id]);
     }
     public function bill_board_view(){
-        return null;
+        return view;
     }
 }

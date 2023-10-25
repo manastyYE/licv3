@@ -10,7 +10,7 @@
     />
 
     <title>@yield('title')</title>
-    <link rel="icon" type="image/png" href="images/favicon.png" />
+    <link rel="icon" type="image/png" href="{{ asset('img/logo.png') }}" />
     @livewireStyles()
     <!-- CSS Assets -->
    

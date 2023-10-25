@@ -2,7 +2,7 @@
 <div class="flex w-full max-w-sm grow flex-col justify-center p-5">
     <form wire:submit.prevent="reloadPage">
     <div class="text-center">
-        <img class="mx-auto h-16 w-16 lg:hidden" src="{{ asset('login/images/app-logo.svg') }}" alt="logo" />
+        <img class="mx-auto h-16 w-16 lg:hidden" src="{{ asset('img/logo.png') }}" alt="logo" />
         <div class="mt-4">
             <h2 class="text-2xl font-semibold text-slate-600 dark:text-navy-100">
                 Welcome Back

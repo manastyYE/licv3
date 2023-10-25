@@ -46,9 +46,10 @@
                 <span>اسم المنشأة</span>
 
             </label>
-            <span>
+            <h5 class="text-md font-semibold text-slate-700 dark:text-navy-100">
                 {{ $org->org_name }}
-            </span>
+            </h5>
+
 
 
         </div>
@@ -57,7 +58,10 @@
                 <span>اسم المالك</span>
 
             </label>
-            {{$org->owner_name}}
+            <h5 class="text-md font-semibold text-slate-700 dark:text-navy-100">
+                {{$org->owner_name}}
+            </h5>
+
         </div>
         <div>
             <label class="block">
@@ -91,9 +95,12 @@
         <div>
             <label class="block" style="margin-top: -15mm">
                 <span> النشاط التجاري</span>
-
+                    <h5 class="text-md font-semibold text-slate-700 dark:text-navy-100">
+                        {{ $org->org_type->name }}
+                </h5>
             </label>
-            {{ $org->org_type->name }}
+
+            
 
 
 
@@ -102,9 +109,11 @@
         <div>
             <label class="block " style="margin-top: -15mm">
                 <span> رقم المالك</span>
-
+                <h5 class="text-md font-semibold text-slate-700 dark:text-navy-100">
+                    {{ $org->owner_phone }}
+                </h5>
             </label>
-            {{ $org->owner_phone }}
+            
 
         </div>
 
@@ -115,7 +124,10 @@
         <div>
             <span> تاريخ بدء النشاط </span>
             <label class="relative flex">
-                {{ $org->start_date }}
+                
+                <h5 class="text-md font-semibold text-slate-700 dark:text-navy-100">
+                    {{ $org->start_date }}
+                </h5>
             </label>
 
         </div>
@@ -123,9 +135,11 @@
         <div>
             <label class="block">
                 <span>نوع البطاقة</span>
-
+                <h5 class="text-md font-semibold text-slate-700 dark:text-navy-100">
+                    {{ $org->card_type }}
+                </h5>
             </label>
-            {{ $org->card_type }}
+            
         </div>
 
         <div>
@@ -134,76 +148,92 @@
         <div>
             <label class="block">
                 <span>نوع المبنى</span>
-
+                <h5 class="text-md font-semibold text-slate-700 dark:text-navy-100">
+                    {{ $org->building_type->name }}
+                </h5>
             </label>
-            {{ $org->building_type->name }}
+            
         </div>
         <div>
             <label class="block ">
                 <span> رقم البطاقة</span>
-
+                <h5 class="text-md font-semibold text-slate-700 dark:text-navy-100">
+                    {{ $org->card_number }}
+                </h5>
             </label>
-            {{ $org->card_number }}
+            
         </div>
         <div>
             <label class="block">
-                <span>{{ $org->fire_ext }} يمتلك طفاية حريق </span>
-
+            
+                <h5 class="text-md font-semibold text-slate-700 dark:text-navy-100">
+                    {{ $org->fire_ext }} يمتلك طفاية حريق 
+                </h5>
             </label>
         </div>
         <div>
 
         </div>
     </div>
-    <div>
+    <h4 class="text-xl font-semibold text-slate-700 dark:text-navy-100">
+        المرفقات
+    </h4>
+    <div class="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-3 mb-4 sm:gap-5 lg:gap-6"  >
+        
         <label class="block">
-            <span> المرفقات </span>
-
+            البطاقة الشخصية
+            @if ($org->personal_card)
+            <img src="{{ asset('img/yes.png') }}"  class="h-6 mr-4" >
+            @else
+            <img src="{{ asset('img/no.png') }}" class="h-6 mr-4">
+            @endif
         </label>
-        البطاقة الشخصية
-        @if ($org->personal_card)
-        متواجد
-        @else
-        غير متواجد
-        @endif
-        |
-        عقد الايجار او فاتورة الكهرباء
-        @if ($org->rent_contract)
-        متواجد
-        @else
-        غير متواجد
-        @endif
-        |
-        اللوح الاعلانية
-        @if ($org->ad_board)
-        متواجد
-        @else
-        غير متواجد
-        @endif
-        |
+        <label  class="block">
+            عقد الايجار او فاتورة الكهرباء
+                    @if ($org->rent_contract)
+                    <img src="{{ asset('img/yes.png') }}" class="h-6 mr-4">
+                    @else
+                    <img src="{{ asset('img/no.png') }}" class="h-6 mr-4">
+                    @endif
+        </label>
+        <label class="block">
+            اللوح الاعلانية
+            @if ($org->ad_board)
+            <img src="{{ asset('img/yes.png') }}" class="h-6 mr-4">
+            @else
+            <img src="{{ asset('img/no.png') }}" class="h-6 mr-4">
+            @endif
+        </label>
+        <label class="block">
         الرخصة السابقة
         @if ($org->previous_license)
-        متواجد
+        <img src="{{ asset('img/yes.png') }}" class="h-6 mr-4">
         @else
-        غير متواجد
+        <img src="{{ asset('img/no.png') }}" class="h-6 mr-4">
         @endif
-        |
-        السجل التجاري
-        @if ($org->comm_record)
-        متواجد
-        @else
-        غير متواجد
-        @endif
+        </label>
+        <label class="block">
+            السجل التجاري
+            @if ($org->comm_record)
+            <img src="{{ asset('img/yes.png') }}" class="h-6 mr-4">
+            @else
+            <img src="{{ asset('img/no.png') }}" class="h-6 mr-4">
+            @endif
+        </label>
+        
+        
+        
 
     </div>
     <div>
         <div x-data="pages.tables.initGridTableExapmle">
             <div role="complementary" class="gridjs gridjs-container" style="width: 100%;">
                 <div class="gridjs-head">
-                    <div class="gridjs-search"><button type="button" x-data x-on:click="$dispatch('open-modal',{name:'add-org-board-modal'})"
-                        class="btn bg-slate-150 font-medium text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90">
-                        اضافة  لوحة جديدة 
-                    </button></div>
+                    <div class="gridjs-search"><button type="button" x-data
+                            x-on:click="$dispatch('open-modal',{name:'add-org-board-modal'})"
+                            class="btn bg-slate-150 font-medium text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90">
+                            اضافة لوحة جديدة
+                        </button></div>
                 </div>
                 <div class="gridjs-wrapper" style="height: auto;">
                     <table role="grid" class="gridjs-table" style="height: auto;">
@@ -217,14 +247,14 @@
                                 </th>
 
                                 <th data-column-id="email" class="gridjs-th">
-                                    <div class="gridjs-th-content"> الطول  </div>
+                                    <div class="gridjs-th-content"> الطول </div>
                                 </th>
 
                                 <th data-column-id="actions" class="gridjs-th">
                                     <div class="gridjs-th-content">العرض</div>
                                 </th>
-                                
-                                
+
+
                                 <th data-column-id="actions" class="gridjs-th">
                                     <div class="gridjs-th-content"> م </div>
                                 </th>
@@ -256,11 +286,12 @@
 
                                 <td class="gridjs-td">{{ $p->height }}</td>
                                 <td class="gridjs-td">{{ $p->width }}</td>
-                                
+
                                 <td class="gridjs-td">{{ ($p->height)*($p->width) }}</td>
                                 <td class="gridjs-td">{{ $p->count }}</td>
                                 <td class="gridjs-td">{{ $p->billboard->price }}</td>
-                                <td class="gridjs-td">{{ ($p->height)*($p->width)*($p->billboard->price)*($p->count) }}</td>
+                                <td class="gridjs-td">{{ ($p->height)*($p->width)*($p->billboard->price)*($p->count) }}
+                                </td>
                                 <td class="gridjs-td"><span>
                                         <div class="flex justify-center space-x-2">
                                             <button type="button" wire:click='setname({{ $p->id }})' x-data
@@ -311,9 +342,9 @@
                                 class="form-select mt-1.5 w-full rounded-lg border border-slate-300 bg-white px-3 py-2 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:bg-navy-700 dark:hover:border-navy-400 dark:focus:border-accent">
                                 <option value="" disabled> اختر نوع اللوحة </option>
                                 @forelse ($bill as $b )
-                                    <option value="{{ $b->id }}">{{ $b->name }}</option>
+                                <option value="{{ $b->id }}">{{ $b->name }}</option>
                                 @empty
-                                    
+
                                 @endforelse
                             </select>
                         </label>
@@ -323,7 +354,7 @@
                         </span>
                         @enderror
                         <label class="block">
-                            <span>  الطول  </span>
+                            <span> الطول </span>
                             <input wire:model='height'
                                 class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
                                 placeholder=" الطول" type="text" />
@@ -334,7 +365,7 @@
                         </span>
                         @enderror
                         <label class="block">
-                            <span> العرض  </span>
+                            <span> العرض </span>
                             <input wire:model='wideth'
                                 class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
                                 placeholder="العرض" type="text" />
@@ -345,7 +376,7 @@
                         </span>
                         @enderror
                         <label class="block">
-                            <span> العدد  </span>
+                            <span> العدد </span>
                             <input wire:model='count'
                                 class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
                                 placeholder=" العدد" type="text" />
@@ -388,7 +419,7 @@
         </x-modaladd>
     </div>
     <div wire:ignore.self>
-        
+
         <x-modaladd title="تعديل  لوحة لمنشأة{{ $org->org_name }} " name="edit-org-board-modal">
             @slot('body')
             {{-- <x-slot:body> --}}
@@ -438,10 +469,10 @@
                             {{ $message }}
                         </span>
                         @enderror
-        
-        
+
+
                     </div>
-        
+
                     <!-- Modal footer -->
                     <div class="items-center p-4  border-gray-200 rounded-b dark:border-gray-700">
                         <button type="button" data-dismiss="modal"
@@ -453,20 +484,20 @@
                             حفظ
                         </button>
                     </div>
-        
+
                 </form>
                 <div>
                     @if (session('sec'))
                     <span class="text-green-500 text-xs">{{ session('sec') }}</span>
-        
+
                     @endif
                 </div>
-        
+
                 @endslot
                 {{--
             </x-slot:body> --}}
             {{-- @slot('footer')
-        
+
             @endslot --}}
         </x-modaladd>
     </div>

@@ -17,21 +17,22 @@ class Users extends Component
         $user=User::all();
         return view('livewire.users',['type'=>$user]);
     }
-    public function storeUserData()
+    public function save()
     {
         //on form submit validation
         $this->validate([
-            'name' => 'required|unique:org_types,name',
-            'hood_unit_id' => 'required',
-            
-            
-
+            'fullname' => 'required|unique:users,fullname',
+            'phone' => 'required|numeric|min:9',
+            'password'=>'required|min:9',
         ]);
 
         //Add User Data
         $user = new User();
-        $user->name = $this->name;
+        $user->fullname = $this->fullname;
+        $user->username = $this->phone;
         $user->phone=$this->phone;
+        $user->directorate_id = 1;
+        $user->roll = 1;
         $user->password = $this->password;
         $user->save();
 
