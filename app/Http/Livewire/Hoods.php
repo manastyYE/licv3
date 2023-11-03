@@ -17,7 +17,7 @@ class Hoods extends Component
 
     //Input fields on update validation
     
-
+    
 
     public function storeHoodData()
     {
@@ -56,6 +56,7 @@ class Hoods extends Component
 
         $this->hood_edit_id = $hood->id;
         $this->name = $hood->name;
+
     }
     
     

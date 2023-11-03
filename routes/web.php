@@ -15,13 +15,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 
 
 Route::controller(ShowPagesController::class)->prefix('admin')->group(
     function(){
+        Route::get('/','dashboard_view')->name('dashboard_view');
+        Route::get('/org/dashboard','org_dashboard_view')->name('org_dashboard_view');
         Route::get('/users','show_add_users')->name('users');
         Route::get('/org/add','Show_add_org')->name('addorg');
         Route::get('/org','show_all_orgs')->name('orgs.show');
@@ -30,11 +30,12 @@ Route::controller(ShowPagesController::class)->prefix('admin')->group(
         Route::get('/billboards', 'bill_board_view')->name('billboard.add.edit.del');
         Route::get('/dashboard','showdashboard')->name('dashboard');
         Route::get('/hoods','show_hoods_view')->name('hoods');
-        Route::get('/{id}','getorg');
+        Route::get('/org/{id}','getorg');
     }
 );
 Route::controller(ShowPagesController::class)->group(
     function(){
+        Route::get('/','show_home_page')->name('page.home');
         Route::get('/ulogin','userlogin')->name('user.login');
-    }
+    }   
 );

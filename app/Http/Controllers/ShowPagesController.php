@@ -63,7 +63,16 @@ class ShowPagesController extends Controller
     public function getorg($id){
         return view('orgs.show_org_dtl',['id'=>$id]);
     }
-    public function bill_board_view(){
-        return view;
+    // public function bill_board_view(){
+    //     return view;
+    // }
+    public function dashboard_view(){
+        return view('dashboard.admin.main');
+    }
+    public function org_dashboard_view(){
+        return view('dashboard.admin.main_org');
+    }
+    public function show_home_page(){
+        return view('home.home');
     }
 }
