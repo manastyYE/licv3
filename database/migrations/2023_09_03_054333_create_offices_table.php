@@ -12,13 +12,10 @@ return new class extends Migration
      * @return void
      */
     public function up()
-    {   //نوع النشاط
-        Schema::create('org_types', function (Blueprint $table) {
+    {
+        Schema::create('offices', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->unsignedInteger('price');
-            $table->unsignedInteger('office_id');
-            $table->foreign('office_id')->references('id')->on('offices');
             $table->timestamps();
         });
     }
@@ -30,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('org_types');
+        Schema::dropIfExists('offices');
     }
 };

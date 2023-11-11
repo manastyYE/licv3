@@ -36,6 +36,7 @@ return new class extends Migration
             $table->string('ad_board')->nullable()->comment('صورة اللوحة الاعلانية');
             $table->string('previous_license')->nullable()->comment('الرخصة السابقة');
             $table->string('comm_record')->nullable()->comment('السجل التجاي');
+            $table->string('outher')->nullable()->comment('موافقة الجهة المختصة');
             $table->unsignedBigInteger('parcode')->nullable();
             $table->string('addrees')->nullable();
             $table->string('aire_drow')->nullable();

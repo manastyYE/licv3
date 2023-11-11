@@ -3,37 +3,35 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
-use App\Models\Hood;
-
-class Hoods extends Component
+use App\Models\Office as AAA;
+class Office extends Component
 {
     public function render()
     {
-        $hoods=Hood::all();
-        return view('livewire.hoods',['type'=>$hoods]);
+        $office= AAA::all();
+        return view('livewire.office',['type'=>$office]);
     }
-    public $name, $hood_edit_id, $hood_delete_id;
+     public $name, $office_edit_id, $office_delete_id;
 
 
     //Input fields on update validation
 
 
 
-    public function storeHoodData()
+    public function storeOfficeData()
     {
         //on form submit validation
         $this->validate([
-            'name' => 'required|unique:hoods,name',
+            'name' => 'required|unique:offices,name',
 
         ]);
 
         //Add Student Data
-        $hood = new Hood();
-        $hood->name = $this->name;
-        $hood->directorate_id=1;
-        $hood->save();
+        $office = new AAA();
+        $office->name = $this->name;
+        $office->save();
 
-        session()->flash('message', 'تمت عملية اضافة وحدة الجوار الجديدة');
+        session()->flash('message', 'تمت عملية اضافة القطاع الجديد');
 
         $this->name = '';
 
@@ -52,15 +50,15 @@ class Hoods extends Component
         $this->resetInputs();
     }
     public function setname($id){
-        $hood = Hood::find($id);
+        $office = AAA::find($id);
 
-        $this->hood_edit_id = $hood->id;
-        $this->name = $hood->name;
+        $this->office_edit_id = $office->id;
+        $this->ed_name = $office->name;
 
     }
 
 
-    public function editHoodData()
+    public function editOfficeData()
     {
         //on form submit validation
         // $this->validate([
@@ -69,10 +67,10 @@ class Hoods extends Component
 
         // ]);
 
-        $hood = Hood::where('id', $this->hood_edit_id)->first();
-        $hood->name = $this->name;
+        $office = AAA::where('id', $this->office_edit_id)->first();
+        $office->name = $this->name;
 
-        $hood->save();
+        $office->save();
 
         session()->flash('message', 'تم تعديل بيانات وحدة الجوار بنجاح ');
 
@@ -85,26 +83,26 @@ class Hoods extends Component
     //Delete Confirmation
     public function deleteConfirmation($id)
     {
-        $this->hood_delete_id = $id; //student id
+        $this->office_delete_id = $id; //student id
 
 
     }
 
-    public function deleteHoodData()
+    public function deleteOfficeData()
     {
-        $hood = Hood::where('id', $this->hood_delete_id)->first();
-        $hood->delete();
+        $office = AAA::where('id', $this->office_delete_id)->first();
+        $office->delete();
 
-        session()->flash('message', 'تم حذف وحدة الجوار  بنجاح');
+        session()->flash('message', 'تم حذف وحدة  القطاع بنجاح');
 
         $this->dispatchBrowserEvent('close-modal');
 
-        $this->hood_delete_id = '';
+        $this->office_delete_id = '';
     }
 
     public function cancel()
     {
-        $this->hood_delete_id = '';
+        $this->office_delete_id = '';
         $this->dispatchBrowserEvent('close-modal');
     }
 }

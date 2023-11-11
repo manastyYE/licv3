@@ -11,5 +11,10 @@ class OrgType extends Model
     protected $fillable=[
         'name',
         'price',
+        'office_id',
     ];
+
+    public function office(){
+        return $this->belongsTo(Office::class);
+    }
 }

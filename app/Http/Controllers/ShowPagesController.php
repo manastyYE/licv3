@@ -14,7 +14,7 @@ class ShowPagesController extends Controller
     }
     public function show_add_users(){
         return view('add_users');
-        
+
     }
     public function show_org_type(){
         return view('t22est');
@@ -59,7 +59,7 @@ class ShowPagesController extends Controller
     }
     public function show_all_orgs(){
         return view('orgs.show_orgs');
-    } 
+    }
     public function getorg($id){
         return view('orgs.show_org_dtl',['id'=>$id]);
     }
@@ -74,5 +74,12 @@ class ShowPagesController extends Controller
     }
     public function show_home_page(){
         return view('home.home');
+    }
+    public function show_office_view()
+    {
+        return view('office');
+    }
+    public function show_auto_clip(){
+        return view('Automated_clipboard');
     }
 }

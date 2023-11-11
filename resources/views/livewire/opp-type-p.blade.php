@@ -28,6 +28,9 @@
                                 <th data-column-id="email" class="gridjs-th">
                                     <div class="gridjs-th-content">رسوم النظافة</div>
                                 </th>
+                                <th data-column-id="email" class="gridjs-th">
+                                    <div class="gridjs-th-content"> القطاع</div>
+                                </th>
 
                                 <th data-column-id="actions" class="gridjs-th">
                                     <div class="gridjs-th-content">العمليات</div>
@@ -37,32 +40,35 @@
                         <tbody class="gridjs-tbody">
                             <?php $i = 0; ?>
                             @if ($type->count() > 0)
-                            @foreach ($type as $p)
-                            <?php $i++; ?>
-                            <tr class="gridjs-tr">
-                                <td class="gridjs-td"><span><span class="mx-2">{{ $i }}</span></span></td>
-                                <td class="gridjs-td"><span><span
-                                            class="text-slate-700 dark:text-navy-100 font-medium">{{ $p->name
-                                            }}</span></span>
-                                </td>
+                                @foreach ($type as $p)
+                                    <?php $i++; ?>
+                                    <tr class="gridjs-tr">
+                                        <td class="gridjs-td"><span><span
+                                                    class="mx-2">{{ $i }}</span></span></td>
+                                        <td class="gridjs-td"><span><span
+                                                    class="text-slate-700 dark:text-navy-100 font-medium">{{ $p->name }}</span></span>
+                                        </td>
 
-                                <td class="gridjs-td">{{ $p->price }}</td>
-                                <td class="gridjs-td"><span>
-                                        <div class="flex justify-center space-x-2">
-                                            <button type="button" wire:click='setname({{ $p->id }})' x-data
-                                                x-on:click="$dispatch('open-modal',{name:'edit-org-type-modal'})"
-                                                class="btn h-8 w-8 p-0 text-info hover:bg-info/20 focus:bg-info/20 active:bg-info/25">
-                                                <i class="fa fa-edit"></i>
-                                            </button>
-                                            <button type="button" wire:click='deleteConfirmation({{ $p->id }})' x-data
-                                                x-on:click="$dispatch('open-modal',{name:'del-org-type-modal'})"
-                                                class="btn h-8 w-8 p-0 text-error hover:bg-error/20 focus:bg-error/20 active:bg-error/25">
-                                                <i class="fa fa-trash-alt"></i>
-                                            </button>
-                                        </div>
-                                    </span></td>
-                            </tr>
-                            @endforeach
+                                        <td class="gridjs-td">{{ $p->price }}</td>
+                                        <td class="gridjs-td">{{ $p->office->name }}</td>
+                                        <td class="gridjs-td"><span>
+                                                <div class="flex justify-center space-x-2">
+                                                    <button type="button" wire:click='setname({{ $p->id }})'
+                                                        x-data
+                                                        x-on:click="$dispatch('open-modal',{name:'edit-org-type-modal'})"
+                                                        class="btn h-8 w-8 p-0 text-info hover:bg-info/20 focus:bg-info/20 active:bg-info/25">
+                                                        <i class="fa fa-edit"></i>
+                                                    </button>
+                                                    <button type="button"
+                                                        wire:click='deleteConfirmation({{ $p->id }})' x-data
+                                                        x-on:click="$dispatch('open-modal',{name:'del-org-type-modal'})"
+                                                        class="btn h-8 w-8 p-0 text-error hover:bg-error/20 focus:bg-error/20 active:bg-error/25">
+                                                        <i class="fa fa-trash-alt"></i>
+                                                    </button>
+                                                </div>
+                                            </span></td>
+                                    </tr>
+                                @endforeach
                             @endif
 
 
@@ -75,10 +81,11 @@
                             <b>1</b> to <b>10</b> of <b>15</b> results
                         </div>
                         <div class="gridjs-pages"><button tabindex="0" role="button" disabled="" title="Previous"
-                                aria-label="Previous" class="">Previous</button><button tabindex="0" role="button"
-                                class="gridjs-currentPage" title="Page 1" aria-label="Page 1">1</button><button
-                                tabindex="0" role="button" class="" title="Page 2" aria-label="Page 2">2</button><button
-                                tabindex="0" role="button" title="Next" aria-label="Next" class="">Next</button></div>
+                                aria-label="Previous" class="">Previous</button><button tabindex="0"
+                                role="button" class="gridjs-currentPage" title="Page 1"
+                                aria-label="Page 1">1</button><button tabindex="0" role="button" class=""
+                                title="Page 2" aria-label="Page 2">2</button><button tabindex="0" role="button"
+                                title="Next" aria-label="Next" class="">Next</button></div>
                     </div>
                 </div>
                 <div id="gridjs-temp" class="gridjs-temp"></div>
@@ -88,9 +95,25 @@
     <div wire:ignore.self>
         <x-modaladd title="إضافة نشاط تجاري " name="add-org-type-modal">
             @slot('body')
-            {{-- <x-slot:body> --}}
+                {{-- <x-slot:body> --}}
                 <form>
                     <div class="p-2 space-y-6">
+                        <label class="block">
+                            <span> القطاع </span>
+                            <select
+                                class="form-select mt-1.5 w-full rounded-lg border border-slate-300 bg-white px-3 py-2 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:bg-navy-700 dark:hover:border-navy-400 dark:focus:border-accent">
+                                <option value=""> اختر قطاع...</option>
+                                @forelse ($off as $o)
+                                    <option value="{{ $o->id }}"> {{ $o->name }} </option>
+                                @empty
+                                @endforelse
+                            </select>
+                        </label>
+                        @error('office_id')
+                            <span class="text-tiny+ text-error">
+                                {{ $message }}
+                            </span>
+                        @enderror
                         <label class="block">
                             <span> النشاط التجاري </span>
                             <input wire:model='name'
@@ -98,9 +121,9 @@
                                 placeholder="اسم النشاط التجاري" type="text" />
                         </label>
                         @error('name')
-                        <span class="text-tiny+ text-error">
-                            {{ $message }}
-                        </span>
+                            <span class="text-tiny+ text-error">
+                                {{ $message }}
+                            </span>
                         @enderror
                         <label class="block">
                             <span> رسوم النظافة </span>
@@ -109,9 +132,9 @@
                                 placeholder="رسوم النظافة" type="text" />
                         </label>
                         @error('price')
-                        <span class="text-tiny+ text-error">
-                            {{ $message }}
-                        </span>
+                            <span class="text-tiny+ text-error">
+                                {{ $message }}
+                            </span>
                         @enderror
 
                     </div>
@@ -131,13 +154,12 @@
                 </form>
                 <div>
                     @if (session('sec'))
-                    <span class="text-green-500 text-xs">{{ session('sec') }}</span>
-
+                        <span class="text-green-500 text-xs">{{ session('sec') }}</span>
                     @endif
                 </div>
 
-                @endslot
-                {{--
+            @endslot
+            {{--
             </x-slot:body> --}}
             {{-- @slot('footer')
 
@@ -157,9 +179,9 @@
                                 placeholder="اسم النشاط التجاري" type="text" />
                         </label>
                         @error('edname')
-                        <span class="text-tiny+ text-error">
-                            {{ $message }}
-                        </span>
+                            <span class="text-tiny+ text-error">
+                                {{ $message }}
+                            </span>
                         @enderror
                         <label class="block">
                             <span> رسوم النظافة </span>
@@ -168,9 +190,9 @@
                                 placeholder="رسوم النظافة" type="text" />
                         </label>
                         @error('edprice')
-                        <span class="text-tiny+ text-error">
-                            {{ $message }}
-                        </span>
+                            <span class="text-tiny+ text-error">
+                                {{ $message }}
+                            </span>
                         @enderror
 
                     </div>
@@ -190,8 +212,7 @@
                 </form>
                 <div>
                     @if (session('sec'))
-                    <span class="text-green-500 text-xs">{{ session('sec') }}</span>
-
+                        <span class="text-green-500 text-xs">{{ session('sec') }}</span>
                     @endif
                 </div>
 
@@ -207,18 +228,18 @@
 
     <x-modaldel wire:ignore.self name="del-org-type-modal">
         @slot('delbody')
-        <div class="mt-4">
-            <h2 class="text-2xl text-slate-700 dark:text-navy-100">
-                تأكيد الحذف
-            </h2>
-            <p class="mt-2">
-                هل انت متأكد من انك تريد حذف هذه البيانات
-            </p>
-            <button wire:click="deleteStudentData"
-                class="btn mt-6 bg-success font-medium text-white hover:bg-success-focus focus:bg-success-focus active:bg-success-focus/90">
-                نعم انا متأكد
-            </button>
-        </div>
+            <div class="mt-4">
+                <h2 class="text-2xl text-slate-700 dark:text-navy-100">
+                    تأكيد الحذف
+                </h2>
+                <p class="mt-2">
+                    هل انت متأكد من انك تريد حذف هذه البيانات
+                </p>
+                <button wire:click="deleteStudentData"
+                    class="btn mt-6 bg-success font-medium text-white hover:bg-success-focus focus:bg-success-focus active:bg-success-focus/90">
+                    نعم انا متأكد
+                </button>
+            </div>
         @endslot
     </x-modaldel>
 
