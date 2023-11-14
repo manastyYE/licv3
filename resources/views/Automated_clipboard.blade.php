@@ -20,7 +20,7 @@
     <hr>
     <br>
     <div>
-        @livewire('auto-clip')
+        @livewire('auto-clip',['id'=>$id])
         {{-- <livewire:billboardsc> --}}
     </div>
 

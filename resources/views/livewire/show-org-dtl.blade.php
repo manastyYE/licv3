@@ -100,7 +100,7 @@
                 </h5>
             </label>
 
-            
+
 
 
 
@@ -113,7 +113,7 @@
                     {{ $org->owner_phone }}
                 </h5>
             </label>
-            
+
 
         </div>
 
@@ -124,7 +124,7 @@
         <div>
             <span> تاريخ بدء النشاط </span>
             <label class="relative flex">
-                
+
                 <h5 class="text-md font-semibold text-slate-700 dark:text-navy-100">
                     {{ $org->start_date }}
                 </h5>
@@ -139,7 +139,7 @@
                     {{ $org->card_type }}
                 </h5>
             </label>
-            
+
         </div>
 
         <div>
@@ -152,7 +152,7 @@
                     {{ $org->building_type->name }}
                 </h5>
             </label>
-            
+
         </div>
         <div>
             <label class="block ">
@@ -161,13 +161,13 @@
                     {{ $org->card_number }}
                 </h5>
             </label>
-            
+
         </div>
         <div>
             <label class="block">
-            
+
                 <h5 class="text-md font-semibold text-slate-700 dark:text-navy-100">
-                    {{ $org->fire_ext }} يمتلك طفاية حريق 
+                    {{ $org->fire_ext }} يمتلك طفاية حريق
                 </h5>
             </label>
         </div>
@@ -179,7 +179,7 @@
         المرفقات
     </h4>
     <div class="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-3 mb-4 sm:gap-5 lg:gap-6"  >
-        
+
         <label class="block">
             البطاقة الشخصية
             @if ($org->personal_card)
@@ -220,9 +220,9 @@
             <img src="{{ asset('img/no.png') }}" class="h-6 mr-4">
             @endif
         </label>
-        
-        
-        
+
+
+
 
     </div>
     <div>

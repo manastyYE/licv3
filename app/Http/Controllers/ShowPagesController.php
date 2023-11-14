@@ -79,7 +79,7 @@ class ShowPagesController extends Controller
     {
         return view('office');
     }
-    public function show_auto_clip(){
-        return view('Automated_clipboard');
+    public function show_auto_clip($id){
+        return view('Automated_clipboard',['id'=>$id]);
     }
 }

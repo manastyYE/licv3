@@ -1,4 +1,5 @@
 <div>
+
     {{-- Care about people's approval and you will be their prisoner. --}}
     <div>
         <div class="is-scrollbar-hidden min-w-full overflow-x-auto rounded-lg border  dark:border-navy-900">
@@ -14,21 +15,21 @@
                             الاسم رباعياً
                         </td>
                         <td class="whitespace-nowrap border border-slate-200 px-3 py-3 dark:border-navy-500 lg:px-5">
-                            هشام احمد علي
+                            {{$org->owner_name}}
                         </td>
                         <td
                             class="whitespace-nowrap border border-slate-900 bg-info px-4 py-3 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-5">
                             رقم التلفون
                         </td>
                         <td class="whitespace-nowrap border border-slate-200 px-3 py-3 dark:border-navy-500 lg:px-5">
-                            7777777
+                            {{$org->owner_phone}}
                         </td>
                         <td
                             class="whitespace-nowrap border border-slate-900 bg-info px-4 py-3 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-5">
                             اسم الشهرة
                         </td>
                         <td class="whitespace-nowrap border border-slate-200 px-3 py-3 dark:border-navy-500 lg:px-5">
-                            توب سفن
+                            {{$org->org_name}}
                         </td>
 
 
@@ -39,14 +40,14 @@
                             نوع النشاط
                         </td>
                         <td class="whitespace-nowrap border border-slate-200 px-3 py-3 dark:border-navy-500 lg:px-5">
-                            الكترونيات
+                            {{$org->org_type->name}}
                         </td>
                         <td
                             class="whitespace-nowrap border border-slate-900 bg-info px-4 py-3 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-5">
                             العنوان
                         </td>
                         <td class="whitespace-nowrap border border-slate-200 px-3 py-3 dark:border-navy-500 lg:px-5">
-                            الجزائر
+                            {{$org->addrees}}
                         </td>
                         <td
                             class="whitespace-nowrap border border-slate-900 bg-info px-4 py-3 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-5">
@@ -306,7 +307,7 @@
                             class="whitespace-nowrap border border-slate-900 bg-info px-4 py-3 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-5">
                             الاجمالي
                         </td>
-                        
+
                             <td>
                                 gsdf
                             </td>

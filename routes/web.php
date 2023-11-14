@@ -32,7 +32,7 @@ Route::controller(ShowPagesController::class)->prefix('admin')->group(
         Route::get('/hoods','show_hoods_view')->name('hoods');
         Route::get('/org/show/{id}','getorg');
         Route::get('/office', 'show_office_view')->name('segmanet');
-        Route::get('/org/clip','show_auto_clip')->name('org.autoclipboard');
+        Route::get('/org/clip/{id}','show_auto_clip')->name('org.autoclipboard');
     }
 );
 Route::controller(ShowPagesController::class)->group(
