@@ -45,4 +45,4 @@ Route::controller(ShowPagesController::class)->prefix('admin')->middleware('admi
 //         // Route::get('/ulogin', 'userlogin')->name('user.login');
 //     }
 // );
-// Route::get('/', [ShowPagesController::class], 'userlogin')->name('user.login');
+Route::get('/login', [ShowPagesController::class,'userlogin'])->name('user.login');
