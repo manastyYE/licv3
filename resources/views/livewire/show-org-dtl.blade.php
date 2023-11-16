@@ -78,7 +78,7 @@
 
 
                             <div class="avatar h-24 w-24 rounded-full">
-                                <img class="" src="https://premium155.web-hosting.com:2083/cpsess5319284046/viewer/home%2fqryebnwd%2f{{ $org->owner_img  }}" alt="avatar" />
+                                <img class="" src="{{ url::asset($org->owner_img)}}" alt="avatar" />
                             </div>
 
 
