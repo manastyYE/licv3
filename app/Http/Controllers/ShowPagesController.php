@@ -17,7 +17,7 @@ class ShowPagesController extends Controller
 
     }
     public function show_org_type(){
-        return view('t22est');
+        return view('opp_type');
     }
     public function adminlogin(){
         // Admin::create([
