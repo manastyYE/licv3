@@ -4,7 +4,7 @@ namespace App\Http\Livewire\Login;
 
 use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Validation\ValidationException;  
+use Illuminate\Validation\ValidationException;
 class Login extends Component
 {
     public $username,$password;
@@ -26,7 +26,7 @@ class Login extends Component
 
             $user_id = Auth::id();
             session()->put('id', $user_id);
-            return redirect()->route('dashboard');
+            return redirect()->route('dashboard_view');
         } else {
             throw ValidationException::withMessages([
                 'username' => 'اسم المستخدم او كلمة المرور غير صحيحة',
