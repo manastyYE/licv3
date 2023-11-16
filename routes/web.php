@@ -32,6 +32,7 @@ Route::controller(ShowPagesController::class)->prefix('admin')->group(
         Route::get('/hoods','show_hoods_view')->name('hoods');
         Route::get('/org/show/{id}','getorg');
         Route::get('/office', 'show_office_view')->name('segmanet');
+        Route::get('/streets', 'show_streets')->name('streets');
         Route::get('/org/clip/{id}','show_auto_clip')->name('org.autoclipboard');
     }
 );

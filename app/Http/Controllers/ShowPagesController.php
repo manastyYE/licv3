@@ -82,4 +82,8 @@ class ShowPagesController extends Controller
     public function show_auto_clip($id){
         return view('Automated_clipboard',['id'=>$id]);
     }
+
+    public function show_streets(){
+        return view('street');
+    }
 }
