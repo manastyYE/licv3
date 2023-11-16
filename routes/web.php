@@ -33,7 +33,7 @@ Route::controller(ShowPagesController::class)->prefix('admin')->middleware('admi
         Route::get('/office', 'show_office_view')->name('segmanet');
         Route::get('/org/clip/{id}','show_auto_clip')->name('org.autoclipboard');
         Route::get('/logout', 'adminlogout')->name('admin.logout');
-        Route::get('/system','System_initialization_view')->name('System.initialization')
+        Route::get('/system','System_initialization_view')->name('System.initialization');
     }
 );
 Route::controller(ShowPagesController::class)->prefix('admin')->middleware('admin.guest')->group(
