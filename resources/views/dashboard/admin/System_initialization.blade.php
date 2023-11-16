@@ -114,14 +114,14 @@
                     </div>
                 </div>
             </a>
-            <a href="/admin/office">
+            <a href="/admin/hood-unit">
                 <div class="card">
                     <div class="flex justify-center p-5">
                         <img class="w-9/12" src="{{ asset('images/illustrations/creativedesign.svg') }}" alt="image">
                     </div>
                     <div class="px-4 pb-8 text-center sm:px-5">
                         <h4 class="text-lg font-semibold text-slate-700 dark:text-navy-100">
-                            القطاعات
+                            وحدات الجوار
                         </h4>
                         <p class="pt-3">
 
