@@ -48,7 +48,7 @@ class ShowPagesController extends Controller
     }
     public function adminlogout(){
         Auth::guard('admin')->logout();
-        return redirect()->route('admin.login');
+        return redirect()->route('adminlogin');
     }
     public function userlogout(){
         Auth::guard('user')->logout();
