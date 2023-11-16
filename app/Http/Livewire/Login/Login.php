@@ -26,7 +26,7 @@ class Login extends Component
 
             $user_id = Auth::id();
             session()->put('id', $user_id);
-            return redirect()->to('/admin/dashboard');
+            return redirect()->route('dashboard_view');
         } else {
             throw ValidationException::withMessages([
                 'username' => 'اسم المستخدم او كلمة المرور غير صحيحة',
