@@ -24,21 +24,21 @@
                                         class="gridjs-sort gridjs-sort-neutral"></button>
                                 </th>
                                 <th data-column-id="name" class="gridjs-th gridjs-th-sort" tabindex="0">
-                                    <div class="gridjs-th-content"> 
+                                    <div class="gridjs-th-content">
                                         اسم اللوحة
                                     </div><button tabindex="-1"
                                         aria-label="Sort column ascending" title="Sort column ascending"
                                         class="gridjs-sort gridjs-sort-neutral"></button>
                                 </th>
                                 <th data-column-id="name" class="gridjs-th gridjs-th-sort" tabindex="0">
-                                    <div class="gridjs-th-content"> 
+                                    <div class="gridjs-th-content">
                                         سعر المتر المربع
                                     </div><button tabindex="-1"
                                         aria-label="Sort column ascending" title="Sort column ascending"
                                         class="gridjs-sort gridjs-sort-neutral"></button>
                                 </th>
-                                
-                                
+
+
 
                                 <th data-column-id="actions" class="gridjs-th">
                                     <div class="gridjs-th-content">العمليات</div>
@@ -52,20 +52,20 @@
                             <?php $i++; ?>
                             <tr class="gridjs-tr">
                                 <td class="gridjs-td"><span><span class="mx-2">{{ $i }}</span></span></td>
-                                
+
 
                                 <td class="gridjs-td">{{ $p->name }}</td>
                                 <td class="gridjs-td">{{ $p->price }}</td>
                                 <td class="gridjs-td"><span>
                                         <div class="flex justify-center space-x-2">
-                                            
-                                        <button 
+
+                                        <button
                                         type="button" wire:click='setname({{ $p->id }})' x-data
                                                 x-on:click="$dispatch('open-modal',{name:'edit-bill-board-modal'})"
                                         class="btn h-8 w-8 p-0 text-info hover:bg-info/20 focus:bg-info/20 active:bg-info/25">
                                             <i class="fa fa-edit"></i>
                                         </button>
-                                            <button 
+                                            <button
                                             wire:click='deleteConfirmation({{ $p->id }})'
                                             x-data
                                             x-on:click="$dispatch('open-modal',{name:'del-bill-board-modal'})"
@@ -101,7 +101,7 @@
 
 
     <div wire:ignore.self>
-        <x-modaladd  title="اضافة لوحة جديدة " name="add-hood-unit-modal">
+        <x-modaladd  title="اضافة لوحة جديدة " name="add-bill-board-modal">
             @slot('body')
             <form>
                 <div class="p-2 space-y-6">
@@ -127,9 +127,9 @@
                         {{ $message }}
                     </span>
                     @enderror
-    
+
                 </div>
-    
+
                 <!-- Modal footer -->
                 <div class="items-center p-4 border-t border-gray-200 rounded-b dark:border-gray-700">
                     <button type="button"
@@ -145,13 +145,13 @@
             <div>
                 @if (session('sec'))
                 <span class="text-green-500 text-xs">{{ session('sec') }}</span>
-    
+
                 @endif
             </div>
-    
+
             @endslot
             {{-- @slot('footer')
-    
+
             @endslot --}}
         </x-modaladd>
     </div>
@@ -161,7 +161,7 @@
             <x-slot:body>
                 <form>
                     <div class="p-2 space-y-6">
-                        
+
                         <label class="block">
                             <span>   اسم اللوحة </span>
                             <input wire:model='ed_name'
@@ -184,9 +184,9 @@
                             {{ $message }}
                         </span>
                         @enderror
-        
+
                     </div>
-        
+
                     <!-- Modal footer -->
                     <div class="items-center p-4 border-t border-gray-200 rounded-b dark:border-gray-700">
                         <button type="button" wire:click='close'
@@ -200,10 +200,10 @@
                     </div>
                 </form>
             </x-slot:body>
-    
-    
+
+
             {{-- @slot('footer')
-    
+
             @endslot --}}
         </x-modaladd>
     </div>
@@ -231,9 +231,9 @@
     </x-modaldel>
 
 
-    
-    
 
-    
-    
+
+
+
+
 </div>

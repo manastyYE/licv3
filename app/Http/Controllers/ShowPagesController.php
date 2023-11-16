@@ -82,4 +82,7 @@ class ShowPagesController extends Controller
     public function show_auto_clip($id){
         return view('Automated_clipboard',['id'=>$id]);
     }
+    public function System_initialization_view(){
+        return view('dashboard.admin.System_initialization');
+    }
 }
