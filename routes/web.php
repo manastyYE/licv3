@@ -20,14 +20,14 @@ Route::get('/', function () {
 
 Route::controller(ShowPagesController::class)->prefix('admin')->middleware('admin.auth')->group(
     function(){
-        Route::get('/dashboard','dashboard_view')->name('dashboard_view');
+        Route::get('/dashboard','dashboard_view')->name('dashboard');
         Route::get('/org/dashboard','org_dashboard_view')->name('org_dashboard_view');
         Route::get('/users','show_add_users')->name('users');
         Route::get('/org/add','Show_add_org')->name('addorg');
         Route::get('/org','show_all_orgs')->name('orgs.show');
         Route::get('/org_type','show_org_type')->name('org_type');
         Route::get('/billboards', 'bill_board_view')->name('billboard.add.edit.del');
-        Route::get('/dashboard','showdashboard')->name('dashboard');
+        // Route::get('/dashboard','showdashboard')->name('admin.dashboard');
         Route::get('/hoods','show_hoods_view')->name('hoods');
         Route::get('/org/show/{id}','getorg');
         Route::get('/office', 'show_office_view')->name('segmanet');

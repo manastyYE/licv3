@@ -22,11 +22,11 @@ class Login extends Component
             'password.required' => 'يجب تعبئة حقل كلمة المرور.',
             'password.min' => 'يجب أن تحتوي كلمة المرور على 5 أحرف على الأقل.',
         ]);
-        if (Auth::guard('admin')->attempt(['username' => $validatedData['username'], 'password' => $validatedData['password']])) {
+        if (Auth::guard('admin')->attempt(['username' => $validatedData['username'],'password' =>$this->password])) {
 
             $user_id = Auth::id();
             session()->put('id', $user_id);
-            // return redirect()->route('dashboard_view');
+            return redirect()->route('dashboard');
         } else {
             throw ValidationException::withMessages([
                 'username' => 'اسم المستخدم او كلمة المرور غير صحيحة',
