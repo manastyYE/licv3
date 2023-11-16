@@ -78,7 +78,7 @@
 
 
                             <div class="avatar h-24 w-24 rounded-full">
-                                <img class="" src="{{ asset($org->owner_img)   }}" alt="avatar" />
+                                <img class="" src="{{$org->owner_img}}" alt="avatar" />
                             </div>
 
 
