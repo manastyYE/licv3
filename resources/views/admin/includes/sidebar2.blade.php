@@ -16,7 +16,7 @@
                 <!-- Dashobards -->
                 <a href="{{route('dashboard')}}" x-bind:class="condition == 'dashboard' ? 'bg-primary/10 text-primary dark:bg-navy-600 dark:text-accent-light' : ''"
                     class="flex h-11 w-11 items-center justify-center rounded-lg outline-none transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
-                    x-tooltip.placement.right="'Dashboards'">
+                    x-tooltip.placement.right="'لوحة التحكم'">
                     <svg class="h-7 w-7" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                         <path fill="currentColor" fill-opacity=".3"
                             d="M5 14.059c0-1.01 0-1.514.222-1.945.221-.43.632-.724 1.453-1.31l4.163-2.974c.56-.4.842-.601 1.162-.601.32 0 .601.2 1.162.601l4.163 2.974c.821.586 1.232.88 1.453 1.31.222.43.222.935.222 1.945V19c0 .943 0 1.414-.293 1.707C18.414 21 17.943 21 17 21H7c-.943 0-1.414 0-1.707-.293C5 20.414 5 19.943 5 19v-4.94Z" />
@@ -32,7 +32,7 @@
                 <!-- Apps -->
                 <a href="{{route('orgs.show')}}" x-bind:class="condition == 'orgs' ? 'bg-primary/10 text-primary dark:bg-navy-600 dark:text-accent-light' : ''"
                     class="flex h-11 w-11 items-center justify-center rounded-lg outline-none transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
-                    x-tooltip.placement.right="'Applications'">
+                    x-tooltip.placement.right="'المنشئات'">
                     <svg class="h-7 w-7" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path
                             d="M5 8H19V16C19 17.8856 19 18.8284 18.4142 19.4142C17.8284 20 16.8856 20 15 20H9C7.11438 20 6.17157 20 5.58579 19.4142C5 18.8284 5 17.8856 5 16V8Z"
@@ -51,7 +51,7 @@
                 <!-- Pages And Layouts -->
                 <a href="{{route('org_type')}}" x-bind:class="condition == 'org_type' ? 'bg-primary/10 text-primary dark:bg-navy-600 dark:text-accent-light' : ''"
                 class="flex h-11 w-11 items-center justify-center rounded-lg outline-none transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90"
-                    x-tooltip.placement.right="'Pages & Layouts'">
+                    x-tooltip.placement.right="'الأنشطة التجارية'">
                     <svg class="h-7 w-7" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path
                             d="M9.85714 3H4.14286C3.51167 3 3 3.51167 3 4.14286V9.85714C3 10.4883 3.51167 11 4.14286 11H9.85714C10.4883 11 11 10.4883 11 9.85714V4.14286C11 3.51167 10.4883 3 9.85714 3Z"
@@ -71,7 +71,7 @@
                 <!-- Forms -->
                 <a href="{{route('hoods')}}" x-bind:class="condition == 'hoods' ? 'bg-primary/10 text-primary dark:bg-navy-600 dark:text-accent-light' : ''"
                     class="flex h-11 w-11 items-center justify-center rounded-lg outline-none transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
-                    x-tooltip.placement.right="'Forms'">
+                    x-tooltip.placement.right="'الأحياء'">
                     <svg class="h-7 w-7" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path fill-opacity="0.25"
                             d="M21.0001 16.05V18.75C21.0001 20.1 20.1001 21 18.7501 21H6.6001C6.9691 21 7.3471 20.946 7.6981 20.829C7.7971 20.793 7.89609 20.757 7.99509 20.712C8.31009 20.586 8.61611 20.406 8.88611 20.172C8.96711 20.109 9.05711 20.028 9.13811 19.947L9.17409 19.911L15.2941 13.8H18.7501C20.1001 13.8 21.0001 14.7 21.0001 16.05Z"
@@ -88,7 +88,7 @@
                 <!-- Components -->
                 <a href="{{route('streets')}}" x-bind:class="condition == 'street' ? 'bg-primary/10 text-primary dark:bg-navy-600 dark:text-accent-light' : ''"
                     class="flex h-11 w-11 items-center justify-center rounded-lg outline-none transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
-                    x-tooltip.placement.right="'Components'">
+                    x-tooltip.placement.right="'الشوارع'">
                     <svg class="h-7 w-7" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path fill-opacity="0.5"
                             d="M14.2498 16C14.2498 17.5487 13.576 18.9487 12.4998 19.9025C11.5723 20.7425 10.3473 21.25 8.99976 21.25C6.10351 21.25 3.74976 18.8962 3.74976 16C3.74976 13.585 5.39476 11.5375 7.61726 10.9337C8.22101 12.4562 9.51601 13.6287 11.1173 14.0662C11.5548 14.1887 12.0185 14.25 12.4998 14.25C12.981 14.25 13.4448 14.1887 13.8823 14.0662C14.1185 14.6612 14.2498 15.3175 14.2498 16Z"
@@ -120,7 +120,7 @@
             <!-- Bottom Links -->
             <div class="flex flex-col items-center space-y-3 py-3">
                 <!-- Settings -->
-                <a href="form-layout-5.html"
+                <a href="/admin/system"
                     class="flex h-11 w-11 items-center justify-center rounded-lg outline-none transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25">
                     <svg class="h-7 w-7" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path fill-opacity="0.3" fill="currentColor"
@@ -144,7 +144,7 @@
                             <div
                                 class="flex items-center space-x-4 space-x-reverse rounded-t-lg bg-slate-100 py-5 px-4 dark:bg-navy-800">
                                 <div class="avatar h-14 w-14">
-                                    <img class="rounded-full" src="images/200x200.png" alt="avatar" />
+                                    <img class="rounded-full" src="{{ asset('images/200x200.png') }}" alt="avatar" />
                                 </div>
                                 <div>
                                     <a href="#"
