@@ -74,11 +74,11 @@
                     <div class=" h-24 w-24 ">
                         <div class="group relative">
 
-{{-- {{ asset($org->owner_img)}} --}}
+
 
 
                             <div class="avatar h-24 w-24 rounded-full">
-                                <img class="" src="{{asset($org->owner_img)}}" alt="avatar" />
+                                <img class="" src="{{ asset($org->owner_img)   }}" alt="avatar" />
                             </div>
 
 
@@ -340,7 +340,7 @@
                             <span> نوع اللوحة </span>
                             <select wire:model='billboard_id'
                                 class="form-select mt-1.5 w-full rounded-lg border border-slate-300 bg-white px-3 py-2 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:bg-navy-700 dark:hover:border-navy-400 dark:focus:border-accent">
-                                <option value="" > اختر نوع اللوحة </option>
+                                <option value="" disabled> اختر نوع اللوحة </option>
                                 @forelse ($bill as $b )
                                 <option value="{{ $b->id }}">{{ $b->name }}</option>
                                 @empty

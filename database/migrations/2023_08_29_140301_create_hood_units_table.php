@@ -16,8 +16,6 @@ return new class extends Migration
         Schema::create('hood_units', function (Blueprint $table) {
             $table->id();
             $table->string('no');
-            $table->unsignedBigInteger('hood_id');
-            $table->foreign('hood_id')->references('id')->on('hoods')->onDelete('restrict');
             $table->timestamps();
         });
     }

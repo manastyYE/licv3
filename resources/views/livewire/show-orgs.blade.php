@@ -46,12 +46,12 @@
                             @if ($type->count() > 0)
                             @foreach ($type as $p)
                             <?php $i++; ?>
-
-
+                            
+                                
                                 <tr class="gridjs-tr">
                                     <td class="gridjs-td"><span><span class="mx-2">{{ $i }}</span></span></td>
                                     <td class="gridjs-td">
-                                        <a href="/admin/org/show/{{ $p->id }}">
+                                        <a href="/admin/org/{{ $p->id }}">
                                             {{ $p->org_name }}
                                         </a>
                                     </td>
@@ -62,8 +62,8 @@
 
 
                                 </tr>
-
-
+                                
+                            
 
                             @endforeach
                             @endif
