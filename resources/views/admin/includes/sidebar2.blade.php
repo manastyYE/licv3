@@ -12,7 +12,7 @@
             </div>
 
             <!-- Main Sections Links -->
-            <div class="is-scrollbar-hidden flex grow flex-col space-y-4 overflow-y-auto pt-6">
+            <div x-data="{ condition: '{{$name}}' }" class="is-scrollbar-hidden flex grow flex-col space-y-4 overflow-y-auto pt-6">
                 <!-- Dashobards -->
                 <a href="{{route('dashboard')}}" x-bind:class="condition == 'dashboard' ? 'bg-primary/10 text-primary dark:bg-navy-600 dark:text-accent-light' : ''"
                     class="flex h-11 w-11 items-center justify-center rounded-lg outline-none transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
