@@ -18,4 +18,5 @@ class OrgBillboard extends Model
     public function billboard(){
         return $this->belongsTo(Billboard::class);
     }
+    
 }

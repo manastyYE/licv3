@@ -116,29 +116,29 @@
                     <tr>
 
                         <td class="whitespace-nowrap border border-slate-200 px-3 py-3 dark:border-navy-500 lg:px-5">
-                            5
+                            {{ $board1['count2'] }}
                         </td>
 
                         <td class="whitespace-nowrap border border-slate-200 px-3 py-3 dark:border-navy-500 lg:px-5">
-                            3
+                            {{ $board1['count1'] }}
                         </td>
 
+                        <td class="whitespace-nowrap border border-slate-200 px-3 py-3 dark:border-navy-500 lg:px-5">
+                            {{ $board1['count3'] }}
+                        </td>
+                        <td class="whitespace-nowrap border border-slate-200 px-3 py-3 dark:border-navy-500 lg:px-5">
+                            {{ $board1['count4'] }}
+                        </td>
+
+                        <td class="whitespace-nowrap border border-slate-200 px-3 py-3 dark:border-navy-500 lg:px-5">
+                            {{ $board1['count5'] }}
+                        </td>
+
+                        <td class="whitespace-nowrap border border-slate-200 px-3 py-3 dark:border-navy-500 lg:px-5">
+                            {{ $board1['count6'] }}
+                        </td>
                         <td class="whitespace-nowrap border border-slate-200 px-3 py-3 dark:border-navy-500 lg:px-5">
                             0
-                        </td>
-                        <td class="whitespace-nowrap border border-slate-200 px-3 py-3 dark:border-navy-500 lg:px-5">
-                            0
-                        </td>
-
-                        <td class="whitespace-nowrap border border-slate-200 px-3 py-3 dark:border-navy-500 lg:px-5">
-                            0
-                        </td>
-
-                        <td class="whitespace-nowrap border border-slate-200 px-3 py-3 dark:border-navy-500 lg:px-5">
-                            3
-                        </td>
-                        <td class="whitespace-nowrap border border-slate-200 px-3 py-3 dark:border-navy-500 lg:px-5">
-                            3
                         </td>
 
                     </tr>
@@ -240,7 +240,7 @@
                         </td>
 
                         <td class="whitespace-nowrap border border-slate-200 px-3 py-3 dark:border-navy-500 lg:px-5">
-                            3
+                            {{ $total }}
                         </td>
 
                         <td class="whitespace-nowrap border border-slate-200 px-3 py-3 dark:border-navy-500 lg:px-5">
@@ -263,7 +263,7 @@
                         </td>
 
                         <td class="whitespace-nowrap border border-slate-200 px-3 py-3 dark:border-navy-500 lg:px-5">
-                            3
+                            {{ $org->org_type->price }}
                         </td>
 
                         <td class="whitespace-nowrap border border-slate-200 px-3 py-3 dark:border-navy-500 lg:px-5">
@@ -309,7 +309,7 @@
                         </td>
 
                             <td>
-                                gsdf
+                                {{ ($total + $org->org_type->price) }}
                             </td>
 
 

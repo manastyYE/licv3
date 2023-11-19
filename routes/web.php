@@ -35,7 +35,7 @@ Route::controller(ShowPagesController::class)->prefix('admin')->middleware('admi
         Route::get('/logout', 'adminlogout')->name('admin.logout');
         Route::get('/system','System_initialization_view')->name('System.initialization');
         Route::get('/streets', 'show_streets')->name('streets');
-        Route::get('/hood_unit', 'show_hood_unit')->name('hood_unit');
+        Route::get('/hood-unit', 'show_hood_unit')->name('hood_unit');
     }
 );
 Route::controller(ShowPagesController::class)->prefix('admin')->middleware('admin.guest')->group(

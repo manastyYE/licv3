@@ -31,7 +31,7 @@
                                 </th>
                                 <th data-column-id="name" class="gridjs-th gridjs-th-sort" tabindex="0">
                                     <div class="gridjs-th-content">
-                                        المديرية
+                                        الحي
                                     </div><button tabindex="-1" aria-label="Sort column ascending"
                                         title="Sort column ascending" class="gridjs-sort gridjs-sort-neutral"></button>
                                 </th>

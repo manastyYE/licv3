@@ -23,9 +23,9 @@ class ShowPagesController extends Controller
         // Admin::create([
         //     'fullname'=>'abdullah alhammadi',
         //     'phone'=>'774490160',
-        //     'username'=>'admin',
+        //     'username'=>'abdullah',
         //     'password'=>bcrypt('admin'),
-        //     'directorate_id'=>1,
+        //     'directorate_id'=>2,
         // ]);
         return view('login.login');
     }
