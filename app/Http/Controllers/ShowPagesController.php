@@ -85,4 +85,7 @@ class ShowPagesController extends Controller
     public function System_initialization_view(){
         return view('dashboard.admin.System_initialization');
     }
+    public function show_streets(){
+        return view('street');
+    }
 }
