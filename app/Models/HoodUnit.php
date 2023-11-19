@@ -12,8 +12,13 @@ class HoodUnit extends Model
 
         'no',
         'hood_id',
+        'directorate_id',
     ];
     public function hood(){
         return $this->belongsTo(Hood::class);
+    }
+    public function directorate()
+    {
+        return $this->belongsTo(Directorate::class);
     }
 }

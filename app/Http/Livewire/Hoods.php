@@ -4,15 +4,17 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use App\Models\Hood;
+use Illuminate\Support\Facades\Auth;
 
 class Hoods extends Component
 {
     public function render()
     {
+        $this->directorate_id =auth()->guard('admin')->user()->directorate_id;
         $hoods=Hood::all();
         return view('livewire.hoods',['type'=>$hoods]);
     }
-    public $name, $hood_edit_id, $hood_delete_id;
+    public $name,$directorate_id, $hood_edit_id, $hood_delete_id;
 
 
     //Input fields on update validation
@@ -30,7 +32,7 @@ class Hoods extends Component
         //Add Student Data
         $hood = new Hood();
         $hood->name = $this->name;
-        $hood->directorate_id=1;
+        $hood->directorate_id=auth()->guard('admin')->user()->directorate_id;
         $hood->save();
 
         session()->flash('message', 'تمت عملية اضافة وحدة الجوار الجديدة');

@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('name');
             $table->unsignedBigInteger('hood_unit_id');
             $table->foreign('hood_unit_id')->references('id')->on('hood_units')->onDelete('restrict');
+            $table->unsignedBigInteger('directorate_id');
+            $table->foreign('directorate_id')->references('id')->on('directorates')->onDelete('restrict');
             $table->timestamps();
         });
     }

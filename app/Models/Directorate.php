@@ -11,5 +11,8 @@ class Directorate extends Model
     protected $fillable=[
         'name'
     ];
-    
+    public function hood(){
+        return $this->hasMany(Hood::class);
+    }
+
 }

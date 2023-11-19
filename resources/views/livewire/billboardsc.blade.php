@@ -7,7 +7,7 @@
     <hr>
 
 
-    <div>
+    <div>   
         <div x-data="pages.tables.initGridTableExapmle">
             <div role="complementary" class="gridjs gridjs-container" style="width: 100%;">
                 <div class="gridjs-head">

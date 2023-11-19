@@ -57,6 +57,9 @@ class ShowPagesController extends Controller
     public function show_hoods_view(){
         return view('hoods');
     }
+    public function show_hood_unit(){
+        return view('hood_units');
+    }
     public function show_all_orgs(){
         return view('orgs.show_orgs');
     }

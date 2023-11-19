@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+
 class Hood extends Model
 {
     use HasFactory;
@@ -15,6 +16,6 @@ class Hood extends Model
 
     ];
     public function directorate(){
-        return $this->belongsTo(Director::class);
+        return $this->belongsTo(Directorate::class);
     }
 }

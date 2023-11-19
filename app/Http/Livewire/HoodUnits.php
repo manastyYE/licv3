@@ -4,18 +4,20 @@ namespace App\Http\Livewire;
 
 use App\Models\HoodUnit;
 use Livewire\Component;
+use App\Models\Hood;
 
 class HoodUnits extends Component
 {
     public function render()
-    {   $hood=HoodUnit::all();
-        return view('livewire.hood-units',['type'=>$hood]);
+    {   $hood_unit=HoodUnit::where('directorate_id',auth()->guard('admin')->user()->directorate_id)->get();
+        $hood=Hood::where('directorate_id',auth()->guard('admin')->user()->directorate_id)->get();
+        return view('livewire.hood-units',['type'=>$hood_unit,'hood'=>$hood]);
     }
-    public $no, $hood_unit_edit_id, $hood_unit_delete_id;
-    public $ed_no;
+    public $no,$hood_id, $hood_unit_edit_id, $hood_unit_delete_id;
+    public $ed_no,$ed_hood_id;
 
     //Input fields on update validation
-    
+
 
 
     public function storeHoodUnitData()
@@ -23,12 +25,16 @@ class HoodUnits extends Component
         //on form submit validation
         $this->validate([
             'no' => 'required|unique:hood_units,no',
-            
+            'hood_id'=>'required',
+
+
         ]);
 
         //Add Student Data
         $hood_unit = new HoodUnit();
         $hood_unit->no = $this->no;
+        $hood_unit->hood_id = $this->hood_id;
+        $hood_unit->directorate_id = auth()->guard('admin')->user()->directorate_id;
         $hood_unit->save();
 
         session()->flash('message', 'تمت عملية اضافة وحدة الجوار الجديدة');
@@ -43,6 +49,8 @@ class HoodUnits extends Component
     {
         $this->no = '';
         $this->ed_no = '';
+        $this->hood_id = '';
+        $this->ed_hood_id = '';
     }
 
     public function close()
@@ -55,8 +63,8 @@ class HoodUnits extends Component
         $this->hood_unit_edit_id = $hood_unit->id;
         $this->ed_no = $hood_unit->no;
     }
-    
-    
+
+
     public function editHoodUnitData()
     {
         //on form submit validation
@@ -83,7 +91,7 @@ class HoodUnits extends Component
     {
         $this->hood_unit_delete_id = $id; //student id
 
-    
+
     }
 
     public function deleteHoodUnitData()

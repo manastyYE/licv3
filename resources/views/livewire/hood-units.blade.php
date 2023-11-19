@@ -2,7 +2,7 @@
     {{-- If you look to others for fulfillment, you will never truly be fulfilled. --}}
     <button type="button"
         class="btn bg-slate-150 font-medium text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90"
-        x-data x-on:click="$dispatch('open-modal',{ name : 'add-hood-unit-modal'})">اضافة وحدة جوار  </button>
+        x-data x-on:click="$dispatch('open-modal',{ name : 'add-hood-unit-modal'})">اضافة وحدة جوار </button>
     <br>
     <hr>
 
@@ -24,14 +24,18 @@
                                         class="gridjs-sort gridjs-sort-neutral"></button>
                                 </th>
                                 <th data-column-id="name" class="gridjs-th gridjs-th-sort" tabindex="0">
-                                    <div class="gridjs-th-content"> 
+                                    <div class="gridjs-th-content">
                                         رقم وحدة الجوار
-                                    </div><button tabindex="-1"
-                                        aria-label="Sort column ascending" title="Sort column ascending"
-                                        class="gridjs-sort gridjs-sort-neutral"></button>
+                                    </div><button tabindex="-1" aria-label="Sort column ascending"
+                                        title="Sort column ascending" class="gridjs-sort gridjs-sort-neutral"></button>
                                 </th>
-                                
-                                
+                                <th data-column-id="name" class="gridjs-th gridjs-th-sort" tabindex="0">
+                                    <div class="gridjs-th-content">
+                                        المديرية
+                                    </div><button tabindex="-1" aria-label="Sort column ascending"
+                                        title="Sort column ascending" class="gridjs-sort gridjs-sort-neutral"></button>
+                                </th>
+
 
                                 <th data-column-id="actions" class="gridjs-th">
                                     <div class="gridjs-th-content">العمليات</div>
@@ -41,33 +45,33 @@
                         <tbody class="gridjs-tbody">
                             <?php $i = 0; ?>
                             @if ($type->count() > 0)
-                            @foreach ($type as $p)
-                            <?php $i++; ?>
-                            <tr class="gridjs-tr">
-                                <td class="gridjs-td"><span><span class="mx-2">{{ $i }}</span></span></td>
-                                
+                                @foreach ($type as $p)
+                                    <?php $i++; ?>
+                                    <tr class="gridjs-tr">
+                                        <td class="gridjs-td"><span><span
+                                                    class="mx-2">{{ $i }}</span></span></td>
 
-                                <td class="gridjs-td">{{ $p->no }}</td>
-                                <td class="gridjs-td"><span>
-                                        <div class="flex justify-center space-x-2">
-                                            
-                                        <button 
-                                        type="button" wire:click='setname({{ $p->id }})' x-data
-                                                x-on:click="$dispatch('open-modal',{name:'edit-hood-unit-modal'})"
-                                        class="btn h-8 w-8 p-0 text-info hover:bg-info/20 focus:bg-info/20 active:bg-info/25">
-                                            <i class="fa fa-edit"></i>
-                                        </button>
-                                            <button 
-                                            wire:click='deleteConfirmation({{ $p->id }})'
-                                            x-data
-                                            x-on:click="$dispatch('open-modal',{name:'del-hood-unit-modal'})"
-                                                class="btn h-8 w-8 p-0 text-error hover:bg-error/20 focus:bg-error/20 active:bg-error/25">
-                                                <i class="fa fa-trash-alt"></i>
-                                            </button>
-                                        </div>
-                                    </span></td>
-                            </tr>
-                            @endforeach
+
+                                        <td class="gridjs-td">{{ $p->no }}</td>
+                                        <td class="gridjs-td">{{ $p->hood->name }}</td>
+                                        <td class="gridjs-td"><span>
+                                                <div class="flex justify-center space-x-2">
+
+                                                    <button type="button" wire:click='setname({{ $p->id }})'
+                                                        x-data
+                                                        x-on:click="$dispatch('open-modal',{name:'edit-hood-unit-modal'})"
+                                                        class="btn h-8 w-8 p-0 text-info hover:bg-info/20 focus:bg-info/20 active:bg-info/25">
+                                                        <i class="fa fa-edit"></i>
+                                                    </button>
+                                                    <button wire:click='deleteConfirmation({{ $p->id }})' x-data
+                                                        x-on:click="$dispatch('open-modal',{name:'del-hood-unit-modal'})"
+                                                        class="btn h-8 w-8 p-0 text-error hover:bg-error/20 focus:bg-error/20 active:bg-error/25">
+                                                        <i class="fa fa-trash-alt"></i>
+                                                    </button>
+                                                </div>
+                                            </span></td>
+                                    </tr>
+                                @endforeach
                             @endif
 
 
@@ -80,10 +84,11 @@
                             <b>1</b> to <b>10</b> of <b>15</b> results
                         </div>
                         <div class="gridjs-pages"><button tabindex="0" role="button" disabled="" title="Previous"
-                                aria-label="Previous" class="">Previous</button><button tabindex="0" role="button"
-                                class="gridjs-currentPage" title="Page 1" aria-label="Page 1">1</button><button
-                                tabindex="0" role="button" class="" title="Page 2" aria-label="Page 2">2</button><button
-                                tabindex="0" role="button" title="Next" aria-label="Next" class="">Next</button></div>
+                                aria-label="Previous" class="">Previous</button><button tabindex="0"
+                                role="button" class="gridjs-currentPage" title="Page 1"
+                                aria-label="Page 1">1</button><button tabindex="0" role="button" class=""
+                                title="Page 2" aria-label="Page 2">2</button><button tabindex="0" role="button"
+                                title="Next" aria-label="Next" class="">Next</button></div>
                     </div>
                 </div>
                 <div id="gridjs-temp" class="gridjs-temp"></div>
@@ -93,46 +98,62 @@
 
 
     <div wire:ignore.self>
-        <x-modaladd  title="اضافة وحدة جوار جديدة " name="add-hood-unit-modal">
+        <x-modaladd title="اضافة وحدة جوار جديدة " name="add-hood-unit-modal">
             @slot('body')
-            <form>
-                <div class="p-2 space-y-6">
-                    <label class="block">
-                        <span>  رقم وحدة الجوار </span>
-                        <input wire:model='no'
-                            class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
-                            placeholder="  ادخل رقم وحدة الجوار هنا ...  " type="text" />
-                    </label>
-                    @error('no')
-                    <span class="text-tiny+ text-error">
-                        {{ $message }}
-                    </span>
-                    @enderror
-    
+                <form>
+                    <div class="p-2 space-y-6">
+                        <label class="block" >
+                            <span> الحي </span>
+                            <select wire:model='hood_id' class="mt-1.5 " x-init="$el._x_tom = new Tom($el, { sortField: { field: 'text', direction: 'asc' } })">
+                                <option value=""> . اختر الحي </option>
+
+                                @forelse ($hood as $hoo)
+                                    <option value="{{ $hoo->id }}">.... . {{ $hoo->name }}</option>
+                                @empty
+                                    <option value=""> لا توجد اي احياء</option>
+                                @endforelse
+                            </select>
+                        </label>
+
+
+                        @error('hood_id')
+                            <span class="text-tiny+ text-error">{{ $message }}</span>
+                        @enderror
+                        <label class="block">
+                            <span> رقم وحدة الجوار </span>
+                            <input wire:model='no'
+                                class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
+                                placeholder="  ادخل رقم وحدة الجوار هنا ...  " type="text" />
+                        </label>
+                        @error('no')
+                            <span class="text-tiny+ text-error">
+                                {{ $message }}
+                            </span>
+                        @enderror
+
+                    </div>
+
+                    <!-- Modal footer -->
+                    <div class="items-center p-4 border-t border-gray-200 rounded-b dark:border-gray-700">
+                        <button type="button"
+                            class="btn bg-slate-150 font-medium text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90">
+                            الغاء
+                        </button>
+                        <button type="button" wire:click.prevent='storeHoodUnitData'
+                            class="btn bg-primary font-medium text-white hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90">
+                            تأكيد
+                        </button>
+                    </div>
+                </form>
+                <div>
+                    @if (session('sec'))
+                        <span class="text-green-500 text-xs">{{ session('sec') }}</span>
+                    @endif
                 </div>
-    
-                <!-- Modal footer -->
-                <div class="items-center p-4 border-t border-gray-200 rounded-b dark:border-gray-700">
-                    <button type="button"
-                        class="btn bg-slate-150 font-medium text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90">
-                        الغاء
-                    </button>
-                    <button type="button" wire:click.prevent='storeHoodUnitData'
-                        class="btn bg-primary font-medium text-white hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90">
-                        تأكيد
-                    </button>
-                </div>
-            </form>
-            <div>
-                @if (session('sec'))
-                <span class="text-green-500 text-xs">{{ session('sec') }}</span>
-    
-                @endif
-            </div>
-    
+
             @endslot
             {{-- @slot('footer')
-    
+
             @endslot --}}
         </x-modaladd>
     </div>
@@ -142,22 +163,39 @@
             <x-slot:body>
                 <form>
                     <div class="p-2 space-y-6">
-                        
+                        <label class="block" >
+                            <span> الحي </span>
+                            <select wire:model='ed_hood_id' class="mt-1.5 " x-init="$el._x_tom = new Tom($el, { sortField: { field: 'text', direction: 'asc' } })">
+                                <option value=""> . اختر الحي </option>
+
+                                @forelse ($hood as $hoo)
+                                    <option value="{{ $hoo->id }}">.... . {{ $hoo->name }}</option>
+                                @empty
+                                    <option value=""> لا توجد اي احياء</option>
+                                @endforelse
+                            </select>
+                        </label>
+
+
+                        @error('ed_hood_id')
+                            <span class="text-tiny+ text-error">{{ $message }}</span>
+                        @enderror
+
                         <label class="block">
-                            <span>  رقم وحدة الجوار </span>
+                            <span> رقم وحدة الجوار </span>
                             <input wire:model='ed_no'
                                 class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
                                 placeholder="  ادخل رقم وحدة الجوار هنا ...  " type="text" />
                         </label>
                         @error('ed_no')
-                        <span class="text-tiny+ text-error">
-                            {{ $message }}
-                        </span>
+                            <span class="text-tiny+ text-error">
+                                {{ $message }}
+                            </span>
                         @enderror
-                        
-        
+
+
                     </div>
-        
+
                     <!-- Modal footer -->
                     <div class="items-center p-4 border-t border-gray-200 rounded-b dark:border-gray-700">
                         <button type="button" wire:click='close'
@@ -171,40 +209,39 @@
                     </div>
                 </form>
             </x-slot:body>
-    
-    
+
+
             {{-- @slot('footer')
-    
+
             @endslot --}}
         </x-modaladd>
     </div>
 
     <x-modaldel wire:ignore.self name="del-hood-unit-modal">
         @slot('delbody')
-        <div class="mt-4">
-            <h2 class="text-2xl text-slate-700 dark:text-navy-100">
-                تأكيد الحذف
-            </h2>
-            <p class="mt-2">
-                هل انت متأكد من انك تريد حذف هذه البيانات
-            </p>
-            <button wire:click="deleteHoodUnitData"
-                class="btn mt-6 bg-success font-medium text-white hover:bg-success-focus focus:bg-success-focus active:bg-success-focus/90">
-                نعم انا متأكد
-            </button>
-            <button wire:click='cancel'
-            class="btn bg-slate-150 font-medium text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90"
-          >
-            الغاء
-          </button>
-        </div>
+            <div class="mt-4">
+                <h2 class="text-2xl text-slate-700 dark:text-navy-100">
+                    تأكيد الحذف
+                </h2>
+                <p class="mt-2">
+                    هل انت متأكد من انك تريد حذف هذه البيانات
+                </p>
+                <button wire:click="deleteHoodUnitData"
+                    class="btn mt-6 bg-success font-medium text-white hover:bg-success-focus focus:bg-success-focus active:bg-success-focus/90">
+                    نعم انا متأكد
+                </button>
+                <button wire:click='cancel'
+                    class="btn bg-slate-150 font-medium text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90">
+                    الغاء
+                </button>
+            </div>
         @endslot
     </x-modaldel>
 
 
-    
-    
 
-    
-    
+
+
+
+
 </div>

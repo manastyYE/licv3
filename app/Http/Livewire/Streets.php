@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\HoodUnit;
 use App\Models\Street;
 use Livewire\Component;
 
@@ -9,14 +10,16 @@ class Streets extends Component
 {
     public function render()
     {
-        $street=Street::all();
-        return view('livewire.streets',['type'=>$street]);
+        $street=Street::where('directorate_id',auth()->guard('admin')->user()->directorate_id)->get();
+
+        $hood_units=HoodUnit::where('directorate_id',auth()->guard('admin')->user()->directorate_id)->get();
+        return view('livewire.streets',['type'=>$street,'hood_units'=>$hood_units]);
     }
     public $street_id, $name, $hood_unit_id, $street_edit_id, $street_delete_id;
     public $edname,$edhood_unit_id;
 
     //Input fields on update validation
-    
+
 
 
     public function storeStudentData()
@@ -25,8 +28,8 @@ class Streets extends Component
         $this->validate([
             'name' => 'required|unique:org_types,name',
             'hood_unit_id' => 'required',
-            
-            
+
+
 
         ]);
 
@@ -34,6 +37,7 @@ class Streets extends Component
         $street = new Street();
         $street->name = $this->name;
         $street->hood_unit_id = $this->hood_unit_id;
+        $street->directorate_id= auth()->guard('admin')->user()->directorate_id;
         $street->save();
 
         session()->flash('message', 'تمت عملية اضافة الشارع الجديد');
@@ -59,12 +63,12 @@ class Streets extends Component
         $street = Street::find($id);
 
         $this->street_edit_id = $street->id;
-        $this->street_id = $street->id;   
+        $this->street_id = $street->id;
         $this->edname = $street->name;
         $this->edhood_unit_id = $street->edhood_unit_id;
     }
-    
-    
+
+
     public function editStudentData()
     {
         //on form submit validation
@@ -92,7 +96,7 @@ class Streets extends Component
     {
         $this->street_delete_id = $id; //student id
 
-    
+
     }
 
     public function deleteStudentData()
