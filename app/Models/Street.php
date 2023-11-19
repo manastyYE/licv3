@@ -9,5 +9,8 @@ class Street extends Model
 {
     use HasFactory;
     protected $fillable=['name','hood_unit_id'];
-    
+    public function hood_unit(){
+        return $this->belongsTo(HoodUnit::class);
+    }
+
 }
