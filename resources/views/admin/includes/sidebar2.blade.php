@@ -14,7 +14,7 @@
             <!-- Main Sections Links -->
             <div x-data="{ condition: '{{$name}}' }" class="is-scrollbar-hidden flex grow flex-col space-y-4 overflow-y-auto pt-6">
                <!-- Dashobards -->
-               <a href="{{route('dashboard_view')}}" x-bind:class="condition == 'dashboard' ? 'bg-primary/10 text-primary' : ''"
+               <a href="{{route('dashboard')}}" x-bind:class="condition == 'dashboard' ? 'bg-primary/10 text-primary' : ''"
                   class="flex h-11 w-11 items-center justify-center rounded-lg outline-none transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
                   x-tooltip.placement.right="'لوحة التكم'">
                   <svg class="h-7 w-7" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
