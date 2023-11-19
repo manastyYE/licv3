@@ -11,7 +11,7 @@ class Hoods extends Component
     public function render()
     {
         $this->directorate_id =auth()->guard('admin')->user()->directorate_id;
-        $hoods=Hood::all();
+        $hoods=Hood::where('directorate_id',auth()->guard('admin')->user()->directorate_id)->get();
         return view('livewire.hoods',['type'=>$hoods]);
     }
     public $name,$directorate_id, $hood_edit_id, $hood_delete_id;
