@@ -17,7 +17,7 @@ class ShowPagesController extends Controller
 
     }
     public function show_org_type(){
-        return view('t22est');
+        return view('opp_type');
     }
     public function adminlogin(){
         // Admin::create([
@@ -48,7 +48,7 @@ class ShowPagesController extends Controller
     }
     public function adminlogout(){
         Auth::guard('admin')->logout();
-        return redirect()->route('admin.login');
+        return redirect()->route('adminlogin');
     }
     public function userlogout(){
         Auth::guard('user')->logout();
@@ -63,9 +63,9 @@ class ShowPagesController extends Controller
     public function getorg($id){
         return view('orgs.show_org_dtl',['id'=>$id]);
     }
-    // public function bill_board_view(){
-    //     return view;
-    // }
+    public function bill_board_view(){
+        return view('bill_booard');
+    }
     public function dashboard_view(){
         return view('dashboard.admin.main');
     }
@@ -73,7 +73,7 @@ class ShowPagesController extends Controller
         return view('dashboard.admin.main_org');
     }
     public function show_home_page(){
-        return view('home.home');
+        return view('welcome');
     }
     public function show_office_view()
     {
@@ -82,8 +82,7 @@ class ShowPagesController extends Controller
     public function show_auto_clip($id){
         return view('Automated_clipboard',['id'=>$id]);
     }
-
-    public function show_streets(){
-        return view('street');
+    public function System_initialization_view(){
+        return view('dashboard.admin.System_initialization');
     }
 }

@@ -25,6 +25,7 @@ class OppTypeP extends Component
     {
         //on form submit validation
         $this->validate([
+            'office_id'=>'required',
             'name' => 'required|unique:org_types,name',
             'price' => 'required',
 

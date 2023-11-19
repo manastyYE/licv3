@@ -1,4 +1,4 @@
-@extends('layouts.admin',['name' => 'orgs'])
+@extends('layouts.admin')
 @section('title')
 عرض المنشأت
 @endsection

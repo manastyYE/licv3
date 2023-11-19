@@ -1,7 +1,7 @@
 <div>
-    <button type="button" x-data x-on:click="$dispatch('open-modal',{name:'add-street-modal'})"
+    <button type="button" x-data x-on:click="$dispatch('open-modal',{name:'add-org-type-modal'})"
         class="btn bg-slate-150 font-medium text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90">
-        اضافة شارع
+        اضافة نشاط تجاري
     </button>
 
 
@@ -55,7 +55,7 @@
                                                 <i class="fa fa-edit"></i>
                                             </button>
                                             <button type="button" wire:click='deleteConfirmation({{ $p->id }})' x-data
-                                                x-on:click="$dispatch('open-modal',{name:'del-street-modal'})"
+                                                x-on:click="$dispatch('open-modal',{name:'del-org-type-modal'})"
                                                 class="btn h-8 w-8 p-0 text-error hover:bg-error/20 focus:bg-error/20 active:bg-error/25">
                                                 <i class="fa fa-trash-alt"></i>
                                             </button>
@@ -118,7 +118,7 @@
 
                     <!-- Modal footer -->
                     <div class="items-center p-4  border-gray-200 rounded-b dark:border-gray-700">
-                        <button type="button" x-on:click="show = false" data-dismiss="modal"
+                        <button type="button" data-dismiss="modal"
                             class="btn bg-slate-150 font-medium text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90">
                             الغاء
                         </button>
@@ -205,7 +205,7 @@
 
 
 
-    <x-modaldel wire:ignore.self name="del-street-modal">
+    <x-modaldel wire:ignore.self name="del-org-type-modal">
         @slot('delbody')
         <div class="mt-4">
             <h2 class="text-2xl text-slate-700 dark:text-navy-100">

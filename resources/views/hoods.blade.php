@@ -1,4 +1,4 @@
-@extends('layouts.admin',['name' => 'hoods'])
+@extends('layouts.admin')
 @section('title')
 الاحساء السكنية
 @endsection

@@ -4,7 +4,7 @@ namespace App\Http\Livewire\Login;
 
 use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Validation\ValidationException;  
+use Illuminate\Validation\ValidationException;
 class Login extends Component
 {
     public $username,$password;
@@ -22,7 +22,7 @@ class Login extends Component
             'password.required' => 'يجب تعبئة حقل كلمة المرور.',
             'password.min' => 'يجب أن تحتوي كلمة المرور على 5 أحرف على الأقل.',
         ]);
-        if (Auth::guard('admin')->attempt(['username' => $validatedData['username'], 'password' => $validatedData['password']])) {
+        if (Auth::guard('admin')->attempt(['username' => $validatedData['username'],'password' =>$this->password])) {
 
             $user_id = Auth::id();
             session()->put('id', $user_id);
