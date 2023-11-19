@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.admin',['name' => 'org_type'])
 @section('title')
     اضافة منشأة جديدة
 @endsection

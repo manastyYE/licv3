@@ -47,7 +47,7 @@
     <div id="root" class="min-h-100vh flex grow bg-slate-50 dark:bg-navy-900" x-cloak>
 
         <!-- Main Sidebar Container -->
-        @include('admin.includes.sidebar2')
+        @include('admin.includes.sidebar2',['name' => isset($name) ? $name : "Gamal"])
         <!--  End Main Sidebar Container -->
 
         @include('admin.includes.nav_barup')
