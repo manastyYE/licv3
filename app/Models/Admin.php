@@ -16,4 +16,7 @@ class Admin extends Authenticatable
         'password',
         'directorate_id',
     ];
+    public function directorate(){
+        return $this->belongsTo(Directorate::class);
+    }
 }

@@ -9,9 +9,12 @@ class Hood extends Model
 {
     use HasFactory;
     protected $fillable=[
-        
+
         'name',
         'directorate_id',
 
     ];
+    public function directorate(){
+        return $this->belongsTo(Director::class);
+    }
 }
