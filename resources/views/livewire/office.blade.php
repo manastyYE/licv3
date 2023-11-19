@@ -1,7 +1,7 @@
 <div>
     {{-- If you look to others for fulfillment, you will never truly be fulfilled. --}}
     <button type="button"
-        class="btn bg-slate-150 font-medium text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90"
+        class="font-medium btn bg-slate-150 text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90"
         x-data x-on:click="$dispatch('open-modal',{ name : 'add-office-modal'})">اضافة قطاع  </button>
     <br>
     <hr>
@@ -54,14 +54,14 @@
                                         <button
                                         type="button" wire:click='setname({{ $p->id }})' x-data
                                                 x-on:click="$dispatch('open-modal',{name:'edit-office-modal'})"
-                                        class="btn h-8 w-8 p-0 text-info hover:bg-info/20 focus:bg-info/20 active:bg-info/25">
+                                        class="w-8 h-8 p-0 btn text-info hover:bg-info/20 focus:bg-info/20 active:bg-info/25">
                                             <i class="fa fa-edit"></i>
                                         </button>
                                             <button
                                             wire:click='deleteConfirmation({{ $p->id }})'
                                             x-data
                                             x-on:click="$dispatch('open-modal',{name:'del-office-modal'})"
-                                                class="btn h-8 w-8 p-0 text-error hover:bg-error/20 focus:bg-error/20 active:bg-error/25">
+                                                class="w-8 h-8 p-0 btn text-error hover:bg-error/20 focus:bg-error/20 active:bg-error/25">
                                                 <i class="fa fa-trash-alt"></i>
                                             </button>
                                         </div>
@@ -112,20 +112,20 @@
                 </div>
 
                 <!-- Modal footer -->
-                <div class="items-center p-4 border-t border-gray-200 rounded-b dark:border-gray-700">
-                    <button type="button"
-                        class="btn bg-slate-150 font-medium text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90">
+                <div class="items-center p-4 border-gray-200 rounded-b dark:border-gray-700">
+                    <button type="button" x-on:click="show = false"
+                        class="font-medium btn bg-slate-150 text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90">
                         الغاء
                     </button>
                     <button type="button" wire:click.prevent='storeOfficeData'
-                        class="btn bg-primary font-medium text-white hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90">
+                        class="font-medium text-white btn bg-primary hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90">
                         تأكيد
                     </button>
                 </div>
             </form>
             <div>
                 @if (session('sec'))
-                <span class="text-green-500 text-xs">{{ session('sec') }}</span>
+                <span class="text-xs text-green-500">{{ session('sec') }}</span>
 
                 @endif
             </div>
@@ -159,13 +159,13 @@
                     </div>
 
                     <!-- Modal footer -->
-                    <div class="items-center p-4 border-t border-gray-200 rounded-b dark:border-gray-700">
-                        <button type="button" wire:click='close'
-                            class="btn bg-slate-150 font-medium text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90">
+                    <div class="items-center p-4 border-gray-200 rounded-b dark:border-gray-700">
+                        <button type="button" x-on:click="show = false" 
+                            class="font-medium btn bg-slate-150 text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90">
                             الغاء
                         </button>
                         <button type="button" wire:click.prevent='editOfficeData'
-                            class="btn bg-primary font-medium text-white hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90">
+                            class="font-medium text-white btn bg-primary hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90">
                             تأكيد
                         </button>
                     </div>
@@ -189,11 +189,11 @@
                 هل انت متأكد من انك تريد حذف هذا القطاع
             </p>
             <button wire:click="deleteOfficeData"
-                class="btn mt-6 bg-success font-medium text-white hover:bg-success-focus focus:bg-success-focus active:bg-success-focus/90">
+                class="mt-6 font-medium text-white btn bg-success hover:bg-success-focus focus:bg-success-focus active:bg-success-focus/90">
                 نعم انا متأكد
             </button>
             <button wire:click='cancel'
-            class="btn bg-slate-150 font-medium text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90"
+            class="font-medium btn bg-slate-150 text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90"
           >
             الغاء
           </button>

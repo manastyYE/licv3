@@ -4,17 +4,17 @@
      x-data="{show : false ,name : '{{ $name }}'}" x-show="show"
     x-on:open-modal.window="show = ($event.detail.name === name)" x-on:close-modal.window="show = false"
     x-on:close-modal.window="show = false" x-on:keydown.escape.window="show = false" style="display: none;"
-    x-transition.duration @keydown.window.escape="showModal = false"    
+    x-transition.duration @keydown.window.escape="showModal = false"
      @keydown.window.escape="showModal = false">
-        <div class="absolute inset-0 bg-slate-900/60 transition-opacity duration-300" x-on:click="show = false"
+        <div class="absolute inset-0 transition-opacity duration-300 bg-slate-900/60" x-on:click="show = false"
             x-transition:enter="ease-out" x-transition:enter-start="opacity-0"
             x-transition:enter-end="opacity-100" x-transition:leave="ease-in" x-transition:leave-start="opacity-100"
             x-transition:leave-end="opacity-0"></div>
-        <div class="relative w-full max-w-lg origin-top rounded-lg bg-white transition-all duration-300 dark:bg-navy-700"
+        <div class="relative w-full max-w-lg transition-all duration-300 origin-top bg-white rounded-lg dark:bg-navy-700"
             x-transition:enter="easy-out" x-transition:enter-start="opacity-0 scale-95"
             x-transition:enter-end="opacity-100 scale-100" x-transition:leave="easy-in"
             x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-95">
-            <div class="flex justify-between rounded-t-lg bg-slate-200 px-4 py-3 dark:bg-navy-800 sm:px-5">
+            <div class="flex justify-between px-4 py-3 rounded-t-lg bg-slate-200 dark:bg-navy-800 sm:px-5">
                 <h3 class="text-base font-medium text-slate-700 dark:text-navy-100">
                     {{ $title??'لايوجد عنوان' }}
                 </h3>
