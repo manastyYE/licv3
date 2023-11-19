@@ -14,7 +14,7 @@
             <!-- Main Sections Links -->
             <div x-data="{ condition: '{{$name}}' }" class="is-scrollbar-hidden flex grow flex-col space-y-4 overflow-y-auto pt-6">
                <!-- Dashobards -->
-               <a href="{{route('dashboard_view')}}" x-bind:class="condition == 'dashboard' ? 'bg-primary/10 text-primary' : ''"
+               <a href="{{route('dashboard_view')}}" x-bind:class="condition == 'dashboard' ? 'bg-primary/10 text-primary dark:bg-navy-600 dark:text-accent-light' : ''"
                   class="flex h-11 w-11 items-center justify-center rounded-lg outline-none transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
                   x-tooltip.placement.right="'لوحة التكم'">
                   <svg class="h-7 w-7" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
@@ -29,7 +29,7 @@
                </a>
 
                <!-- Apps -->
-               <a href="{{route('orgs.show')}}" x-bind:class="condition == 'orgs' ? 'bg-primary/10 text-primary' : ''"
+               <a href="{{route('orgs.show')}}" x-bind:class="condition == 'orgs' ? 'bg-primary/10 text-primary dark:bg-navy-600 dark:text-accent-light' : ''"
                   class="flex h-11 w-11 items-center justify-center rounded-lg outline-none transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
                   x-tooltip.placement.right="'المنشئات'">
                   <svg class="h-7 w-7" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -48,29 +48,16 @@
                </a>
 
                <!-- Pages And Layouts -->
-               <a href="{{route('org_type')}}" x-bind:class="condition == 'org_type' ? 'bg-primary/10 text-primary' : ''"
-                  class="flex h-11 w-11 items-center justify-center rounded-lg outline-none transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:bg-navy-600 dark:text-accent-light dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90"
+               <a href="{{route('org_type')}}" x-bind:class="condition == 'org_type' ? 'bg-primary/10 text-primary dark:bg-navy-600 dark:text-accent-light' : ''"
+                  class="flex h-11 w-11 items-center justify-center rounded-lg outline-none transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90"
                   x-tooltip.placement.right="'الأنشطة التجارية'">
-                  <svg class="h-7 w-7" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                     <path
-                        d="M9.85714 3H4.14286C3.51167 3 3 3.51167 3 4.14286V9.85714C3 10.4883 3.51167 11 4.14286 11H9.85714C10.4883 11 11 10.4883 11 9.85714V4.14286C11 3.51167 10.4883 3 9.85714 3Z"
-                        fill="currentColor" />
-                     <path
-                        d="M9.85714 12.8999H4.14286C3.51167 12.8999 3 13.4116 3 14.0428V19.757C3 20.3882 3.51167 20.8999 4.14286 20.8999H9.85714C10.4883 20.8999 11 20.3882 11 19.757V14.0428C11 13.4116 10.4883 12.8999 9.85714 12.8999Z"
-                        fill="currentColor" fill-opacity="0.3" />
-                     <path
-                        d="M19.757 3H14.0428C13.4116 3 12.8999 3.51167 12.8999 4.14286V9.85714C12.8999 10.4883 13.4116 11 14.0428 11H19.757C20.3882 11 20.8999 10.4883 20.8999 9.85714V4.14286C20.8999 3.51167 20.3882 3 19.757 3Z"
-                        fill="currentColor" fill-opacity="0.3" />
-                     <path
-                        d="M19.757 12.8999H14.0428C13.4116 12.8999 12.8999 13.4116 12.8999 14.0428V19.757C12.8999 20.3882 13.4116 20.8999 14.0428 20.8999H19.757C20.3882 20.8999 20.8999 20.3882 20.8999 19.757V14.0428C20.8999 13.4116 20.3882 12.8999 19.757 12.8999Z"
-                        fill="currentColor" fill-opacity="0.3" />
-                  </svg>
+                   <i class="fa-duotone fa-house"></i>
                </a>
 
 
                <!-- Forms -->
-               <a href="{{route('hoods')}}" x-bind:class="condition == 'hoods' ? 'bg-primary/10 text-primary' : ''"
-                  class="flex h-11 w-11 items-center justify-center rounded-lg outline-none transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:bg-navy-600 dark:text-accent-light dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90"
+               <a href="{{route('hoods')}}" x-bind:class="condition == 'hoods' ? 'bg-primary/10 text-primary dark:bg-navy-600 dark:text-accent-light' : ''"
+                  class="flex h-11 w-11 items-center justify-center rounded-lg outline-none transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90"
                   x-tooltip.placement.right="'الأحياء'">
                   <svg class="h-7 w-7" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                      <path fill-opacity="0.25"
@@ -86,9 +73,9 @@
                </a>
 
                <!-- Components -->
-               <a href="{{route('streets')}}" x-bind:class="condition == 'street' ? 'bg-primary/10 text-primary' : ''"
+               <a href="{{route('streets')}}" x-bind:class="condition == 'street' ? 'bg-primary/10 text-primary dark:bg-navy-600 dark:text-accent-light' : ''"
                   class="flex h-11 w-11 items-center justify-center rounded-lg outline-none transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
-                  x-tooltip.placement.right="'{{$name}}'">
+                  x-tooltip.placement.right="'الشوارع'">
                   <svg class="h-7 w-7" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                      <path fill-opacity="0.5"
                         d="M14.2498 16C14.2498 17.5487 13.576 18.9487 12.4998 19.9025C11.5723 20.7425 10.3473 21.25 8.99976 21.25C6.10351 21.25 3.74976 18.8962 3.74976 16C3.74976 13.585 5.39476 11.5375 7.61726 10.9337C8.22101 12.4562 9.51601 13.6287 11.1173 14.0662C11.5548 14.1887 12.0185 14.25 12.4998 14.25C12.981 14.25 13.4448 14.1887 13.8823 14.0662C14.1185 14.6612 14.2498 15.3175 14.2498 16Z"
