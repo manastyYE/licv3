@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.admin',['name' => 'dashboard'])
 @section('title')
 لوحة التحكم
 @endsection
@@ -8,7 +8,7 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" /> --}}
 @endsection
 @section('contentheader')
-لوحة التحكم 
+لوحة التحكم
 @endsection
 
 @section('content')
@@ -26,11 +26,11 @@
                         المنشأت
                     </h4>
                     <p class="pt-3">
-        
+
                     </p>
                     {{-- <button
                         class="btn mt-8 bg-primary font-medium text-white shadow-lg shadow-primary/50 hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:shadow-accent/50 dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90">
-        
+
                     </button> --}}
                 </div>
             </div>
@@ -45,16 +45,16 @@
                         المستخدمين
                     </h4>
                     <p class="pt-3">
-            
+
                     </p>
                     {{-- <button
                         class="btn mt-8 bg-primary font-medium text-white shadow-lg shadow-primary/50 hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:shadow-accent/50 dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90">
-            
+
                     </button> --}}
                 </div>
             </div>
         </a>
-    
+
     </div>
     {{-- @livewire('users') --}}
     {{-- <livewire:users> --}}

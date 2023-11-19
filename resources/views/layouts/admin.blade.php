@@ -13,12 +13,12 @@
     <link rel="icon" type="image/png" href="{{ asset('img/logo.png') }}" />
     @livewireStyles()
     <!-- CSS Assets -->
-   
+
     <link rel="stylesheet" href="{{ asset('app.css') }}">
     @yield('css')
 
     <!-- Javascript Assets -->
-    
+
 
 
     <!-- Fonts -->
@@ -53,8 +53,8 @@
 
 
 
-   
-   
+
+
    {{-- <!-- Font Awesome Icons -->
    <link rel="stylesheet" href="{{ asset('assets/admin/plugins/fontawesome-free/css/all.min.css') }}">
    <!-- Theme style -->
@@ -64,40 +64,40 @@
    <link rel="stylesheet" href="{{ asset('assets/admin/css/bootstrap_rtl-v4.2.1/bootstrap.min.css')}}">
    <link rel="stylesheet" href="{{ asset('assets/admin/css/bootstrap_rtl-v4.2.1/custom_rtl.css')}}">
    <link rel="stylesheet" href="{{ asset('assets/admin/css/mycustomstyle.css')}}"> --}}
-   
+
 
 
 
    <div id="root" class="min-h-100vh flex grow bg-slate-50 dark:bg-navy-900" x-cloak>
-      
+
          <!-- Main Sidebar Container -->
-         @include('admin.includes.sidebar2')
+         @include('admin.includes.sidebar2',['name' => isset($name) ? $name : "Gamal"])
          <!--  End Main Sidebar Container -->
 
          @include('admin.includes.nav_barup')
          @include('admin.includes.content')
-      
+
       <!-- Navbar -->
-      
+
       <!-- /.navbar -->
       <!-- Main Content Wrapper -->
-      
-           
-            
-           
-   
-      
+
+
+
+
+
+
       <!-- Main Footer -->
 @include('admin.includes.footer')
    </div>
    <div id="x-teleport-target"></div>
-    
-   
+
+
 
    @livewireScripts()
-   <script src="{{ asset('app.js') }}" defer></script>  
+   <script src="{{ asset('app.js') }}" defer></script>
    @yield('script')
-   
+
 </body>
 
 </html>

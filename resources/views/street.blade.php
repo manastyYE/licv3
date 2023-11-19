@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.admin',['name' => 'street'])
 @section('title')
     قطاعات المنشأت
 @endsection
