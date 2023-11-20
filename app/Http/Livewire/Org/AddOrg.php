@@ -188,7 +188,7 @@ class AddOrg extends Component
                 'hood_unit_id'=>$this->hood_unit_id,
                 'street_id'=>$this->street_id,
                 'personal_card'=>$personal_card_path,
-                'rent_contract'=>$rent_contract_path,
+                'rent_contract'=>$this->rent_contract ?$rent_contract_path : null,
                 'ad_board'=>$this->ad_board ? $ad_board_path : null,
                 'previous_license'=>$this->previous_license ?$previous_license_path : null ,
                 'comm_record'=>$this->comm_record ? $comm_record_path : null,
