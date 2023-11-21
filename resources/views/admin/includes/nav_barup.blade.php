@@ -18,7 +18,7 @@
 
             <!-- Right: Header buttons -->
             <div class="-ml-1.5 flex items-center space-x-2 space-x-reverse">
-                
+
 
                 <!-- Main Searchbar -->
                 <template x-if="$store.breakpoints.smAndUp">
@@ -384,11 +384,11 @@
                     </svg>
                 </button>
                 <!-- Monochrome Mode Toggle -->
-                <button @click="$store.global.isMonochromeModeEnabled = !$store.global.isMonochromeModeEnabled"
+                {{-- <button @click="$store.global.isMonochromeModeEnabled = !$store.global.isMonochromeModeEnabled"
                     class="btn h-8 w-8 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25">
                     <i
                         class="fa-solid fa-palette bg-gradient-to-r from-sky-400 to-blue-600 bg-clip-text text-lg font-semibold text-transparent"></i>
-                </button>
+                </button> --}}
 
                 <!-- Notification-->
                 <div x-effect="if($store.global.isSearchbarActive) isShowPopper = false" x-data="usePopper({ placement: 'bottom-end', offset: 12 })"

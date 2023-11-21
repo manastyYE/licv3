@@ -11,7 +11,7 @@ class Office extends Component
         $office= AAA::all();
         return view('livewire.office',['type'=>$office]);
     }
-     public $name, $office_edit_id, $office_delete_id;
+     public $name, $office_edit_id, $ed_name,$office_delete_id;
 
 
     //Input fields on update validation

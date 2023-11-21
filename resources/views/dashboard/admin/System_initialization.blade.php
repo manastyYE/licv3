@@ -18,7 +18,7 @@
     <hr>
     <br>
     <div>
-        <div class="text-center grid  grid-cols-1 gap-4 sm:grid-cols-4 sm:gap-5 lg:gap-6">
+        <div class="text-center grid  grid-cols-1 gap-4 sm:grid-cols-3 xl:grid-cols-4 sm:gap-5 lg:gap-6">
             <a href="/admin/org_type">
                 <div class="card">
                     <div class="flex justify-center p-5">
@@ -114,7 +114,7 @@
                     </div>
                 </div>
             </a>
-            <a href="/admin/hood-unit">
+            <a href="/admin/hood_unit">
                 <div class="card">
                     <div class="flex justify-center p-5">
                         <img class="w-9/12" src="{{ asset('images/illustrations/creativedesign.svg') }}" alt="image">
