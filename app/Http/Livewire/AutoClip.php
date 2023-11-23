@@ -24,42 +24,42 @@ class AutoClip extends Component
         foreach ($board1 as $ke) {
             $hi=$ke->height;
             $wi=$ke->width;
-        $count1 += $hi*$wi;
+            $count1 += $hi*$wi* $ke->count;
         }
         $board2 = OrgBillboard::where('org_id', $this->org_id)->where('billboard_id',2)->get();
         $count2 = 0;
         foreach ($board2 as $ke) {
             $hi=$ke->height;
             $wi=$ke->width;
-            $count2 += $hi*$wi;
+            $count2 += $hi*$wi* $ke->count;
         }
         $board3 = OrgBillboard::where('org_id', $this->org_id)->where('billboard_id',3)->get();
         $count3 = 0;
         foreach ($board3 as $ke) {
             $hi=$ke->height;
             $wi=$ke->width;
-            $count3 += $hi*$wi;
+            $count3 += $hi*$wi* $ke->count;
         }
         $board4 = OrgBillboard::where('org_id', $this->org_id)->where('billboard_id',4)->get();
         $count4 = 0;
         foreach ($board4 as $ke) {
             $hi=$ke->height;
             $wi=$ke->width;
-            $count4 += $hi*$wi;
+            $count4 += $hi*$wi* $ke->count;
         }
         $board5 = OrgBillboard::where('org_id', $this->org_id)->where('billboard_id',5)->get();
         $count5 = 0;
         foreach ($board5 as $ke) {
             $hi=$ke->height;
             $wi=$ke->width;
-            $count5 += $hi*$wi;
+            $count5 += $hi*$wi* $ke->count;
         }
         $board6 = OrgBillboard::where('org_id', $this->org_id)->where('billboard_id',6)->get();
         $count6 = 0;
         foreach ($board6 as $ke) {
             $hi=$ke->height;
             $wi=$ke->width;
-            $count6 += $hi*$wi;
+            $count6 += $hi*$wi* $ke->count;
         }
 
         $boards=[
