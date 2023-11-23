@@ -102,12 +102,20 @@
                             {{ $message }}
                         </span>
                         @enderror
-                        <label class="block">
-                            <span>  وحدة الجوار </span>
-                            <input wire:model='hood_unit_id'
-                                class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
-                                placeholder="رسوم النظافة" type="text" />
+
+                        <label class="block" >
+                            <span> وحدة الجوار </span>
+                            <select wire:model='hood_unit_id' class="mt-1.5 " x-init="$el._x_tom = new Tom($el, { sortField: { field: 'text', direction: 'asc' } })">
+                                <option value=""> . اختر وحدة الجوار </option>
+
+                                @forelse ($hood as $hoo)
+                                    <option value="{{ $hoo->id }}">.... . {{ $hoo->name }}</option>
+                                @empty
+                                    <option value=""> لا توجد اي وحدات جوار</option>
+                                @endforelse
+                            </select>
                         </label>
+
                         @error('hood_unit_id')
                         <span class="text-tiny+ text-error">
                             {{ $message }}
@@ -161,11 +169,17 @@
                             {{ $message }}
                         </span>
                         @enderror
-                        <label class="block">
-                            <span> رسوم النظافة </span>
-                            <input wire:model='edhood_unit_id'
-                                class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
-                                placeholder="رسوم النظافة" type="text" />
+                        <label class="block" >
+                            <span> وحدة الجوار </span>
+                            <select wire:model='edhood_unit_id' class="mt-1.5 " x-init="$el._x_tom = new Tom($el, { sortField: { field: 'text', direction: 'asc' } })">
+                                <option value=""> . اختر وحدة الجوار </option>
+
+                                @forelse ($hood as $hoo)
+                                    <option value="{{ $hoo->id }}">.... . {{ $hoo->name }}</option>
+                                @empty
+                                    <option value=""> لا توجد اي وحدات جوار</option>
+                                @endforelse
+                            </select>
                         </label>
                         @error('edhood_unit_id')
                         <span class="text-tiny+ text-error">

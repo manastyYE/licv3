@@ -26,7 +26,7 @@ class Streets extends Component
     {
         //on form submit validation
         $this->validate([
-            'name' => 'required|unique:org_types,name',
+            'name' => 'required',
             'hood_unit_id' => 'required',
 
 
