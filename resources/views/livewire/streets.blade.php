@@ -108,8 +108,8 @@
                             <select wire:model='hood_unit_id' class="mt-1.5 " x-init="$el._x_tom = new Tom($el, { sortField: { field: 'text', direction: 'asc' } })">
                                 <option value=""> . اختر وحدة الجوار </option>
 
-                                @forelse ($hood as $hoo)
-                                    <option value="{{ $hoo->id }}">.... . {{ $hoo->name }}</option>
+                                @forelse ($hood_units as $hoo)
+                                    <option value="{{ $hoo->id }}">.... . {{ $hoo->no }}</option>
                                 @empty
                                     <option value=""> لا توجد اي وحدات جوار</option>
                                 @endforelse
@@ -174,8 +174,8 @@
                             <select wire:model='edhood_unit_id' class="mt-1.5 " x-init="$el._x_tom = new Tom($el, { sortField: { field: 'text', direction: 'asc' } })">
                                 <option value=""> . اختر وحدة الجوار </option>
 
-                                @forelse ($hood as $hoo)
-                                    <option value="{{ $hoo->id }}">.... . {{ $hoo->name }}</option>
+                                @forelse ($hood_units as $hoo)
+                                    <option value="{{ $hoo->id }}">.... . {{ $hoo->no }}</option>
                                 @empty
                                     <option value=""> لا توجد اي وحدات جوار</option>
                                 @endforelse
