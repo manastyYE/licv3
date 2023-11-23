@@ -124,10 +124,10 @@
                         </td>
 
                         <td class="whitespace-nowrap border border-slate-200 px-3 py-3 dark:border-navy-500 lg:px-5">
-                            {{ $board1['count6'] }}
+                            {{ $board1['count3'] }}
                         </td>
                         <td class="whitespace-nowrap border border-slate-200 px-3 py-3 dark:border-navy-500 lg:px-5">
-                            {{ $board1['count4'] }}
+                            {{ $board1['count6'] }}
                         </td>
 
                         <td class="whitespace-nowrap border border-slate-200 px-3 py-3 dark:border-navy-500 lg:px-5">
