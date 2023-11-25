@@ -80,17 +80,58 @@
 
 
 
+
+
         <div>
             <label class="block " style="">
                 <span> رقم المالك</span>
                 <h5 class="font-semibold text-md text-slate-700 dark:text-navy-100">
-                    {{ $org->owner_phone }}
+                    {{ $org->street->name }}
+                </h5>
+            </label>
+        </div>
+
+        <div>
+            <label class="block">
+                <span>نوع المبنى</span>
+                <h5 class="font-semibold text-md text-slate-700 dark:text-navy-100">
+                    {{ $org->building_type->name }}
                 </h5>
             </label>
 
-
         </div>
 
+        <div>
+            <label class="block " style="">
+                <span>  الملاحظة</span>
+                <h5 class="font-semibold text-md text-slate-700 dark:text-navy-100">
+                    {{ $org->note }}
+                </h5>
+            </label>
+        </div>
+
+        @if (isset($org->log_y))
+        <div>
+            <label class="block " style="">
+                <span>  خطوط الطول</span>
+                <h5 class="font-semibold text-md text-slate-700 dark:text-navy-100">
+                    {{ $org->log_y }}
+                </h5>
+            </label>
+        </div>
+        @endif
+
+        @if (isset($org->log_x))
+        <div>
+            <label class="block " style="">
+                <span> دوائر العرض</span>
+                <h5 class="font-semibold text-md text-slate-700 dark:text-navy-100">
+                    {{ $org->log_x }}
+                </h5>
+            </label>
+        </div>
+        @endif
+    </div>
         {{-- <div>
 
         </div> --}}
@@ -119,15 +160,7 @@
         {{-- <div>
 
         </div> --}}
-        <div>
-            <label class="block">
-                <span>نوع المبنى</span>
-                <h5 class="font-semibold text-md text-slate-700 dark:text-navy-100">
-                    {{ $org->building_type->name }}
-                </h5>
-            </label>
 
-        </div>
         {{-- <div>
             <label class="block ">
                 <span> رقم البطاقة</span>
@@ -148,7 +181,6 @@
         {{-- <div>
 
         </div> --}}
-    </div>
     {{-- <h4 class="text-xl font-semibold text-slate-700 dark:text-navy-100">
         المرفقات
     </h4>
