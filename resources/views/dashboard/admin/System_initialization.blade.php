@@ -18,7 +18,7 @@
     <hr>
     <br>
     <div>
-        <div class="text-center grid  grid-cols-1 gap-4 sm:grid-cols-3 xl:grid-cols-4 sm:gap-5 lg:gap-6">
+        <div class="grid grid-cols-1 gap-4 text-center sm:grid-cols-3 xl:grid-cols-4 sm:gap-5 lg:gap-6">
             <a href="/admin/org_type">
                 <div class="card">
                     <div class="flex justify-center p-5">
@@ -32,7 +32,7 @@
 
                         </p>
                         {{-- <button
-                        class="btn mt-8 bg-primary font-medium text-white shadow-lg shadow-primary/50 hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:shadow-accent/50 dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90">
+                        class="mt-8 font-medium text-white shadow-lg btn bg-primary shadow-primary/50 hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:shadow-accent/50 dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90">
 
                     </button> --}}
                     </div>
@@ -51,7 +51,7 @@
 
                         </p>
                         {{-- <button
-                        class="btn mt-8 bg-primary font-medium text-white shadow-lg shadow-primary/50 hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:shadow-accent/50 dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90">
+                        class="mt-8 font-medium text-white shadow-lg btn bg-primary shadow-primary/50 hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:shadow-accent/50 dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90">
 
                     </button> --}}
                     </div>
@@ -70,26 +70,26 @@
 
                         </p>
                         {{-- <button
-                        class="btn mt-8 bg-primary font-medium text-white shadow-lg shadow-primary/50 hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:shadow-accent/50 dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90">
+                        class="mt-8 font-medium text-white shadow-lg btn bg-primary shadow-primary/50 hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:shadow-accent/50 dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90">
 
                     </button> --}}
                     </div>
                 </div>
             </a>
-            <a href="/admin/hoods">
+            <a href="/admin/vir_orgs">
                 <div class="card">
                     <div class="flex justify-center p-5">
                         <img class="w-9/12" src="{{ asset('images/illustrations/creativedesign.svg') }}" alt="image">
                     </div>
                     <div class="px-4 pb-8 text-center sm:px-5">
                         <h4 class="text-lg font-semibold text-slate-700 dark:text-navy-100">
-                            الاحياء
+                            المنشئات المضافة
                         </h4>
                         <p class="pt-3">
 
                         </p>
                         {{-- <button
-                        class="btn mt-8 bg-primary font-medium text-white shadow-lg shadow-primary/50 hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:shadow-accent/50 dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90">
+                        class="mt-8 font-medium text-white shadow-lg btn bg-primary shadow-primary/50 hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:shadow-accent/50 dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90">
 
                     </button> --}}
                     </div>
@@ -108,7 +108,7 @@
 
                         </p>
                         {{-- <button
-                        class="btn mt-8 bg-primary font-medium text-white shadow-lg shadow-primary/50 hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:shadow-accent/50 dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90">
+                        class="mt-8 font-medium text-white shadow-lg btn bg-primary shadow-primary/50 hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:shadow-accent/50 dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90">
 
                     </button> --}}
                     </div>
@@ -127,7 +127,7 @@
 
                         </p>
                         {{-- <button
-                        class="btn mt-8 bg-primary font-medium text-white shadow-lg shadow-primary/50 hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:shadow-accent/50 dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90">
+                        class="mt-8 font-medium text-white shadow-lg btn bg-primary shadow-primary/50 hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:shadow-accent/50 dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90">
 
                     </button> --}}
                     </div>

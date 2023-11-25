@@ -36,6 +36,8 @@ Route::controller(ShowPagesController::class)->prefix('admin')->middleware('admi
         Route::get('/system','System_initialization_view')->name('System.initialization');
         Route::get('/streets', 'show_streets')->name('streets');
         Route::get('/hood_unit', 'show_hood_unit')->name('hood_unit');
+        Route::get('/vir_orgs','show_vir_orgs')->name('vir_orgs.show');
+        Route::get('/vir_orgs/show/{id}','get_vir_orgs');
     }
 );
 Route::controller(ShowPagesController::class)->prefix('admin')->middleware('admin.guest')->group(

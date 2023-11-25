@@ -8,7 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Street extends Model
 {
     use HasFactory;
-    protected $fillable=['name','hood_unit_id','directorate_id'];
+    protected $fillable=[
+        'name',
+        'hood_unit_id',
+        'directorate_id'
+    ];
     public function hood_unit(){
         return $this->belongsTo(HoodUnit::class);
     }
