@@ -22,7 +22,7 @@
             <a href="/admin/org_type">
                 <div class="card">
                     <div class="flex justify-center p-5">
-                        <img class="w-9/12" src="{{ asset('images/illustrations/creativedesign.svg') }}" alt="image">
+                        <img class="w-9/12" src="{{ asset('icons/add_shop.png') }}" alt="image">
                     </div>
                     <div class="px-4 pb-8 text-center sm:px-5">
                         <h4 class="text-lg font-semibold text-slate-700 dark:text-navy-100">
@@ -41,7 +41,7 @@
             <a href="/admin/billboards">
                 <div class="card">
                     <div class="flex justify-center p-5">
-                        <img class="w-9/12" src="{{ asset('images/illustrations/creativedesign.svg') }}" alt="image">
+                        <img class="w-9/12" src="{{ asset('icons/add_shop.png') }}" alt="image">
                     </div>
                     <div class="px-4 pb-8 text-center sm:px-5">
                         <h4 class="text-lg font-semibold text-slate-700 dark:text-navy-100">
@@ -60,7 +60,7 @@
             <a href="/admin/hoods">
                 <div class="card">
                     <div class="flex justify-center p-5">
-                        <img class="w-9/12" src="{{ asset('images/illustrations/creativedesign.svg') }}" alt="image">
+                        <img class="w-9/12" src="{{ asset('icons/add_shop.png') }}" alt="image">
                     </div>
                     <div class="px-4 pb-8 text-center sm:px-5">
                         <h4 class="text-lg font-semibold text-slate-700 dark:text-navy-100">
@@ -79,7 +79,7 @@
             <a href="/admin/vir_orgs">
                 <div class="card">
                     <div class="flex justify-center p-5">
-                        <img class="w-9/12" src="{{ asset('images/illustrations/creativedesign.svg') }}" alt="image">
+                        <img class="w-9/12" src="{{ asset('icons/add_shop.png') }}" alt="image">
                     </div>
                     <div class="px-4 pb-8 text-center sm:px-5">
                         <h4 class="text-lg font-semibold text-slate-700 dark:text-navy-100">
@@ -98,7 +98,7 @@
             <a href="/admin/office">
                 <div class="card">
                     <div class="flex justify-center p-5">
-                        <img class="w-9/12" src="{{ asset('images/illustrations/creativedesign.svg') }}" alt="image">
+                        <img class="w-9/12" src="{{ asset('icons/add_shop.png') }}" alt="image">
                     </div>
                     <div class="px-4 pb-8 text-center sm:px-5">
                         <h4 class="text-lg font-semibold text-slate-700 dark:text-navy-100">
@@ -117,7 +117,7 @@
             <a href="/admin/hood_unit">
                 <div class="card">
                     <div class="flex justify-center p-5">
-                        <img class="w-9/12" src="{{ asset('images/illustrations/creativedesign.svg') }}" alt="image">
+                        <img class="w-9/12" src="{{ asset('icons/add_shop.png') }}" alt="image">
                     </div>
                     <div class="px-4 pb-8 text-center sm:px-5">
                         <h4 class="text-lg font-semibold text-slate-700 dark:text-navy-100">
