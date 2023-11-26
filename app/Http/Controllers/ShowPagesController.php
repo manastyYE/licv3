@@ -91,4 +91,10 @@ class ShowPagesController extends Controller
     public function show_streets(){
         return view('street');
     }
+    public function show_vir_orgs(){
+        return view('vir_orgs.show_orgs');
+    }
+    public function get_vir_orgs($id){
+        return view('vir_orgs.show_org_dtl',['id'=>$id]);
+    }
 }

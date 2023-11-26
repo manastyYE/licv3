@@ -19,7 +19,7 @@
     <script src="{{ asset('app.js') }}" defer></script>
     @livewireStyles()
 
-   
+
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -39,24 +39,24 @@
   <body x-data class="is-header-blur" x-bind="$store.global.documentBody">
     <!-- App preloader-->
     <div
-      class="app-preloader fixed z-50 grid h-full w-full place-content-center bg-slate-50 dark:bg-navy-900"
+      class="fixed z-50 grid w-full h-full app-preloader place-content-center bg-slate-50 dark:bg-navy-900"
     >
-      <div class="app-preloader-inner relative inline-block h-48 w-48"></div>
+      <div class="relative inline-block w-48 h-48 app-preloader-inner"></div>
     </div>
 
     <!-- Page Wrapper -->
     <div
       id="root"
-      class="min-h-100vh flex grow bg-slate-50 dark:bg-navy-900"
+      class="flex min-h-100vh grow bg-slate-50 dark:bg-navy-900"
       x-cloak
     >
       <div class="fixed top-0 hidden p-6 lg:block lg:px-12">
         <a href="#" class="flex items-center space-x-2 space-x-reverse">
-          <img class="h-12 w-12" src="{{ asset('img/logo.png') }}" alt="logo" />
+          <img class="w-12 h-12" src="{{ asset('img/logo.png') }}" alt="logo" />
           <p
-            class="text-xl font-semibold uppercase text-slate-700 dark:text-navy-100"
+            class="text-xl font-semibold text-slate-700 dark:text-navy-100"
           >
-            lineone
+            Yemen QR
           </p>
         </a>
       </div>
@@ -77,21 +77,21 @@
         </div>
       </div>
       <main
-        class="flex w-full flex-col items-center bg-white dark:bg-navy-700 lg:max-w-md"
+        class="flex flex-col items-center w-full bg-white dark:bg-navy-700 lg:max-w-md"
       >
         @livewire('login.login')
         <div
-          class="my-5 flex justify-center text-xs text-slate-400 dark:text-navy-300"
+          class="flex justify-center my-5 text-xs text-slate-400 dark:text-navy-300"
         >
           <a href="#">Privacy Notice</a>
-          <div class="mx-3 my-1 w-px bg-slate-200 dark:bg-navy-500"></div>
+          <div class="w-px mx-3 my-1 bg-slate-200 dark:bg-navy-500"></div>
           <a href="#">Term of service</a>
         </div>
       </main>
     </div>
 
-    <!-- 
-        This is a place for Alpine.js Teleport feature 
+    <!--
+        This is a place for Alpine.js Teleport feature
         @see https://alpinejs.dev/directives/teleport
       -->
     <div id="x-teleport-target"></div>

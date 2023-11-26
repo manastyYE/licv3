@@ -23,9 +23,9 @@ return new class extends Migration
             $table->foreign('org_type_id')->references('id')->on('org_types')->onDelete('restrict');
             $table->date('start_date');
             $table->unsignedBigInteger('building_type_id');
+            $table->foreign('building_type_id')->references('id')->on('building_types')->onDelete('restrict');
             $table->string('card_type');
             $table->string('card_number');
-            $table->foreign('building_type_id')->references('id')->on('building_types')->onDelete('restrict');
             $table->string('isowner',20);
             $table->unsignedBigInteger('hood_unit_id');
             $table->foreign('hood_unit_id')->references('id')->on('hood_units')->onDelete('restrict');
