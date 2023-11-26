@@ -5,13 +5,19 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use App\Models\OrgType;
 use App\Models\Office;
-
+use Livewire\WithPagination;
 class OppTypeP extends Component
 {
+    use WithPagination;
+    public $search;
     public function render()
     {
         $off = Office::all();
         $opp_type=OrgType::all();
+        $opp_type = $this->search ? OrgType::where('name', 'like', '%' . $this->search . '%')
+            ->orWhere('price', 'like', '%' . $this->search . '%')
+            ->paginate(12)
+            : OrgType::paginate(12);
         return view('livewire.opp-type-p',['type'=>$opp_type,'off'=>$off]);
     }
     public $orgtype_id, $name,$office_id, $price, $orgtype_edit_id, $orgtype_delete_id;

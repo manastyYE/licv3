@@ -5,13 +5,17 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use App\Models\Hood;
 use Illuminate\Support\Facades\Auth;
-
+use Livewire\WithPagination;
 class Hoods extends Component
 {
+    use WithPagination;
+    public $search;
     public function render()
     {
         $this->directorate_id =auth()->guard('admin')->user()->directorate_id;
-        $hoods=Hood::where('directorate_id',auth()->guard('admin')->user()->directorate_id)->get();
+        $hoods = $this->search ? Hood::where('directorate_id',auth()->guard('admin')->user()->directorate_id)->where('name', 'like', '%' . $this->search . '%')
+            ->paginate(12)
+            : Hood::where('directorate_id',auth()->guard('admin')->user()->directorate_id)->paginate(12);
         return view('livewire.hoods',['type'=>$hoods]);
     }
     public $name,$directorate_id, $hood_edit_id, $hood_delete_id;

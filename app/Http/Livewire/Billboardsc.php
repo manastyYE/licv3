@@ -4,18 +4,25 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use App\Models\Billboard;
+use Livewire\WithPagination;
 class Billboardsc extends Component
 {
+    use WithPagination;
+    public $search;
     public function render()
     {
-        $bill=Billboard::all();
+
+        $bill = $this->  ? Billboard::where('name', 'like', '%' . $this->search . '%')
+            ->orWhere('price', 'like', '%' . $this->search . '%')
+            ->paginate(12)
+            : Billboard::paginate(12);
         return view('livewire.billboardsc',['type'=>$bill]);
     }
     public $name,$price, $bill_board_edit_id, $bill_board_delete_id;
     public $ed_name,$ed_price;
 
     //Input fields on update validation
-    
+
 
 
     public function storeBillBoardData()
@@ -24,7 +31,7 @@ class Billboardsc extends Component
         $this->validate([
             'name' => 'required|unique:billboards,name',
             'price'=>'required|numeric'
-            
+
         ]);
 
         //Add Student Data
@@ -61,8 +68,8 @@ class Billboardsc extends Component
         $this->ed_name = $bill_board->name;
         $this->ed_price=$bill_board->price;
     }
-    
-    
+
+
     public function editBillBoardData()
     {
         //on form submit validation
@@ -90,7 +97,7 @@ class Billboardsc extends Component
     {
         $this->bill_board_delete_id = $id; //student id
 
-    
+
     }
 
     public function deleteBillBoardData()

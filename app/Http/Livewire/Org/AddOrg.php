@@ -55,27 +55,28 @@ class AddOrg extends Component
 
 
         $this->validate($rules);
-        $owner_img_destinationPath = 'uploads/orgs/' . $this->org_name . '/owner_img';
-        $personal_card_destinationPath = 'uploads/orgs/' . $this->org_name . '/personal_card';
-        $rent_contract_destinationPath = 'uploads/orgs/' . $this->org_name . '/rent_contract';
-        $ad_board_destinationPath = 'uploads/orgs/' . $this->org_name . '/ad_board';
-        $previous_license_destinationPath = 'uploads/orgs/' . $this->org_name . '/previous_license';
-        $comm_record_destinationPath = 'uploads/orgs/' . $this->org_name . '/comm_record';
+
+        $owner_img_destinationPath = '/uploads/orgs/' . $this->org_name . '/owner_img';
+        $personal_card_destinationPath = '/uploads/orgs/' . $this->org_name . '/personal_card';
+        $rent_contract_destinationPath = '/uploads/orgs/' . $this->org_name . '/rent_contract';
+        $ad_board_destinationPath = '/uploads/orgs/' . $this->org_name . '/ad_board';
+        $previous_license_destinationPath = '/uploads/orgs/' . $this->org_name . '/previous_license';
+        $comm_record_destinationPath = '/uploads/orgs/' . $this->org_name . '/comm_record';
 
         // رفع الملفات إلى السيرفر إذا كانت موجودة
-        $owner_img_path=$this->owner_img->store($owner_img_destinationPath);
-        $personal_card_path=$this->personal_card->store($personal_card_destinationPath);
+        $owner_img_path=$this->owner_img->store('public'.$owner_img_destinationPath);
+        $personal_card_path=$this->personal_card->store('public'.$personal_card_destinationPath);
         if ($this->rent_contract) {
-            $rent_contract_path=$this->rent_contract->store($rent_contract_destinationPath);
+            $rent_contract_path=$this->rent_contract->store('public'.$rent_contract_destinationPath);
         }
         if ($this->ad_board) {
-            $ad_board_path=$this->ad_board->store($ad_board_destinationPath);
+            $ad_board_path=$this->ad_board->store('public'.$ad_board_destinationPath);
         }
         if ($this->previous_license) {
-            $previous_license_path=$this->previous_license->store($previous_license_destinationPath);
+            $previous_license_path=$this->previous_license->store('public'.$previous_license_destinationPath);
         }
         if ($this->comm_record) {
-            $comm_record_path=$this->comm_record->store($comm_record_destinationPath);
+            $comm_record_path=$this->comm_record->store('public'.$comm_record_destinationPath);
         }
         // if ($this->file5) {
         //     $path5 = $this->file5->store($destinationPath);
@@ -173,8 +174,7 @@ class AddOrg extends Component
     //     }
 
 
-
-        Org::create(
+    Org::create(
             [
                 'org_name'=>$this->org_name,
                 'owner_name'=>$this->owner_name,

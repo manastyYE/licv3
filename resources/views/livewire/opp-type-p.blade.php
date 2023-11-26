@@ -11,7 +11,7 @@
         <div x-data="pages.tables.initGridTableExapmle">
             <div role="complementary" class="gridjs gridjs-container" style="width: 100%;">
                 <div class="gridjs-head">
-                    <div class="gridjs-search"><input type="search" placeholder="ابحث من هنا..."
+                    <div class="gridjs-search"><input wire:model='search' type="search" placeholder="ابحث من هنا..."
                             aria-label="ابحث من هنا..." class="gridjs-input gridjs-search-input"></div>
                 </div>
                 <div class="gridjs-wrapper" style="height: auto;">

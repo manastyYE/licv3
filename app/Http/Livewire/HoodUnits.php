@@ -5,11 +5,17 @@ namespace App\Http\Livewire;
 use App\Models\HoodUnit;
 use Livewire\Component;
 use App\Models\Hood;
-
+use Livewire\WithPagination;
 class HoodUnits extends Component
 {
+    use WithPagination;
+    public $search;
     public function render()
-    {   $hood_unit=HoodUnit::where('directorate_id',auth()->guard('admin')->user()->directorate_id)->get();
+    {
+                $hood_unit = $this->search ? HoodUnit::where('directorate_id',auth()->guard('admin')->user()->directorate_id)->where('no', 'like', '%' . $this->search . '%')
+            ->paginate(12)
+            : HoodUnit::where('directorate_id',auth()->guard('admin')->user()->directorate_id)->paginate(12);
+
         $hood=Hood::where('directorate_id',auth()->guard('admin')->user()->directorate_id)->get();
         return view('livewire.hood-units',['type'=>$hood_unit,'hood'=>$hood]);
     }
