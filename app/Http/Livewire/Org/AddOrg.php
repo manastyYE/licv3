@@ -10,6 +10,7 @@ use App\Models\Street;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
+
 class AddOrg extends Component
 {
     use WithFileUploads;
@@ -19,6 +20,8 @@ class AddOrg extends Component
     public $org_types, $building_types, $streets, $street, $hood_unit;
     public function store()
     {
+
+
         $rules = [
             'org_name' => 'required',
             'org_type_id' => 'required',
@@ -55,8 +58,19 @@ class AddOrg extends Component
 
 
         $this->validate($rules);
+                //تحميل ملف الصورة
+        $owner_img_withex = $this->owner_img->getClientOriginalName();
+        $owner_img_name = pathinfo($owner_img_withex, PATHINFO_FILENAME);
+        $owner_img__ex = $this->owner_img->getClientOriginalExtension();
+        $owner_img_tostore =   $owner_img_name . '.' . $owner_img__ex;
 
-        $owner_img_destinationPath = '/uploads/orgs/' . $this->org_name . '/owner_img';
+
+        //رفع ملف الصورة
+        $pathimg = 'public/uploads/orgs/' . $this->org_name . '/' . 'owner_img/' . $owner_img_tostore;
+        $this->owner_img->storeAs($pathimg);
+        $rules['owner_img'] = 'storage/uploads/orgs/' . $this->org_name . '/owner_img'.'/'.$owner_img_tostore;
+
+        // $owner_img_destinationPath = '/uploads/orgs/' . $this->org_name . '/owner_img';
         $personal_card_destinationPath = '/uploads/orgs/' . $this->org_name . '/personal_card';
         $rent_contract_destinationPath = '/uploads/orgs/' . $this->org_name . '/rent_contract';
         $ad_board_destinationPath = '/uploads/orgs/' . $this->org_name . '/ad_board';
@@ -64,7 +78,7 @@ class AddOrg extends Component
         $comm_record_destinationPath = '/uploads/orgs/' . $this->org_name . '/comm_record';
 
         // رفع الملفات إلى السيرفر إذا كانت موجودة
-        $owner_img_path=$this->owner_img->store('public'.$owner_img_destinationPath);
+
         $personal_card_path=$this->personal_card->store('public'.$personal_card_destinationPath);
         if ($this->rent_contract) {
             $rent_contract_path=$this->rent_contract->store('public'.$rent_contract_destinationPath);
@@ -179,7 +193,7 @@ class AddOrg extends Component
                 'org_name'=>$this->org_name,
                 'owner_name'=>$this->owner_name,
                 'owner_phone'=>$this->owner_phone,
-                'owner_img'=>$owner_img_path,
+                'owner_img'=>$rules['owner_img'],
                 'card_type'=>$this->card_type,
                 'card_number'=>$this->card_number,
                 'building_type_id'=>$this->building_type_id,

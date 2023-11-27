@@ -12,7 +12,7 @@ class Billboardsc extends Component
     public function render()
     {
 
-        $bill = $this->  ? Billboard::where('name', 'like', '%' . $this->search . '%')
+        $bill =$this->search ? Billboard::where('name', 'like', '%' . $this->search . '%')
             ->orWhere('price', 'like', '%' . $this->search . '%')
             ->paginate(12)
             : Billboard::paginate(12);
