@@ -19,7 +19,7 @@
     <script src="{{ asset('app.js') }}" defer></script>
     @livewireStyles()
 
-   
+
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -65,13 +65,13 @@
           <img
             class="w-full"
             x-show="!$store.global.isDarkModeEnabled"
-            src="{{ asset('images/illustrations/dashboard-check.svg') }}"
+            src="{{  asset('img/logo.png') }}"
             alt="image"
           />
           <img
             class="w-full"
             x-show="$store.global.isDarkModeEnabled"
-            src="{{ asset('images/illustrations/dashboard-check-dark.svg') }}"
+            src="{{ asset('img/logo.png') }}"
             alt="image"
           />
         </div>
@@ -90,8 +90,8 @@
       </main>
     </div>
 
-    <!-- 
-        This is a place for Alpine.js Teleport feature 
+    <!--
+        This is a place for Alpine.js Teleport feature
         @see https://alpinejs.dev/directives/teleport
       -->
     <div id="x-teleport-target"></div>
