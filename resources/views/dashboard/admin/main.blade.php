@@ -19,7 +19,7 @@
         <a href="/admin/org/dashboard">
             <div class="card">
                 <div class="flex justify-center p-5">
-                    <img class="w-9/12" src="{{asset('icons/add_shop.png')}}" alt="image">
+                    <img class="w-9/12" src="{{asset('icons/show_shop.png')}}" alt="image">
                 </div>
                 <div class="px-4 pb-8 text-center sm:px-5">
                     <h4 class="text-lg font-semibold text-slate-700 dark:text-navy-100">
@@ -38,7 +38,7 @@
         <a href="/admin/users">
             <div class="card">
                 <div class="flex justify-center p-5">
-                    <img class="w-9/12" src="{{asset('icons/add_shop.png')}}" alt="image">
+                    <img class="w-9/12" src="{{asset('icons/usericon.png')}}" alt="users icon">
                 </div>
                 <div class="px-4 pb-8 text-center sm:px-5">
                     <h4 class="text-lg font-semibold text-slate-700 dark:text-navy-100">
@@ -47,17 +47,14 @@
                     <p class="pt-3">
 
                     </p>
-                    {{-- <button
-                        class="btn mt-8 bg-primary font-medium text-white shadow-lg shadow-primary/50 hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:shadow-accent/50 dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90">
 
-                    </button> --}}
                 </div>
             </div>
         </a>
         <a href="/admin/system">
             <div class="card">
                 <div class="flex justify-center p-5">
-                    <img class="w-9/12" src="{{asset('icons/add_shop.png')}}" alt="image">
+                    <img class="w-9/12" src="{{asset('icons/settings.png')}}" alt="image">
                 </div>
                 <div class="px-4 pb-8 text-center sm:px-5">
                     <h4 class="text-lg font-semibold text-slate-700 dark:text-navy-100">
