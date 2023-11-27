@@ -56,7 +56,7 @@
           <p
             class="text-xl font-semibold text-slate-700 dark:text-navy-100"
           >
-            Yemen QR
+            مديرية الوحدة
           </p>
         </a>
       </div>
