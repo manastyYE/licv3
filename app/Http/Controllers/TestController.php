@@ -20,7 +20,7 @@ class TestController extends Controller
         return $this->returnData('data',$orgs);
     }
     public function get_org(){
-        $org = Org::first();
+        $org = Org::with(['org_type','street','building_type'])->first();
         return $this->returnData('data',$org);
     }
 
