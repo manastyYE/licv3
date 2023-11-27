@@ -65,13 +65,13 @@
           <img
             class="w-full"
             x-show="!$store.global.isDarkModeEnabled"
-            src="{{ asset('images/illustrations/dashboard-check.svg') }}"
+            src="{{ asset('img/logo.png') }}"
             alt="image"
           />
           <img
             class="w-full"
             x-show="$store.global.isDarkModeEnabled"
-            src="{{ asset('images/illustrations/dashboard-check-dark.svg') }}"
+            src="{{ asset('img/logo.png') }}"
             alt="image"
           />
         </div>
