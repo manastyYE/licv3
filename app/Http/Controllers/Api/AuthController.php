@@ -22,7 +22,7 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $rules = [
-            "ssn" => "required",
+            "phone" => "required",
             "password" => "required"
 
         ];
@@ -31,7 +31,7 @@ class AuthController extends Controller
             $code = $this->returnCodeAccordingToInput($validator);
             return $this->returnValidationError($code, $validator);
         }
-        $credentials = $request->only('username', 'password');
+        $credentials = $request->only('phone', 'password');
 
         $token = Auth::attempt($credentials);
         if (!$token) {
