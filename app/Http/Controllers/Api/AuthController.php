@@ -21,27 +21,32 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
-        $rules = [
-            "phone" => "required",
-            "password" => "required"
+        try{
+            $rules = [
+                "phone" => "required",
+                "password" => "required"
 
-        ];
-        $validator = Validator::make($request->all(), $rules);
-        if ($validator->fails()) {
-            $code = $this->returnCodeAccordingToInput($validator);
-            return $this->returnValidationError($code, $validator);
+            ];
+            $validator = Validator::make($request->all(), $rules);
+            if ($validator->fails()) {
+                $code = $this->returnCodeAccordingToInput($validator);
+                return $this->returnValidationError($code, $validator);
+            }
+            $credentials = $request->only('phone', 'password');
+
+            $token = Auth::attempt($credentials);
+            if (!$token) {
+                return $this->returnError('E001', 'بيانات الدخول غير صحيحة');
+            }
+
+            $user = Auth::user();
+            $user->api_token = $token;
+                //return token
+            return $this->returnData('data', $user);
         }
-        $credentials = $request->only('phone', 'password');
-
-        $token = Auth::attempt($credentials);
-        if (!$token) {
-            return $this->returnError('E001', 'بيانات الدخول غير صحيحة');
+        catch (\Exception $ex) {
+            return $this->returnError($ex->getCode(), $ex->getMessage());
         }
-
-        $user = Auth::user();
-        $user->api_token = $token;
-            //return token
-        return $this->returnData('data', $user);
 
     }
 
