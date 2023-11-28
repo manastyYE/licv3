@@ -7,9 +7,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use App\Traits\GeneralTrait;
+use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
+    use GeneralTrait;
 
     public function __construct()
     {
@@ -18,29 +21,27 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
-        $request->validate([
-            'email' => 'required|string|email',
-            'password' => 'required|string',
-        ]);
-        $credentials = $request->only('email', 'password');
+        $rules = [
+            "ssn" => "required",
+            "password" => "required"
+
+        ];
+        $validator = Validator::make($request->all(), $rules);
+        if ($validator->fails()) {
+            $code = $this->returnCodeAccordingToInput($validator);
+            return $this->returnValidationError($code, $validator);
+        }
+        $credentials = $request->only('username', 'password');
 
         $token = Auth::attempt($credentials);
         if (!$token) {
-            return response()->json([
-                'status' => 'error',
-                'message' => 'Unauthorized',
-            ], 401);
+            return $this->returnError('E001', 'بيانات الدخول غير صحيحة');
         }
 
         $user = Auth::user();
-        return response()->json([
-            'status' => 'success',
-            'user' => $user,
-            'authorisation' => [
-                'token' => $token,
-                'type' => 'bearer',
-            ]
-        ]);
+        $user->api_token = $token;
+            //return token
+        return $this->returnData('data', $user);
 
     }
 

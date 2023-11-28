@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\TestController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -15,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
+Route::post('login', [AuthController::class,'login']);
 Route::get('get_streets',[TestController::class,'get_streets']);
 Route::get('get_orgs',[TestController::class,'get_orgs']);
 Route::get('get_org',[TestController::class,'get_org']);
