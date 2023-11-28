@@ -38,6 +38,7 @@ class AddOrg extends Component
             'ad_board'=>'file|mimes:pdf',
             'previous_license'=>'file|mimes:pdf',
             'comm_record'=>'file|mimes:pdf',
+            'isowner'=>'required'
         ];
         if (!$this->rent_contract) {
             unset($rules['rent_contract']);

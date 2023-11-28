@@ -123,7 +123,7 @@ zzzz
             </div>
 
             <div>
-                <label class="block" style="margin-top: -15mm">
+                <label class="block" >
                     <span>نوع النشاط التجاري</span>
                     <select wire:model='org_type_id' class="mt-1.5 "
                         x-init="$el._x_tom = new Tom($el,{sortField: {field: 'text',direction: 'asc'}})">
@@ -144,7 +144,7 @@ zzzz
             </div>
 
             <div>
-                <label class="block " style="margin-top: -15mm">
+                <label class="block " >
                     <span> رقم المالك</span>
                     <input name="owner_phone" wire:model='owner_phone' id="owner_phone"
                         class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
@@ -293,6 +293,7 @@ zzzz
                     <select name="isowner" id="isowner" wire:model='isowner'
                         placeholder=".......  هل هو مالك المبنى   ..."
                         class="form-select mt-1.5 w-full rounded-lg border border-slate-300 bg-white px-3 py-2 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:bg-navy-700 dark:hover:border-navy-400 dark:focus:border-accent">
+                        <option value="">اختر </option>
                         <option value="لا"> لا </option>
                         <option value="نعم"> نعم </option>
                     </select>
