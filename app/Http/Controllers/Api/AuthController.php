@@ -34,7 +34,7 @@ class AuthController extends Controller
             }
             $credentials = $request->only('phone', 'password');
 
-            $token = Auth::attempt($credentials);
+            $token = Auth::guard('api')->attempt($credentials);
             if (!$token) {
                 return $this->returnError('E001', 'بيانات الدخول غير صحيحة');
             }
