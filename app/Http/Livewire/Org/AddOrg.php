@@ -68,10 +68,10 @@ class AddOrg extends Component
 
 
         //رفع ملف الصورة
-        $dir = 'public/uploads/orgs/' . $this->org_name . '/' . 'owner_img/';
-        if (!File::isDirectory($dir)) {
+        $dir = 'storage/app/public/uploads/orgs/' . $this->org_name . '/' . 'owner_img/';
+        // if (!File::isDirectory($dir)) {
         File::makeDirectory($dir, 0755, true, true);
-    }
+    // }
         $pathimg = 'public/uploads/orgs/' . $this->org_name . '/' . 'owner_img/' . $owner_img_tostore;
         $this->owner_img->storeAs($pathimg);
         $rules['owner_img'] = 'storage/uploads/orgs/' . $this->org_name . '/owner_img'.'/'.$owner_img_tostore;
