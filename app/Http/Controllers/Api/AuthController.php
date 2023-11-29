@@ -10,20 +10,21 @@ use App\Models\User;
 use App\Traits\GeneralTrait;
 use Illuminate\Support\Facades\Validator;
 
+
 class AuthController extends Controller
 {
     use GeneralTrait;
 
     public function __construct()
     {
-        $this->middleware('auth:api', ['except' => ['login','register']]);
+        // $this->middleware('auth.guard:worker_api', ['except' => ['login','register']]);
     }
 
     public function login(Request $request)
     {
         try{
             $rules = [
-                "phone" => "required",
+                "username" => "required",
                 "password" => "required"
 
             ];
@@ -32,13 +33,13 @@ class AuthController extends Controller
                 $code = $this->returnCodeAccordingToInput($validator);
                 return $this->returnValidationError($code, $validator);
             }
-            $credentials = $request->only(['phone', 'password']);
-            $token = Auth::guard('api')->attempt($credentials);
+            $credentials = $request->only(['username', 'password']);
+            $token = Auth::guard('worker_api')->attempt($credentials);
             if (!$token) {
                 return $this->returnError('E001', 'بيانات الدخول غير صحيحة');
             }
 
-            $user = Auth::guard('api')->user();
+            $user = Auth::guard('worker_api')->user();
             $user->api_token = $token;
                 //return token
             return $this->returnData('data', $user);

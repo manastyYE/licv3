@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\AssignGuard;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -65,5 +66,6 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'admin.guest' => \App\Http\Middleware\AdminRedirect::class,
         'admin.auth' => \App\Http\Middleware\AdminAuth::class,
+        'auth.guard'  => AssignGuard::class,
     ];
 }
