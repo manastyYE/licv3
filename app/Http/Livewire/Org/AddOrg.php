@@ -9,7 +9,8 @@ use App\Models\OrgType;
 use App\Models\Street;
 use Livewire\Component;
 use Livewire\WithFileUploads;
-
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 
 class AddOrg extends Component
 {
@@ -67,6 +68,10 @@ class AddOrg extends Component
 
 
         //رفع ملف الصورة
+        $dir = 'public/uploads/orgs/' . $this->org_name . '/' . 'owner_img/';
+        if (!File::isDirectory($dir)) {
+        File::makeDirectory($dir, 0755, true, true);
+    }
         $pathimg = 'public/uploads/orgs/' . $this->org_name . '/' . 'owner_img/' . $owner_img_tostore;
         $this->owner_img->storeAs($pathimg);
         $rules['owner_img'] = 'storage/uploads/orgs/' . $this->org_name . '/owner_img'.'/'.$owner_img_tostore;
