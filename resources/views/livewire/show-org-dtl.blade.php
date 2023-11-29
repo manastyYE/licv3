@@ -188,7 +188,10 @@
         <label class="block">
             البطاقة الشخصية
             @if ($org->personal_card)
-                <img src="{{ asset('img/yes.png') }}" class="h-6 mr-4">
+                <a href="/{{ $org->personal_card}}" >
+                    <img src="{{ asset('img/yes.png') }}" class="h-6 mr-4">
+                </a>
+
             @else
                 <img src="{{ asset('img/no.png') }}" class="h-6 mr-4">
             @endif

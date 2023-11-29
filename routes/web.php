@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\ShowPagesController;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Livewire\ShowOrgDtl;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,6 +46,7 @@ Route::controller(ShowPagesController::class)->prefix('admin')->middleware('admi
         Route::get('/','adminlogin')->name('adminlogin');
     }
 );
+Route::get('/{pdf}', [ShowOrgDtl::class, 'dowmloadpdf']);
 // Route::controller(ShowPagesController::class)->middleware('auth')->group(
 //     function () {
 //         // Route::get('/ulogin', 'userlogin')->name('user.login');

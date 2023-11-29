@@ -18,6 +18,10 @@ class ShowOrgDtl extends Component
         $bill_board = Billboard::all();
         return view('livewire.show-org-dtl',['org'=>$org,'type'=>$org_billBoard,'bill'=>$bill_board]);
     }
+    public function dowmloadpdf($pdf){
+
+        return response()->download($pdf);
+    }
     public function mount($id){
         $this->org_id=$id;
     }

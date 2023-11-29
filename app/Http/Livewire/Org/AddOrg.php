@@ -72,17 +72,44 @@ class AddOrg extends Component
         $rules['owner_img'] = 'storage/uploads/orgs/' . $this->org_name . '/owner_img'.'/'.$owner_img_tostore;
 
         // $owner_img_destinationPath = '/uploads/orgs/' . $this->org_name . '/owner_img';
-        $personal_card_destinationPath = '/uploads/orgs/' . $this->org_name . '/personal_card';
+        // $personal_card_destinationPath = '/uploads/orgs/' . $this->org_name . '/personal_card';
+
+         //تحميل ملف البطاقة
+        $personal_card_withex = $this->personal_card->getClientOriginalName();
+        $personal_card_name = pathinfo($personal_card_withex, PATHINFO_FILENAME);
+        $personal_card__ex = $this->personal_card->getClientOriginalExtension();
+        $personal_card_tostore =   $personal_card_name . '.' . $personal_card__ex;
+
+
+        //رفع ملف البطاقة
+        $path_personal_card = 'public/uploads/orgs/' . $this->org_name . '/' . 'personal_card/' . $personal_card_tostore;
+        $this->personal_card->storeAs($path_personal_card);
+        $rules['personal_card'] = 'storage/uploads/orgs/' . $this->org_name . '/personal_card'.'/'.$personal_card_tostore;
+
+
         $rent_contract_destinationPath = '/uploads/orgs/' . $this->org_name . '/rent_contract';
+
+                 // رفع الملفات إلى السيرفر إذا كانت موجودة
+
+        // $personal_card_path=$this->personal_card->store('public'.$personal_card_destinationPath);
+        if ($this->rent_contract) {
+             //تحميل ملف البطاقة
+        $rent_contract_withex = $this->rent_contract->getClientOriginalName();
+        $rent_contract_name = pathinfo($rent_contract_withex, PATHINFO_FILENAME);
+        $rent_contract__ex = $this->rent_contract->getClientOriginalExtension();
+        $rent_contract_tostore =   $rent_contract_name . '.' . $rent_contract__ex;
+
+
+        //رفع ملف البطاقة
+        $path_rent_contract = 'public/uploads/orgs/' . $this->org_name . '/' . 'rent_contract/' . $rent_contract_tostore;
+        $this->rent_contract->storeAs($path_rent_contract);
+        $rules['rent_contract'] = 'storage/uploads/orgs/' . $this->org_name . '/rent_contract'.'/'.$rent_contract_tostore;
+
         $ad_board_destinationPath = '/uploads/orgs/' . $this->org_name . '/ad_board';
         $previous_license_destinationPath = '/uploads/orgs/' . $this->org_name . '/previous_license';
         $comm_record_destinationPath = '/uploads/orgs/' . $this->org_name . '/comm_record';
 
-        // رفع الملفات إلى السيرفر إذا كانت موجودة
 
-        $personal_card_path=$this->personal_card->store('public'.$personal_card_destinationPath);
-        if ($this->rent_contract) {
-            $rent_contract_path=$this->rent_contract->store('public'.$rent_contract_destinationPath);
         }
         if ($this->ad_board) {
             $ad_board_path=$this->ad_board->store('public'.$ad_board_destinationPath);
@@ -202,8 +229,8 @@ class AddOrg extends Component
                 'org_type_id'=>$this->org_type_id,
                 'hood_unit_id'=>$this->hood_unit_id,
                 'street_id'=>$this->street_id,
-                'personal_card'=>$personal_card_path,
-                'rent_contract'=>$this->rent_contract ?$rent_contract_path : null,
+                'personal_card'=> $rules['personal_card'],
+                'rent_contract'=>$this->rent_contract ?$rules['rent_contract'] : null,
                 'ad_board'=>$this->ad_board ? $ad_board_path : null,
                 'previous_license'=>$this->previous_license ?$previous_license_path : null ,
                 'comm_record'=>$this->comm_record ? $comm_record_path : null,
