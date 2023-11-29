@@ -70,7 +70,7 @@ class AddOrg extends Component
         //رفع ملف الصورة
 
         $pathimg = 'public/uploads/orgs/' . $this->org_name  . 'owner_img ' . $owner_img_tostore;
-        // $this->owner_img->storeAs($pathimg);
+        $this->owner_img->storeAs($pathimg);
         $rules['owner_img'] = 'storage/uploads/orgs/' . $this->org_name  . 'owner_img ' . $owner_img_tostore;
 
         // $owner_img_destinationPath = '/uploads/orgs/' . $this->org_name . '/owner_img';
