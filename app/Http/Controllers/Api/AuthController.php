@@ -33,16 +33,36 @@ class AuthController extends Controller
                 $code = $this->returnCodeAccordingToInput($validator);
                 return $this->returnValidationError($code, $validator);
             }
-            $credentials = $request->only(['username', 'password']);
-            $token = Auth::guard('worker_api')->attempt($credentials);
-            if (!$token) {
-                return $this->returnError('E001', 'بيانات الدخول غير صحيحة');
-            }
+            $credentials = $request->only(['phone', 'password']);
+            // $token = Auth::guard('api')->attempt($credentials);
+            // if (!$token) {
+            //     return $this->returnError('E001', 'بيانات الدخول غير صحيحة');
+            // }
+            if( User::where('phone',$request->phone)->where('password',$request->password)->count() > 0 ){
 
-            $user = Auth::guard('worker_api')->user();
-            $user->api_token = $token;
+$user = User::where('phone', $request->phone)->where('password', $request->password)->get()->first();
+$output = [
+    "status"=>true,
+
+    "token"=>$user->createToken($user->phone)->accessToken ,
+    "type"=>"Bearer",
+    "message"=>"FOUND"
+];
+            }
+else {
+                $output = [
+                    "status" => false
+                    ,
+                    "message" => "NOT FOUND"
+                ];
+
+
+}
+return $output ;
+            // $user = Auth::guard('api')->user();
+            // $user->api_token = $token;
                 //return token
-            return $this->returnData('data', $user);
+            // return $this->returnData('data', $user);
         }
         catch (\Exception $ex) {
             return $this->returnError($ex->getCode(), $ex->getMessage());

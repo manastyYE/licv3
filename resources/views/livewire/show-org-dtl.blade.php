@@ -3,7 +3,7 @@
     <a href="/admin/org/clip/{{$org->id}}"
         class="btn border border-primary font-medium text-primary hover:bg-primary hover:text-white focus:bg-primary focus:text-white active:bg-primary/90 dark:border-accent dark:text-accent-light dark:hover:bg-accent dark:hover:text-white dark:focus:bg-accent dark:focus:text-white dark:active:bg-accent/90">
         عرض الحافظة
-    </a>
+    </a>        
     @if (session()->has('message'))
         <div class="space-y-4">
             <div x-data="{ isShow: true }" :class="!isShow && 'opacity-0 transition-opacity duration-300'"
@@ -188,7 +188,10 @@
         <label class="block">
             البطاقة الشخصية
             @if ($org->personal_card)
-                <img src="{{ asset('img/yes.png') }}" class="h-6 mr-4">
+                <a href="/{{ $org->personal_card}}" >
+                    <img src="{{ asset('img/yes.png') }}" class="h-6 mr-4">
+                </a>
+
             @else
                 <img src="{{ asset('img/no.png') }}" class="h-6 mr-4">
             @endif
