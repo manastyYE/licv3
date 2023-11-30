@@ -92,14 +92,14 @@ class AuthController extends Controller
         ]);
     }
 
-    public function logout()
-    {
-        Auth::logout();
-        return response()->json([
-            'status' => 'success',
-            'message' => 'Successfully logged out',
-        ]);
-    }
+    // public function logout()
+    // {
+    //     Auth::logout();
+    //     return response()->json([
+    //         'status' => 'success',
+    //         'message' => 'Successfully logged out',
+    //     ]);
+    // }
 
     public function me()
     {
@@ -119,6 +119,12 @@ class AuthController extends Controller
                 'type' => 'bearer',
             ]
         ]);
+    }
+    public function logout(Request $request)
+    {
+        $request->user()->currentAccessToken()->delete();
+
+        return response()->json(['message' => 'Logged out'], 200);
     }
 
 }
