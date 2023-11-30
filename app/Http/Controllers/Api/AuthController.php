@@ -34,11 +34,11 @@ class AuthController extends Controller
             }
             $credentials = $request->only(['phone', 'password']);
 
-            $token = Auth::attempt($credentials);
+            $token = Auth::guard('api')->attempt($credentials);
             if (!$token)
                 return $this->returnError('E001', 'بيانات الدخول غير صحيحة');
 
-            $aqel = Auth::user();
+            $aqel = Auth::guard('api')->user();
             $aqel->api_token = $token;
             //return token
             return $this->returnData('data', $aqel);
