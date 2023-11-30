@@ -67,3 +67,8 @@ Route::get('/login', [ShowPagesController::class,'userlogin'])->name('user.login
 
 //     return $response;
 // })->where('filename', '.*');
+Route::controller(ShowPagesController::class)->prefix('user')->middleware('auth')->group(
+    function(){
+        Route::get('/dashboard','dashboard_view')->name('use.dashboard');
+    }
+);
