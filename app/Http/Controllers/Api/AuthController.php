@@ -27,18 +27,18 @@ class AuthController extends Controller
                 "phone" => "required",
                 "password" => "required"
             ];
-            return [
-                        "success"=>true,
-                        "token"=>$request->phone,
-                        "type"=>"Bearer",
-                        "msg"=>"FOUND"
-                        ];
             $validator = Validator::make($request->all(), $rules);
             if ($validator->fails()) {
                 $code = $this->returnCodeAccordingToInput($validator);
                 return $this->returnValidationError($code, $validator);
             }
             $credentials = $request->only(['phone', 'password']);
+            return [
+                        "success"=>true,
+                        "token"=>$request->phone,
+                        "type"=>"Bearer",
+                        "msg"=>"FOUND"
+                        ];
 
             $token = Auth::guard('api')->attempt($credentials);
 
