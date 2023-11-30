@@ -15,6 +15,7 @@
         "livewire/livewire": "^2.12",
         "silviolleite/laravelpwa": "^2.0",
         "sopamo/laravel-filepond": "^1.2",
+        "tymon/jwt-auth": "^2.0",
         "wire-elements/modal": "^1.0",
         "yoeunes/toastr": "^2.3"
     },
