@@ -24,9 +24,8 @@ class AuthController extends Controller
     {
         try{
             $rules = [
-                "username" => "required",
+                "phone" => "required",
                 "password" => "required"
-
             ];
             $validator = Validator::make($request->all(), $rules);
             if ($validator->fails()) {
@@ -34,36 +33,34 @@ class AuthController extends Controller
                 return $this->returnValidationError($code, $validator);
             }
             $credentials = $request->only(['phone', 'password']);
-            // $token = Auth::guard('api')->attempt($credentials);
-            // if (!$token) {
-            //     return $this->returnError('E001', 'بيانات الدخول غير صحيحة');
+
+            $token = Auth::guard('api')->attempt($credentials);
+
+            if (!$token)
+                return $this->returnError('E001', 'بيانات الدخول غير صحيحة');
+
+            $aqel = Auth::guard('api')->user();
+            $aqel->api_token = $token;
+            //return token
+            return $this->returnData('data', $aqel);
+            // if( User::where('phone',$request->phone)->where('password',$request->password)->count() > 0 ){
+
+            //     $user = User::where('phone', $request->phone)->where('password', $request->password)->get()->first();
+            //     $output = [
+            //         "success"=>true,
+            //         "token"=>$user->createToken($user->phone)->plainTextToken ,
+            //         "type"=>"Bearer",
+            //         "msg"=>"FOUND"
+            //         ];
             // }
-            if( User::where('phone',$request->phone)->where('password',$request->password)->count() > 0 ){
-
-$user = User::where('phone', $request->phone)->where('password', $request->password)->get()->first();
-$output = [
-    "status"=>true,
-
-    "token"=>$user->createToken($user->phone)->accessToken ,
-    "type"=>"Bearer",
-    "message"=>"FOUND"
-];
-            }
-else {
-                $output = [
-                    "status" => false
-                    ,
-                    "message" => "NOT FOUND"
-                ];
-
-
-}
-return $output ;
-            // $user = Auth::guard('api')->user();
-            // $user->api_token = $token;
-                //return token
-            // return $this->returnData('data', $user);
-        }
+            // else {
+            //     $output = [
+            //         "success" => false,
+            //         "msg" => "NOT FOUND",
+            //     ];
+            // }
+            // return $output ;
+                    }
         catch (\Exception $ex) {
             return $this->returnError($ex->getCode(), $ex->getMessage());
         }

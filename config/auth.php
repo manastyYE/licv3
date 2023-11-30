@@ -49,7 +49,7 @@ return [
             'driver' => 'jwt',
             'provider' => 'users',
         ],
-        'worker_api' => [
+        'worker-api' => [
             'driver' => 'jwt',
             'provider' => 'workers',
         ],
