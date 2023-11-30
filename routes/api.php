@@ -19,7 +19,7 @@ Route::get('get_streets',[\App\Http\Controllers\Api\UserDataContoller::class,'ge
 Route::get('get_orgs',[\App\Http\Controllers\Api\UserDataContoller::class,'get_orgs']);
 Route::get('get_org/{id}',[\App\Http\Controllers\Api\UserDataContoller::class,'get_org']);
 Route::post('login', [AuthController::class,'login']);
-Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');
+Route::post('logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');
 
 
 

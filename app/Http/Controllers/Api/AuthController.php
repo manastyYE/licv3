@@ -101,25 +101,25 @@ class AuthController extends Controller
     //     ]);
     // }
 
-    public function me()
-    {
-        return response()->json([
-            'status' => 'success',
-            'user' => Auth::user(),
-        ]);
-    }
+    // public function me()
+    // {
+    //     return response()->json([
+    //         'status' => 'success',
+    //         'user' => Auth::user(),
+    //     ]);
+    // }
 
-    public function refresh()
-    {
-        return response()->json([
-            'status' => 'success',
-            'user' => Auth::user(),
-            'authorisation' => [
-                'token' => Auth::refresh(),
-                'type' => 'bearer',
-            ]
-        ]);
-    }
+    // public function refresh()
+    // {
+    //     return response()->json([
+    //         'status' => 'success',
+    //         'user' => Auth::user(),
+    //         'authorisation' => [
+    //             'token' => Auth::refresh(),
+    //             'type' => 'bearer',
+    //         ]
+    //     ]);
+    // }
     public function logout(Request $request)
     {
         $request->user()->currentAccessToken()->delete();
