@@ -33,7 +33,7 @@ class Users extends Component
         $user->phone=$this->phone;
         $user->directorate_id = 1;
         $user->roll = 1;
-        $user->password = $this->password;
+        $user->password = bcrypt($this->password);
         $user->save();
 
         session()->flash('message', 'تمت عملية اضافة المستخدم الجديد');
@@ -66,8 +66,8 @@ class Users extends Component
         $this->ed_fullname = $user->fullname;
         $this->ed_password = $user->password;
     }
-    
-    
+
+
     public function editUserData()
     {
         //on form submit validation
@@ -96,7 +96,7 @@ class Users extends Component
     {
         $this->user_delete_id = $id; //student id
 
-    
+
     }
 
     public function deleteUserData()
