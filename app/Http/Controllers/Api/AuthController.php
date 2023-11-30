@@ -32,33 +32,34 @@ class AuthController extends Controller
                 $code = $this->returnCodeAccordingToInput($validator);
                 return $this->returnValidationError($code, $validator);
             }
-            $credentials = $request->only(['phone', 'password']);
+//            $credentials = $request->only(['phone', 'password']);
+//
+//            $token = Auth::guard('api')->attempt($credentials);
+//            if (!$token)
+//                return $this->returnError('E001', 'بيانات الدخول غير صحيحة');
+//
+//            $aqel = Auth::guard('api')->user();
+//            $aqel->api_token = $token;
+//            //return token
+//            return $this->returnData('data', $aqel);
 
-            $token = Auth::guard('api')->attempt($credentials);
-            if (!$token)
-                return $this->returnError('E001', 'بيانات الدخول غير صحيحة');
+             if( User::where('phone',$request->phone)->where('password',$request->password)->count() > 0 ){
 
-            $aqel = Auth::guard('api')->user();
-            $aqel->api_token = $token;
-            //return token
-            return $this->returnData('data', $aqel);
-            // if( User::where('phone',$request->phone)->where('password',$request->password)->count() > 0 ){
-
-            //     $user = User::where('phone', $request->phone)->where('password', $request->password)->get()->first();
-            //     $output = [
-            //         "success"=>true,
-            //         "token"=>$user->createToken($user->phone)->plainTextToken ,
-            //         "type"=>"Bearer",
-            //         "msg"=>"FOUND"
-            //         ];
-            // }
-            // else {
-            //     $output = [
-            //         "success" => false,
-            //         "msg" => "NOT FOUND",
-            //     ];
-            // }
-            // return $output ;
+                 $user = User::where('phone', $request->phone)->where('password', $request->password)->get()->first();
+                 $output = [
+                     "success"=>true,
+                     "token"=>$user->createToken($user->phone)->plainTextToken ,
+                     "type"=>"Bearer",
+                     "msg"=>"FOUND"
+                     ];
+             }
+             else {
+                 $output = [
+                     "success" => false,
+                     "msg" => "NOT FOUND",
+                 ];
+             }
+             return $output ;
                     }
         catch (\Exception $ex) {
             return $this->returnError($ex->getCode(), $ex->getMessage());
