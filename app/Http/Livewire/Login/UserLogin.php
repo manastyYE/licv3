@@ -4,7 +4,7 @@ namespace App\Http\Livewire\Login;
 
 use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Validation\ValidationException;  
+use Illuminate\Validation\ValidationException;
 class UserLogin extends Component
 {
     public $username,$password;

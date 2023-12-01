@@ -68,3 +68,4 @@ Route::get('/login', [ShowPagesController::class,'userlogin'])->name('user.login
 
 //     return $response;
 // })->where('filename', '.*');
+

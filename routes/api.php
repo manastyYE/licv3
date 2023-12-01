@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\Api\AuthController;
-use App\Http\Controllers\TestController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -15,11 +14,29 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+Route::group(['middleware' => ['api']], function () {
+    Route::group(['prefix' => 'worker'], function () {
+        Route::post('login', [AuthController::class, 'login']);
 
-Route::get('get_streets',[TestController::class,'get_streets']);
-Route::get('get_orgs',[TestController::class,'get_orgs']);
-Route::get('get_org',[TestController::class,'get_org']);
-Route::post('login', [AuthController::class,'login']);
+        Route::post('logout', [AuthController::class, 'logout'])->middleware(['auth.guard:api']);
+
+        Route::get('get_profile', [AuthController::class, 'get_profile'])->middleware(['auth.guard:api']);
+        //invalidate token security side
+        Route::get('get_streets', [\App\Http\Controllers\Api\UserDataContoller::class, 'get_streets'])->middleware(['auth.guard:api']);
+
+        Route::get('get_orgs', [\App\Http\Controllers\Api\UserDataContoller::class, 'get_orgs'])->middleware(['auth.guard:api']);
+
+        Route::post('user_get_org', [\App\Http\Controllers\Api\UserDataContoller::class, 'user_get_org'])->middleware(['auth.guard:api']);
+
+        Route::post('insert_org_data', [\App\Http\Controllers\Api\UserDataContoller::class, 'insert_org_data'])->middleware(['auth.guard:api']);
+
+        Route::get('get_hood_units', [\App\Http\Controllers\Api\UserDataContoller::class, 'get_hood_units'])->middleware(['auth.guard:api']);
+
+        //broken access controller user enumeration
+    });
+//    Route::post('login', [AuthController::class, 'login']);
+//    Route::post('logout', [AuthController::class, 'logout'])->middleware(['auth.guard:api']);
+});
 
 
 

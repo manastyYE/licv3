@@ -29,6 +29,7 @@ return new class extends Migration
             $table->text('note');//الملاحظة
             $table->string('log_x')->nullable();
             $table->string('log_y')->nullable();
+            $table->string('org_image')->nullable();
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('restrict');
             // $table->boolean('is_read')->default(false);//هل قام شخص بعرض طلب الاضافة

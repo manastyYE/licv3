@@ -13,16 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('workers', function (Blueprint $table) {
             $table->id();
+            $table->string('username')->unique();
             $table->string('fullname');
-            $table->string('username');
-            $table->string('phone')->unique();
+            $table->string('phone');
             $table->string('password');
-            $table->string('hood_units')->nullable();
-            $table->unsignedBigInteger('directorate_id');
-            $table->foreign('directorate_id')->references('id')->on('directorates')->onDelete('restrict');
-            $table->tinyInteger('roll')->comment('(1 مدير المديرية)(2 مدير الصندوق)(3 موظف)');
             $table->timestamps();
         });
     }
@@ -34,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('workers');
     }
 };

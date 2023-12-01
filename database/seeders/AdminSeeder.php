@@ -32,32 +32,32 @@ class AdminSeeder extends Seeder
             'name' => 'مسلح'
         ]);
 
-        Office::create([
-            'name' => 'الصحة'
-        ]);
+        // Office::create([
+        //     'name' => 'الصحة'
+        // ]);
 
-        Hood::create([
-            'name' => 'السياسي',
-            'directorate_id' => '1',
-        ]);
+        // Hood::create([
+        //     'name' => 'السياسي',
+        //     'directorate_id' => '1',
+        // ]);
 
-        HoodUnit::create([
-            'no' => '312',
-            'hood_id' => '1',
-            'directorate_id' => '1',
-        ]);
+        // HoodUnit::create([
+        //     'no' => '312',
+        //     'hood_id' => '1',
+        //     'directorate_id' => '1',
+        // ]);
 
-        OrgType::create([
-            'name' => 'صيدلية',
-            'price' => '10000',
-            'office_id' => '1',
-        ]);
+        // OrgType::create([
+        //     'name' => 'صيدلية',
+        //     'price' => '10000',
+        //     'office_id' => '1',
+        // ]);
 
-        Street::create([
-            'name' => 'الزبيري',
-            'hood_unit_id' => '1',
-            'directorate_id' => '1',
-        ]);
+        // Street::create([
+        //     'name' => 'الزبيري',
+        //     'hood_unit_id' => '1',
+        //     'directorate_id' => '1',
+        // ]);
 
         Admin::create([
             'fullname' => 'admin',

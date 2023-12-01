@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use App\Traits\GeneralTrait;
 use Illuminate\Support\Facades\Validator;
+use Tymon\JWTAuth\Facades\JWTAuth;
+
 
 class AuthController extends Controller
 {
@@ -16,7 +18,7 @@ class AuthController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth:api', ['except' => ['login','register']]);
+        // $this->middleware('auth.guard:worker_api', ['except' => ['login','register']]);
     }
 
     public function login(Request $request)
@@ -25,7 +27,6 @@ class AuthController extends Controller
             $rules = [
                 "phone" => "required",
                 "password" => "required"
-
             ];
             $validator = Validator::make($request->all(), $rules);
             if ($validator->fails()) {
@@ -33,36 +34,34 @@ class AuthController extends Controller
                 return $this->returnValidationError($code, $validator);
             }
             $credentials = $request->only(['phone', 'password']);
-            // $token = Auth::guard('api')->attempt($credentials);
-            // if (!$token) {
-            //     return $this->returnError('E001', 'بيانات الدخول غير صحيحة');
-            // }
-            if( User::where('phone',$request->phone)->where('password',$request->password)->count() > 0 ){
 
-$user = User::where('phone', $request->phone)->where('password', $request->password)->get()->first();
-$output = [
-    "status"=>true,
+            $token = Auth::guard('api')->attempt($credentials);
+            if (!$token)
+                return $this->returnError('E001', 'بيانات الدخول غير صحيحة');
 
-    "token"=>$user->createToken($user->phone)->accessToken ,
-    "type"=>"Bearer",
-    "message"=>"FOUND"
-];
-            }
-else {
-                $output = [
-                    "status" => false
-                    ,
-                    "message" => "NOT FOUND"
-                ];
+            $aqel = Auth::guard('api')->user();
+            $aqel->api_token = $token;
+            //return token
+            return $this->returnData('data', $aqel);
 
-
-}
-return $output ;
-            // $user = Auth::guard('api')->user();
-            // $user->api_token = $token;
-                //return token
-            // return $this->returnData('data', $user);
-        }
+//             if( User::where('phone',$request->phone)->where('password',$request->password)->count() > 0 ){
+//
+//                 $user = User::where('phone', $request->phone)->where('password', $request->password)->get()->first();
+//                 $output = [
+//                     "success"=>true,
+//                     "token"=>$user->createToken($user->phone)->plainTextToken ,
+//                     "type"=>"Bearer",
+//                     "msg"=>"FOUND"
+//                     ];
+//             }
+//             else {
+//                 $output = [
+//                     "success" => false,
+//                     "msg" => "NOT FOUND",
+//                 ];
+//             }
+//             return $output ;
+                    }
         catch (\Exception $ex) {
             return $this->returnError($ex->getCode(), $ex->getMessage());
         }
@@ -94,33 +93,49 @@ return $output ;
         ]);
     }
 
-    public function logout()
-    {
-        Auth::logout();
-        return response()->json([
-            'status' => 'success',
-            'message' => 'Successfully logged out',
-        ]);
-    }
+    // public function logout()
+    // {
+    //     Auth::logout();
+    //     return response()->json([
+    //         'status' => 'success',
+    //         'message' => 'Successfully logged out',
+    //     ]);
+    // }
 
-    public function me()
-    {
-        return response()->json([
-            'status' => 'success',
-            'user' => Auth::user(),
-        ]);
-    }
+    // public function me()
+    // {
+    //     return response()->json([
+    //         'status' => 'success',
+    //         'user' => Auth::user(),
+    //     ]);
+    // }
 
-    public function refresh()
+    // public function refresh()
+    // {
+    //     return response()->json([
+    //         'status' => 'success',
+    //         'user' => Auth::user(),
+    //         'authorisation' => [
+    //             'token' => Auth::refresh(),
+    //             'type' => 'bearer',
+    //         ]
+    //     ]);
+    // }
+    public function logout(Request $request)
     {
-        return response()->json([
-            'status' => 'success',
-            'user' => Auth::user(),
-            'authorisation' => [
-                'token' => Auth::refresh(),
-                'type' => 'bearer',
-            ]
-        ]);
+        $token = $request -> header('auth-token');
+        if($token){
+            try {
+
+                JWTAuth::setToken($token)->invalidate(); //logout
+            }catch (\Tymon\JWTAuth\Exceptions\TokenInvalidException $e){
+                return  $this -> returnError('','some thing went wrongs');
+            }
+            return $this->returnSuccessMessage('تم تسجيل الخروج');
+        }else{
+            $this -> returnError('','حدث خطأ ما');
+        }
+
     }
 
 }
