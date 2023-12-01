@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use App\Traits\GeneralTrait;
 use Illuminate\Support\Facades\Validator;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 
 class AuthController extends Controller
@@ -122,9 +123,19 @@ class AuthController extends Controller
     // }
     public function logout(Request $request)
     {
-        $request->user()->currentAccessToken()->delete();
+        $token = $request -> header('auth-token');
+        if($token){
+            try {
 
-        return response()->json(['message' => 'Logged out'], 200);
+                JWTAuth::setToken($token)->invalidate(); //logout
+            }catch (\Tymon\JWTAuth\Exceptions\TokenInvalidException $e){
+                return  $this -> returnError('','some thing went wrongs');
+            }
+            return $this->returnSuccessMessage('تم تسجيل الخروج');
+        }else{
+            $this -> returnError('','حدث خطأ ما');
+        }
+
     }
 
 }

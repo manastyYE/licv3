@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Org;
 use App\Models\Street;
+use App\Models\VirOrgs;
 use App\Traits\GeneralTrait;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class UserDataContoller extends Controller
@@ -41,6 +43,37 @@ class UserDataContoller extends Controller
             $org->org_type_name = $org->org_type->name;
             return $this->returnData('data',$org);
 
+        }
+        catch (\Exception $ex) {
+            return $this->returnError($ex->getCode(), $ex->getMessage());
+        }
+    }
+
+    public function insert_org_data(Request $request){
+        try {
+            $rules = [
+                "org_name" => "required",
+                "owner_name" => "required",
+                "owner_phone" => "required",
+                "building_type_id" => "required",
+                "org_type_id" => "required",
+                "hood_unit_id" => "required",
+                "street_id" => "required",
+                "note" => "required",
+                "log_x" => "required",
+                "log_y" => "required",
+            ];
+
+            $validator = Validator::make($request->all(), $rules);
+
+            if ($validator->fails()) {
+                $code = $this->returnCodeAccordingToInput($validator);
+                return $this->returnValidationError($code, $validator);
+            }
+            $request->merge(['user_id' => Auth::guard('api')->user()->id]);
+            $requestData = $request->except('org_photo');
+            VirOrgs::create($requestData);
+            return $this->returnSuccessMessage('success');
         }
         catch (\Exception $ex) {
             return $this->returnError($ex->getCode(), $ex->getMessage());
