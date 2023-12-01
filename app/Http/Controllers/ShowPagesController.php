@@ -23,9 +23,9 @@ class ShowPagesController extends Controller
         // Admin::create([
         //     'fullname'=>'abdullah alhammadi',
         //     'phone'=>'774490160',
-        //     'username'=>'abdullah',
+        //     'username'=>'admin',
         //     'password'=>bcrypt('admin'),
-        //     'directorate_id'=>2,
+        //     'directorate_id'=>1,
         // ]);
         return view('login.login');
     }
@@ -96,5 +96,8 @@ class ShowPagesController extends Controller
     }
     public function get_vir_orgs($id){
         return view('vir_orgs.show_org_dtl',['id'=>$id]);
+    }
+    public function show_outher_pay(){
+        return view('other_payment');
     }
 }

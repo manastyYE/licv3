@@ -142,5 +142,6 @@ class ShowOrgDtl extends Component
         $this->del_billboard_id = '';
         $this->dispatchBrowserEvent('close-modal');
     }
+    
 
 }

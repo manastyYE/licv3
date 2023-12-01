@@ -1,9 +1,10 @@
 <div>
 
-    <a href="/admin/org/clip/{{$org->id}}"
+    <a
+    {{-- href="/admin/org/clip/{{ $org->id }}" --}}
         class="btn border border-primary font-medium text-primary hover:bg-primary hover:text-white focus:bg-primary focus:text-white active:bg-primary/90 dark:border-accent dark:text-accent-light dark:hover:bg-accent dark:hover:text-white dark:focus:bg-accent dark:focus:text-white dark:active:bg-accent/90">
         عرض الحافظة
-    </a>        
+    </a>
     @if (session()->has('message'))
         <div class="space-y-4">
             <div x-data="{ isShow: true }" :class="!isShow && 'opacity-0 transition-opacity duration-300'"
@@ -83,7 +84,7 @@
 
 
                             <div class="avatar h-24 w-24 rounded-full">
-                                <img class="" src="{{asset($org->owner_img)}}" alt="avatar" />
+                                <img class="" src="{{ asset($org->owner_img) }}" alt="avatar" />
                             </div>
 
 
@@ -188,10 +189,9 @@
         <label class="block">
             البطاقة الشخصية
             @if ($org->personal_card)
-                <a href="/{{ $org->personal_card}}" >
+                <button x-data x-on:click="$dispatch('open-modal',{name:'show-personal-card'})">
                     <img src="{{ asset('img/yes.png') }}" class="h-6 mr-4">
-                </a>
-
+                </button>
             @else
                 <img src="{{ asset('img/no.png') }}" class="h-6 mr-4">
             @endif
@@ -531,5 +531,41 @@
     </x-modaldel>
 
 
+    <div wire:ignore.self>
 
+        <x-modaladd title=" nbgoeh;ofk " name="show-personal-card">
+            @slot('body')
+                {{-- <x-slot:body> --}}
+
+            @endslot
+            {{--
+            </x-slot:body> --}}
+            {{-- @slot('footer')
+
+            @endslot --}}
+        </x-modaladd>
+    </div>
+
+        <canvas id="pdfViewer" style="border: 1px solid black;"></canvas>
+    <script>
+        // كود JavaScript لتحميل وعرض ملف PDF باستخدام PDF.js
+        const url = {{asset('a.pdf')}};
+
+        pdfjsLib.getDocument(url).promise.then(pdf => {
+            pdf.getPage(1).then(page => {
+                const canvas = document.getElementById('pdfViewer');
+                const context = canvas.getContext('2d');
+                const viewport = page.getViewport({ scale: 1.5 });
+                canvas.height = viewport.height;
+                canvas.width = viewport.width;
+
+                const renderContext = {
+                    canvasContext: context,
+                    viewport: viewport
+                };
+
+                page.render(renderContext);
+            });
+        });
+    </script>
 </div>

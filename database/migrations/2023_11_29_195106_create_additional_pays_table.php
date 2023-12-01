@@ -15,6 +15,12 @@ return new class extends Migration
     {
         Schema::create('additional_pays', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('outher_bayment_id');
+            $table->foreign('outher_bayment_id')->references('id')->on('outher_bayments')->onDelete('restrict');
+            $table->unsignedBigInteger('amount');
+            $table->string('dtl');
+            $table->unsignedBigInteger('org_id');
+            $table->foreign('org_id')->references('id')->on('orgs')->onDelete('restrict');
             $table->timestamps();
         });
     }

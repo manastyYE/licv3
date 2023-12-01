@@ -38,6 +38,7 @@ Route::controller(ShowPagesController::class)->prefix('admin')->middleware('admi
         Route::get('/hood_unit', 'show_hood_unit')->name('hood_unit');
         Route::get('/vir_orgs','show_vir_orgs')->name('vir_orgs.show');
         Route::get('/vir_orgs/show/{id}','get_vir_orgs');
+        Route::get('/outher/pay','show_outher_pay')->name('outher.pay');
     }
 );
 Route::controller(ShowPagesController::class)->prefix('admin')->middleware('admin.guest')->group(
