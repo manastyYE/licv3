@@ -30,6 +30,8 @@ Route::group(['middleware' => ['api']], function () {
 
         Route::post('insert_org_data', [\App\Http\Controllers\Api\UserDataContoller::class, 'insert_org_data'])->middleware(['auth.guard:api']);
 
+        Route::get('get_hood_units', [\App\Http\Controllers\Api\UserDataContoller::class, 'get_hood_units'])->middleware(['auth.guard:api']);
+
         //broken access controller user enumeration
     });
 //    Route::post('login', [AuthController::class, 'login']);

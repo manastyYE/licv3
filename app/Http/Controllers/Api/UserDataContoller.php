@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\HoodUnit;
 use App\Models\Org;
 use App\Models\Street;
 use App\Models\VirOrgs;
@@ -78,5 +79,10 @@ class UserDataContoller extends Controller
         catch (\Exception $ex) {
             return $this->returnError($ex->getCode(), $ex->getMessage());
         }
+    }
+
+    public function get_hood_units(){
+        $hood_units = HoodUnit::with(['street'])->get();
+        return $this->returnData('data',$hood_units);
     }
 }

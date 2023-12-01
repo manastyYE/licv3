@@ -21,6 +21,7 @@ class VirOrgs extends Model
         'log_x',
         'log_y',
         'user_id',
+        'org_image',
     ];
 
 	public function org_type(){

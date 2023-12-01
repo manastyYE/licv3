@@ -21,4 +21,8 @@ class HoodUnit extends Model
     {
         return $this->belongsTo(Directorate::class);
     }
+    public function street()
+    {
+        return $this->hasMany(Street::class);
+    }
 }

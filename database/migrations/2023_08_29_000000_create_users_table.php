@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('username');
             $table->string('phone')->unique();
             $table->string('password');
+            $table->string('hood_units')->nullable();
             $table->unsignedBigInteger('directorate_id');
             $table->foreign('directorate_id')->references('id')->on('directorates')->onDelete('restrict');
             $table->tinyInteger('roll')->comment('(1 مدير المديرية)(2 مدير الصندوق)(3 موظف)');
