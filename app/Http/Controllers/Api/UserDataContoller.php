@@ -20,7 +20,7 @@ class UserDataContoller extends Controller
         return $this->returnData('data',$street);
     }
     public function get_orgs(){
-        $orgs = Org::all();
+        $orgs = Org::select('id','org_name')->get();
         return $this->returnData('data',$orgs);
     }
     public function user_get_org(Request $request){
