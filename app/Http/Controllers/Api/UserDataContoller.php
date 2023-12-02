@@ -17,7 +17,7 @@ class UserDataContoller extends Controller
     use GeneralTrait;
 
     public function get_streets(){
-        $street = Street::all();
+        $street = Street::take(5)->get();
         return $this->returnData('data',$street);
     }
     public function get_orgs(){
