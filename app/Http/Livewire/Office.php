@@ -4,6 +4,8 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use App\Models\Office as AAA;
+
+
 class Office extends Component
 {
     public function render()
@@ -34,6 +36,7 @@ class Office extends Component
         session()->flash('message', 'تمت عملية اضافة القطاع الجديد');
 
         $this->name = '';
+        $this->ed_name='';
 
         //For hide modal after add user success
         $this->dispatchBrowserEvent('close-modal');
@@ -58,6 +61,7 @@ class Office extends Component
     }
 
 
+
     public function editOfficeData()
     {
         //on form submit validation
@@ -68,7 +72,7 @@ class Office extends Component
         // ]);
 
         $office = AAA::where('id', $this->office_edit_id)->first();
-        $office->name = $this->name;
+        $office->name = $this->ed_name;
 
         $office->save();
 
