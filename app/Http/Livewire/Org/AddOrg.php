@@ -16,7 +16,7 @@ class AddOrg extends Component
 {
     use WithFileUploads;
     public $org_name, $org_type_id, $start_date, $owner_name, $owner_phone, $card_type, $card_number, $owner_img, $building_type_id, $isowner, $street_id, $hood_unit_id, $fire_ext, $personal_card, $rent_contract, $ad_board, $previous_license, $comm_record;
-
+    public $outher;
     public $hood_unit_no;
     public $org_types, $building_types, $streets, $street, $hood_unit;
     public function store()
@@ -30,15 +30,15 @@ class AddOrg extends Component
             'owner_name' => 'required',
             'owner_phone' => 'required|numeric',
             'card_type' => 'required',
-            'card_number' => 'required|numeric',
+            'card_number' => 'numeric',
             'street_id' => 'required',
             'building_type_id' => 'required',
-            'owner_img'=>'image|required',
-            'personal_card'=>'file|mimes:pdf|required',
+            'personal_card'=>'file|mimes:pdf',
             'rent_contract'=>'file|mimes:pdf',
             'ad_board'=>'file|mimes:pdf',
             'previous_license'=>'file|mimes:pdf',
             'comm_record'=>'file|mimes:pdf',
+            'outher'=>'file|mimes:pdf',
             'isowner'=>'required'
         ];
         if (!$this->rent_contract) {
@@ -53,6 +53,12 @@ class AddOrg extends Component
         if (!$this->comm_record) {
             unset($rules['comm_record']);
         }
+        if (!$this->outher){
+            unset($rules['outher']);
+        }
+        if(!$this->personal_card){
+            unset($rules['personal_card']);
+        }
         // if (!$this->file5) {
         //     unset($rules['file5']);
         // }
@@ -60,34 +66,45 @@ class AddOrg extends Component
 
 
         $this->validate($rules);
+
+
+        if ($this->owner_img){
+            $owner_img_withex = $this->owner_img->getClientOriginalName();
+            $owner_img_name = pathinfo($owner_img_withex, PATHINFO_FILENAME);
+            $owner_img__ex = $this->owner_img->getClientOriginalExtension();
+            $owner_img_tostore =   $owner_img_name . '.' . $owner_img__ex;
+
+
+            //رفع ملف الصورة
+
+            $pathimg = 'public/uploads/orgs/' . $this->org_name  . 'owner_img ' . $owner_img_tostore;
+            $this->owner_img->storeAs($pathimg);
+            $rules['owner_img'] = 'storage/uploads/orgs/' . $this->org_name  . 'owner_img ' . $owner_img_tostore;
+
+        }
                 //تحميل ملف الصورة
-        $owner_img_withex = $this->owner_img->getClientOriginalName();
-        $owner_img_name = pathinfo($owner_img_withex, PATHINFO_FILENAME);
-        $owner_img__ex = $this->owner_img->getClientOriginalExtension();
-        $owner_img_tostore =   $owner_img_name . '.' . $owner_img__ex;
-
-
-        //رفع ملف الصورة
-
-        $pathimg = 'public/uploads/orgs/' . $this->org_name  . 'owner_img ' . $owner_img_tostore;
-        $this->owner_img->storeAs($pathimg);
-        $rules['owner_img'] = 'storage/uploads/orgs/' . $this->org_name  . 'owner_img ' . $owner_img_tostore;
 
         // $owner_img_destinationPath = '/uploads/orgs/' . $this->org_name . '/owner_img';
         // $personal_card_destinationPath = '/uploads/orgs/' . $this->org_name . '/personal_card';
 
+        $ad_board_destinationPath = '/uploads/orgs/' . $this->org_name . '/ad_board';
+        $previous_license_destinationPath = '/uploads/orgs/' . $this->org_name . '/previous_license';
+        $comm_record_destinationPath = '/uploads/orgs/' . $this->org_name . '/comm_record';
+
          //تحميل ملف البطاقة
-        $personal_card_withex = $this->personal_card->getClientOriginalName();
-        $personal_card_name = pathinfo($personal_card_withex, PATHINFO_FILENAME);
-        $personal_card__ex = $this->personal_card->getClientOriginalExtension();
-        $personal_card_tostore =   $personal_card_name . '.' . $personal_card__ex;
+        if ($this->personal_card){
+            $personal_card_withex = $this->personal_card->getClientOriginalName();
+            $personal_card_name = pathinfo($personal_card_withex, PATHINFO_FILENAME);
+            $personal_card__ex = $this->personal_card->getClientOriginalExtension();
+            $personal_card_tostore =   $personal_card_name . '.' . $personal_card__ex;
 
 
-        //رفع ملف البطاقة
-        $path_personal_card = 'public/uploads/orgs/' . $this->org_name . '/' . 'personal_card/' . $personal_card_tostore;
-        $this->personal_card->storeAs($path_personal_card);
-        $rules['personal_card'] = 'storage/uploads/orgs/' . $this->org_name . '/personal_card'.'/'.$personal_card_tostore;
+            //رفع ملف البطاقة
+            $path_personal_card = 'public/uploads/orgs/' . $this->org_name .   'personal_card' . $personal_card_tostore;
+            $this->personal_card->storeAs($path_personal_card);
+            $rules['personal_card'] = 'storage/uploads/orgs/' . $this->org_name .   'personal_card' . $personal_card_tostore;
 
+        }
 
         $rent_contract_destinationPath = '/uploads/orgs/' . $this->org_name . '/rent_contract';
 
@@ -96,32 +113,82 @@ class AddOrg extends Component
         // $personal_card_path=$this->personal_card->store('public'.$personal_card_destinationPath);
         if ($this->rent_contract) {
              //تحميل ملف البطاقة
-        $rent_contract_withex = $this->rent_contract->getClientOriginalName();
-        $rent_contract_name = pathinfo($rent_contract_withex, PATHINFO_FILENAME);
-        $rent_contract__ex = $this->rent_contract->getClientOriginalExtension();
-        $rent_contract_tostore =   $rent_contract_name . '.' . $rent_contract__ex;
+            $rent_contract_withex = $this->rent_contract->getClientOriginalName();
+            $rent_contract_name = pathinfo($rent_contract_withex, PATHINFO_FILENAME);
+            $rent_contract__ex = $this->rent_contract->getClientOriginalExtension();
+            $rent_contract_tostore =   $rent_contract_name . '.' . $rent_contract__ex;
 
 
-        //رفع ملف البطاقة
-        $path_rent_contract = 'public/uploads/orgs/' . $this->org_name . '/' . 'rent_contract/' . $rent_contract_tostore;
-        $this->rent_contract->storeAs($path_rent_contract);
-        $rules['rent_contract'] = 'storage/uploads/orgs/' . $this->org_name . '/rent_contract'.'/'.$rent_contract_tostore;
+            //رفع ملف البطاقة
+            $path_rent_contract = 'public/uploads/orgs/' . $this->org_name  . 'rent_contract' . $rent_contract_tostore;
+            $this->rent_contract->storeAs($path_rent_contract);
+            $rules['rent_contract'] = 'storage/uploads/orgs/' . $this->org_name  . 'rent_contract' . $rent_contract_tostore;
 
-        $ad_board_destinationPath = '/uploads/orgs/' . $this->org_name . '/ad_board';
-        $previous_license_destinationPath = '/uploads/orgs/' . $this->org_name . '/previous_license';
-        $comm_record_destinationPath = '/uploads/orgs/' . $this->org_name . '/comm_record';
+
 
 
         }
         if ($this->ad_board) {
-            $ad_board_path=$this->ad_board->store('public'.$ad_board_destinationPath);
+            $ad_board_withex = $this->ad_board->getClientOriginalName();
+            $ad_board_name = pathinfo($ad_board_withex, PATHINFO_FILENAME);
+            $ad_board__ex = $this->ad_board->getClientOriginalExtension();
+            $ad_board_tostore =   $ad_board_name . '.' . $ad_board__ex;
+
+
+            //رفع ملف البطاقة
+            $path_ad_board = 'public/uploads/orgs/' . $this->org_name  . 'ad_board' . $ad_board_tostore;
+            $this->ad_board->storeAs($path_ad_board);
+            $rules['ad_board'] = 'storage/uploads/orgs/' . $this->org_name  . 'ad_board' . $ad_board_tostore;
+
+
+
         }
         if ($this->previous_license) {
-            $previous_license_path=$this->previous_license->store('public'.$previous_license_destinationPath);
+            $previous_license_withex = $this->previous_license->getClientOriginalName();
+            $previous_license_name = pathinfo($previous_license_withex, PATHINFO_FILENAME);
+            $previous_license__ex = $this->previous_license->getClientOriginalExtension();
+            $previous_license_tostore =   $previous_license_name . '.' . $previous_license__ex;
+
+
+            //رفع ملف البطاقة
+            $path_previous_license = 'public/uploads/orgs/' . $this->org_name  . 'previous_license' . $previous_license_tostore;
+            $this->previous_license->storeAs($path_previous_license);
+            $rules['previous_license'] = 'storage/uploads/orgs/' . $this->org_name  . 'previous_license' . $previous_license_tostore;
+
+
+
         }
         if ($this->comm_record) {
-            $comm_record_path=$this->comm_record->store('public'.$comm_record_destinationPath);
+            $comm_record_withex = $this->comm_record->getClientOriginalName();
+            $comm_record_name = pathinfo($comm_record_withex, PATHINFO_FILENAME);
+            $comm_record__ex = $this->comm_record->getClientOriginalExtension();
+            $comm_record_tostore =   $comm_record_name . '.' . $comm_record__ex;
+
+
+            //رفع ملف البطاقة
+            $path_comm_record = 'public/uploads/orgs/' . $this->org_name  . 'comm_record' . $comm_record_tostore;
+            $this->comm_record->storeAs($path_comm_record);
+            $rules['comm_record'] = 'storage/uploads/orgs/' . $this->org_name  . 'comm_record' . $comm_record_tostore;
+
+
+
         }
+        if ($this->outher) {
+            $outher_withex = $this->outher->getClientOriginalName();
+            $outher_name = pathinfo($outher_withex, PATHINFO_FILENAME);
+            $outher__ex = $this->outher->getClientOriginalExtension();
+            $outher_tostore =   $outher_name . '.' . $outher__ex;
+
+
+            //رفع ملف البطاقة
+            $path_outher = 'public/uploads/orgs/' . $this->org_name  . 'outher' . $outher_tostore;
+            $this->outher->storeAs($path_outher);
+            $rules['outher'] = 'storage/uploads/orgs/' . $this->org_name  . 'outher' . $outher_tostore;
+
+
+
+        }
+
         // if ($this->file5) {
         //     $path5 = $this->file5->store($destinationPath);
         // }
@@ -223,7 +290,7 @@ class AddOrg extends Component
                 'org_name'=>$this->org_name,
                 'owner_name'=>$this->owner_name,
                 'owner_phone'=>$this->owner_phone,
-                'owner_img'=>$rules['owner_img'],
+                'owner_img'=>$this->owner_img ?$rules['owner_img'] :null,
                 'card_type'=>$this->card_type,
                 'card_number'=>$this->card_number,
                 'building_type_id'=>$this->building_type_id,
@@ -231,13 +298,14 @@ class AddOrg extends Component
                 'org_type_id'=>$this->org_type_id,
                 'hood_unit_id'=>$this->hood_unit_id,
                 'street_id'=>$this->street_id,
-                'personal_card'=> $rules['personal_card'],
+                'personal_card'=> $this->personal_card ?$rules['personal_card'] :null,
                 'rent_contract'=>$this->rent_contract ?$rules['rent_contract'] : null,
-                'ad_board'=>$this->ad_board ? $ad_board_path : null,
-                'previous_license'=>$this->previous_license ?$previous_license_path : null ,
-                'comm_record'=>$this->comm_record ? $comm_record_path : null,
+                'ad_board'=>$this->ad_board ? $rules['ad_board'] : null,
+                'previous_license'=>$this->previous_license ? $rules['previous_license'] : null ,
+                'comm_record'=>$this->comm_record ? $rules['comm_record'] : null,
                 'start_date'=>$this->start_date,
                 'fire_ext'=>$this->fire_ext,
+                'outher'=>$this->outher ? $rules['outher'] :null,
             ]
             );
         $this->rest_inputs();
@@ -265,6 +333,7 @@ class AddOrg extends Component
                 $this->comm_record = '';
                 $this->start_date = '';
                 $this->fire_ext = '';
+                $this->outher='';
     }
     public function reloadPage()
     {

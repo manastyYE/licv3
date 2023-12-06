@@ -19,12 +19,14 @@ class OfficeSeeder extends Seeder
             array('id' => '1','name' => 'الصحة','created_at' => NULL,'updated_at' => NULL),
             array('id' => '2','name' => 'السياحة','created_at' => '2023-11-05 09:24:34','updated_at' => '2023-11-05 09:24:34'),
             array('id' => '3','name' => 'الثقافة','created_at' => '2023-11-18 00:17:36','updated_at' => '2023-11-18 00:17:36'),
-            array('id' => '4','name' => 'اخرى','created_at' => '2023-11-18 00:18:15','updated_at' => '2023-11-18 00:18:15')
+            array('id' => '4','name' => 'الاشغال ','created_at' => '2023-11-18 00:18:15','updated_at' => '2023-11-18 00:18:15')
           );
         foreach($offices as $office){
             Office::create([
                 'id' => $office['id'],
                 'name' => $office['name'],
+                'created_at'=>$office['created_at'],
+                'updated_at'=>$office['updated_at'],
             ]);
         }
     }

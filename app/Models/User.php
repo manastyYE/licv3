@@ -24,8 +24,17 @@ class User extends Authenticatable implements JWTSubject
         'phone',
         'password',
         'directorate_id',
+        'hood_id',
+        'hood_units_id',
+        'office_id',
         'roll',
     ];
+    public function office(){
+        return $this->belongsTo(Office::class);
+    }
+    public function hood(){
+        return $this->belongsTo(Hood::class);
+    }
     public function directorate(){
         return $this->belongsTo(Directorate::class);
     }

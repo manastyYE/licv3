@@ -15,7 +15,7 @@ use App\Http\Livewire\ShowOrgDtl;
 |
 */
 Route::get('/', function () {
-    return view('login.userlogin');
+    return view('pdf');
 });
 
 Route::controller(ShowPagesController::class)->prefix('admin')->middleware('admin.auth')->group(

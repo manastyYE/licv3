@@ -30,7 +30,8 @@ class Org extends Model
         'aire_drow',
         'start_date',
         'fire_ext',
-        
+        'outher',//مواافقة الجهة المختصة
+
     ];
 
 	public function org_type(){
@@ -40,6 +41,6 @@ class Org extends Model
         return $this->belongsTo(Street::class);
     }
 	public function building_type(){
-        return $this->belongsTo(BuildingType::class);   
+        return $this->belongsTo(BuildingType::class);
     }
 }
