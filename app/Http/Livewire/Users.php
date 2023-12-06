@@ -11,6 +11,15 @@ class Users extends Component
     public $fullname,$phone,$password,$search;
     public $ed_fullname,$ed_phone,$ed_password,$ed_user;
     public $user_edit_id, $user_delete_id;
+
+    public $hood_id,
+    $hood_units,
+    $office_id,
+    $roll;
+    public $ed_hood_id,
+    $ed_hood_units,
+    $ed_office_id,
+    $ed_roll;
     use WithPagination;
     public function render()
     {
@@ -31,9 +40,12 @@ class Users extends Component
         $user->fullname = $this->fullname;
         $user->username = $this->phone;
         $user->phone=$this->phone;
-        $user->directorate_id = 1;
-        $user->roll = 1;
+        $user->directorate_id = auth()->guard('admin')->user()->directorate_id;
+        $user->roll = $this->roll;
         $user->password = bcrypt($this->password);
+        $user->hood_id= $this->hood_id;
+        $user->hood_units=json_decode($this->hood_units);
+        $user->office_id= $this->office_id;
         $user->save();
 
         session()->flash('message', 'تمت عملية اضافة المستخدم الجديد');
@@ -41,18 +53,33 @@ class Users extends Component
         $this->fullname = '';
         $this->password = '';
         $this->phone='';
+        $this->username='';
+        $this->roll='';
+        $this->hood_id='';
+        $this->hood_units='';
+        $this->office_id='';
         //For hide modal after add user success
         $this->dispatchBrowserEvent('close-modal');
     }
 
     public function resetInputs()
     {
-        $this->fullname='';
+        $this->fullname = '';
+        $this->password = '';
         $this->phone='';
-        $this->password='';
-        $this->ed_fullname='';
+        $this->username='';
+        $this->roll='';
+        $this->hood_id='';
+        $this->hood_units='';
+        $this->office_id='';
+        $this->ed_fullname = '';
+        $this->ed_password = '';
         $this->ed_phone='';
-        $this->ed_password='';
+        $this->ed_username='';
+        $this->ed_roll='';
+        $this->ed_hood_id='';
+        $this->ed_hood_units='';
+        $this->ed_office_id='';
     }
 
     public function close()
@@ -64,7 +91,14 @@ class Users extends Component
 
         $this->user_edit_id = $user->id;
         $this->ed_fullname = $user->fullname;
+        $this->ed_username = $user->username;
         $this->ed_password = $user->password;
+        $this->ed_phone = $user->phone;
+        $this->ed_roll = $user->roll;
+        $this->ed_hood_id = $user->hood_id ;
+        $this->ed_hood_units = $user->hood_units;
+        $this->ed_office_id = $user->office_id;
+
     }
 
 
@@ -81,6 +115,11 @@ class Users extends Component
         $user->fullname = $this->ed_fullname;
         $user->phone = $this->ed_phone;
         $user->password=$this->ed_password;
+        $user->roll =$this->ed_roll;
+        $user->hood_id = $this->ed_hood_id;
+        $user->hood_units = $this->ed_hood_units;
+        $user->username = $this->ed_username;
+        $user->office_id = $this->ed_office_id;
         $user->save();
 
         session()->flash('message', 'تم تعديل بيانات المستخدم بنجاح');
