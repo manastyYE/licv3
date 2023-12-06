@@ -78,7 +78,7 @@
                 <div class="gridjs-footer">
                     <div class="gridjs-pagination">
                         <div role="status" aria-live="polite" class="gridjs-summary" title="Page 1 of 2">Showing
-                            <b>1</b> to <b>10</b> of <b>15</b> results
+                            
                             {{ $type->links() }}
                         </div>
                         <div class="gridjs-pages"><button tabindex="0" role="button" disabled="" title="Previous"
