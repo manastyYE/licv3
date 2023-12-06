@@ -92,41 +92,11 @@ class AuthController extends Controller
             ]
         ]);
     }
-
-    // public function logout()
-    // {
-    //     Auth::logout();
-    //     return response()->json([
-    //         'status' => 'success',
-    //         'message' => 'Successfully logged out',
-    //     ]);
-    // }
-
-    // public function me()
-    // {
-    //     return response()->json([
-    //         'status' => 'success',
-    //         'user' => Auth::user(),
-    //     ]);
-    // }
-
-    // public function refresh()
-    // {
-    //     return response()->json([
-    //         'status' => 'success',
-    //         'user' => Auth::user(),
-    //         'authorisation' => [
-    //             'token' => Auth::refresh(),
-    //             'type' => 'bearer',
-    //         ]
-    //     ]);
-    // }
     public function logout(Request $request)
     {
         $token = $request -> header('auth-token');
         if($token){
             try {
-
                 JWTAuth::setToken($token)->invalidate(); //logout
             }catch (\Tymon\JWTAuth\Exceptions\TokenInvalidException $e){
                 return  $this -> returnError('','some thing went wrongs');
@@ -134,6 +104,19 @@ class AuthController extends Controller
             return $this->returnSuccessMessage('تم تسجيل الخروج');
         }else{
             $this -> returnError('','حدث خطأ ما');
+        }
+
+    }
+
+    public function get_profile()
+    {
+        try{
+            $aqel = Auth::guard('api')->user();
+            //return token
+            return $this->returnData('data', $aqel);
+        }
+        catch (\Exception $ex) {
+            return $this->returnError($ex->getCode(), $ex->getMessage());
         }
 
     }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\HoodUnit;
 use App\Models\Org;
+use App\Models\OrgType;
 use App\Models\Street;
 use App\Models\VirOrgs;
 use App\Traits\GeneralTrait;
@@ -17,8 +18,15 @@ class UserDataContoller extends Controller
     use GeneralTrait;
 
     public function get_streets(){
-        $street = Street::all();
-        return $this->returnData('data',$street);
+        $street = Street::take(5)->get();
+        $org_type = OrgType::all();
+        return response()->json([
+            'success' => true,
+            'errNum' => "S000",
+            'msg' => "",
+            'data' => $street,
+            'org_type' => $org_type,
+        ]);
     }
     public function get_orgs(){
         $orgs = Org::select('id','org_name')->get();
@@ -71,8 +79,10 @@ class UserDataContoller extends Controller
                 $code = $this->returnCodeAccordingToInput($validator);
                 return $this->returnValidationError($code, $validator);
             }
-            $request->merge(['user_id' => Auth::guard('api')->user()->id]);
-            $requestData = $request->except('org_photo');
+            $hood_unit_id = Street::find($request->street_id)->hood_unit_id;
+            $request->merge(['user_id' => Auth::guard('api')->user()->id,
+            'hood_unit_id' => $hood_unit_id]);
+            $requestData = $request->except('org_image');
             VirOrgs::create($requestData);
             return $this->returnSuccessMessage('success');
         }
