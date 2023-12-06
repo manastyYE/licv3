@@ -30,8 +30,6 @@ class ShowOrgDtl extends Component
         //on form submit validation
         $this->validate([
 
-
-
             'billboard_id' => 'required',
             'height' => 'required',
             'wideth'=>'required|numeric',
@@ -142,6 +140,6 @@ class ShowOrgDtl extends Component
         $this->del_billboard_id = '';
         $this->dispatchBrowserEvent('close-modal');
     }
-    
+
 
 }

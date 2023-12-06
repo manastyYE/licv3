@@ -7,6 +7,7 @@ use App\Models\HoodUnit;
 use App\Models\Org;
 use App\Models\OrgType;
 use App\Models\Street;
+use App\Models\VirOrgBillboard;
 use App\Models\VirOrgs;
 use App\Traits\GeneralTrait;
 use Illuminate\Http\Request;
@@ -18,6 +19,7 @@ class UserDataContoller extends Controller
     use GeneralTrait;
 
     public function get_streets(){
+        try{
         $street = Street::take(5)->get();
         $org_type = OrgType::all();
         return response()->json([
@@ -27,10 +29,28 @@ class UserDataContoller extends Controller
             'data' => $street,
             'org_type' => $org_type,
         ]);
+        }
+        catch (\Exception $ex) {
+            return $this->returnError($ex->getCode(), $ex->getMessage());
+        }
     }
     public function get_orgs(){
+        try{
         $orgs = Org::select('id','org_name')->get();
         return $this->returnData('data',$orgs);
+        }
+        catch (\Exception $ex) {
+            return $this->returnError($ex->getCode(), $ex->getMessage());
+        }
+    }
+    public function get_vir_orgs(){
+        try{
+        $orgs = VirOrgs::where('user_id',Auth::guard('api')->user()->id)->select('id','org_name')->get();
+        return $this->returnData('data',$orgs);
+        }
+        catch (\Exception $ex) {
+            return $this->returnError($ex->getCode(), $ex->getMessage());
+        }
     }
     public function user_get_org(Request $request){
 
@@ -47,6 +67,32 @@ class UserDataContoller extends Controller
             }
             $id = $request->id;
             $org = Org::find($id);
+            $org->building_type_name = $org->building_type->name;
+            $org->street_name = $org->street->name;
+            $org->org_type_name = $org->org_type->name;
+            return $this->returnData('data',$org);
+
+        }
+        catch (\Exception $ex) {
+            return $this->returnError($ex->getCode(), $ex->getMessage());
+        }
+    }
+
+    public function user_get_vir_org(Request $request){
+
+        try {
+            $rules = [
+                "id" => "required",
+            ];
+
+            $validator = Validator::make($request->all(), $rules);
+
+            if ($validator->fails()) {
+                $code = $this->returnCodeAccordingToInput($validator);
+                return $this->returnValidationError($code, $validator);
+            }
+            $id = $request->id;
+            $org = VirOrgs::find($id);
             $org->building_type_name = $org->building_type->name;
             $org->street_name = $org->street->name;
             $org->org_type_name = $org->org_type->name;
@@ -94,5 +140,40 @@ class UserDataContoller extends Controller
     public function get_hood_units(){
         $hood_units = HoodUnit::with(['street'])->get();
         return $this->returnData('data',$hood_units);
+    }
+
+    public function insert_billboard(Request $request){
+        try{
+            $rules = [
+                'vir_org_id' => 'required',
+                'billboard_id' => 'required',
+                'height' => 'required',
+                'wideth'=>'required',
+                'count'=>'required',
+            ];
+
+            $validator = Validator::make($request->all(), $rules);
+
+            if ($validator->fails()) {
+                $code = $this->returnCodeAccordingToInput($validator);
+                return $this->returnValidationError($code, $validator);
+            }
+            $org = VirOrgs::find($request->billboard_id);
+            if (Auth::guard('api')->user()->id != $org->user_id) {
+                return $this->returnError("E000","لا تمتلك الصلاحية");
+            }
+
+            //Add Student Data
+            $orgbillboard = new VirOrgBillboard();
+            $orgbillboard->vir_org_id = $request->vir_org_id;
+            $orgbillboard->billboard_id = $request->billboard_id;
+            $orgbillboard->height = $request->height;
+            $orgbillboard->width = $request->wideth;
+            $orgbillboard->count = $request->count;
+            $orgbillboard->save();
+        }
+        catch (\Exception $ex) {
+            return $this->returnError($ex->getCode(), $ex->getMessage());
+        }
     }
 }

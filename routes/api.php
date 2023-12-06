@@ -26,7 +26,11 @@ Route::group(['middleware' => ['api']], function () {
 
         Route::get('get_orgs', [\App\Http\Controllers\Api\UserDataContoller::class, 'get_orgs'])->middleware(['auth.guard:api']);
 
+        Route::get('get_vir_orgs', [\App\Http\Controllers\Api\UserDataContoller::class, 'get_vir_orgs'])->middleware(['auth.guard:api']);
+
         Route::post('user_get_org', [\App\Http\Controllers\Api\UserDataContoller::class, 'user_get_org'])->middleware(['auth.guard:api']);
+
+        Route::post('user_get_vir_org', [\App\Http\Controllers\Api\UserDataContoller::class, 'user_get_vir_org'])->middleware(['auth.guard:api']);
 
         Route::post('insert_org_data', [\App\Http\Controllers\Api\UserDataContoller::class, 'insert_org_data'])->middleware(['auth.guard:api']);
 
