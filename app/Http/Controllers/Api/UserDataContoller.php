@@ -127,8 +127,7 @@ class UserDataContoller extends Controller
             $org->building_type_name = $org->building_type->name;
             $org->street_name = $org->street->name;
             $org->org_type_name = $org->org_type->name;
-            $board = VirOrgBillboard::where('vir_org_id',$id)->get();
-            $board->type = $board->billboard->name;
+            $board = VirOrgBillboard::with('billboard')->where('vir_org_id',$id)->get();
             $org->billboard = $board;
             return $this->returnData('data',$org);
 
