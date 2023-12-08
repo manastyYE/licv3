@@ -102,30 +102,13 @@ class UserDataContoller extends Controller
             return $this->returnError($ex->getCode(), $ex->getMessage());
         }
     }
-    public function get_vir_billboard(Request $request){
+    // public function get_vir_billboard($id){
+    //         $org = VirOrgs::find($id);
+    //         $board = VirOrgBillboard::where('vir_org_id',$org->id)->get();
+    //         $board->type = $board->billboard->name;
+    //         return $board;
 
-        try {
-            $rules = [
-                "id" => "required",
-            ];
-
-            $validator = Validator::make($request->all(), $rules);
-
-            if ($validator->fails()) {
-                $code = $this->returnCodeAccordingToInput($validator);
-                return $this->returnValidationError($code, $validator);
-            }
-            $org = VirOrgs::find($request->id);
-            $board = VirOrgBillboard::where('vir_org_id',$org->id)->get();
-            $board->type = $board->billboard->name;
-            return $this->returnData('data',$board);
-
-        }
-        catch (\Exception $ex) {
-            return $this->returnError($ex->getCode(), $ex->getMessage());
-        }
-    }
-
+    //     }
     public function user_get_vir_org(Request $request){
 
         try {
@@ -144,7 +127,9 @@ class UserDataContoller extends Controller
             $org->building_type_name = $org->building_type->name;
             $org->street_name = $org->street->name;
             $org->org_type_name = $org->org_type->name;
-            $org->billboard = VirOrgBillboard::where('vir_org_id',$id)->get();
+            $board = VirOrgBillboard::where('vir_org_id',$id)->get();
+            $board->type = $board->billboard->name;
+            $org->billboard = $board;
             return $this->returnData('data',$org);
 
         }
@@ -220,6 +205,8 @@ class UserDataContoller extends Controller
             $orgbillboard->width = $request->wideth;
             $orgbillboard->count = $request->count;
             $orgbillboard->save();
+
+            return $this->returnSuccessMessage("تمت الاضافة");
         }
         catch (\Exception $ex) {
             return $this->returnError($ex->getCode(), $ex->getMessage());
