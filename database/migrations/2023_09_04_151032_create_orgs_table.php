@@ -24,7 +24,7 @@ return new class extends Migration
             $table->date('start_date');
             $table->unsignedBigInteger('building_type_id');
             $table->foreign('building_type_id')->references('id')->on('building_types')->onDelete('restrict');
-            $table->string('card_type');
+            $table->string('card_type')->nullable();
             $table->string('card_number')->nullable();
             $table->string('isowner',20);
             $table->unsignedBigInteger('hood_unit_id');
@@ -39,8 +39,11 @@ return new class extends Migration
             $table->string('outher')->nullable()->comment('موافقة الجهة المختصة');
             $table->unsignedBigInteger('parcode')->nullable();
             $table->string('addrees')->nullable();
+            $table->string('log_x')->nullable();
+            $table->string('log_y')->nullable();
             $table->string('aire_drow')->nullable();
             $table->string('fire_ext',20)->default('لا');
+
             $table->timestamps();
         });
     }

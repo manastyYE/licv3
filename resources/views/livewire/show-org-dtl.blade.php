@@ -1,40 +1,39 @@
 <div>
 
-    <a
-    href="/admin/org/clip/{{ $org->id }}"
+    {{-- <a href="/admin/org/clip/{{ $org->id }}"
         class="font-medium border btn border-primary text-primary hover:bg-primary hover:text-white focus:bg-primary focus:text-white active:bg-primary/90 dark:border-accent dark:text-accent-light dark:hover:bg-accent dark:hover:text-white dark:focus:bg-accent dark:focus:text-white dark:active:bg-accent/90">
         عرض الحافظة
-    </a>
+    </a> --}}
     @if (session()->has('message'))
-    <div class="space-y-4">
-        <div x-data="{ isShow: true }" :class="!isShow && 'opacity-0 transition-opacity duration-300'"
-            class="flex items-center justify-between overflow-hidden border rounded-lg alert border-info text-info">
-            <div class="flex">
-                <div class="p-3 text-white bg-info">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24"
-                        stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
+        <div class="space-y-4">
+            <div x-data="{ isShow: true }" :class="!isShow && 'opacity-0 transition-opacity duration-300'"
+                class="flex items-center justify-between overflow-hidden border rounded-lg alert border-info text-info">
+                <div class="flex">
+                    <div class="p-3 text-white bg-info">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                    </div>
+                    <div class="px-4 py-3 sm:px-5">{{ session('message') }}</div>
                 </div>
-                <div class="px-4 py-3 sm:px-5">{{ session('message') }}</div>
+                <div class="px-2">
+                    <button @click="isShow = false; setTimeout(()=>$root.remove(),300)"
+                        class="p-0 font-medium rounded-full btn h-7 w-7 text-info hover:bg-info/20 focus:bg-info/20 active:bg-info/25">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
             </div>
-            <div class="px-2">
-                <button @click="isShow = false; setTimeout(()=>$root.remove(),300)"
-                    class="p-0 font-medium rounded-full btn h-7 w-7 text-info hover:bg-info/20 focus:bg-info/20 active:bg-info/25">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24"
-                        stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                </button>
-            </div>
+
+
+
+
         </div>
-
-
-
-
-    </div>
     @endif
 
 
@@ -189,43 +188,43 @@
         <label class="block">
             البطاقة الشخصية
             @if ($org->personal_card)
-            <button x-data x-on:click="$dispatch('open-modal',{name:'show-personal-card'})">
-                <img src="{{ asset('img/yes.png') }}" class="h-6 mr-4">
-            </button>
+                <button x-data x-on:click="$dispatch('open-modal',{name:'show-personal-card'})">
+                    <img src="{{ asset('img/yes.png') }}" class="h-6 mr-4">
+                </button>
             @else
-            <img src="{{ asset('img/no.png') }}" class="h-6 mr-4">
+                <img src="{{ asset('img/no.png') }}" class="h-6 mr-4">
             @endif
         </label>
         <label class="block">
             عقد الايجار او فاتورة الكهرباء
             @if ($org->rent_contract)
-            <img src="{{ asset('img/yes.png') }}" class="h-6 mr-4">
+                <img src="{{ asset('img/yes.png') }}" class="h-6 mr-4">
             @else
-            <img src="{{ asset('img/no.png') }}" class="h-6 mr-4">
+                <img src="{{ asset('img/no.png') }}" class="h-6 mr-4">
             @endif
         </label>
         <label class="block">
             اللوح الاعلانية
             @if ($org->ad_board)
-            <img src="{{ asset('img/yes.png') }}" class="h-6 mr-4">
+                <img src="{{ asset('img/yes.png') }}" class="h-6 mr-4">
             @else
-            <img src="{{ asset('img/no.png') }}" class="h-6 mr-4">
+                <img src="{{ asset('img/no.png') }}" class="h-6 mr-4">
             @endif
         </label>
         <label class="block">
             الرخصة السابقة
             @if ($org->previous_license)
-            <img src="{{ asset('img/yes.png') }}" class="h-6 mr-4">
+                <img src="{{ asset('img/yes.png') }}" class="h-6 mr-4">
             @else
-            <img src="{{ asset('img/no.png') }}" class="h-6 mr-4">
+                <img src="{{ asset('img/no.png') }}" class="h-6 mr-4">
             @endif
         </label>
         <label class="block">
             السجل التجاري
             @if ($org->comm_record)
-            <img src="{{ asset('img/yes.png') }}" class="h-6 mr-4">
+                <img src="{{ asset('img/yes.png') }}" class="h-6 mr-4">
             @else
-            <img src="{{ asset('img/no.png') }}" class="h-6 mr-4">
+                <img src="{{ asset('img/no.png') }}" class="h-6 mr-4">
             @endif
         </label>
 
@@ -283,40 +282,42 @@
                         <tbody class="gridjs-tbody">
                             <?php $i = 0; ?>
                             @if ($type->count() > 0)
-                            @foreach ($type as $p)
-                            <?php $i++; ?>
-                            <tr class="gridjs-tr">
-                                <td class="gridjs-td"><span><span class="mx-2">{{ $i }}</span></span></td>
-                                <td class="gridjs-td"><span><span
-                                            class="font-medium text-slate-700 dark:text-navy-100">{{ $p->billboard->name
-                                            }}</span></span>
-                                </td>
+                                @foreach ($type as $p)
+                                    <?php $i++; ?>
+                                    <tr class="gridjs-tr">
+                                        <td class="gridjs-td"><span><span
+                                                    class="mx-2">{{ $i }}</span></span></td>
+                                        <td class="gridjs-td"><span><span
+                                                    class="font-medium text-slate-700 dark:text-navy-100">{{ $p->billboard->name }}</span></span>
+                                        </td>
 
-                                <td class="gridjs-td">{{ $p->height }}</td>
-                                <td class="gridjs-td">{{ $p->width }}</td>
+                                        <td class="gridjs-td">{{ $p->height }}</td>
+                                        <td class="gridjs-td">{{ $p->width }}</td>
 
-                                <td class="gridjs-td">{{ $p->height * $p->width }}</td>
-                                <td class="gridjs-td">{{ $p->count }}</td>
-                                <td class="gridjs-td">{{ $p->billboard->price }}</td>
-                                <td class="gridjs-td">
-                                    {{ $p->height * $p->width * $p->billboard->price * $p->count }}
-                                </td>
-                                <td class="gridjs-td"><span>
-                                        <div class="flex justify-center space-x-2">
-                                            <button type="button" wire:click='setname({{ $p->id }})' x-data
-                                                x-on:click="$dispatch('open-modal',{name:'edit-org-billboard-modal'})"
-                                                class="w-8 h-8 p-0 btn text-info hover:bg-info/20 focus:bg-info/20 active:bg-info/25">
-                                                <i class="fa fa-edit"></i>
-                                            </button>
-                                            <button type="button" wire:click='deleteConfirmation({{ $p->id }})' x-data
-                                                x-on:click="$dispatch('open-modal',{name:'del-org-billboard-modal'})"
-                                                class="w-8 h-8 p-0 btn text-error hover:bg-error/20 focus:bg-error/20 active:bg-error/25">
-                                                <i class="fa fa-trash- "></i>
-                                            </button>
-                                        </div>
-                                    </span></td>
-                            </tr>
-                            @endforeach
+                                        <td class="gridjs-td">{{ $p->height * $p->width }}</td>
+                                        <td class="gridjs-td">{{ $p->count }}</td>
+                                        <td class="gridjs-td">{{ $p->billboard->price }}</td>
+                                        <td class="gridjs-td">
+                                            {{ $p->height * $p->width * $p->billboard->price * $p->count }}
+                                        </td>
+                                        <td class="gridjs-td"><span>
+                                                <div class="flex justify-center space-x-2">
+                                                    <button type="button" wire:click='setname({{ $p->id }})'
+                                                        x-data
+                                                        x-on:click="$dispatch('open-modal',{name:'edit-org-billboard-modal'})"
+                                                        class="w-8 h-8 p-0 btn text-info hover:bg-info/20 focus:bg-info/20 active:bg-info/25">
+                                                        <i class="fa fa-edit"></i>
+                                                    </button>
+                                                    <button type="button"
+                                                        wire:click='deleteConfirmation({{ $p->id }})' x-data
+                                                        x-on:click="$dispatch('open-modal',{name:'del-org-billboard-modal'})"
+                                                        class="w-8 h-8 p-0 btn text-error hover:bg-error/20 focus:bg-error/20 active:bg-error/25">
+                                                        <i class="fa fa-trash- "></i>
+                                                    </button>
+                                                </div>
+                                            </span></td>
+                                    </tr>
+                                @endforeach
                             @endif
 
 
@@ -328,11 +329,12 @@
                         <div role="status" aria-live="polite" class="gridjs-summary" title="Page 1 of 2">Showing
                             <b>1</b> to <b>10</b> of <b>15</b> results
                         </div>
-                        <div class="gridjs-pages"><button tabindex="0" role="button" disabled="" title="Previous"
-                                aria-label="Previous" class="">Previous</button><button tabindex="0" role="button"
-                                class="gridjs-currentPage" title="Page 1" aria-label="Page 1">1</button><button
-                                tabindex="0" role="button" class="" title="Page 2" aria-label="Page 2">2</button><button
-                                tabindex="0" role="button" title="Next" aria-label="Next" class="">Next</button></div>
+                        <div class="gridjs-pages"><button tabindex="0" role="button" disabled=""
+                                title="Previous" aria-label="Previous" class="">Previous</button><button
+                                tabindex="0" role="button" class="gridjs-currentPage" title="Page 1"
+                                aria-label="Page 1">1</button><button tabindex="0" role="button" class=""
+                                title="Page 2" aria-label="Page 2">2</button><button tabindex="0" role="button"
+                                title="Next" aria-label="Next" class="">Next</button></div>
                     </div>
                 </div>
                 <div id="gridjs-temp" class="gridjs-temp"></div>
@@ -372,7 +374,8 @@
 
                             <tr class="gridjs-tr">
 
-                                <td class="gridjs-td"><span><span class="font-medium text-slate-700 dark:text-navy-100">
+                                <td class="gridjs-td"><span><span
+                                            class="font-medium text-slate-700 dark:text-navy-100">
                                             <input {{-- wire:model='name' --}}
                                                 class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
                                                 placeholder="  ادخل الرسوم المحلية هنا  ...  " type="text" />
@@ -393,14 +396,15 @@
                 </div>
                 <div class="gridjs-footer">
                     <div class="gridjs-pagination">
-                        <div role="status" aria-live="polite" class="gridjs-summary" title="Page 1 of 2">Showing
-                            <b>1</b> to <b>10</b> of <b>15</b> results
+                        <div role="status" aria-live="polite" class="gridjs-summary" title="Page 1 of 2">
+
                         </div>
-                        <div class="gridjs-pages"><button tabindex="0" role="button" disabled="" title="Previous"
-                                aria-label="Previous" class="">Previous</button><button tabindex="0" role="button"
-                                class="gridjs-currentPage" title="Page 1" aria-label="Page 1">1</button><button
-                                tabindex="0" role="button" class="" title="Page 2" aria-label="Page 2">2</button><button
-                                tabindex="0" role="button" title="Next" aria-label="Next" class="">Next</button></div>
+                        <div class="gridjs-pages">
+                            <a href="/admin/org/clip/{{ $org->id }}"
+                                class="font-medium border btn border-primary text-primary hover:bg-primary hover:text-white focus:bg-primary focus:text-white active:bg-primary/90 dark:border-accent dark:text-accent-light dark:hover:bg-accent dark:hover:text-white dark:focus:bg-accent dark:focus:text-white dark:active:bg-accent/90">
+                                عرض الحافظة
+                            </a>
+                        </div>
                     </div>
                 </div>
                 <div id="gridjs-temp" class="gridjs-temp"></div>
@@ -410,7 +414,7 @@
     <div wire:ignore.self>
         <x-modaladd title="إضافة  لوحة لمنشأة{{ $org->org_name }} " name="add-org-board-modal">
             @slot('body')
-            {{-- <x-slot:body> --}}
+                {{-- <x-slot:body> --}}
                 <form>
                     <div class="p-2 space-y-6">
                         <label class="block">
@@ -419,15 +423,15 @@
                                 class="form-select mt-1.5 w-full rounded-lg border border-slate-300 bg-white px-3 py-2 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:bg-navy-700 dark:hover:border-navy-400 dark:focus:border-accent">
                                 <option value=""> اختر نوع اللوحة </option>
                                 @forelse ($bill as $b)
-                                <option value="{{ $b->id }}">{{ $b->name }}</option>
+                                    <option value="{{ $b->id }}">{{ $b->name }}</option>
                                 @empty
                                 @endforelse
                             </select>
                         </label>
                         @error('billboard_id')
-                        <span class="text-tiny+ text-error">
-                            {{ $message }}
-                        </span>
+                            <span class="text-tiny+ text-error">
+                                {{ $message }}
+                            </span>
                         @enderror
                         <label class="block">
                             <span> الطول </span>
@@ -436,9 +440,9 @@
                                 placeholder=" الطول" type="text" />
                         </label>
                         @error('height')
-                        <span class="text-tiny+ text-error">
-                            {{ $message }}
-                        </span>
+                            <span class="text-tiny+ text-error">
+                                {{ $message }}
+                            </span>
                         @enderror
                         <label class="block">
                             <span> العرض </span>
@@ -447,9 +451,9 @@
                                 placeholder="العرض" type="text" />
                         </label>
                         @error('wideth')
-                        <span class="text-tiny+ text-error">
-                            {{ $message }}
-                        </span>
+                            <span class="text-tiny+ text-error">
+                                {{ $message }}
+                            </span>
                         @enderror
                         <label class="block">
                             <span> العدد </span>
@@ -458,9 +462,9 @@
                                 placeholder=" العدد" type="text" />
                         </label>
                         @error('count')
-                        <span class="text-tiny+ text-error">
-                            {{ $message }}
-                        </span>
+                            <span class="text-tiny+ text-error">
+                                {{ $message }}
+                            </span>
                         @enderror
 
 
@@ -481,12 +485,12 @@
                 </form>
                 <div>
                     @if (session('sec'))
-                    <span class="text-xs text-green-500">{{ session('sec') }}</span>
+                        <span class="text-xs text-green-500">{{ session('sec') }}</span>
                     @endif
                 </div>
 
-                @endslot
-                {{--
+            @endslot
+            {{--
             </x-slot:body> --}}
             {{-- @slot('footer')
 
@@ -497,7 +501,7 @@
 
         <x-modaladd title="تعديل  لوحة لمنشأة{{ $org->org_name }} " name="edit-org-board-modal">
             @slot('body')
-            {{-- <x-slot:body> --}}
+                {{-- <x-slot:body> --}}
                 <form>
                     <div class="p-2 space-y-6">
                         <label class="block">
@@ -507,9 +511,9 @@
                                 placeholder="نوع اللوحة " type="text" />
                         </label>
                         @error('ed_billboard_id')
-                        <span class="text-tiny+ text-error">
-                            {{ $message }}
-                        </span>
+                            <span class="text-tiny+ text-error">
+                                {{ $message }}
+                            </span>
                         @enderror
                         <label class="block">
                             <span> الطول </span>
@@ -518,9 +522,9 @@
                                 placeholder=" الطول" type="text" />
                         </label>
                         @error('ed_height')
-                        <span class="text-tiny+ text-error">
-                            {{ $message }}
-                        </span>
+                            <span class="text-tiny+ text-error">
+                                {{ $message }}
+                            </span>
                         @enderror
                         <label class="block">
                             <span> العرض </span>
@@ -529,9 +533,9 @@
                                 placeholder="العرض" type="text" />
                         </label>
                         @error('ed_wideth')
-                        <span class="text-tiny+ text-error">
-                            {{ $message }}
-                        </span>
+                            <span class="text-tiny+ text-error">
+                                {{ $message }}
+                            </span>
                         @enderror
                         <label class="block">
                             <span> العدد </span>
@@ -540,9 +544,9 @@
                                 placeholder=" العدد" type="text" />
                         </label>
                         @error('ed_count')
-                        <span class="text-tiny+ text-error">
-                            {{ $message }}
-                        </span>
+                            <span class="text-tiny+ text-error">
+                                {{ $message }}
+                            </span>
                         @enderror
 
 
@@ -563,12 +567,12 @@
                 </form>
                 <div>
                     @if (session('sec'))
-                    <span class="text-xs text-green-500">{{ session('sec') }}</span>
+                        <span class="text-xs text-green-500">{{ session('sec') }}</span>
                     @endif
                 </div>
 
-                @endslot
-                {{--
+            @endslot
+            {{--
             </x-slot:body> --}}
             {{-- @slot('footer')
 
@@ -580,18 +584,18 @@
 
     <x-modaldel wire:ignore.self name="del-org-board-modal">
         @slot('delbody')
-        <div class="mt-4">
-            <h2 class="text-2xl text-slate-700 dark:text-navy-100">
-                تأكيد الحذف
-            </h2>
-            <p class="mt-2">
-                هل انت متأكد من انك تريد حذف هذه البيانات
-            </p>
-            <button wire:click="deleteOrgBillboardData"
-                class="mt-6 font-medium text-white btn bg-success hover:bg-success-focus focus:bg-success-focus active:bg-success-focus/90">
-                نعم انا متأكد
-            </button>
-        </div>
+            <div class="mt-4">
+                <h2 class="text-2xl text-slate-700 dark:text-navy-100">
+                    تأكيد الحذف
+                </h2>
+                <p class="mt-2">
+                    هل انت متأكد من انك تريد حذف هذه البيانات
+                </p>
+                <button wire:click="deleteOrgBillboardData"
+                    class="mt-6 font-medium text-white btn bg-success hover:bg-success-focus focus:bg-success-focus active:bg-success-focus/90">
+                    نعم انا متأكد
+                </button>
+            </div>
         @endslot
     </x-modaldel>
 
@@ -600,7 +604,7 @@
 
         <x-modaladd title=" nbgoeh;ofk " name="show-personal-card">
             @slot('body')
-            {{-- <x-slot:body> --}}
+                {{-- <x-slot:body> --}}
 
 
 
@@ -617,9 +621,8 @@
                 </div>
 
                 <canvas id="the-canvas"></canvas>
-
-                @endslot
-                {{--
+            @endslot
+            {{--
             </x-slot:body> --}}
             {{-- @slot('footer')
 

@@ -8,8 +8,8 @@ use Livewire\WithPagination;
 
 class Users extends Component
 {
-    public $fullname,$phone,$password,$search;
-    public $ed_fullname,$ed_phone,$ed_password,$ed_user;
+    public $fullname,$phone,$password,$search,$username;
+    public $ed_fullname,$ed_phone,$ed_password,$ed_user,$ed_username;
     public $user_edit_id, $user_delete_id;
 
     public $hood_id,

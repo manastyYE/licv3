@@ -117,21 +117,26 @@
 
                         <td class="whitespace-nowrap border border-slate-200 px-3 py-3 dark:border-navy-500 lg:px-5">
                             {{ $board1['count2'] }}
+                            {{-- امامي --}}
                         </td>
 
                         <td class="whitespace-nowrap border border-slate-200 px-3 py-3 dark:border-navy-500 lg:px-5">
                             {{ $board1['count1'] }}
+                            {{-- جانبي --}}
                         </td>
 
                         <td class="whitespace-nowrap border border-slate-200 px-3 py-3 dark:border-navy-500 lg:px-5">
                             {{ $board1['count3'] }}
+                            {{-- جداري --}}
                         </td>
                         <td class="whitespace-nowrap border border-slate-200 px-3 py-3 dark:border-navy-500 lg:px-5">
-                            {{ $board1['count6'] }}
+                            {{ $board1['count5'] }}
+                            {{-- سطحية --}}
                         </td>
 
                         <td class="whitespace-nowrap border border-slate-200 px-3 py-3 dark:border-navy-500 lg:px-5">
-                            {{ $board1['count5'] }}
+                            {{ $board1['count6'] }}
+                            {{-- حروف --}}
                         </td>
 
                         <td class="whitespace-nowrap border border-slate-200 px-3 py-3 dark:border-navy-500 lg:px-5">

@@ -51,6 +51,22 @@
                 </div>
             </div>
         </a>
+        <a href="/admin/workers">
+            <div class="card">
+                <div class="flex justify-center p-5">
+                    <img class="w-9/12" src="{{asset('icons/usericon.png')}}" alt="users icon">
+                </div>
+                <div class="px-4 pb-8 text-center sm:px-5">
+                    <h4 class="text-lg font-semibold text-slate-700 dark:text-navy-100">
+                        المفتشين
+                    </h4>
+                    <p class="pt-3">
+
+                    </p>
+
+                </div>
+            </div>
+        </a>
         <a href="/admin/system">
             <div class="card">
                 <div class="flex justify-center p-5">

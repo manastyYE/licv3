@@ -31,6 +31,8 @@ class Org extends Model
         'start_date',
         'fire_ext',
         'outher',//مواافقة الجهة المختصة
+        'log_x',
+        'log_y',
 
     ];
 

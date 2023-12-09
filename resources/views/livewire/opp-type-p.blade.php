@@ -75,24 +75,18 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="gridjs-footer">
-                    <div class="gridjs-pagination">
-                        <div role="status" aria-live="polite" class="gridjs-summary" title="Page 1 of 2">Showing
-                            
-                            {{ $type->links() }}
-                        </div>
-                        <div class="gridjs-pages"><button tabindex="0" role="button" disabled="" title="Previous"
-                                aria-label="Previous" class="">Previous</button><button tabindex="0"
-                                role="button" class="gridjs-currentPage" title="Page 1"
-                                aria-label="Page 1">1</button><button tabindex="0" role="button" class=""
-                                title="Page 2" aria-label="Page 2">2</button><button tabindex="0" role="button"
-                                title="Next" aria-label="Next" class="">Next</button></div>
-                    </div>
-                </div>
-                <div id="gridjs-temp" class="gridjs-temp"></div>
+
+
+
             </div>
+
         </div>
+
     </div>
+    <div class="w-full">
+        {{ $type->links() }}
+    </div>
+
     <div wire:ignore.self>
         <x-modaladd title="إضافة نشاط تجاري " name="add-org-type-modal">
             @slot('body')

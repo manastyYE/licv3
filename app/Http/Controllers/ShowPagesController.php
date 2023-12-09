@@ -9,6 +9,9 @@ use Illuminate\Support\Facades\Auth;
 class ShowPagesController extends Controller
 {
     //
+    public function show_workers_view(){
+        return view('workers');
+    }
     public function show_add_org(){
         return view('orgs.add_org');
     }
