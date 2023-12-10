@@ -348,6 +348,7 @@ class AddOrg extends Component
     }
     public function render()
     {
+        $this->fire_ext ="لا";
 
         if ($this->street_id) {
 
