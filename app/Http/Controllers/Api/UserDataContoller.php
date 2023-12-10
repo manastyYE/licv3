@@ -139,25 +139,25 @@ class UserDataContoller extends Controller
 
     public function insert_org_data(Request $request){
         try {
-            $rules = [
-                "org_name" => "required",
-                "owner_name" => "required",
-                "owner_phone" => "required",
-                "building_type_id" => "required",
-                "org_type_id" => "required",
-                "hood_unit_id" => "required",
-                "street_id" => "required",
-                "note" => "required",
-                "log_x" => "required",
-                "log_y" => "required",
-            ];
+            // $rules = [
+            //     "org_name" => "required",
+            //     "owner_name" => "required",
+            //     "owner_phone" => "required",
+            //     "building_type_id" => "required",
+            //     "org_type_id" => "required",
+            //     "hood_unit_id" => "required",
+            //     "street_id" => "required",
+            //     "note" => "required",
+            //     "log_x" => "required",
+            //     "log_y" => "required",
+            // ];
 
-            $validator = Validator::make($request->all(), $rules);
+            // $validator = Validator::make($request->all(), $rules);
 
-            if ($validator->fails()) {
-                $code = $this->returnCodeAccordingToInput($validator);
-                return $this->returnValidationError($code, $validator);
-            }
+            // if ($validator->fails()) {
+            //     $code = $this->returnCodeAccordingToInput($validator);
+            //     return $this->returnValidationError($code, $validator);
+            // }
             $hood_unit_id = Street::find($request->street_id)->hood_unit_id;
             $request->merge(['user_id' => Auth::guard('api')->user()->id,
             'hood_unit_id' => $hood_unit_id]);
