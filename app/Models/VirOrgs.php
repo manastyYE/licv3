@@ -13,7 +13,6 @@ class VirOrgs extends Model
         'org_name',
         'owner_name',
         'owner_phone',
-        'building_type_id',
         'org_type_id',
         'hood_unit_id',
         'street_id',
@@ -29,9 +28,6 @@ class VirOrgs extends Model
     }
     public function street(){
         return $this->belongsTo(Street::class);
-    }
-	public function building_type(){
-        return $this->belongsTo(BuildingType::class);
     }
     public function user(){
         return $this->belongsTo(User::class);

@@ -46,7 +46,7 @@ class UserDataContoller extends Controller
     }
     public function get_vir_orgs(){
         try{
-        $orgs = VirOrgs::where('user_id',Auth::guard('api')->user()->id)->select('id','org_name')->get();
+        $orgs = VirOrgs::where('user_id',Auth::guard('worker-api')->user()->id)->select('id','org_name')->get();
         return $this->returnData('data',$orgs);
         }
         catch (\Exception $ex) {
@@ -159,7 +159,7 @@ class UserDataContoller extends Controller
             //     return $this->returnValidationError($code, $validator);
             // }
             $hood_unit_id = Street::find($request->street_id)->hood_unit_id;
-            $request->merge(['user_id' => Auth::guard('api')->user()->id,
+            $request->merge(['user_id' => Auth::guard('worker-api')->user()->id,
             'hood_unit_id' => $hood_unit_id]);
             $requestData = $request->except('org_image');
             VirOrgs::create($requestData);
@@ -192,7 +192,7 @@ class UserDataContoller extends Controller
                 return $this->returnValidationError($code, $validator);
             }
             $org = VirOrgs::find($request->billboard_id);
-            if (Auth::guard('api')->user()->id != $org->user_id) {
+            if (Auth::guard('worker-api')->user()->id != $org->user_id) {
                 return $this->returnError("E000","لا تمتلك الصلاحية");
             }
 

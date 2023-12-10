@@ -26,7 +26,7 @@
                                 <th data-column-id="name" class="gridjs-th gridjs-th-sort" tabindex="0">
                                     <div class="gridjs-th-content">
                                         الاسم الكامل @auth
-                                            
+
                                         @endauth
                                     </div><button tabindex="-1" aria-label="Sort column ascending"
                                         title="Sort column ascending" class="gridjs-sort gridjs-sort-neutral"></button>
@@ -137,6 +137,8 @@
                                 {{ $message }}
                             </span>
                         @enderror
+                        <div class="grid grid-cols-2 gap-3">
+                        <div>
                         <label class="block">
                             <span>  اسم المستخدم </span>
                             <input wire:model='username'
@@ -148,17 +150,24 @@
                                 {{ $message }}
                             </span>
                         @enderror
-                        <label class="block">
-                            <span> رقم الهاتف </span>
-                            <input wire:model='phone' name="user_phone"
-                                class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
-                                placeholder="  ادخل رقم الهاتف الخاص بالمفتش  " type="text" />
-                        </label>
-                        @error('phone')
-                            <span class="text-tiny+ text-error">
-                                {{ $message }}
-                            </span>
-                        @enderror
+                        </div>
+                        <div>
+                            <label class="block">
+                                <span> رقم الهاتف </span>
+                                <input wire:model='phone' name="user_phone"
+                                    class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
+                                    placeholder="  ادخل رقم الهاتف الخاص بالمفتش  " type="text" />
+                            </label>
+                            @error('phone')
+                                <span class="text-tiny+ text-error">
+                                    {{ $message }}
+                                </span>
+                            @enderror
+                            </div>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-3">
+                        <div>
                         <label class="block">
                             <span> كلمة المرور </span>
                             <input wire:model='password' name="user_password"
@@ -170,6 +179,8 @@
                                 {{ $message }}
                             </span>
                         @enderror
+                        </div>
+                        <div>
                         <label class="block" >
                             <span> المكتب </span>
                             <select wire:model='office_id' class="mt-1.5 " x-init="$el._x_tom = new Tom($el, { sortField: { field: 'text', direction: 'asc' } })">
@@ -182,11 +193,11 @@
                                 @endforelse
                             </select>
                         </label>
-
-
                         @error('office_id')
-                            <span class="text-tiny+ text-error">{{ $message }}</span>
+                        <span class="text-tiny+ text-error">{{ $message }}</span>
                         @enderror
+                    </div>
+                </div>
                         <label class="block" >
                             <span> الحي </span>
                             <select wire:model='hood_id' class="mt-1.5 " x-init="$el._x_tom = new Tom($el, { sortField: { field: 'text', direction: 'asc' } })">
@@ -205,7 +216,7 @@
                             <span class="text-tiny+ text-error">{{ $message }}</span>
                         @enderror
 
-            <label class="block mbt mt-3">
+            <label class="block mt-3 mbt">
                 <span>وحدات الجوار</span>
                 <select x-init="$el._tom = new Tom($el,{
                 plugins: ['remove_button'],
@@ -340,7 +351,7 @@
                             <span class="text-tiny+ text-error">{{ $message }}</span>
                         @enderror
 
-            <label class="block mbt mt-3">
+            <label class="block mt-3 mbt">
                 <span>وحدات الجوار</span>
                 <select x-init="$el._tom = new Tom($el,{
                 plugins: ['remove_button'],

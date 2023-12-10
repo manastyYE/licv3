@@ -20,8 +20,6 @@ return new class extends Migration
             $table->string('owner_phone')->nullable();
             $table->unsignedBigInteger('org_type_id');
             $table->foreign('org_type_id')->references('id')->on('org_types')->onDelete('restrict');
-            $table->unsignedBigInteger('building_type_id')->nullable();
-            $table->foreign('building_type_id')->references('id')->on('building_types')->onDelete('restrict');
             $table->unsignedBigInteger('street_id');
             $table->foreign('street_id')->references('id')->on('streets')->onDelete('restrict');
             $table->unsignedBigInteger('hood_unit_id');
@@ -31,7 +29,7 @@ return new class extends Migration
             $table->string('log_y')->nullable();
             $table->string('org_image')->nullable();
             $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('restrict');
+            $table->foreign('user_id')->references('id')->on('workers')->onDelete('restrict');
             // $table->boolean('is_read')->default(false);//هل قام شخص بعرض طلب الاضافة
             $table->timestamps();
         });

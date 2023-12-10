@@ -48,16 +48,23 @@
     <div class="grid grid-cols-1 gap-4 mt-5 mb-4 sm:grid-cols-3 sm:gap-5 lg:gap-6">
         <div>
             <label class="block">
+                <span>رقم المنشأة</span>
+
+            </label>
+            <h5 class="font-semibold text-md text-slate-700 dark:text-navy-100">
+                {{ $org->id }}
+            </h5>
+        </div>
+        <div>
+            <label class="block">
                 <span>اسم المنشأة</span>
 
             </label>
             <h5 class="font-semibold text-md text-slate-700 dark:text-navy-100">
                 {{ $org->org_name }}
             </h5>
-
-
-
         </div>
+
         <div>
             <label class="block">
                 <span>اسم المالك</span>
@@ -89,16 +96,6 @@
                     {{ $org->street->name }}
                 </h5>
             </label>
-        </div>
-
-        <div>
-            <label class="block">
-                <span>نوع المبنى</span>
-                <h5 class="font-semibold text-md text-slate-700 dark:text-navy-100">
-                    {{ $org->building_type->name }}
-                </h5>
-            </label>
-
         </div>
 
         <div>
