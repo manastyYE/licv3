@@ -15,18 +15,18 @@ return new class extends Migration
     {
         Schema::create('vir_orgs', function (Blueprint $table) {
             $table->id();
-            $table->string('org_name');
-            $table->string('owner_name');
-            $table->string('owner_phone');
+            $table->string('org_name')->nullable();
+            $table->string('owner_name')->nullable();
+            $table->string('owner_phone')->nullable();
             $table->unsignedBigInteger('org_type_id');
             $table->foreign('org_type_id')->references('id')->on('org_types')->onDelete('restrict');
-            $table->unsignedBigInteger('building_type_id');
+            $table->unsignedBigInteger('building_type_id')->nullable();
             $table->foreign('building_type_id')->references('id')->on('building_types')->onDelete('restrict');
             $table->unsignedBigInteger('street_id');
             $table->foreign('street_id')->references('id')->on('streets')->onDelete('restrict');
             $table->unsignedBigInteger('hood_unit_id');
             $table->foreign('hood_unit_id')->references('id')->on('hood_units')->onDelete('restrict');
-            $table->text('note');//الملاحظة
+            $table->text('note')->nullable();//الملاحظة
             $table->string('log_x')->nullable();
             $table->string('log_y')->nullable();
             $table->string('org_image')->nullable();
