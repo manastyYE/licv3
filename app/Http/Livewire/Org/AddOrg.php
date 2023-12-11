@@ -19,8 +19,7 @@ class AddOrg extends Component
     public $outher;
     public $hood_unit_no;
     public $org_types, $building_types, $streets, $street, $hood_unit;
-    public function store()
-    {
+    public function store(){
 
 
         $rules = [
@@ -348,7 +347,7 @@ class AddOrg extends Component
     }
     public function render()
     {
-        $this->fire_ext ="لا";
+        // $this->fire_ext ="لا";
 
         if ($this->street_id) {
 

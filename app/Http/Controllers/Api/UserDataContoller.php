@@ -162,12 +162,42 @@ class UserDataContoller extends Controller
             $request->merge(['user_id' => Auth::guard('worker-api')->user()->id,
             'hood_unit_id' => $hood_unit_id]);
             $requestData = $request->except('org_image');
+
+            if($request->org_image){
+                try{
+                    $image = $request->org_image;
+                    $realImage = base64_decode($image);
+                    $owner_img_tostore = rand(1111,99999).'.png';
+                    // ف الصورة
+                    $full_path = 'public/uploads/orgs/'   . 'owner_img ' . $owner_img_tostore;
+            
+                    $file_put = file_put_contents($full_path, $realImage); // int or false
+
+                    if ($file_put == false) {
+                        return response()->json([
+                            'result' => false,
+                            'message' => "File uploading error",
+                            'path' => ""
+                        ]);
+                    }
+            
+
+            }
+            catch(\Exception $ex){
+                return response()->json([
+                    'result' => false,
+                    'message' => "File uploading error",
+                ]);
+            }
+        }
             VirOrgs::create($requestData);
             return $this->returnSuccessMessage('success');
         }
-        catch (\Exception $ex) {
+        catch(\Exception $ex) {
             return $this->returnError($ex->getCode(), $ex->getMessage());
         }
+
+
     }
 
     public function get_hood_units(){

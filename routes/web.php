@@ -40,6 +40,7 @@ Route::controller(ShowPagesController::class)->prefix('admin')->middleware('admi
         Route::get('/vir_orgs/show/{id}','get_vir_orgs');
         Route::get('/outher/pay','show_outher_pay')->name('outher.pay');
         Route::get('/workers','show_workers_view')->name('workers.show');
+        Route::get('/vir-to-orgs/{id}','show_add_vir_to_org');
     }
 );
 Route::controller(ShowPagesController::class)->prefix('admin')->middleware('admin.guest')->group(
