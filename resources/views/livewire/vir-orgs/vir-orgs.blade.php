@@ -64,7 +64,7 @@
                                     <td class="gridjs-td">{{ $p->owner_phone }}</td>
                                     <td class="gridjs-td">{{ $p->org_type->name }}</td>
                                     <td class="gridjs-td">{{ $p->street->name }}</td>
-                                    <td class="gridjs-td">{{ $p->user->fullname }}</td>
+                                    <td class="gridjs-td">{{ $p->user }}</td>
 
 
                                 </tr>
