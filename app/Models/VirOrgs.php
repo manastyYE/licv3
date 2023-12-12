@@ -30,6 +30,6 @@ class VirOrgs extends Model
         return $this->belongsTo(Street::class);
     }
     public function user(){
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Worker::class,'user_id');
     }
 }
