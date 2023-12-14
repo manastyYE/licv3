@@ -20,6 +20,8 @@ Route::group(['middleware' => ['api']], function () {
 
         Route::post('logout', [AuthController::class, 'logout'])->middleware(['auth.guard:worker-api']);
 
+        Route::post('reset_password', [AuthController::class, 'reset_password'])->middleware(['auth.guard:worker-api']);
+
         Route::get('get_profile', [AuthController::class, 'get_profile'])->middleware(['auth.guard:worker-api']);
         //invalidate token security side
         Route::get('get_streets', [\App\Http\Controllers\Api\UserDataContoller::class, 'get_streets'])->middleware(['auth.guard:worker-api']);

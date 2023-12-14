@@ -10,6 +10,7 @@ use App\Models\OrgType;
 use App\Models\Street;
 use App\Models\VirOrgBillboard;
 use App\Models\VirOrgs;
+use App\Models\Worker;
 use App\Traits\GeneralTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -21,15 +22,18 @@ class UserDataContoller extends Controller
 
     public function get_streets(){
         try{
-        $street = Street::take(5)->get();
-        $org_type = OrgType::all();
-        return response()->json([
-            'success' => true,
-            'errNum' => "S000",
-            'msg' => "",
-            'data' => $street,
-            'org_type' => $org_type,
-        ]);
+            $w = Worker::find(Auth::guard('worker-api')->user()->id);
+            $Array = json_decode($w->hood_units);
+            $street = Street::whereIn('hood_unit_id', $Array)->get();
+//            $street = Street::take(5)->get();
+            $org_type = OrgType::all();
+            return response()->json([
+                'success' => true,
+                'errNum' => "S000",
+                'msg' => "",
+                'data' => $street,
+                'org_type' => $org_type,
+            ]);
         }
         catch (\Exception $ex) {
             return $this->returnError($ex->getCode(), $ex->getMessage());
@@ -37,8 +41,8 @@ class UserDataContoller extends Controller
     }
     public function get_orgs(){
         try{
-        $orgs = Org::select('id','org_name')->get();
-        return $this->returnData('data',$orgs);
+            $orgs = Org::select('id','org_name')->get();
+            return $this->returnData('data',$orgs);
         }
         catch (\Exception $ex) {
             return $this->returnError($ex->getCode(), $ex->getMessage());
@@ -46,8 +50,8 @@ class UserDataContoller extends Controller
     }
     public function get_vir_orgs(){
         try{
-        $orgs = VirOrgs::where('user_id',Auth::guard('worker-api')->user()->id)->select('id','org_name')->get();
-        return $this->returnData('data',$orgs);
+            $orgs = VirOrgs::where('user_id',Auth::guard('worker-api')->user()->id)->select('id','org_name')->get();
+            return $this->returnData('data',$orgs);
         }
         catch (\Exception $ex) {
             return $this->returnError($ex->getCode(), $ex->getMessage());
