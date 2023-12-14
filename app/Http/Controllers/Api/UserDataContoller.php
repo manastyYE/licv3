@@ -124,7 +124,6 @@ class UserDataContoller extends Controller
             }
             $id = $request->id;
             $org = VirOrgs::find($id);
-            $org->building_type_name = $org->building_type->name;
             $org->street_name = $org->street->name;
             $org->org_type_name = $org->org_type->name;
             $board = VirOrgBillboard::with('billboard')->where('vir_org_id',$id)->get();
@@ -170,7 +169,7 @@ class UserDataContoller extends Controller
                     $owner_img_tostore = rand(1111,99999).'.png';
                     // ف الصورة
                     $full_path = 'public/uploads/orgs/'   . 'owner_img ' . $owner_img_tostore;
-            
+
                     $file_put = file_put_contents($full_path, $realImage); // int or false
 
                     if ($file_put == false) {
@@ -180,7 +179,7 @@ class UserDataContoller extends Controller
                             'path' => ""
                         ]);
                     }
-            
+
 
             }
             catch(\Exception $ex){
