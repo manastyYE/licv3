@@ -116,7 +116,7 @@ class AuthController extends Controller
                 $worker->password = Hash::make($request->new_pass);
                 $worker->save();
             } else {
-                $this->returnError("","كلمة المرور القديمة غير صحيحة");
+                return $this->returnError("","كلمة المرور القديمة غير صحيحة");
             }
 
             return $this->returnSuccessMessage('تم تغيير كلمة المرور بنجاح');
