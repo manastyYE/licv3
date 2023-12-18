@@ -9,8 +9,7 @@ use App\Models\OrgType;
 use App\Models\Street;
 use Livewire\Component;
 use Livewire\WithFileUploads;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\File;
+
 
 class AddOrg extends Component
 {

@@ -5,83 +5,63 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use App\Models\Org;
 use App\Models\OrgBillboard;
+use App\Models\ClipBoard;
 class AutoClip extends Component
 {
-    public $org_id;
+    public $clip_id;
     public $total;
+    public $ad_reseve;//رقم سند الدعاية والاعلان
+    public $clean_reseve;//رقم ستد رسوم نظافة المهن
+    public $local_reseve;//رقم سند الرسوم المحلية
+    public $el_gate_reseve;//رقم سند رسوم البوابة الالكترونية
+    public $ad_reseve_date;//تاريخ سند الدعاية والاعلان
+    public $clean_reseve_date;//تاريخ ستد رسوم نظافة المهن
+    public $local_reseve_date;//تاريخ سند الرسوم المحلية
+    public $el_gate_reseve_date;//تاريخ سند رسوم البوابة الالكترونية
+    public $ad_reseve_note;//ملاحظة سند الدعاية والاعلان
+    public $clean_reseve_note;//ملاحظة ستد رسوم نظافة المهن
+    public $local_reseve_note;//ملاحظة سند الرسوم المحلية
+    public $el_gate_reseve_note;//ملاحظة سند رسوم البوابة الالكترونية
+
 
     public function render()
     {
+        $clip =ClipBoard::find($this->clip_id);
 
-
-        $org= Org::find($this->org_id);
-        // $board = OrgBillboard::where('org_id', $this->org_id)->get();
-
-        $this->git_total();
-
-        $board1 = OrgBillboard::where('org_id', $this->org_id)->where('billboard_id',1)->get();
-        $count1 = 0;
-        foreach ($board1 as $ke) {
-            $hi=$ke->height;
-            $wi=$ke->width;
-            $count1 += $hi*$wi* $ke->count;
-        }
-        $board2 = OrgBillboard::where('org_id', $this->org_id)->where('billboard_id',2)->get();
-        $count2 = 0;
-        foreach ($board2 as $ke) {
-            $hi=$ke->height;
-            $wi=$ke->width;
-            $count2 += $hi*$wi* $ke->count;
-        }
-        $board3 = OrgBillboard::where('org_id', $this->org_id)->where('billboard_id',3)->get();
-        $count3 = 0;
-        foreach ($board3 as $ke) {
-            $hi=$ke->height;
-            $wi=$ke->width;
-            $count3 += $hi*$wi* $ke->count;
-        }
-        $board4 = OrgBillboard::where('org_id', $this->org_id)->where('billboard_id',4)->get();
-        $count4 = 0;
-        foreach ($board4 as $ke) {
-            $hi=$ke->height;
-            $wi=$ke->width;
-            $count4 += $hi*$wi* $ke->count;
-        }
-        $board5 = OrgBillboard::where('org_id', $this->org_id)->where('billboard_id',5)->get();
-        $count5 = 0;
-        foreach ($board5 as $ke) {
-            $hi=$ke->height;
-            $wi=$ke->width;
-            $count5 += $hi*$wi* $ke->count;
-        }
-        $board6 = OrgBillboard::where('org_id', $this->org_id)->where('billboard_id',6)->get();
-        $count6 = 0;
-        foreach ($board6 as $ke) {
-            $hi=$ke->height;
-            $wi=$ke->width;
-            $count6 += $hi*$wi* $ke->count;
-        }
-
-        $boards=[
-            'count1'=> $count1,
-            'count2'=> $count2,
-            'count3'=> $count3,
-            'count4'=> $count4,
-            'count5'=> $count5,
-            'count6'=> $count6,
-
-
-        ];
-        return view('livewire.auto-clip',['org'=>$org,'board1'=>$boards]);
+        return view('livewire.auto-clip',['clip'=>$clip]);
     }
     public function mount($id){
-        $this->org_id = $id;
+        $this->clip_id = $id;
     }
-    public function git_total(){
-        $board = OrgBillboard::where('org_id', $this->org_id)->get();
-        $this->total = 0;
-        foreach ($board as $key) {
-            $this->total += ($key->height * $key->width * $key->count *$key->billboard->price);
-        }
+    public function update_clip(){
+        $this->validate([
+            'ad_reseve'=>'min:1|numeric',
+            'clean_reseve'=>'required|numeric|min:0',
+            'local_reseve'=>'required|numeric|min:1',
+            'el_gate_reseve'=>'required|numeric|min:1',
+
+        ]);
+
+        $ed_chip=ClipBoard::find($this->clip_id);
+        $ed_chip->ad_reseve = $this->ad_reseve;
+        $ed_chip->clean_reseve =$this->clean_reseve;
+        $ed_chip->local_reseve=$this->local_reseve;
+        $ed_chip->el_gate_reseve =$this->el_gate_reseve;
+        $ed_chip->edit_admin_id=auth()->guard('admin')->id();
+        $ed_chip->clip_status="مدفوعة";
+        $ed_chip->clean_reseve_date = $this->clean_reseve_date;
+        $ed_chip->ad_reseve_date=$this->ad_reseve_date;
+        $ed_chip->local_reseve_date =$this->local_reseve_date;
+        $ed_chip->el_gate_reseve_date = $this->el_gate_reseve_date;
+        $ed_chip->clean_reseve_note = $this->clean_reseve_note;
+        $ed_chip->ad_reseve_note=$this->ad_reseve_note;
+        $ed_chip->local_reseve_note =$this->local_reseve_note;
+        $ed_chip->el_gate_reseve_note = $this->el_gate_reseve_note;
+        $ed_chip->save();
+        session()->flash('message', 'تم حفظ بيانات الحافظة بنجاح');
+        $org=Org::find($ed_chip->org_id);
+        $org->license_status= 'مرخص';
+        $org->save();
+
     }
 }
