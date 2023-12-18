@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Worker;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -68,30 +69,6 @@ class AuthController extends Controller
 
     }
 
-    public function register(Request $request){
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6',
-        ]);
-
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
-
-        $token = Auth::login($user);
-        return response()->json([
-            'status' => 'success',
-            'message' => 'User created successfully',
-            'user' => $user,
-            'authorisation' => [
-                'token' => $token,
-                'type' => 'bearer',
-            ]
-        ]);
-    }
     public function logout(Request $request)
     {
         $token = $request -> header('auth-token');
@@ -119,6 +96,35 @@ class AuthController extends Controller
             return $this->returnError($ex->getCode(), $ex->getMessage());
         }
 
+    }
+
+    public function reset_password(Request $request){
+        try {
+            $rules = [
+                "old_pass" => "required",
+                "new_pass" => "required",
+            ];
+            $validator = Validator::make($request->all(), $rules);
+
+            if ($validator->fails()) {
+                $code = $this->returnCodeAccordingToInput($validator);
+                return $this->returnValidationError($code, $validator);
+            }
+
+            if (Hash::check($request->old_pass,Auth::guard('worker-api')->user()->password)) {
+                $worker = Worker::find(Auth::guard('worker-api')->user()->id);
+                $worker->password = Hash::make($request->new_pass);
+                $worker->save();
+            } else {
+                return $this->returnError("","كلمة المرور القديمة غير صحيحة");
+            }
+
+            return $this->returnSuccessMessage('تم تغيير كلمة المرور بنجاح');
+
+        }
+        catch (\Exception $ex) {
+            return $this->returnError($ex->getCode(), $ex->getMessage());
+        }
     }
 
 }

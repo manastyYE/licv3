@@ -7,6 +7,8 @@ use App\Models\Office;
 use App\Models\Hood;
 use App\Models\HoodUnit;
 use App\Models\Worker;
+use Illuminate\Support\Facades\Hash;
+
 class Workers extends Component
 {
     public $hood_id;
@@ -43,7 +45,7 @@ class Workers extends Component
         $worker->username = $this->username;
         $worker->phone=$this->phone;
         $worker->directorate_id = auth()->guard('admin')->user()->directorate_id;
-        $worker->password = bcrypt($this->password);
+        $worker->password = Hash::make($this->password);
         $worker->hood_id= $this->hood_id;
         $worker->hood_units=json_encode($this->hood_unit);
         $worker->office_id= $this->office_id;
