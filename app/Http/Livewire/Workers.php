@@ -15,16 +15,14 @@ class Workers extends Component
     public $hood_unit;
     public $office_id;
     public $directorate_id  ;
-
     public $username,$fullname,$phone,$password,$edit_id,$del_id;
 
     public function render()
     {
-        // $hood = Hood::where('directorate_id',auth()->guard('admin')->user()->directorate_id)->get();
         $office = Office::all();
         $hood_units = HoodUnit::all();
         $workers = Worker::all();
-        return view('livewire.workers',['hood' => $hood_units,'office'=>$office,'hood_units'=>$hood_units,'workers'=>$workers]);
+        return view('livewire.workers',['hood_units' => $hood_units,'office'=>$office,'hood_units'=>$hood_units,'workers'=>$workers]);
     }
     public function save()
     {
@@ -34,7 +32,6 @@ class Workers extends Component
             'phone' => 'required|numeric|min:9',
             'password'=>'required|min:8',
             'username'=>'required|unique:workers,username',
-            // 'hood_id'=>'required',
             'hood_unit'=>'required',
             'office_id'=>'required',
 
@@ -47,7 +44,6 @@ class Workers extends Component
         $worker->phone=$this->phone;
         $worker->directorate_id = auth()->guard('admin')->user()->directorate_id;
         $worker->password = Hash::make($this->password);
-        // $worker->hood_id= $this->hood_id;
         $worker->hood_units=json_encode($this->hood_unit);
         $worker->office_id= $this->office_id;
         $worker->save();
@@ -58,7 +54,6 @@ class Workers extends Component
         $this->password = '';
         $this->phone='';
         $this->username='';
-        // $this->hood_id='';
         $this->hood_unit='';
         $this->office_id='';
         //For hide modal after add user success
@@ -71,7 +66,6 @@ class Workers extends Component
         $this->password = '';
         $this->phone='';
         $this->username='';
-        // $this->hood_id='';
         $this->hood_unit='';
         $this->office_id='';
     }
@@ -88,9 +82,7 @@ class Workers extends Component
         $this->username = $worker->username;
         $this->password = $worker->password;
         $this->phone = $worker->phone;
-        // $this->hood_id = $worker->hood_id ;
         $this->hood_unit = json_decode($worker->hood_units);
-
         $this->office_id = $worker->office_id;
 
     }
@@ -109,7 +101,6 @@ class Workers extends Component
         $worker->fullname = $this->fullname;
         $worker->phone = $this->phone;
         $worker->password=$this->password;
-        // $worker->hood_id = $this->hood_id;
         $worker->hood_units = json_encode($this->hood_unit);
         $worker->username = $this->username;
         $worker->office_id = $this->office_id;
@@ -127,8 +118,6 @@ class Workers extends Component
     public function deleteConfirmation($id)
     {
         $this->del_id = $id; //student id
-
-
     }
 
     public function deleteWorkerData()

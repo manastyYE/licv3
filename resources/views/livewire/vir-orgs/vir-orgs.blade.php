@@ -44,6 +44,10 @@
                                     <div class="gridjs-th-content">المسخدم</div>
                                 </th>
 
+                                <th data-column-id="actions" class="gridjs-th">
+                                    <div class="gridjs-th-content">الحالة</div>
+                                </th>
+
                             </tr>
                         </thead>
                         <tbody class="gridjs-tbody">
@@ -65,6 +69,11 @@
                                     <td class="gridjs-td">{{ $p->org_type->name }}</td>
                                     <td class="gridjs-td">{{ $p->street->name }}</td>
                                     <td class="gridjs-td">{{ $p->user->fullname }}</td>
+                                    @if ($p->is_moved)
+                                    <td class="gridjs-td">تم النقل</td>
+                                    @else
+                                    <td class="gridjs-td">لم تنقل </td>
+                                    @endif
 
 
                                 </tr>
