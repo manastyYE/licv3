@@ -31,12 +31,12 @@ class AddOrg extends Component
             'card_number' => 'numeric',
             'street_id' => 'required',
             'building_type_id' => 'required',
-            'personal_card'=>'file|mimes:pdf',
-            'rent_contract'=>'file|mimes:pdf',
-            'ad_board'=>'file|mimes:pdf',
-            'previous_license'=>'file|mimes:pdf',
-            'comm_record'=>'file|mimes:pdf',
-            'outher'=>'file|mimes:pdf',
+            'personal_card'=>'image',
+            'rent_contract'=>'image',
+            'ad_board'=>'image',
+            'previous_license'=>'image',
+            'comm_record'=>'image',
+            'outher'=>'image',
             'isowner'=>'required'
         ];
         if (!$this->rent_contract) {

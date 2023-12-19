@@ -88,8 +88,11 @@ class Workers extends Component
         $this->password = $worker->password;
         $this->phone = $worker->phone;
         $this->hood_id = $worker->hood_id ;
-        $this->hood_unit = $worker->hood_units;
+        $this->hood_unit = json_decode($worker->hood_units);
+
         $this->office_id = $worker->office_id;
+
+        
 
     }
 
@@ -108,7 +111,7 @@ class Workers extends Component
         $worker->phone = $this->phone;
         $worker->password=$this->password;
         $worker->hood_id = $this->hood_id;
-        $worker->hood_units = $this->hood_unit;
+        $worker->hood_units = json_encode($this->hood_unit);
         $worker->username = $this->username;
         $worker->office_id = $this->office_id;
         $worker->save();

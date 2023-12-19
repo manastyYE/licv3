@@ -283,6 +283,8 @@
                                 {{ $message }}
                             </span>
                         @enderror
+                        <div class="grid grid-cols-2 gap-3">
+                        <div>
                         <label class="block">
                             <span>  اسم المستخدم </span>
                             <input wire:model='username'
@@ -294,17 +296,24 @@
                                 {{ $message }}
                             </span>
                         @enderror
-                        <label class="block">
-                            <span> رقم الهاتف </span>
-                            <input wire:model='phone' name="user_phone"
-                                class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
-                                placeholder="  ادخل رقم الهاتف الخاص بالمفتش  " type="text" />
-                        </label>
-                        @error('phone')
-                            <span class="text-tiny+ text-error">
-                                {{ $message }}
-                            </span>
-                        @enderror
+                        </div>
+                        <div>
+                            <label class="block">
+                                <span> رقم الهاتف </span>
+                                <input wire:model='phone' name="user_phone"
+                                    class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
+                                    placeholder="  ادخل رقم الهاتف الخاص بالمفتش  " type="text" />
+                            </label>
+                            @error('phone')
+                                <span class="text-tiny+ text-error">
+                                    {{ $message }}
+                                </span>
+                            @enderror
+                            </div>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-3">
+                        <div>
                         <label class="block">
                             <span> كلمة المرور </span>
                             <input wire:model='password' name="user_password"
@@ -316,6 +325,8 @@
                                 {{ $message }}
                             </span>
                         @enderror
+                        </div>
+                        <div>
                         <label class="block" >
                             <span> المكتب </span>
                             <select wire:model='office_id' class="mt-1.5 " x-init="$el._x_tom = new Tom($el, { sortField: { field: 'text', direction: 'asc' } })">
@@ -328,11 +339,11 @@
                                 @endforelse
                             </select>
                         </label>
-
-
                         @error('office_id')
-                            <span class="text-tiny+ text-error">{{ $message }}</span>
+                        <span class="text-tiny+ text-error">{{ $message }}</span>
                         @enderror
+                    </div>
+                </div>
                         <label class="block" >
                             <span> الحي </span>
                             <select wire:model='hood_id' class="mt-1.5 " x-init="$el._x_tom = new Tom($el, { sortField: { field: 'text', direction: 'asc' } })">
@@ -380,10 +391,11 @@
                     <!-- Modal footer -->
                     <div class="items-center p-4 border-gray-200 rounded-b dark:border-gray-700">
                         <button type="button" x-on:click="show = false"
+                            wire:click='close'
                             class="font-medium btn bg-slate-150 text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90">
                             الغاء
                         </button>
-                        <button type="button" wire:click.prevent='save'
+                        <button type="button" wire:click.prevent='editWorkerData'
                             class="font-medium text-white btn bg-primary hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90">
                             تأكيد
                         </button>
