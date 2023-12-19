@@ -16,16 +16,16 @@ class Worker extends Authenticatable implements JWTSubject
         'fullname',
         'phone',
         'directorate_id',
-        'hood_id',
+        // 'hood_id',
         'hood_units',
         'office_id',
     ];
     public function directorate(){
         return $this->belongsTo(Directorate::class);
     }
-    public function hood(){
-        return $this->belongsTo(Hood::class);
-    }
+    // public function hood(){
+    //     return $this->belongsTo(Hood::class);
+    // }
     public function office(){
         return $this->belongsTo(Office::class);
     }

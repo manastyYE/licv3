@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Hash;
 
 class Workers extends Component
 {
-    public $hood_id;
+    // public $hood_id;
     public $hood_unit;
     public $office_id;
     public $directorate_id  ;
@@ -21,7 +21,7 @@ class Workers extends Component
     {
         $hood = Hood::where('directorate_id',auth()->guard('admin')->user()->directorate_id)->get();
         $office = Office::all();
-        $hood_units = HoodUnit::where('hood_id',$this->hood_id)->get();
+        $hood_units = HoodUnit::where('hood_id',$this->hood_id)->all();
         $workers = Worker::all();
         return view('livewire.workers',['hood'=>$hood,'office'=>$office,'hood_units'=>$hood_units,'workers'=>$workers]);
     }
@@ -33,7 +33,7 @@ class Workers extends Component
             'phone' => 'required|numeric|min:9',
             'password'=>'required|min:8',
             'username'=>'required|unique:workers,username',
-            'hood_id'=>'required',
+            // 'hood_id'=>'required',
             'hood_unit'=>'required',
             'office_id'=>'required',
 
@@ -46,7 +46,7 @@ class Workers extends Component
         $worker->phone=$this->phone;
         $worker->directorate_id = auth()->guard('admin')->user()->directorate_id;
         $worker->password = Hash::make($this->password);
-        $worker->hood_id= $this->hood_id;
+        // $worker->hood_id= $this->hood_id;
         $worker->hood_units=json_encode($this->hood_unit);
         $worker->office_id= $this->office_id;
         $worker->save();
