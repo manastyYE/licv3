@@ -236,8 +236,8 @@ class UserDataContoller extends Controller
                 'success' => true,
                 'errNum' => "S000",
                 'msg' => "",
-                'data' => Auth::guard('worker-api')->user()->id,
-                'org_type' => $$org->user_id,
+                'user' => Auth::guard('worker-api')->user()->id,
+                'org_id' => $org->user_id,
             ]);
             if (Auth::guard('worker-api')->user()->id != $org->user_id) {
                 return $this->returnError("E000","لا تمتلك الصلاحية");
