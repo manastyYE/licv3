@@ -232,11 +232,17 @@ class UserDataContoller extends Controller
                 return $this->returnValidationError($code, $validator);
             }
             $org = VirOrgs::find($request->billboard_id);
+            return response()->json([
+                'success' => true,
+                'errNum' => "S000",
+                'msg' => "",
+                'data' => Auth::guard('worker-api')->user()->id,
+                'org_type' => $$org->user_id,
+            ]);
             if (Auth::guard('worker-api')->user()->id != $org->user_id) {
                 return $this->returnError("E000","لا تمتلك الصلاحية");
             }
 
-            //Add Student Data
             $orgbillboard = new VirOrgBillboard();
             $orgbillboard->vir_org_id = $request->vir_org_id;
             $orgbillboard->billboard_id = $request->billboard_id;
