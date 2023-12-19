@@ -22,7 +22,7 @@ class Workers extends Component
         $office = Office::all();
         $hood_units = HoodUnit::all();
         $workers = Worker::all();
-        return view('livewire.workers',['hood_units' => $hood_units,'office'=>$office,'hood_units'=>$hood_units,'workers'=>$workers]);
+        return view('livewire.workers',['hood_units' => $hood_units,'office'=>$office,'workers'=>$workers]);
     }
     public function save()
     {
