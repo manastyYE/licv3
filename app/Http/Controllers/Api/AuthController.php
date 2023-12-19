@@ -42,6 +42,8 @@ class AuthController extends Controller
 
             $aqel = Auth::guard('worker-api')->user();
             $aqel->api_token = $token;
+            $aqel->direct_name = $aqel->directorate->name;
+            $aqel->office_name = $aqel->office->name;
             //return token
             return $this->returnData('data', $aqel);
 

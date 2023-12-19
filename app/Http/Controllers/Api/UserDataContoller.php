@@ -26,7 +26,13 @@ class UserDataContoller extends Controller
             $Array = json_decode($w->hood_units);
             $street = Street::whereIn('hood_unit_id', $Array)->get();
 //            $street = Street::take(5)->get();
-            $org_type = OrgType::all();
+            $office_id = Auth::guard('worker-api')->user()->office_id;
+            if ($office_id == 4) {//الاشغال
+                $org_type = OrgType::all();
+            } else {
+                $org_type = OrgType::where('office_id',$office_id);
+            }
+
             return response()->json([
                 'success' => true,
                 'errNum' => "S000",
@@ -41,7 +47,7 @@ class UserDataContoller extends Controller
     }
     public function get_orgs(){
         try{
-            $orgs = Org::select('id','org_name')->get();
+            $orgs = Org::select('id','org_name','license_status','owner_name')->get();
             return $this->returnData('data',$orgs);
         }
         catch (\Exception $ex) {
@@ -50,7 +56,7 @@ class UserDataContoller extends Controller
     }
     public function get_vir_orgs(){
         try{
-            $orgs = VirOrgs::where('user_id',Auth::guard('worker-api')->user()->id)->select('id','org_name')->get();
+            $orgs = VirOrgs::where('user_id',Auth::guard('worker-api')->user()->id)->select('id','org_name','owner_name','is_moved')->get();
             return $this->returnData('data',$orgs);
         }
         catch (\Exception $ex) {
@@ -72,11 +78,12 @@ class UserDataContoller extends Controller
             }
             $id = $request->id;
             $org = Org::find($id);
-            $org->building_type_name = $org->building_type->name;
+            // $org->building_type_name = $org->building_type->name;
             $org->street_name = $org->street->name;
             $org->org_type_name = $org->org_type->name;
+            $board = OrgBillboard::with('billboard')->where('org_id',$id)->get();
+            $org->billboard = $board;
             return $this->returnData('data',$org);
-
         }
         catch (\Exception $ex) {
             return $this->returnError($ex->getCode(), $ex->getMessage());
