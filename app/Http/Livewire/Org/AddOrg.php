@@ -31,12 +31,12 @@ class AddOrg extends Component
             'card_number' => 'numeric',
             'street_id' => 'required',
             'building_type_id' => 'required',
-            'personal_card'=>'image',
-            'rent_contract'=>'image',
-            'ad_board'=>'image',
-            'previous_license'=>'image',
-            'comm_record'=>'image',
-            'outher'=>'image',
+            'personal_card'=>'image|mimes:jpeg,png,jpg,gif,svg',
+            'rent_contract'=>'image|mimes:jpeg,png,jpg,gif,svg',
+            'ad_board'=>'image|mimes:jpeg,png,jpg,gif,svg',
+            'previous_license'=>'image|mimes:jpeg,png,jpg,gif,svg',
+            'comm_record'=>'image|mimes:jpeg,png,jpg,gif,svg',
+            'outher'=>'image|mimes:jpeg,png,jpg,gif,svg',
             'isowner'=>'required'
         ];
         if (!$this->rent_contract) {
@@ -310,6 +310,8 @@ class AddOrg extends Component
 
 
             session()->flash('message', 'تمت عملية اضافة المنشأة   ');
+            return redirect()->to('/admin/org')->with('success', 'تمت اضافة المنشأة بنجاح ');
+
     }
     public function rest_inputs(){
 

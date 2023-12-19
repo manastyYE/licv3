@@ -15,7 +15,7 @@ class Workers extends Component
     public $hood_unit;
     public $office_id;
     public $directorate_id  ;
-    public $hood_id;
+
     public $username,$fullname,$phone,$password,$edit_id,$del_id;
 
     public function render()
@@ -71,7 +71,7 @@ class Workers extends Component
         $this->password = '';
         $this->phone='';
         $this->username='';
-        $this->hood_id='';
+        // $this->hood_id='';
         $this->hood_unit='';
         $this->office_id='';
     }
@@ -88,7 +88,7 @@ class Workers extends Component
         $this->username = $worker->username;
         $this->password = $worker->password;
         $this->phone = $worker->phone;
-        $this->hood_id = $worker->hood_id ;
+        // $this->hood_id = $worker->hood_id ;
         $this->hood_unit = json_decode($worker->hood_units);
 
         $this->office_id = $worker->office_id;
@@ -109,7 +109,7 @@ class Workers extends Component
         $worker->fullname = $this->fullname;
         $worker->phone = $this->phone;
         $worker->password=$this->password;
-        $worker->hood_id = $this->hood_id;
+        // $worker->hood_id = $this->hood_id;
         $worker->hood_units = json_encode($this->hood_unit);
         $worker->username = $this->username;
         $worker->office_id = $this->office_id;
