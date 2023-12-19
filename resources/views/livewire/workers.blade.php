@@ -344,7 +344,7 @@
                         @enderror
                     </div>
                 </div>
-                        <label class="block" >
+                        {{-- <label class="block" >
                             <span> الحي </span>
                             <select wire:model='hood_id' class="mt-1.5 " x-init="$el._x_tom = new Tom($el, { sortField: { field: 'text', direction: 'asc' } })">
                                 <option value=""> . اختر الحي </option>
@@ -360,7 +360,7 @@
 
                         @error('hood_id')
                             <span class="text-tiny+ text-error">{{ $message }}</span>
-                        @enderror
+                        @enderror --}}
 
             <label class="block mt-3 mbt">
                 <span>وحدات الجوار</span>
