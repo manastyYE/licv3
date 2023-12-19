@@ -7,9 +7,18 @@ use Livewire\Component;
 use App\Models\Org;
 use App\Models\OrgBillboard;
 use App\Models\ClipBoard;
+use App\Models\Street;
+use App\Models\HoodUnit;
+use App\Models\OrgType;
+use App\Models\BuildingType;
+use Livewire\WithFileUploads;
 
 class ShowOrgDtl extends Component
 {
+    use WithFileUploads;
+    public $org_types,$building_types,$streets;
+
+    public $hood_unit_no;
     public $org_id;
     public $el_gate,$local_fee;
     public $billboard_id, $height, $wideth, $count, $edit_billboard_id,$del_billboard_id;
@@ -19,6 +28,16 @@ class ShowOrgDtl extends Component
         $org=Org::find($this->org_id);
         $bill_board = Billboard::all();
         $clip =ClipBoard::where('org_id',$this->org_id)->orderBy('created_at','desc')->get();
+        if ($this->street_id) {
+
+            $hood_unit = Street::find($this->street_id);
+            $this->hood_unit_id = $hood_unit->hood_unit_id;
+            $hood_unit_no=HoodUnit::find($this->hood_unit_id);
+            $this->hood_unit_no=$hood_unit_no->no;
+        } else {
+            $this->hood_unit_id = '';
+        }
+        $this->getselect();
         return view('livewire.show-org-dtl',['org'=>$org,'type'=>$org_billBoard,'bill'=>$bill_board,'clip'=>$clip]);
     }
     public function dowmloadpdf($pdf){
@@ -227,6 +246,79 @@ class ShowOrgDtl extends Component
         session()->flash('message', 'تم انشاء الحافظة  بنجاح');
 
         $this->dispatchBrowserEvent('close-modal');
+
+
+    }
+    public function getselect()
+    {
+        $this->org_types = OrgType::all();
+        $this->building_types = BuildingType::all();
+        $this->streets = Street::all();
+    }
+    public $org_name,$owner_name,$owner_phone,$owner_img,$card_type,$card_number,$building_type_id,$isowner
+    ,$org_type_id,$street_id,$fire_ext,$hood_unit_id;
+    public function set_org_info(){
+        $org=Org::find($this->org_id);
+        $this->org_name=$org->org_name;
+        $this->owner_name = $org->owner_name;
+        $this->owner_phone =$org->owner_phone;
+        // $this->owner_img = $org->owner_img;
+        $this->card_type =$org->card_type;
+        $this->card_number =$org->card_number;
+        $this->building_type_id  = $org->building_type_id;
+        $this->isowner =$org->isowner;
+        $this->org_type_id =$org->org_type_id;
+        $this->street_id =$org->street_id;
+        $this->hood_unit_id = $org->street->hood_unit_id;
+        $this->fire_ext =$org->fire_ext;
+
+    }
+    public function update_org_info(){
+
+
+
+        $this->validate([
+            'org_name'=>'required',
+            'owner_phone'=>'numeric',
+            'org_type_id'=>'required',
+            'street_id'=>'required',
+            'fire_ext'=>'required',
+
+        ]);
+        if ($this->owner_img){
+            // تحميل ملف الصورة
+            $owner_img_withex = $this->owner_img->getClientOriginalName();
+            $owner_img_name = pathinfo($owner_img_withex, PATHINFO_FILENAME);
+            $owner_img__ex = $this->owner_img->getClientOriginalExtension();
+            $owner_img_tostore =   $owner_img_name . '.' . $owner_img__ex;
+
+
+            //رفع ملف الصورة
+
+            $pathimg = 'public/uploads/orgs/' . $this->org_name  . 'owner_img ' . $owner_img_tostore;
+            $this->owner_img->storeAs($pathimg);
+            $rules['owner_img'] = 'storage/uploads/orgs/' . $this->org_name  . 'owner_img ' . $owner_img_tostore;
+
+        }
+        $org = Org::find($this->org_id);
+        $org->org_name =$this->org_name;
+        $org->owner_name = $this->owner_name;
+        $org->owner_phone =$this->owner_phone;
+        $org->owner_img = $this->owner_img ?  $rules['owner_img']: $org->owner_img;
+        $org->card_type =$this->card_type;
+        $org->card_number = $this->card_number;
+        $org->building_type_id =$this->building_type_id;
+        $org->isowner = $this->isowner;
+        $org->org_type_id =$this->org_type_id;
+        $org->street_id=$this->street_id;
+        $org->hood_unit_id =$this->hood_unit_id;
+        $org->fire_ext = $this->fire_ext;
+        $org->save();
+
+        return redirect()->to('/admin/org/show/'.$this->org_id)->with('success', ' تم تعديل بينات المنشأة بنجاح' );
+
+
+
 
 
     }

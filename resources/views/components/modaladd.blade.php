@@ -1,6 +1,6 @@
 <div>
     @props(['title','name'])
-    <div class="fixed inset-0 z-[100] flex flex-col items-center justify-center overflow-hidden px-4 py-6 sm:px-5"
+    <div class="fixed inset-0 z-[100] flex flex-col items-center justify-center overflow-y-auto px-4 py-6 sm:px-5"
      x-data="{show : false ,name : '{{ $name }}'}" x-show="show"
     x-on:open-modal.window="show = ($event.detail.name === name)" x-on:close-modal.window="show = false"
     x-on:close-modal.window="show = false" x-on:keydown.escape.window="show = false" style="display: none;"
