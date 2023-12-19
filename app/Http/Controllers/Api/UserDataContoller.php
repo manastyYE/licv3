@@ -231,14 +231,7 @@ class UserDataContoller extends Controller
                 $code = $this->returnCodeAccordingToInput($validator);
                 return $this->returnValidationError($code, $validator);
             }
-            $org = VirOrgs::find($request->billboard_id);
-            return response()->json([
-                'success' => true,
-                'errNum' => "S000",
-                'msg' => "",
-                'user' => Auth::guard('worker-api')->user()->id,
-                'org_id' => $org->user_id,
-            ]);
+            $org = VirOrgs::find($request->vir_org_id);
             if (Auth::guard('worker-api')->user()->id != $org->user_id) {
                 return $this->returnError("E000","لا تمتلك الصلاحية");
             }
