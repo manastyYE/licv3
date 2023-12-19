@@ -43,6 +43,7 @@ return new class extends Migration
             $table->string('log_y')->nullable();
             $table->string('aire_drow')->nullable();
             $table->string('fire_ext',20)->default('لا');
+            $table->string('license_status')->default('غير مرخص');
 
             $table->timestamps();
         });

@@ -16,8 +16,8 @@ return new class extends Migration
         Schema::create('accounts', function (Blueprint $table) {
             $table->id();
             $table->string('fhather_account')->nullable();
-            $table->string('acc_num');
-            $table->string('acc_name');
+            $table->string('acc_num')->unique();
+            $table->string('acc_name')->unique();
             $table->unsignedTinyInteger('acc_national')->comment('طبيعة الحساب  0 مدين 1 دائن ');
             $table->timestamps();
         });

@@ -236,11 +236,13 @@
         <div x-data="pages.tables.initGridTableExapmle">
             <div role="complementary" class="gridjs gridjs-container" style="width: 100%;">
                 <div class="gridjs-head">
-                    <div class="gridjs-search"><button type="button" x-data
+                    <div class="gridjs-search">
+                        <button type="button" x-data
                             x-on:click="$dispatch('open-modal',{name:'add-org-board-modal'})"
                             class="font-medium btn bg-slate-150 text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90">
                             اضافة لوحة جديدة
-                        </button></div>
+                        </button>
+                    </div>
                 </div>
                 <div class="gridjs-wrapper" style="height: auto;">
                     <table role="grid" class="gridjs-table" style="height: auto;">
@@ -343,52 +345,94 @@
     </div>
     <br>
     <div>
-        الرسوم الاضافية
+        <h3>
+            الحافظة الالية
+        </h3>
         <div x-data="pages.tables.initGridTableExapmle">
-            <div role="complementary" class="gridjs gridjs-container" style="width: 100%;">
 
+            <div role="complementary" class="gridjs gridjs-container" style="width: 100%;">
+                <div class="gridjs-head">
+                    <div class="gridjs-search">
+                        <button type="button" x-data
+                            x-on:click="$dispatch('open-modal',{name:'add-org-clip-modal'})"
+                            class="font-medium btn bg-slate-150 text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90">
+                            انشاء حافظة
+                        </button>
+                    </div>
+                </div>
                 <div class="gridjs-wrapper" style="height: auto;">
                     <table role="grid" class="gridjs-table" style="height: auto;">
                         <thead class="gridjs-thead">
                             <tr class="gridjs-tr">
-
+                                <th class="gridjs-th ">
+                                    <div class="gridjs-th-content">#</div>
+                                </th>
                                 <th data-column-id="name" class="gridjs-th">
-                                    <div class="gridjs-th-content"> رسوم محلية </div>
+                                    <div class="gridjs-th-content">  الرقم الالي </div>
                                 </th>
 
                                 <th data-column-id="email" class="gridjs-th">
-                                    <div class="gridjs-th-content"> رسوم البوابة الالكترونية </div>
+                                    <div class="gridjs-th-content"> الحالة </div>
+                                </th>
+
+                                <th data-column-id="actions" class="gridjs-th">
+                                    <div class="gridjs-th-content"> تاريخ الانشاء </div>
                                 </th>
 
 
-
-
-
-
+                                <th data-column-id="actions" class="gridjs-th">
+                                    <div class="gridjs-th-content"> أنشأها المستخدم </div>
+                                </th>
                             </tr>
                         </thead>
                         <tbody class="gridjs-tbody">
+                            <?php $i = 0; ?>
+                            @if ($clip->count() > 0)
+                                @foreach ($clip as $p)
+                                    <?php $i++; ?>
+                                    <a href="/admin/org/clip/{{ $p->id }}">
+                                    <tr class="gridjs-tr">
+
+                                            <span>
+                                            <td class="gridjs-td"><span><span
+                                                class="mx-2">{{ $i }}</span></span></td>
+
+
+                                            <td class="gridjs-td">
+                                                <a href="/admin/org/clip/{{ $p->id }}">
+                                                    {{ $p->id }}
+                                                </a>
+                                            </td>
+                                            <td class="gridjs-td">{{ $p->clip_status }}</td>
+
+                                            <td class="gridjs-td">{{ $p->created_at }}</td>
+                                            <td class="gridjs-td">{{ $p->admin->fullname }}</td>
+                                            </span>
 
 
 
 
-                            <tr class="gridjs-tr">
-
-                                <td class="gridjs-td"><span><span
-                                            class="font-medium text-slate-700 dark:text-navy-100">
-                                            <input {{-- wire:model='name' --}}
-                                                class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
-                                                placeholder="  ادخل الرسوم المحلية هنا  ...  " type="text" />
-                                        </span></span>
-                                </td>
-
-                                <td class="gridjs-td">
-                                    <input {{-- wire:model='name' --}}
-                                        class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
-                                        placeholder=" ادخل رسوم البوابة الالكترونية  ...  " type="text" />
-                                </td>
-
-
+                                        {{-- <td class="gridjs-td"><span>
+                                                <div class="flex justify-center space-x-2">
+                                                    <button type="button" wire:click='setname({{ $p->id }})'
+                                                        x-data
+                                                        x-on:click="$dispatch('open-modal',{name:'edit-org-billboard-modal'})"
+                                                        class="w-8 h-8 p-0 btn text-info hover:bg-info/20 focus:bg-info/20 active:bg-info/25">
+                                                        <i class="fa fa-edit"></i>
+                                                    </button>
+                                                    <button type="button"
+                                                        wire:click='deleteConfirmation({{ $p->id }})' x-data
+                                                        x-on:click="$dispatch('open-modal',{name:'del-org-billboard-modal'})"
+                                                        class="w-8 h-8 p-0 btn text-error hover:bg-error/20 focus:bg-error/20 active:bg-error/25">
+                                                        <i class="fa fa-trash- "></i>
+                                                    </button>
+                                                </div>
+                                            </span>
+                                        </td> --}}
+                                    </tr>
+                                </a>
+                                @endforeach
+                            @endif
 
 
                         </tbody>
@@ -396,21 +440,22 @@
                 </div>
                 <div class="gridjs-footer">
                     <div class="gridjs-pagination">
-                        <div role="status" aria-live="polite" class="gridjs-summary" title="Page 1 of 2">
-
+                        <div role="status" aria-live="polite" class="gridjs-summary" title="Page 1 of 2">Showing
+                            <b>1</b> to <b>10</b> of <b>15</b> results
                         </div>
-                        <div class="gridjs-pages">
-                            <a href="/admin/org/clip/{{ $org->id }}"
-                                class="font-medium border btn border-primary text-primary hover:bg-primary hover:text-white focus:bg-primary focus:text-white active:bg-primary/90 dark:border-accent dark:text-accent-light dark:hover:bg-accent dark:hover:text-white dark:focus:bg-accent dark:focus:text-white dark:active:bg-accent/90">
-                                عرض الحافظة
-                            </a>
-                        </div>
+                        <div class="gridjs-pages"><button tabindex="0" role="button" disabled=""
+                                title="Previous" aria-label="Previous" class="">Previous</button><button
+                                tabindex="0" role="button" class="gridjs-currentPage" title="Page 1"
+                                aria-label="Page 1">1</button><button tabindex="0" role="button" class=""
+                                title="Page 2" aria-label="Page 2">2</button><button tabindex="0" role="button"
+                                title="Next" aria-label="Next" class="">Next</button></div>
                     </div>
                 </div>
                 <div id="gridjs-temp" class="gridjs-temp"></div>
             </div>
         </div>
     </div>
+
     <div wire:ignore.self>
         <x-modaladd title="إضافة  لوحة لمنشأة{{ $org->org_name }} " name="add-org-board-modal">
             @slot('body')
@@ -497,6 +542,69 @@
             @endslot --}}
         </x-modaladd>
     </div>
+
+    <div wire:ignore.self>
+        <x-modaladd title="إضافة  لوحة لمنشأة{{ $org->org_name }} " name="add-org-clip-modal">
+            @slot('body')
+                {{-- <x-slot:body> --}}
+                <form>
+                    <div class="p-2 space-y-6">
+                        <label class="block">
+                            <span> الرسوم المحلية </span>
+                            <input wire:model='local_fee'
+                                class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
+                                placeholder=" ادخل الرسوم المحلية" type="text" />
+                        </label>
+                        @error('local_fee')
+                            <span class="text-tiny+ text-error">
+                                {{ $message }}
+                            </span>
+                        @enderror
+                        <label class="block">
+                            <span> رسوم البوابة الالكترونية </span>
+                            <input wire:model='el_gate'
+                                class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
+                                placeholder="ادخل رسوم البوابة الالكترونية" type="text" />
+                        </label>
+                        @error('el_gate')
+                            <span class="text-tiny+ text-error">
+                                {{ $message }}
+                            </span>
+                        @enderror
+
+
+
+
+                    </div>
+
+                    <!-- Modal footer -->
+                    <div class="items-center p-4 border-gray-200 rounded-b dark:border-gray-700">
+                        <button type="button" data-dismiss="modal"
+                            class="font-medium btn bg-slate-150 text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90">
+                            الغاء
+                        </button>
+                        <button type="button" wire:click.prevent='storeClipData'
+                            class="font-medium text-white btn bg-primary hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90">
+                            حفظ
+                        </button>
+                    </div>
+
+                </form>
+                <div>
+                    @if (session('sec'))
+                        <span class="text-xs text-green-500">{{ session('sec') }}</span>
+                    @endif
+                </div>
+
+            @endslot
+            {{--
+            </x-slot:body> --}}
+            {{-- @slot('footer')
+
+            @endslot --}}
+        </x-modaladd>
+    </div>
+
     <div wire:ignore.self>
 
         <x-modaladd title="تعديل  لوحة لمنشأة{{ $org->org_name }} " name="edit-org-board-modal">

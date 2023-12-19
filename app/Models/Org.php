@@ -33,6 +33,7 @@ class Org extends Model
         'outher',//مواافقة الجهة المختصة
         'log_x',
         'log_y',
+        'license_status',
 
     ];
 
