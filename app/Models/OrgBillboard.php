@@ -12,11 +12,11 @@ class OrgBillboard extends Model
         'org_id',
         'billboard_id',
         'height',
-        'wideth',
+        'width',
         'count',
     ];
     public function billboard(){
         return $this->belongsTo(Billboard::class);
     }
-    
+
 }

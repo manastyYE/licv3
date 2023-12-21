@@ -12,7 +12,7 @@ class VirOrgBillboard extends Model
         'vir_org_id',
         'billboard_id',
         'height',
-        'wideth',
+        'width',
         'count',
     ];
     public function billboard(){

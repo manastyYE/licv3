@@ -341,7 +341,7 @@
         </div>
     </div>
     <a
-    {{-- href="/admin/org/clip/{{$org->id}}" --}}
+    href="/admin/vir-to-orgs/{{$org->id}}"
         class="font-medium border btn border-primary text-primary hover:bg-primary hover:text-white focus:bg-primary focus:text-white active:bg-primary/90 dark:border-accent dark:text-accent-light dark:hover:bg-accent dark:hover:text-white dark:focus:bg-accent dark:focus:text-white dark:active:bg-accent/90">
         اكمال بيانات المنشأة
     </a>

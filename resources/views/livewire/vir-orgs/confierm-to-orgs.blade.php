@@ -30,7 +30,7 @@
 
     </div>
     @endif
-    <form wire:submit.prevent='reloadPage'>
+    <form wire:submit.prevent='store'>
         @csrf
         <span style="font-size: 22px" class="mt-3 mb-3 font-semibold text-slate-800 dark:text-navy-100">بيانات المنشأة
             ومالكها</span>

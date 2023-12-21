@@ -30,7 +30,7 @@ class UserDataContoller extends Controller
             if ($office_id == 4) {//الاشغال
                 $org_type = OrgType::all();
             } else {
-                $org_type = OrgType::where('office_id',$office_id);
+                $org_type = OrgType::where('office_id',$office_id)->get();
             }
 
             return response()->json([
@@ -47,6 +47,13 @@ class UserDataContoller extends Controller
     }
     public function get_orgs(){
         try{
+            $office_id = Auth::guard('worker-api')->user()->office_id;
+            if ($office_id == 4) {//الاشغال
+                $orgs = Org::select('id','org_name','license_status','owner_name')->get();
+            } else {
+                $org_type_ids = OrgType::where('office_id',$office_id)->pluck('id');
+                Org::whereIn('org_type_id', $org_type_ids)->select('id','org_name','license_status','owner_name')->get();
+            }
             $orgs = Org::select('id','org_name','license_status','owner_name')->get();
             return $this->returnData('data',$orgs);
         }
@@ -185,7 +192,7 @@ class UserDataContoller extends Controller
 
                     if ($file_put == false) {
                         return response()->json([
-                            'result' => false,
+                            'success' => false,
                             'message' => "File uploading error",
                             'path' => ""
                         ]);
@@ -195,7 +202,7 @@ class UserDataContoller extends Controller
             }
             catch(\Exception $ex){
                 return response()->json([
-                    'result' => false,
+                    'success' => false,
                     'message' => "File uploading error",
                 ]);
             }
@@ -217,11 +224,14 @@ class UserDataContoller extends Controller
 
     public function insert_billboard(Request $request){
         try{
+            if ( Auth::guard('worker-api')->user()->office_id != 4) {
+                return $this->returnError("E001","لا تمتلك الصلاحية");
+            }
             $rules = [
                 'vir_org_id' => 'required',
                 'billboard_id' => 'required',
                 'height' => 'required',
-                'wideth'=>'required',
+                'width'=>'required',
                 'count'=>'required',
             ];
 

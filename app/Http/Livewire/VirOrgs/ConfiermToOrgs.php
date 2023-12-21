@@ -6,8 +6,10 @@ use Livewire\Component;
 use App\Models\BuildingType;
 use App\Models\HoodUnit;
 use App\Models\Org;
+use App\Models\OrgBillboard;
 use App\Models\OrgType;
 use App\Models\Street;
+use App\Models\VirOrgBillboard;
 use App\Models\VirOrgs;
 use Livewire\WithFileUploads;
 
@@ -18,11 +20,12 @@ class ConfiermToOrgs extends Component
     public $streets,$building_types,$org_types;
     public $vier_org_id;
     public $org_name,$owner_name,$owner_phone,$owner_img
-    ,$card_type,$card_number,$building_type_id,$iowner,
+    ,$card_type,$card_number,$building_type_id,$isowner,
     $org_type_id,$hood_unit_id,$street_id,$personal_card,
     $rent_contract,$ad_board,$previous_license,$comm_record,
     $parcode,$address,$log_x,$log_y,$fire_ext,$start_date,
     $outher,$hood_unit_no;
+    public $vir_org_billboard;
 
     public function render()
     {
@@ -51,6 +54,7 @@ class ConfiermToOrgs extends Component
         $this->log_x=$vir_org->log_x;
         $this->log_y=$vir_org->log_y;
         $this->owner_img=$vir_org->org_image;
+        $this->vir_org_billboard = VirOrgBillboard::where('vir_org_id',$vir_org->id)->get();
 
 
     }
@@ -61,7 +65,7 @@ class ConfiermToOrgs extends Component
         $this->streets = Street::all();
     }
     public function store(){
-
+        // dd($this->vir_org_billboard);
 
         $rules = [
             'org_name' => 'required',
@@ -325,7 +329,7 @@ class ConfiermToOrgs extends Component
     //     }
 
 
-    Org::create(
+    $org = Org::create(
             [
                 'org_name'=>$this->org_name,
                 'owner_name'=>$this->owner_name,
@@ -348,6 +352,17 @@ class ConfiermToOrgs extends Component
                 'outher'=>$this->outher ? $rules['outher'] :null,
             ]
             );
+            if ($this->vir_org_billboard) {
+                foreach ($this->vir_org_billboard as $value) {
+                    OrgBillboard::create([
+                        'org_id' => $org->id,
+                        'billboard_id' => $value->billboard_id,
+                        'height' => $value->height,
+                        'width' => $value->width,
+                        'count' => $value->count,
+                    ]);
+                }
+            }
         // $this->rest_inputs();
 
 
