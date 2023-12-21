@@ -30,7 +30,7 @@ return new class extends Migration
             $table->string('org_image')->nullable();
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('workers')->onDelete('restrict');
-            $table->boolean('is_moved')->default(false);//هل تم النقل الى جدول المنشئات
+            $table->tinyInteger('is_moved')->default(0);//هل تم النقل الى جدول المنشئات
             $table->timestamps();
         });
     }
