@@ -8,20 +8,27 @@ use App\Models\Hood;
 use App\Models\HoodUnit;
 use App\Models\Worker;
 use Illuminate\Support\Facades\Hash;
+use Livewire\WithPagination;
 
 class Workers extends Component
 {
+    use WithPagination;
     // public $hood_id;
     public $hood_unit;
     public $office_id;
     public $directorate_id  ;
     public $username,$fullname,$phone,$password,$edit_id,$del_id;
+    public $search;
 
     public function render()
     {
         $office = Office::all();
         $hood_units = HoodUnit::all();
-        $workers = Worker::all();
+        $workers = $this->search ? Worker::orderBy('created_at','desc')
+        ->where('fullname','like','%'.$this->search . '%')
+        ->orWhere('phone','like','%'.$this->search . '%')
+        ->orwhere('username','like','%'.$this->search . '%')
+        ->paginate(8) : Worker::orderBy('created_at','desc')->paginate(8);
         return view('livewire.workers',['hood_units' => $hood_units,'office'=>$office,'workers'=>$workers]);
     }
     public function save()

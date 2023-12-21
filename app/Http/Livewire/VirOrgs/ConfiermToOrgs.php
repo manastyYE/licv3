@@ -23,6 +23,7 @@ class ConfiermToOrgs extends Component
     $rent_contract,$ad_board,$previous_license,$comm_record,
     $parcode,$address,$log_x,$log_y,$fire_ext,$start_date,
     $outher,$hood_unit_no;
+    public $isowner;
 
     public function render()
     {
@@ -37,6 +38,11 @@ class ConfiermToOrgs extends Component
             $this->hood_unit_id = '';
         }
         return view('livewire..vir-orgs.confierm-to-orgs');
+    }
+    public function reloadPage()
+    {
+        $this->store();
+        $this->emit('store');
     }
     public function mount($id){
         $this->vier_org_id = $id;
@@ -79,7 +85,6 @@ class ConfiermToOrgs extends Component
             'previous_license'=>'file|mimes:pdf',
             'comm_record'=>'file|mimes:pdf',
             'outher'=>'file|mimes:pdf',
-            'isowner'=>'required'
         ];
         if (!$this->rent_contract) {
             unset($rules['rent_contract']);
@@ -349,8 +354,13 @@ class ConfiermToOrgs extends Component
             ]
             );
         // $this->rest_inputs();
+        $vir =VirOrgs::find($this->vier_org_id);
+        $vir->is_moved = 1;
+        $vir->save();
 
 
-            session()->flash('message', 'تمت عملية اضافة المنشأة   ');
+
+            return redirect()->to('/admin/org/')->with('success','تمت عملية اكمال بيانات المنشاة وحفظها ');
     }
+
 }
