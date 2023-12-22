@@ -11,7 +11,7 @@
         <div x-data="pages.tables.initGridTableExapmle">
             <div role="complementary" class="gridjs gridjs-container" style="width: 100%;">
                 <div class="gridjs-head">
-                    <div class="gridjs-search"><input type="search" placeholder="ابحث من هنا..."
+                    <div class="gridjs-search"><input type="search" wire:model='search' placeholder="ابحث من هنا..."
                             aria-label="ابحث من هنا..." class="gridjs-input gridjs-search-input"></div>
                 </div>
                 <div class="gridjs-wrapper" style="height: auto;">
@@ -71,8 +71,8 @@
                 </div>
                 <div class="gridjs-footer">
                     <div class="gridjs-pagination">
-                        <div role="status" aria-live="polite" class="gridjs-summary" title="Page 1 of 2">Showing
-                            <b>1</b> to <b>10</b> of <b>15</b> results
+                        <div role="status" aria-live="polite"  class="" title="Page 1 of 2">
+
                         </div>
                         <div class="gridjs-pages"><button tabindex="0" role="button" disabled="" title="Previous"
                                 aria-label="Previous" class="">Previous</button><button tabindex="0" role="button"
@@ -83,7 +83,11 @@
                 </div>
                 <div id="gridjs-temp" class="gridjs-temp"></div>
             </div>
+
         </div>
+
+            {{ $type->links() }}
+
     </div>
     <div wire:ignore.self>
         <x-modaladd title="إضافة  شارع جديد " name="add-street-modal">

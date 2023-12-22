@@ -80,7 +80,7 @@
 
                                 @if($owner_img )
                                 <div class="w-24 h-24 rounded-full avatar">
-                                    <img class="" src="{{ $owner_img->temporaryUrl()   }}" alt="avatar" />
+                                    <img class="" src="{{ asset($owner_img)   }}" alt="avatar" />
                                 </div>
                                 @else
                                 <div class="items-center w-24 h-24 border-2 ">
@@ -291,7 +291,7 @@
 
                 <label class="block">
                     <span> هل هو مالك المبنى </span>
-                    <select name="isowner" id="isowner" wire:model.defer='isowner'
+                    <select name="isowner" id="isowner" wire:model='isowner'
                         placeholder=".......  هل هو مالك المبنى   ..."
                         class="form-select mt-1.5 w-full rounded-lg border border-slate-300 bg-white px-3 py-2 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:bg-navy-700 dark:hover:border-navy-400 dark:focus:border-accent">
                         <option value="">اختر </option>

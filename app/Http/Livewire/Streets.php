@@ -5,12 +5,17 @@ namespace App\Http\Livewire;
 use App\Models\HoodUnit;
 use App\Models\Street;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class Streets extends Component
 {
+    use WithPagination;
+    public $search;
     public function render()
     {
-        $street=Street::where('directorate_id',auth()->guard('admin')->user()->directorate_id)->get();
+        $street=$this->search ? Street::where('directorate_id',auth()->guard('admin')->user()->directorate_id)
+        ->where('name','like','%'.$this->search . '%')->paginate(8)
+        : Street::where('directorate_id',auth()->guard('admin')->user()->directorate_id)->paginate(8);
 
         $hood_units=HoodUnit::where('directorate_id',auth()->guard('admin')->user()->directorate_id)->get();
         return view('livewire.streets',['type'=>$street,'hood_units'=>$hood_units]);

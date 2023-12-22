@@ -42,6 +42,6 @@ $addrees,$start_date,$fire_ext,$outher,$log_x,$log_y,$license_status;
         $this->ad_board=$org->ad_board;
         $this->previous_license=$org->previous_license;
         $this->comm_record=$org->comm_record;
-        $this->addrees=$org->address;
+        $this->addrees=$org->address;   
     }
 }

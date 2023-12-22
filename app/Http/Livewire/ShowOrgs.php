@@ -11,7 +11,7 @@ class ShowOrgs extends Component
     public $search;
     public function render()
     {
-        $orgs=Org::all();
+        
         $orgs = $this->search ? Org::orderBy('created_at', 'desc')->where('org_name', 'like', '%' . $this->search . '%')
             ->orWhere('owner_name', 'like', '%' . $this->search . '%')
             ->orWhere('owner_phone', 'like', '%' . $this->search . '%')

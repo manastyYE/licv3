@@ -82,12 +82,7 @@ class AddOrg extends Component
         }
                 //تحميل ملف الصورة
 
-        // $owner_img_destinationPath = '/uploads/orgs/' . $this->org_name . '/owner_img';
-        // $personal_card_destinationPath = '/uploads/orgs/' . $this->org_name . '/personal_card';
 
-        $ad_board_destinationPath = '/uploads/orgs/' . $this->org_name . '/ad_board';
-        $previous_license_destinationPath = '/uploads/orgs/' . $this->org_name . '/previous_license';
-        $comm_record_destinationPath = '/uploads/orgs/' . $this->org_name . '/comm_record';
 
          //تحميل ملف البطاقة
         if ($this->personal_card){
@@ -104,7 +99,6 @@ class AddOrg extends Component
 
         }
 
-        $rent_contract_destinationPath = '/uploads/orgs/' . $this->org_name . '/rent_contract';
 
                  // رفع الملفات إلى السيرفر إذا كانت موجودة
 
