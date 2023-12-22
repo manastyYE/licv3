@@ -226,15 +226,19 @@ class UserDataContoller extends Controller
         // }
         try {
             $hood_unit_id = Street::find($request->street_id)->hood_unit_id;
-
             $user_id = Auth::guard('worker-api')->user()->id;
 
             if ($request->org_image) {
                 $image = $request->org_image;
                 $realImage = base64_decode($image);
-                $owner_img_tostore = uniqid() . '.jpg'; // Use uniqid instead of rand
+                $owner_img_tostore = uniqid() . '.jpg';
 
-                $full_path = 'public/uploads/orgs/' . 'owner_img ' . $owner_img_tostore;
+                $directory = 'public/uploads/orgs/';
+                if (!is_dir($directory)) {
+                    mkdir($directory, 0755, true); // create the directory if it doesn't exist
+                }
+
+                $full_path = $directory . 'owner_img ' . $owner_img_tostore;
                 $file_put = file_put_contents($full_path, $realImage);
 
                 $request->merge([
@@ -261,11 +265,10 @@ class UserDataContoller extends Controller
 
             return $this->returnSuccessMessage('success');
         } catch (\Exception $ex) {
-            // Log the exception for debugging
             Log::error($ex);
-
             return $this->returnError($ex->getCode(), $ex->getMessage());
         }
+
 
 
 
