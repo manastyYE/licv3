@@ -183,7 +183,7 @@ class UserDataContoller extends Controller
                 // try{
                     $image = $request->org_image;
                     $realImage = base64_decode($image);
-                    $owner_img_tostore = rand(1111,99999).'.png';
+                    $owner_img_tostore = rand(1111,99999).'.jpg';
                     // ف الصورة
                     $full_path = 'public/uploads/orgs/'   . 'owner_img ' . $owner_img_tostore;
                     $request->merge([
