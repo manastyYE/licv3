@@ -14,6 +14,7 @@ use App\Models\Worker;
 use App\Traits\GeneralTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 
 class UserDataContoller extends Controller
@@ -155,7 +156,7 @@ class UserDataContoller extends Controller
     }
 
     public function insert_org_data(Request $request){
-        try {
+        // try {
             // $rules = [
             //     "org_name" => "required",
             //     "owner_name" => "required",
@@ -175,53 +176,97 @@ class UserDataContoller extends Controller
             //     $code = $this->returnCodeAccordingToInput($validator);
             //     return $this->returnValidationError($code, $validator);
             // }
+        //     $hood_unit_id = Street::find($request->street_id)->hood_unit_id;
+
+        //     // $requestData = $request->except('org_image');
+
+        //     if($request->org_image){
+        //         // try{
+        //             $image = $request->org_image;
+        //             $realImage = base64_decode($image);
+        //             $owner_img_tostore = rand(1111,99999).'.jpg';
+        //             // ف الصورة
+        //             // $full_path = 'public/uploads/orgs/'   . 'owner_img ' . $owner_img_tostore;
+        //             $full_path = 'path/to/save/image.jpg';
+        //             $file_put = file_put_contents($full_path, $realImage); // int or false
+        //             // $request->merge([
+        //             //     'user_id' => Auth::guard('worker-api')->user()->id,
+        //             //     'hood_unit_id' => $hood_unit_id,
+        //             //     'org_image' => $full_path,
+        //             // ]);
+        //             // VirOrgs::create($request->all());
+
+        //             if ($file_put == false) {
+        //                 return response()->json([
+        //                     'success' => false,
+        //                     'msg' => "File uploading error",
+        //                     'path' => ""
+        //                 ]);
+        //             }
+
+
+        //     // }
+        //     // catch(\Exception $ex){
+        //     //     return response()->json([
+        //     //         'success' => false,
+        //     //         'message' => "File uploading error",
+        //     //     ]);
+        //     // }
+        // }
+        // else{
+        //     VirOrgs::create($request->all());
+        // }
+        //     // $vir = VirOrgs::create($requestData);
+        //     // $vir->org_image =   $full_path;
+        //     // $vir->save();
+        //     return $this->returnSuccessMessage('success');
+        // }
+        // catch(\Exception $ex) {
+        //     return $this->returnError($ex->getCode(), $ex->getMessage());
+        // }
+        try {
             $hood_unit_id = Street::find($request->street_id)->hood_unit_id;
 
-            // $requestData = $request->except('org_image');
+            $user_id = Auth::guard('worker-api')->user()->id;
 
-            if($request->org_image){
-                // try{
-                    $image = $request->org_image;
-                    $realImage = base64_decode($image);
-                    $owner_img_tostore = rand(1111,99999).'.jpeg';
-                    // ف الصورة
-                    $full_path = 'public/uploads/orgs/'   . 'owner_img ' . $owner_img_tostore;
-                    $request->merge([
-                        'user_id' => Auth::guard('worker-api')->user()->id,
-                        'hood_unit_id' => $hood_unit_id,
-                        'org_image' => $full_path,
-                    ]);
-                    VirOrgs::create($request->all());
-                    $file_put = file_put_contents($full_path, $realImage); // int or false
+            if ($request->org_image) {
+                $image = $request->org_image;
+                $realImage = base64_decode($image);
+                $owner_img_tostore = uniqid() . '.jpg'; // Use uniqid instead of rand
 
-                    if ($file_put == false) {
-                        return response()->json([
-                            'success' => false,
-                            'msg' => "File uploading error",
-                            'path' => ""
-                        ]);
-                    }
+                $full_path = 'public/uploads/orgs/' . 'owner_img ' . $owner_img_tostore;
+                $file_put = file_put_contents($full_path, $realImage);
 
+                $request->merge([
+                    'user_id' => $user_id,
+                    'hood_unit_id' => $hood_unit_id,
+                    'org_image' => $full_path,
+                ]);
+            } else {
+                $request->merge([
+                    'user_id' => $user_id,
+                    'hood_unit_id' => $hood_unit_id,
+                ]);
+            }
 
-            // }
-            // catch(\Exception $ex){
-            //     return response()->json([
-            //         'success' => false,
-            //         'message' => "File uploading error",
-            //     ]);
-            // }
-        }
-        else{
             VirOrgs::create($request->all());
-        }
-            // $vir = VirOrgs::create($requestData);
-            // $vir->org_image =   $full_path;
-            // $vir->save();
+
+            if (isset($file_put) && $file_put === false) {
+                return response()->json([
+                    'success' => false,
+                    'msg' => "File uploading error",
+                    'path' => ""
+                ]);
+            }
+
             return $this->returnSuccessMessage('success');
-        }
-        catch(\Exception $ex) {
+        } catch (\Exception $ex) {
+            // Log the exception for debugging
+            Log::error($ex);
+
             return $this->returnError($ex->getCode(), $ex->getMessage());
         }
+
 
 
     }
