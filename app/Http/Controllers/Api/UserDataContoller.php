@@ -176,38 +176,47 @@ class UserDataContoller extends Controller
             //     return $this->returnValidationError($code, $validator);
             // }
             $hood_unit_id = Street::find($request->street_id)->hood_unit_id;
-            $request->merge(['user_id' => Auth::guard('worker-api')->user()->id,
-            'hood_unit_id' => $hood_unit_id]);
-            $requestData = $request->except('org_image');
+
+            // $requestData = $request->except('org_image');
 
             if($request->org_image){
-                try{
+                // try{
                     $image = $request->org_image;
                     $realImage = base64_decode($image);
                     $owner_img_tostore = rand(1111,99999).'.png';
                     // ف الصورة
                     $full_path = 'public/uploads/orgs/'   . 'owner_img ' . $owner_img_tostore;
-
+                    $request->merge([
+                        'user_id' => Auth::guard('worker-api')->user()->id,
+                        'hood_unit_id' => $hood_unit_id,
+                        'org_image' => $full_path,
+                    ]);
+                    VirOrgs::create($request->all());
                     $file_put = file_put_contents($full_path, $realImage); // int or false
 
                     if ($file_put == false) {
                         return response()->json([
                             'success' => false,
-                            'message' => "File uploading error",
+                            'msg' => "File uploading error",
                             'path' => ""
                         ]);
                     }
 
 
-            }
-            catch(\Exception $ex){
-                return response()->json([
-                    'success' => false,
-                    'message' => "File uploading error",
-                ]);
-            }
+            // }
+            // catch(\Exception $ex){
+            //     return response()->json([
+            //         'success' => false,
+            //         'message' => "File uploading error",
+            //     ]);
+            // }
         }
-            VirOrgs::create($requestData);
+        else{
+            VirOrgs::create($request->all());
+        }
+            // $vir = VirOrgs::create($requestData);
+            // $vir->org_image =   $full_path;
+            // $vir->save();
             return $this->returnSuccessMessage('success');
         }
         catch(\Exception $ex) {
