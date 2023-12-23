@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\ClipBoard;
 use App\Models\HoodUnit;
 use App\Models\Org;
 use App\Models\OrgBillboard;
@@ -91,6 +92,9 @@ class UserDataContoller extends Controller
             $org->org_type_name = $org->org_type->name;
             $board = OrgBillboard::with('billboard')->where('org_id',$id)->get();
             $org->billboard = $board;
+            $clip_board = ClipBoard::where('org_id',$id)->select('el_gate','local_fee','clip_status','clean_pay','total_ad')->latest()->first();
+            $org->clip_board = $clip_board;
+            
             return $this->returnData('data',$org);
         }
         catch (\Exception $ex) {
