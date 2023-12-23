@@ -269,9 +269,6 @@ class UserDataContoller extends Controller
             return $this->returnError($ex->getCode(), $ex->getMessage());
         }
 
-
-
-
     }
 
     public function get_hood_units(){
@@ -307,7 +304,7 @@ class UserDataContoller extends Controller
             $orgbillboard->vir_org_id = $request->vir_org_id;
             $orgbillboard->billboard_id = $request->billboard_id;
             $orgbillboard->height = $request->height;
-            $orgbillboard->width = $request->wideth;
+            $orgbillboard->width = $request->width;
             $orgbillboard->count = $request->count;
             $orgbillboard->save();
 
