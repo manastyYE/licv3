@@ -172,7 +172,13 @@ class ShowOrgDtl extends Component
         foreach ($board as $key) {
             $total += ($key->height * $key->width * $key->count * $key->billboard->price);
         }
-        return $total;
+        if ($total > 0){
+            return $total;
+        }
+        else{
+            return 3000;
+        }
+
     }
     public function get_clean_fee()
     {
