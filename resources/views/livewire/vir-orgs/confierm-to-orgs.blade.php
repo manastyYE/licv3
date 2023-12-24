@@ -80,7 +80,13 @@
 
                                 @if($owner_img )
                                 <div class="w-24 h-24 rounded-full avatar">
-                                    <img class="" src="{{ asset($owner_img)   }}" alt="avatar" />
+                                    <img class=""
+                                    @if ($temp_img)
+                                        src="{{ $temp_img->temporaryUrl()   }}"
+                                    @else
+                                        src="{{ asset($owner_img)   }}"
+                                    @endif
+                                    alt="avatar" />
                                 </div>
                                 @else
                                 <div class="items-center w-24 h-24 border-2 ">
@@ -102,7 +108,7 @@
 
                                     <label
                                         class="p-0 font-medium text-white btn h-9 w-9 bg-info hover:bg-info-focus hover:shadow-lg hover:shadow-info/50 focus:bg-info-focus active:bg-info-focus/90">
-                                        <input wire:model='owner_img' tabindex="-1" type="file" accept="image/* "
+                                        <input wire:model='temp_img' tabindex="-1" type="file" accept="image/* "
                                             class="absolute inset-0 w-full h-full opacity-0 pointer-events-none" />
                                         <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none"
                                             viewBox="0 0 24 24" stroke="currentColor">
@@ -115,7 +121,7 @@
                             </div>
 
                         </div>
-                        @error('owner_img')
+                        @error('temp_img')
                         <span class="text-tiny+ text-error">{{ $message }}</span>
                         @enderror
 

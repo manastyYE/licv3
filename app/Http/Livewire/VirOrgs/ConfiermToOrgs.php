@@ -55,7 +55,7 @@ class ConfiermToOrgs extends Component
         $this->owner_phone=$vir_org->owner_phone;
         $this->building_type_id=$vir_org->building_type_id;
         $this->org_type_id=$vir_org->org_type_id;
-        $this->temp_img= $vir_org->org_image;
+        $this->owner_img= $vir_org->org_image;
         // $this->hood_unit_id=$vir_org->hood_unit_id;
         $this->street_id=$vir_org->street_id;
         $this->log_x=$vir_org->log_x;
@@ -119,18 +119,18 @@ class ConfiermToOrgs extends Component
         $this->validate($rules);
 
 
-        if ($this->owner_img){
-            $owner_img_withex = $this->owner_img->getClientOriginalName();
-            $owner_img_name = pathinfo($owner_img_withex, PATHINFO_FILENAME);
-            $owner_img__ex = $this->owner_img->getClientOriginalExtension();
-            $owner_img_tostore =   $owner_img_name . '.' . $owner_img__ex;
+        if ($this->temp_img){
+            $temp_img_withex = $this->temp_img->getClientOriginalName();
+            $temp_img_name = pathinfo($temp_img_withex, PATHINFO_FILENAME);
+            $temp_img__ex = $this->temp_img->getClientOriginalExtension();
+            $temp_img_tostore =   $temp_img_name . '.' . $temp_img__ex;
 
 
             //رفع ملف الصورة
 
-            $pathimg = 'public/uploads/orgs/' . $this->org_name  . 'owner_img ' . $owner_img_tostore;
-            $this->owner_img->storeAs($pathimg);
-            $rules['owner_img'] = 'storage/uploads/orgs/' . $this->org_name  . 'owner_img ' . $owner_img_tostore;
+            $pathimg = 'public/uploads/orgs/' . $this->org_name  . 'temp_img ' . $temp_img_tostore;
+            $this->temp_img->storeAs($pathimg);
+            $rules['temp_img'] = 'storage/uploads/orgs/' . $this->org_name  . 'temp_img ' . $temp_img_tostore;
 
         }
                 //تحميل ملف الصورة
@@ -341,7 +341,7 @@ class ConfiermToOrgs extends Component
                 'org_name'=>$this->org_name,
                 'owner_name'=>$this->owner_name,
                 'owner_phone'=>$this->owner_phone,
-                'owner_img'=>$this->owner_img ?$rules['owner_img'] :null,
+                'owner_img'=>$this->temp_img ? $rules['temp_img'] : $this->owner_img,
                 'card_type'=>$this->card_type,
                 'card_number'=>$this->card_number,
                 'building_type_id'=>$this->building_type_id,
