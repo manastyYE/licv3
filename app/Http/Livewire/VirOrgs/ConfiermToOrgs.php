@@ -55,7 +55,7 @@ class ConfiermToOrgs extends Component
         $this->owner_phone=$vir_org->owner_phone;
         $this->building_type_id=$vir_org->building_type_id;
         $this->org_type_id=$vir_org->org_type_id;
-        $this->temp_img= $vir_org->org_image;
+        $this->owner_img= $vir_org->org_image;
         // $this->hood_unit_id=$vir_org->hood_unit_id;
         $this->street_id=$vir_org->street_id;
         $this->log_x=$vir_org->log_x;
