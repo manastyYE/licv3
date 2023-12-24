@@ -25,6 +25,7 @@ class ConfiermToOrgs extends Component
     $rent_contract,$ad_board,$previous_license,$comm_record,
     $parcode,$address,$log_x,$log_y,$fire_ext,$start_date,
     $outher,$hood_unit_no;
+    public $is_other;
     public $temp_img;
     public $vir_org_billboard;
 
@@ -40,6 +41,7 @@ class ConfiermToOrgs extends Component
         } else {
             $this->hood_unit_id = '';
         }
+        $this->is_other = OrgType::find($this->org_type_id);
         return view('livewire..vir-orgs.confierm-to-orgs');
     }
     public function reloadPage()
@@ -84,12 +86,12 @@ class ConfiermToOrgs extends Component
             'card_number' => 'numeric',
             'street_id' => 'required',
             'building_type_id' => 'required',
-            'personal_card'=>'file|mimes:pdf',
-            'rent_contract'=>'file|mimes:pdf',
-            'ad_board'=>'file|mimes:pdf',
-            'previous_license'=>'file|mimes:pdf',
-            'comm_record'=>'file|mimes:pdf',
-            'outher'=>'file|mimes:pdf',
+            'personal_card'=>'image|mimes:jpeg,png,jpg,gif,svg',
+            'rent_contract'=>'image|mimes:jpeg,png,jpg,gif,svg',
+            'ad_board'=>'image|mimes:jpeg,png,jpg,gif,svg',
+            'previous_license'=>'image|mimes:jpeg,png,jpg,gif,svg',
+            'comm_record'=>'image|mimes:jpeg,png,jpg,gif,svg',
+            'outher'=>'image|mimes:jpeg,png,jpg,gif,svg',
         ];
         if (!$this->rent_contract) {
             unset($rules['rent_contract']);
@@ -133,14 +135,7 @@ class ConfiermToOrgs extends Component
             $rules['temp_img'] = 'storage/uploads/orgs/' . $this->org_name  . 'temp_img ' . $temp_img_tostore;
 
         }
-                //تحميل ملف الصورة
 
-        // $owner_img_destinationPath = '/uploads/orgs/' . $this->org_name . '/owner_img';
-        // $personal_card_destinationPath = '/uploads/orgs/' . $this->org_name . '/personal_card';
-
-        $ad_board_destinationPath = '/uploads/orgs/' . $this->org_name . '/ad_board';
-        $previous_license_destinationPath = '/uploads/orgs/' . $this->org_name . '/previous_license';
-        $comm_record_destinationPath = '/uploads/orgs/' . $this->org_name . '/comm_record';
 
          //تحميل ملف البطاقة
         if ($this->personal_card){

@@ -329,7 +329,7 @@
         <hr>
         <br>
         <span style="font-size: 22px" class="mt-3 mb-3 font-semibold text-slate-800 dark:text-navy-100">
-            الملفات المرفقة
+            الصور المرفقة
         </span>
         <br><br>
         <hr><br>
@@ -338,19 +338,19 @@
             <div>
                 {{-- 1 --}}
                 <div class="filepond fp-grid fp-bordered [--fp-grid:4] p-4">
-                    <span>ملف البطاقة الشخصية</span>
+                    <span>صورة البطاقة الشخصية</span>
                     <br>
                     <label
                         class="relative font-medium text-white btn bg-primary hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90">
-                        <input accept=".pdf" tabindex="-1" type="file" wire:model='personal_card'
+                        <input accept="image/*" tabindex="-1" type="file" wire:model='personal_card'
                             class="absolute inset-0 w-full h-full opacity-0 pointer-events-none " />
                         <div class="flex items-center space-x-2 space-x-reverse">
                             <i class="text-base fa-solid fa-cloud-arrow-up"></i>
-                            <span> (PDF.)
+                            <span>
                                 @if (!$personal_card)
 
 
-                                اختر ملف البطاقة الشخصية
+                                اختر صورة البطاقة الشخصية
                                 @endif
                             </span>
                         </div>
@@ -372,15 +372,15 @@
                     <br>
                     <label
                         class="relative font-medium text-white btn bg-primary hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90">
-                        <input accept=".pdf" tabindex="-1" type="file" wire:model='previous_license'
+                        <input accept="image/*" tabindex="-1" type="file" wire:model='previous_license'
                             class="absolute inset-0 w-full h-full opacity-0 pointer-events-none " />
                         <div class="flex items-center space-x-2 space-x-reverse">
                             <i class="text-base fa-solid fa-cloud-arrow-up"></i>
-                            <span> (PDF.)
+                            <span>
                                 @if (!$previous_license)
 
 
-                                اختر ملف الرخصة السابقة
+                                اختر صورة الرخصة السابقة
                                 @endif
                             </span>
                         </div>
@@ -402,15 +402,15 @@
                     <br>
                     <label
                         class="relative font-medium text-white btn bg-primary hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90">
-                        <input accept=".pdf" tabindex="-1" type="file" wire:model='rent_contract'
+                        <input accept="image/*" tabindex="-1" type="file" wire:model='rent_contract'
                             class="absolute inset-0 w-full h-full opacity-0 pointer-events-none " />
                         <div class="flex items-center space-x-2 space-x-reverse">
                             <i class="text-base fa-solid fa-cloud-arrow-up"></i>
                             <span>
                                 @if (!$rent_contract)
-                                (PDF.)
 
-                                اختر ملف العقد او الفاتورة
+
+                                اختر صورة العقد او الفاتورة
                                 @endif
                             </span>
                         </div>
@@ -432,15 +432,15 @@
                     <br>
                     <label
                         class="relative font-medium text-white btn bg-primary hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90">
-                        <input accept=".pdf" tabindex="-1" type="file" wire:model='comm_record'
+                        <input accept="image/*" tabindex="-1" type="file" wire:model='comm_record'
                             class="absolute inset-0 w-full h-full opacity-0 pointer-events-none " />
                         <div class="flex items-center space-x-2 space-x-reverse">
                             <i class="text-base fa-solid fa-cloud-arrow-up"></i>
-                            <span> (PDF.)
+                            <span>
                                 @if (!$comm_record)
 
 
-                                اختر ملف السجل التجاري
+                                اختر صورة السجل التجاري
                                 @endif
                             </span>
                         </div>
@@ -462,15 +462,15 @@
                     <br>
                     <label
                         class="relative font-medium text-white btn bg-primary hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90">
-                        <input accept=".pdf" tabindex="-1" type="file" wire:model='ad_board'
+                        <input accept="image/*" tabindex="-1" type="file" wire:model='ad_board'
                             class="absolute inset-0 w-full h-full opacity-0 pointer-events-none " />
                         <div class="flex items-center space-x-2 space-x-reverse">
                             <i class="text-base fa-solid fa-cloud-arrow-up"></i>
-                            <span> (PDF.)
+                            <span>
                                 @if (!$ad_board)
 
 
-                                اختر ملف اللوحة الاعلانية
+                                اختر صورة اللوحة الاعلانية
                                 @endif
                             </span>
                         </div>
@@ -486,36 +486,39 @@
                 </div>
             </div>
             <div>
-                {{-- @if ($org_type)
-
-                @endif --}}
+                @if ($org_type_id)
+                @if ($is_other->office->id !=4)
                 <div class="filepond fp-grid fp-bordered [--fp-grid:4] p-4">
                     <span>موافقة الجهة المختصة</span>
                     <br>
                     <label
                         class="relative font-medium text-white btn bg-primary hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90">
-                        <input accept=".pdf" tabindex="-1" type="file" wire:model='ad_board'
+                        <input accept="image/*" tabindex="-1" type="file" wire:model='ad_board'
                             class="absolute inset-0 w-full h-full opacity-0 pointer-events-none " />
                         <div class="flex items-center space-x-2 space-x-reverse">
                             <i class="text-base fa-solid fa-cloud-arrow-up"></i>
-                            <span> (PDF.)
-                                @if (!$ad_board)
+                            <span>
+                                @if (!$outher)
 
 
-                                اختر ملف موافقة الجهة المختصة
+                                اختر صورة موافقة الجهة المختصة
                                 @endif
                             </span>
                         </div>
-                        @if($ad_board)
-                        <span class="mx-3">({{ $ad_board->getClientOriginalName() }})</span>
+                        @if($outher)
+                        <span class="mx-3">({{ $outher->getClientOriginalName() }})</span>
                         @endif
 
                     </label>
-                    @error('ad_board')
+                    @error('outher')
                     <span style="color: red" class="invalid-feedback">{{ $message }}</span>
                     @enderror
 
                 </div>
+                @endif
+                @endif
+
+
             </div>
         </div>
 
