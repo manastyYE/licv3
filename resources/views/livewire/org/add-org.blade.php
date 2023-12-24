@@ -340,7 +340,7 @@
                             class="absolute inset-0 w-full h-full opacity-0 pointer-events-none " />
                         <div class="flex items-center space-x-2 space-x-reverse">
                             <i class="text-base fa-solid fa-cloud-arrow-up"></i>
-                            <span> 
+                            <span>
                                 @if (!$personal_card)
 
 
@@ -370,7 +370,7 @@
                             class="absolute inset-0 w-full h-full opacity-0 pointer-events-none " />
                         <div class="flex items-center space-x-2 space-x-reverse">
                             <i class="text-base fa-solid fa-cloud-arrow-up"></i>
-                            <span> 
+                            <span>
                                 @if (!$previous_license)
 
 
@@ -402,7 +402,7 @@
                             <i class="text-base fa-solid fa-cloud-arrow-up"></i>
                             <span>
                                 @if (!$rent_contract)
-                                
+
 
                                 اختر صورة العقد او الفاتورة
                                 @endif
@@ -430,7 +430,7 @@
                             class="absolute inset-0 w-full h-full opacity-0 pointer-events-none " />
                         <div class="flex items-center space-x-2 space-x-reverse">
                             <i class="text-base fa-solid fa-cloud-arrow-up"></i>
-                            <span> 
+                            <span>
                                 @if (!$comm_record)
 
 
@@ -460,7 +460,7 @@
                             class="absolute inset-0 w-full h-full opacity-0 pointer-events-none " />
                         <div class="flex items-center space-x-2 space-x-reverse">
                             <i class="text-base fa-solid fa-cloud-arrow-up"></i>
-                            <span> 
+                            <span>
                                 @if (!$ad_board)
 
 
@@ -480,36 +480,38 @@
                 </div>
             </div>
             <div>
-                {{-- @if ($org_type)
+                @if ($org_type_id)
+                    @if ($is_outher->office->id != 4)
+                    <div class="filepond fp-grid fp-bordered [--fp-grid:4] p-4">
+                        <span>موافقة الجهة المختصة</span>
+                        <br>
+                        <label
+                            class="relative font-medium text-white btn bg-primary hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90">
+                            <input accept="image/*" tabindex="-1" type="file" wire:model='outher'
+                                class="absolute inset-0 w-full h-full opacity-0 pointer-events-none " />
+                            <div class="flex items-center space-x-2 space-x-reverse">
+                                <i class="text-base fa-solid fa-cloud-arrow-up"></i>
+                                <span>
+                                    @if (!$outher)
 
-                @endif --}}
-                <div class="filepond fp-grid fp-bordered [--fp-grid:4] p-4">
-                    <span>موافقة الجهة المختصة</span>
-                    <br>
-                    <label
-                        class="relative font-medium text-white btn bg-primary hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90">
-                        <input accept="image/*" tabindex="-1" type="file" wire:model='ad_board'
-                            class="absolute inset-0 w-full h-full opacity-0 pointer-events-none " />
-                        <div class="flex items-center space-x-2 space-x-reverse">
-                            <i class="text-base fa-solid fa-cloud-arrow-up"></i>
-                            <span> 
-                                @if (!$ad_board)
 
+                                    اختر صورة موافقة الجهة المختصة
+                                    @endif
+                                </span>
+                            </div>
+                            @if($outher)
+                            <span class="mx-3">({{ $outher->getClientOriginalName() }})</span>
+                            @endif
 
-                                اختر صورة موافقة الجهة المختصة
-                                @endif
-                            </span>
-                        </div>
-                        @if($ad_board)
-                        <span class="mx-3">({{ $ad_board->getClientOriginalName() }})</span>
-                        @endif
+                        </label>
+                        @error('outher')
+                        <span style="color: red" class="invalid-feedback">{{ $message }}</span>
+                        @enderror
 
-                    </label>
-                    @error('ad_board')
-                    <span style="color: red" class="invalid-feedback">{{ $message }}</span>
-                    @enderror
+                    </div>
+                    @endif
+                @endif
 
-                </div>
             </div>
         </div>
 

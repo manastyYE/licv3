@@ -16,6 +16,7 @@ class AddOrg extends Component
     use WithFileUploads;
     public $org_name, $org_type_id, $start_date, $owner_name, $owner_phone, $card_type, $card_number, $owner_img, $building_type_id, $isowner, $street_id, $hood_unit_id, $fire_ext, $personal_card, $rent_contract, $ad_board, $previous_license, $comm_record;
     public $outher;
+    public $is_outher;
     public $hood_unit_no;
     public $org_types, $building_types, $streets, $street, $hood_unit;
     public function store(){
@@ -354,6 +355,7 @@ class AddOrg extends Component
             $this->hood_unit_id = '';
         }
         $this->getselect();
+        $this->is_outher = OrgType::find($this->org_type_id);
         return view('livewire..org.add-org');
     }
 }
