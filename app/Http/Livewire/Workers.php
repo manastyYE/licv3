@@ -107,7 +107,12 @@ class Workers extends Component
         $worker = Worker::where('id', $this->edit_id)->first();
         $worker->fullname = $this->fullname;
         $worker->phone = $this->phone;
-        $worker->password=$this->password;
+        if($worker->password ==$this->password){
+            $worker->password=$this->password;
+        }
+        else{
+            $worker->password=Hash::make($this->password);
+        }
         $worker->hood_units = json_encode($this->hood_unit);
         $worker->username = $this->username;
         $worker->office_id = $this->office_id;
