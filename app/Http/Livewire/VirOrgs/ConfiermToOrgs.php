@@ -25,6 +25,7 @@ class ConfiermToOrgs extends Component
     $rent_contract,$ad_board,$previous_license,$comm_record,
     $parcode,$address,$log_x,$log_y,$fire_ext,$start_date,
     $outher,$hood_unit_no;
+    public $temp_img;
     public $vir_org_billboard;
 
     public function render()
@@ -54,6 +55,7 @@ class ConfiermToOrgs extends Component
         $this->owner_phone=$vir_org->owner_phone;
         $this->building_type_id=$vir_org->building_type_id;
         $this->org_type_id=$vir_org->org_type_id;
+        $this->temp_img= $vir_org->org_image;
         // $this->hood_unit_id=$vir_org->hood_unit_id;
         $this->street_id=$vir_org->street_id;
         $this->log_x=$vir_org->log_x;
@@ -107,6 +109,7 @@ class ConfiermToOrgs extends Component
         if(!$this->personal_card){
             unset($rules['personal_card']);
         }
+
         // if (!$this->file5) {
         //     unset($rules['file5']);
         // }
