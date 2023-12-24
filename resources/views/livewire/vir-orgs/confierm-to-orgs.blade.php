@@ -78,7 +78,7 @@
 
 
 
-                                @if($zz )
+                                @if($owner_img )
                                 <div class="w-24 h-24 rounded-full avatar">
                                     <img class="" src="{{ asset($owner_img)   }}" alt="avatar" />
                                 </div>
