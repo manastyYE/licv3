@@ -80,7 +80,13 @@
 
                                 @if($owner_img )
                                 <div class="w-24 h-24 rounded-full avatar">
-                                    <img class="" src="{{ asset($owner_img)   }}" alt="avatar" />
+                                    <img class=""
+                                    @if ($temp_img)
+                                        src="{{ $temp_img->temporaryUrl()   }}"
+                                    @else
+                                        src="{{ asset($owner_img)   }}"
+                                    @endif
+                                    alt="avatar" />
                                 </div>
                                 @else
                                 <div class="items-center w-24 h-24 border-2 ">
