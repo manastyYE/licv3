@@ -2,7 +2,7 @@
     @props(['title','name'])
     <div class="fixed inset-0 z-[100] flex flex-col items-center justify-center overflow-y-auto px-4 py-6 sm:px-5"
      x-data="{show : false ,name : '{{ $name }}'}" x-show="show"
-    x-on:open-modal.window="show = ($event.detail.name === name)" x-on:close-modal.window="show = false"
+    x-on:open-modal.window="show = ($event.detail.name === name)" 
     x-on:close-modal.window="show = false" x-on:keydown.escape.window="show = false" style="display: none;"
     x-transition.duration @keydown.window.escape="showModal = false"
      @keydown.window.escape="showModal = false">
@@ -16,10 +16,10 @@
             x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-95">
             <div class="flex justify-between px-4 py-3 rounded-t-lg bg-slate-200 dark:bg-navy-800 sm:px-5">
                 <h3 class="text-base font-medium text-slate-700 dark:text-navy-100">
-                    {{ $title??'لايوجد عنوان' }}
+                    {{ $title??'اضافة' }}
                 </h3>
                 {{-- زر اغلاق الموديل --}}
-                <button x-on:click="show = false"
+                <button x-on:click="show = false" wire:click='close'
                     class="btn -ml-1.5 h-7 w-7 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4.5 w-4.5" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor" stroke-width="2">

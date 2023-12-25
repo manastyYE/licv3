@@ -56,6 +56,12 @@
                                     </div><button tabindex="-1" aria-label="Sort column ascending"
                                         title="Sort column ascending" class="gridjs-sort gridjs-sort-neutral"></button>
                                 </th>
+                                <th data-column-id="name" class="gridjs-th gridjs-th-sort" tabindex="0">
+                                    <div class="gridjs-th-content">
+                                        المشرف
+                                    </div><button tabindex="-1" aria-label="Sort column ascending"
+                                        title="Sort column ascending" class="gridjs-sort gridjs-sort-neutral"></button>
+                                </th>
 
                                 <th data-column-id="actions" class="gridjs-th">
                                     <div class="gridjs-th-content">العمليات</div>
@@ -78,6 +84,7 @@
                                         <td class="gridjs-td">{{ $p->phone }}</td>
                                         <td class="gridjs-td">{{ $p->directorate->name }}</td>
                                         <td class="gridjs-td">{{ $p->office->name }}</td>
+                                        <td class="gridjs-td">{{ optional($p->supervisor)->fullname }}</td>
                                         <td class="gridjs-td"><span>
                                                 <div class="flex justify-center space-x-2">
 
@@ -215,6 +222,40 @@
                         @error('hood_id')
                             <span class="text-tiny+ text-error">{{ $message }}</span>
                         @enderror --}}
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block" >
+                            <span> المشرف </span>
+                            <select wire:model='supervisor_id' class="mt-1.5 " x-init="$el._x_tom = new Tom($el, { sortField: { field: 'text', direction: 'asc' } })">
+                                <option value=""> . اختر المشرف </option>
+
+                                @forelse ($supervisors as $supervisor)
+                                    <option value="{{ $supervisor->id }}">{{ $supervisor->fullname }}</option>
+                                @empty
+                                    <option value=""> لا يوجد اي مشرفين</option>
+                                @endforelse
+                            </select>
+                        </label>
+                        @error('supervisor_id')
+                        <span class="text-tiny+ text-error">{{ $message }}</span>
+                        @enderror
+                    </div>
+
+                   <div>
+                    <label class="block" >
+                        <span> الدور </span>
+                        <select wire:model='role_no' class="form-select mt-1.5 w-full rounded-lg border border-slate-300 bg-white px-3 py-2 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:bg-navy-700 dark:hover:border-navy-400 dark:focus:border-accent">
+                            <option value=""> . اختر دور </option>
+                            <option value="1"> مفتش</option>
+                            <option value="2"> مشرف</option>
+                        </select>
+                    </label>
+                    @error('role_no')
+                        <span class="text-tiny+ text-error">{{ $message }}</span>
+                        @enderror
+                   </div>
+                </div>
+
 
             <label class="block mt-3 mbt">
                 <span>وحدات الجوار</span>
@@ -361,6 +402,42 @@
                         @error('hood_id')
                             <span class="text-tiny+ text-error">{{ $message }}</span>
                         @enderror --}}
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block" >
+                            <span> المشرف </span>
+                            <select wire:model='supervisor_id' class="mt-1.5 " x-init="$el._x_tom = new Tom($el, { sortField: { field: 'text', direction: 'asc' } })">
+                                <option value=""> . اختر المشرف </option>
+
+                                @forelse ($supervisors as $supervisor)
+                                    <option value="{{ $supervisor->id }}">{{ $supervisor->fullname }}</option>
+                                @empty
+                                    <option value=""> لا يوجد اي مشرفين</option>
+                                @endforelse
+                            </select>
+                        </label>
+                        @error('supervisor_id')
+                            <span class="text-tiny+ text-error">{{ $message }}</span>
+                        @enderror
+                    </div>
+
+                    <div>
+                        <label class="block" >
+                            <span> الدور </span>
+                            <select wire:model='role_no' class="form-select mt-1.5 w-full rounded-lg border border-slate-300 bg-white px-3 py-2 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:bg-navy-700 dark:hover:border-navy-400 dark:focus:border-accent">
+                                <option value=""> . اختر دور </option>
+                                <option value="1" @if($role_no == 1) selected @endif> مفتش</option>
+                                <option value="2" @if($role_no == 2) selected @endif> مشرف</option>
+
+                            </select>
+                        </label>
+                        @error('role_no')
+                            <span class="text-tiny+ text-error">{{ $message }}</span>
+                        @enderror
+                    </div>
+                </div>
+
+
 
             <label class="block mt-3 mbt">
                 <span>وحدات الجوار</span>

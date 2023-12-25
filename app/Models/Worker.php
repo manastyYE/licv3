@@ -30,6 +30,16 @@ class Worker extends Authenticatable implements JWTSubject
         return $this->belongsTo(Office::class);
     }
 
+    public function supervisor()
+    {
+        return $this->belongsTo(Worker::class, 'supervisor_id');
+    }
+
+    // Relationship: a supervisor has many workers
+    public function supervisedWorkers()
+    {
+        return $this->hasMany(Worker::class, 'supervisor_id');
+    }
 
     public function getJWTIdentifier()
     {
