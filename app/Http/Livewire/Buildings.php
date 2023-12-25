@@ -47,6 +47,10 @@ class Buildings extends Component
         $this->dispatchBrowserEvent('close-modal');
 
     }
+    public function close(){
+        $this->edit_id= '';
+        $this->name='';
+    }
     public function deleteConfirmation($id)
     {
         $this->del_id = $id; //student id
