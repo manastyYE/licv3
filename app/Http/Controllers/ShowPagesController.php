@@ -8,6 +8,9 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 class ShowPagesController extends Controller
 {
+    public function show_buildings_view(){
+        return view('buildings');
+    }
     public function show_add_vir_to_org($id){
         return view('vir_orgs.ConfiremToOrgs',['id'=>$id]);
     }
