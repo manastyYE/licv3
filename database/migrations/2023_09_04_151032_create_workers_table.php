@@ -21,11 +21,13 @@ return new class extends Migration
             $table->string('password');
             $table->unsignedBigInteger('directorate_id');
             $table->foreign('directorate_id')->references('id')->on('directorates')->onDelete('restrict');
+            $table->unsignedBigInteger('supervisor_id')->nullable();
             // $table->unsignedBigInteger('hood_id');
             // $table->foreign('hood_id')->references('id')->on('hoods')->onDelete('restrict');
             $table->unsignedBigInteger('office_id');
             $table->foreign('office_id')->references('id')->on('offices')->onDelete('restrict');
             $table->string('hood_units');
+            $table->tinyInteger('role_no')->default(1)->comment("(1 = مفتش)(2 = مشرف)");
             $table->timestamps();
         });
     }

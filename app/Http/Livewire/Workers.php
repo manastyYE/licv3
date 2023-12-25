@@ -19,17 +19,19 @@ class Workers extends Component
     public $directorate_id  ;
     public $username,$fullname,$phone,$password,$edit_id,$del_id;
     public $search;
+    public $supervisor_id,$role_no;
 
     public function render()
     {
         $office = Office::all();
         $hood_units = HoodUnit::all();
-        $workers = $this->search ? Worker::orderBy('created_at','desc')
+        $workers = $this->search ? Worker::with('supervisor')->orderBy('created_at','desc')
         ->where('fullname','like','%'.$this->search . '%')
         ->orWhere('phone','like','%'.$this->search . '%')
         ->orwhere('username','like','%'.$this->search . '%')
-        ->paginate(8) : Worker::orderBy('created_at','desc')->paginate(8);
-        return view('livewire.workers',['hood_units' => $hood_units,'office'=>$office,'workers'=>$workers]);
+        ->paginate(8) : Worker::with('supervisor')->orderBy('created_at','desc')->paginate(8);
+        $supervisors = Worker::where('role_no',2)->where('id','!=',$this->edit_id)->select('id','fullname')->get();
+        return view('livewire.workers',['hood_units' => $hood_units,'office'=>$office,'workers'=>$workers,'supervisors' => $supervisors]);
     }
     public function save()
     {
@@ -41,9 +43,11 @@ class Workers extends Component
             'username'=>'required|unique:workers,username',
             'hood_unit'=>'required',
             'office_id'=>'required',
-
+            'role_no'=>'required',
         ]);
-
+        if ($this->role_no == 1) {
+            $this->validate(['supervisor_id' => 'required']);
+        }
         //Add User Data
         $worker = new Worker();
         $worker->fullname = $this->fullname;
@@ -53,6 +57,8 @@ class Workers extends Component
         $worker->password = Hash::make($this->password);
         $worker->hood_units=json_encode($this->hood_unit);
         $worker->office_id= $this->office_id;
+        $worker->supervisor_id = $this->supervisor_id;
+        $worker->role_no = $this->role_no;
         $worker->save();
 
         session()->flash('message', 'تمت عملية اضافة المفتش الجديد');
@@ -63,6 +69,7 @@ class Workers extends Component
         $this->username='';
         $this->hood_unit='';
         $this->office_id='';
+        $this->supervisor_id='';
         //For hide modal after add user success
         $this->dispatchBrowserEvent('close-modal');
     }
@@ -75,6 +82,9 @@ class Workers extends Component
         $this->username='';
         $this->hood_unit='';
         $this->office_id='';
+        $this->supervisor_id='';
+        $this->edit_id = '';
+        $this->role_no = '';
     }
 
     public function close()
@@ -91,6 +101,8 @@ class Workers extends Component
         $this->phone = $worker->phone;
         $this->hood_unit = json_decode($worker->hood_units);
         $this->office_id = $worker->office_id;
+        $this->supervisor_id = $worker->supervisor_id;
+        $this->role_no = $worker->role_no;
 
     }
 
@@ -103,6 +115,9 @@ class Workers extends Component
         //     'name' => 'required',
 
         // ]);
+        if ($this->role_no == 1) {
+            $this->validate(['supervisor_id' => 'required']);
+        }
 
         $worker = Worker::where('id', $this->edit_id)->first();
         $worker->fullname = $this->fullname;
@@ -113,6 +128,8 @@ class Workers extends Component
         $worker->hood_units = json_encode($this->hood_unit);
         $worker->username = $this->username;
         $worker->office_id = $this->office_id;
+        $worker->supervisor_id = $this->supervisor_id;
+        $worker->role_no = $this->role_no;
         $worker->save();
 
         session()->flash('message', 'تم تعديل بيانات المفتش بنجاح');
