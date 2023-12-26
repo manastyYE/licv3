@@ -623,7 +623,7 @@
     </div>
 
     <div wire:ignore.self>
-        <x-modaladd title="إضافة  لوحة لمنشأة{{ $org->org_name }} " name="add-org-board-modal">
+        <x-modaladd title="إضافة  لوحة لمنشأة{{ $org->org_name }} " name="edit-org-board-modal">
             @slot('body')
                 {{-- <x-slot:body> --}}
                 <form>
