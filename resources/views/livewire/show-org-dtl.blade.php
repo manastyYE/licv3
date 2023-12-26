@@ -623,17 +623,21 @@
     </div>
 
     <div wire:ignore.self>
-
-        <x-modaladd title="تعديل  لوحة لمنشأة{{ $org->org_name }} " name="edit-org-board-modal">
+        <x-modaladd title="إضافة  لوحة لمنشأة{{ $org->org_name }} " name="add-org-board-modal">
             @slot('body')
                 {{-- <x-slot:body> --}}
                 <form>
                     <div class="p-2 space-y-6">
                         <label class="block">
                             <span> نوع اللوحة </span>
-                            <input wire:model='ed_billboard_id'
-                                class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
-                                placeholder="نوع اللوحة " type="text" />
+                            <select wire:model='ed_billboard_id'
+                                class="form-select mt-1.5 w-full rounded-lg border border-slate-300 bg-white px-3 py-2 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:bg-navy-700 dark:hover:border-navy-400 dark:focus:border-accent">
+                                <option value=""> اختر نوع اللوحة </option>
+                                @forelse ($bill as $b)
+                                    <option value="{{ $b->id }}">{{ $b->name }}</option>
+                                @empty
+                                @endforelse
+                            </select>
                         </label>
                         @error('ed_billboard_id')
                             <span class="text-tiny+ text-error">
@@ -683,7 +687,7 @@
                             class="font-medium btn bg-slate-150 text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90">
                             الغاء
                         </button>
-                        <button type="button" wire:click.prevent='editOrgBillboardData'
+                        <button type="button" wire:click.prevent='storeOrgBillBoardData'
                             class="font-medium text-white btn bg-primary hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90">
                             حفظ
                         </button>
