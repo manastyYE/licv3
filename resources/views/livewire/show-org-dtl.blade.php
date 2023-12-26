@@ -324,7 +324,7 @@
                                                 <div class="flex justify-center space-x-2">
                                                     <button type="button" wire:click='setname({{ $p->id }})'
                                                         x-data
-                                                        x-on:click="$dispatch('open-modal',{name:'edit-org-billboard-modal'})"
+                                                        x-on:click="$dispatch('open-modal',{name:'edit-org-board-modal'})"
                                                         class="w-8 h-8 p-0 btn text-info hover:bg-info/20 focus:bg-info/20 active:bg-info/25">
                                                         <i class="fa fa-edit"></i>
                                                     </button>
@@ -1346,7 +1346,7 @@
 
                 <!-- Footer Blog Post -->
                 <div class="mt-5 flex space-x-3 space-x-reverse">
-                    
+
                 </div>
             </div>
             @endslot

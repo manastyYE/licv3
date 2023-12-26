@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ReportPDFContoller;
 use App\Http\Controllers\ShowPagesController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\ShowOrgDtl;
@@ -50,7 +51,6 @@ Route::controller(ShowPagesController::class)->prefix('admin')->middleware('admi
         Route::get('/','adminlogin')->name('adminlogin');
     }
 );
-Route::get('/{pdf}', [ShowOrgDtl::class, 'dowmloadpdf']);
 // Route::controller(ShowPagesController::class)->middleware('auth')->group(
 //     function () {
 //         // Route::get('/ulogin', 'userlogin')->name('user.login');
@@ -71,4 +71,9 @@ Route::get('/login', [ShowPagesController::class,'userlogin'])->name('user.login
 
 //     return $response;
 // })->where('filename', '.*');
+Route::controller(ReportPDFContoller::class)->group(
+    function(){
+        Route::get('gen-pdf','gen_pdf')->name('pdf-test');
+    }
+);
 

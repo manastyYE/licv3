@@ -84,6 +84,7 @@ class ConfiermToOrgs extends Component
             'card_type' => 'required',
             'card_number' => 'numeric',
             'street_id' => 'required',
+            'isowner'=>'required',
             'building_type_id' => 'required',
             'personal_card'=>'image|mimes:jpeg,png,jpg,gif,svg',
             'rent_contract'=>'image|mimes:jpeg,png,jpg,gif,svg',
