@@ -44,7 +44,7 @@ return new class extends Migration
             $table->string('aire_drow')->nullable();
             $table->string('fire_ext',20)->default('لا');
             $table->string('license_status')->default('غير مرخص');
-
+            $table->text('note')->nullable();
             $table->timestamps();
         });
     }

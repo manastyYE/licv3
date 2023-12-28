@@ -34,6 +34,7 @@ class Org extends Model
         'log_x',
         'log_y',
         'license_status',
+        'note',
 
     ];
 

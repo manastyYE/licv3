@@ -93,6 +93,15 @@
             <label class="block " style="">
                 <span> رقم المالك</span>
                 <h5 class="font-semibold text-md text-slate-700 dark:text-navy-100">
+                    {{ $org->owner_phone }}
+                </h5>
+            </label>
+        </div>
+
+        <div>
+            <label class="block " style="">
+                <span> الشارع</span>
+                <h5 class="font-semibold text-md text-slate-700 dark:text-navy-100">
                     {{ $org->street->name }}
                 </h5>
             </label>
