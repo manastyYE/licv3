@@ -66,14 +66,14 @@ class UserDataContoller extends Controller
     public function get_vir_orgs(){
         try{
             if(Auth::guard('worker-api')->user()->role_no == 1){
-                $orgs = VirOrgs::where('user_id',Auth::guard('worker-api')->user()->id)->select('id','org_name','owner_name','is_moved')->get();
+                $orgs = VirOrgs::where('user_id',Auth::guard('worker-api')->user()->id)->select('id','org_name','owner_name','is_moved','user_id')->get();
             }
             else{
                 // $ids =Auth::guard('worker-api')->user()->supervisedWorkers->pluck('id');
                 // $ids->merge(Auth::guard('worker-api')->user()->id);
                 $ids = Auth::guard('worker-api')->user()->supervisedWorkers->pluck('id');
                 $ids->push(Auth::guard('worker-api')->user()->id);
-                $orgs = VirOrgs::with('user')->WhereIn('user_id',$ids)->select('id','org_name','owner_name','is_moved')->get();
+                $orgs = VirOrgs::with('user')->WhereIn('user_id',$ids)->select('id','org_name','owner_name','is_moved','user_id')->get();
             }
             return $this->returnData('data',$orgs);
         }
