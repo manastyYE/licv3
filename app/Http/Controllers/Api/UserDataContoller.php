@@ -80,7 +80,7 @@ class UserDataContoller extends Controller
                 }])->WhereIn('user_id',$ids)->select('id','org_name','owner_name','is_moved','user_id')->get();
             }
             $orgs = $orgs->map(function ($org) {
-                $org['user_name'] = $org->user->name;
+                $org['user_name'] = $org->user->fullname;
                 return $org;
             });
             return $this->returnData('data',$orgs);
