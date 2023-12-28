@@ -18,4 +18,7 @@ class VirOrgsDtl extends Component
     public function mount($id){
         $this->org_id=$id;
     }
+    public function close(){
+        
+    }
 }
