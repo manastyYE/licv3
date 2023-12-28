@@ -65,7 +65,14 @@ class UserDataContoller extends Controller
     }
     public function get_vir_orgs(){
         try{
-            $orgs = VirOrgs::where('user_id',Auth::guard('worker-api')->user()->id)->select('id','org_name','owner_name','is_moved')->get();
+            if(Auth::guard('worker-api')->user()->role_no == 1){
+                $orgs = VirOrgs::where('user_id',Auth::guard('worker-api')->user()->id)->select('id','org_name','owner_name','is_moved')->get();
+            }
+            else{
+                $orgs = Auth::guard('worker-api')->user()->supervisedWorkers;
+                return $this->returnData('data',$orgs);
+                $orgs = VirOrgs::where('user_id',Auth::guard('worker-api')->user()->id)->select('id','org_name','owner_name','is_moved')->get();
+            }
             return $this->returnData('data',$orgs);
         }
         catch (\Exception $ex) {
@@ -94,7 +101,7 @@ class UserDataContoller extends Controller
             $org->billboard = $board;
             $clip_board = ClipBoard::where('org_id',$id)->select('el_gate','local_fee','clip_status','clean_pay','total_ad')->latest()->first();
             $org->clip_board = $clip_board;
-            
+
             return $this->returnData('data',$org);
         }
         catch (\Exception $ex) {
