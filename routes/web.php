@@ -71,9 +71,9 @@ Route::get('/login', [ShowPagesController::class,'userlogin'])->name('user.login
 
 //     return $response;
 // })->where('filename', '.*');
-Route::controller(ReportPDFContoller::class)->group(
+Route::controller(ReportPDFContoller::class)->prefix('admin/report/')->middleware('admin.auth')->group(
     function(){
-        Route::get('gen-pdf','gen_pdf')->name('pdf-test');
+        Route::get('clip/{id}','printClip')->name('reporn.printClip');
     }
 );
 

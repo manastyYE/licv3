@@ -388,7 +388,7 @@
                         <td class="whitespace-nowrap border border-slate-200 px-3 py-3 dark:border-navy-500 lg:px-5">
                             <label class="block">
                                 <span>   </span>
-                                <input wire:model='ad_reseve_note'
+                                <input wire:model='clean_reseve_note'
                                     class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
                                     placeholder="" type="text" />
                             </label>
@@ -430,7 +430,7 @@
                             الاجمالي
                         </td>
 
-                            <td>
+                            <td colspan="3">
                                 {{ $clip->total_ad + $clip->local_fee + $clip->el_gate + $clip->clean_pay }}
                                 {{-- الاجمالي --}}
                             </td>
@@ -442,12 +442,18 @@
 
                 </tbody>
             </table>
-            <button type="button"
+            <a  href="/admin/report/clip/{{$clip->id}}"
 
-            wire:click='update_clip'
+
                             class="font-medium btn bg-slate-150 text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90">
-                            حفظ  وطباعة
-                        </button>
+                            طباعة
+            </a>
+            <button type="button"
+                wire:click='update_clip'
+
+                class="font-medium btn bg-slate-150 text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90">
+                حفظ وطباعة
+            </button>
         </div>
     </div>
 </div>

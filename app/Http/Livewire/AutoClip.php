@@ -36,23 +36,21 @@ class AutoClip extends Component
     public function update_clip(){
         $this->validate([
             'ad_reseve'=>'min:1|numeric',
-            'clean_reseve'=>'required|numeric|min:0',
             'local_reseve'=>'required|numeric|min:1',
-            'el_gate_reseve'=>'required|numeric|min:1',
+
 
         ]);
 
         $ed_chip=ClipBoard::find($this->clip_id);
         $ed_chip->ad_reseve = $this->ad_reseve;
-        $ed_chip->clean_reseve =$this->clean_reseve;
+        $ed_chip->clean_reseve =$this->ad_reseve;
         $ed_chip->local_reseve=$this->local_reseve;
-        $ed_chip->el_gate_reseve =$this->el_gate_reseve;
+
         $ed_chip->edit_admin_id=auth()->guard('admin')->id();
         $ed_chip->clip_status="مدفوعة";
-        $ed_chip->clean_reseve_date = $this->clean_reseve_date;
+        $ed_chip->clean_reseve_date = $this->ad_reseve_date;
         $ed_chip->ad_reseve_date=$this->ad_reseve_date;
         $ed_chip->local_reseve_date =$this->local_reseve_date;
-        $ed_chip->el_gate_reseve_date = $this->el_gate_reseve_date;
         $ed_chip->clean_reseve_note = $this->clean_reseve_note;
         $ed_chip->ad_reseve_note=$this->ad_reseve_note;
         $ed_chip->local_reseve_note =$this->local_reseve_note;
@@ -62,6 +60,7 @@ class AutoClip extends Component
         $org=Org::find($ed_chip->org_id);
         $org->license_status= 'مرخص';
         $org->save();
+        return redirect()->to('/admin/report/clip/'.$ed_chip->id)->with('success', ' تم اضافة ارقام السندات الى الحافظة بنجاح');
 
     }
 }
