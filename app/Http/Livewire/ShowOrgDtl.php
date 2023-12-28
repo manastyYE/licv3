@@ -106,7 +106,7 @@ class ShowOrgDtl extends Component
 
         $this->ed_billboard_id = $orgbillboard->id;
         $this->ed_height = $orgbillboard->height;
-        $this->ed_wideth = $orgbillboard->wideth;
+        $this->ed_wideth = $orgbillboard->width;
         $this->ed_count = $orgbillboard->count;
     }
 
@@ -128,7 +128,7 @@ class ShowOrgDtl extends Component
         $bill_board_ed = OrgBillboard::where('id', $this->edit_billboard_id)->first();
         $bill_board_ed->billboard_id = $this->ed_billboard_id;
         $bill_board_ed->height = $this->ed_height;
-        $bill_board_ed->wideth = $this->ed_wideth;
+        $bill_board_ed->width = $this->ed_wideth;
         $bill_board_ed->count = $this->ed_count;
         $bill_board_ed->save();
 

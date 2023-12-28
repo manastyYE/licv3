@@ -324,7 +324,7 @@
                                                 <div class="flex justify-center space-x-2">
                                                     <button type="button" wire:click='setname({{ $p->id }})'
                                                         x-data
-                                                        x-on:click="$dispatch('open-modal',{name:'edit-org-billboard-modal'})"
+                                                        x-on:click="$dispatch('open-modal',{name:'edit-org-board-modal'})"
                                                         class="w-8 h-8 p-0 btn text-info hover:bg-info/20 focus:bg-info/20 active:bg-info/25">
                                                         <i class="fa fa-edit"></i>
                                                     </button>
@@ -623,17 +623,21 @@
     </div>
 
     <div wire:ignore.self>
-
-        <x-modaladd title="تعديل  لوحة لمنشأة{{ $org->org_name }} " name="edit-org-board-modal">
+        <x-modaladd title="إضافة  لوحة لمنشأة{{ $org->org_name }} " name="edit-org-board-modal">
             @slot('body')
                 {{-- <x-slot:body> --}}
                 <form>
                     <div class="p-2 space-y-6">
                         <label class="block">
                             <span> نوع اللوحة </span>
-                            <input wire:model='ed_billboard_id'
-                                class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
-                                placeholder="نوع اللوحة " type="text" />
+                            <select wire:model='ed_billboard_id'
+                                class="form-select mt-1.5 w-full rounded-lg border border-slate-300 bg-white px-3 py-2 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:bg-navy-700 dark:hover:border-navy-400 dark:focus:border-accent">
+                                <option value=""> اختر نوع اللوحة </option>
+                                @forelse ($bill as $b)
+                                    <option value="{{ $b->id }}">{{ $b->name }}</option>
+                                @empty
+                                @endforelse
+                            </select>
                         </label>
                         @error('ed_billboard_id')
                             <span class="text-tiny+ text-error">
@@ -1346,7 +1350,7 @@
 
                 <!-- Footer Blog Post -->
                 <div class="mt-5 flex space-x-3 space-x-reverse">
-                    
+
                 </div>
             </div>
             @endslot

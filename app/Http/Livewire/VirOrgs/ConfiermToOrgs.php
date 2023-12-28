@@ -57,12 +57,11 @@ class ConfiermToOrgs extends Component
         $this->owner_phone=$vir_org->owner_phone;
         $this->building_type_id=$vir_org->building_type_id;
         $this->org_type_id=$vir_org->org_type_id;
-        $this->owner_img= $vir_org->org_image;
+        $this->temp_img= $vir_org->org_image;
         // $this->hood_unit_id=$vir_org->hood_unit_id;
         $this->street_id=$vir_org->street_id;
         $this->log_x=$vir_org->log_x;
         $this->log_y=$vir_org->log_y;
-        $this->owner_img=$vir_org->org_image;
         $this->vir_org_billboard = VirOrgBillboard::where('vir_org_id',$vir_org->id)->get();
 
 
@@ -85,6 +84,7 @@ class ConfiermToOrgs extends Component
             'card_type' => 'required',
             'card_number' => 'numeric',
             'street_id' => 'required',
+            'isowner'=>'required',
             'building_type_id' => 'required',
             'personal_card'=>'image|mimes:jpeg,png,jpg,gif,svg',
             'rent_contract'=>'image|mimes:jpeg,png,jpg,gif,svg',
@@ -121,18 +121,18 @@ class ConfiermToOrgs extends Component
         $this->validate($rules);
 
 
-        if ($this->temp_img){
-            $temp_img_withex = $this->temp_img->getClientOriginalName();
-            $temp_img_name = pathinfo($temp_img_withex, PATHINFO_FILENAME);
-            $temp_img__ex = $this->temp_img->getClientOriginalExtension();
-            $temp_img_tostore =   $temp_img_name . '.' . $temp_img__ex;
+        if ($this->owner_img){
+            $owner_img_withex = $this->owner_img->getClientOriginalName();
+            $owner_img_name = pathinfo($owner_img_withex, PATHINFO_FILENAME);
+            $owner_img__ex = $this->owner_img->getClientOriginalExtension();
+            $owner_img_tostore =   $owner_img_name . '.' . $owner_img__ex;
 
 
             //رفع ملف الصورة
 
-            $pathimg = 'public/uploads/orgs/' . $this->org_name  . 'temp_img ' . $temp_img_tostore;
-            $this->temp_img->storeAs($pathimg);
-            $rules['temp_img'] = 'storage/uploads/orgs/' . $this->org_name  . 'temp_img ' . $temp_img_tostore;
+            $pathimg = 'public/uploads/orgs/' . $this->org_name  . 'owner_img ' . $owner_img_tostore;
+            $this->owner_img->storeAs($pathimg);
+            $rules['owner_img'] = 'storage/uploads/orgs/' . $this->org_name  . 'owner_img ' . $owner_img_tostore;
 
         }
 
@@ -336,7 +336,7 @@ class ConfiermToOrgs extends Component
                 'org_name'=>$this->org_name,
                 'owner_name'=>$this->owner_name,
                 'owner_phone'=>$this->owner_phone,
-                'owner_img'=>$this->temp_img ? $rules['temp_img'] : $this->owner_img,
+                'owner_img'=>$this->owner_img ? $rules['owner_img'] :null ,
                 'card_type'=>$this->card_type,
                 'card_number'=>$this->card_number,
                 'building_type_id'=>$this->building_type_id,
@@ -344,7 +344,7 @@ class ConfiermToOrgs extends Component
                 'org_type_id'=>$this->org_type_id,
                 'hood_unit_id'=>$this->hood_unit_id,
                 'street_id'=>$this->street_id,
-                'personal_card'=> $this->personal_card ?$rules['personal_card'] :null,
+                'personal_card'=> $this->personal_card ?$rules['personal_card'] :$this->temp_img,
                 'rent_contract'=>$this->rent_contract ?$rules['rent_contract'] : null,
                 'ad_board'=>$this->ad_board ? $rules['ad_board'] : null,
                 'previous_license'=>$this->previous_license ? $rules['previous_license'] : null ,
