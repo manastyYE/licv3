@@ -47,7 +47,7 @@
                             العنوان
                         </td>
                         <td class="whitespace-nowrap border border-slate-200 px-3 py-3 dark:border-navy-500 lg:px-5">
-                            {{$clip->org->addrees}}
+                            {{$clip->org->street->name}}
                         </td>
                         <td
                             class="whitespace-nowrap border border-slate-900 bg-info px-4 py-3 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-5">
@@ -430,18 +430,21 @@
                             الاجمالي
                         </td>
 
-                            <td colspan="3">
+                            <td >
                                 {{ $clip->total_ad + $clip->local_fee + $clip->el_gate + $clip->clean_pay }}
                                 {{-- الاجمالي --}}
                             </td>
 
-
+                            <td colspan="3">
+                                {{$ar_str}}
+                            </td>
 
 
                     </tr>
 
                 </tbody>
             </table>
+            <br>
             <a  href="/admin/report/clip/{{$clip->id}}"
 
 

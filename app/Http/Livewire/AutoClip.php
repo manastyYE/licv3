@@ -6,6 +6,7 @@ use Livewire\Component;
 use App\Models\Org;
 use App\Models\OrgBillboard;
 use App\Models\ClipBoard;
+use Alkoumi\LaravelArabicNumbers\Numbers;
 class AutoClip extends Component
 {
     public $clip_id;
@@ -22,6 +23,7 @@ class AutoClip extends Component
     public $clean_reseve_note;//ملاحظة ستد رسوم نظافة المهن
     public $local_reseve_note;//ملاحظة سند الرسوم المحلية
     public $el_gate_reseve_note;//ملاحظة سند رسوم البوابة الالكترونية
+    public $ar_str;
 
 
     public function render()
@@ -32,6 +34,9 @@ class AutoClip extends Component
     }
     public function mount($id){
         $this->clip_id = $id;
+        $clip = ClipBoard::find($id);
+        $ar = $clip->total_ad + $clip->local_fee + $clip->el_gate + $clip->clean_pay;
+        $this->ar_str=Numbers::TafqeetMoney($ar,'YER');
     }
     public function update_clip(){
         $this->validate([
