@@ -23,7 +23,7 @@ class ConfiermToOrgs extends Component
     ,$card_type,$card_number,$building_type_id,$isowner,
     $org_type_id,$hood_unit_id,$street_id,$personal_card,
     $rent_contract,$ad_board,$previous_license,$comm_record,
-    $parcode,$address,$log_x,$log_y,$fire_ext,$start_date,
+    $parcode,$address,$log_x,$log_y,$fire_ext,$start_date,$note,
     $outher,$hood_unit_no;
     public $is_other;
     public $temp_img;
@@ -55,13 +55,14 @@ class ConfiermToOrgs extends Component
         $this->org_name = $vir_org->org_name;
         $this->owner_name =$vir_org->owner_name;
         $this->owner_phone=$vir_org->owner_phone;
-        $this->building_type_id=$vir_org->building_type_id;
+        // $this->building_type_id=$vir_org->building_type_id;
         $this->org_type_id=$vir_org->org_type_id;
         $this->temp_img= $vir_org->org_image;
         // $this->hood_unit_id=$vir_org->hood_unit_id;
         $this->street_id=$vir_org->street_id;
         $this->log_x=$vir_org->log_x;
         $this->log_y=$vir_org->log_y;
+        $this->note=$vir_org->note;
         $this->vir_org_billboard = VirOrgBillboard::where('vir_org_id',$vir_org->id)->get();
 
 
@@ -352,6 +353,9 @@ class ConfiermToOrgs extends Component
                 'start_date'=>$this->start_date,
                 'fire_ext'=>$this->fire_ext,
                 'outher'=>$this->outher ? $rules['outher'] :null,
+                'log_x'=>$this->log_x,
+                'log_y'=>$this->log_y,
+                'note'=>$this->note,
             ]
             );
             if ($this->vir_org_billboard) {

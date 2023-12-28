@@ -65,7 +65,24 @@ class UserDataContoller extends Controller
     }
     public function get_vir_orgs(){
         try{
-            $orgs = VirOrgs::where('user_id',Auth::guard('worker-api')->user()->id)->select('id','org_name','owner_name','is_moved')->get();
+            if(Auth::guard('worker-api')->user()->role_no == 1){
+                $orgs = VirOrgs::with(['user' => function ($query) {
+                    $query->select('id', 'fullname');
+                }])->where('user_id',Auth::guard('worker-api')->user()->id)->select('id','org_name','owner_name','is_moved','user_id')->get();
+            }
+            else{
+                // $ids =Auth::guard('worker-api')->user()->supervisedWorkers->pluck('id');
+                // $ids->merge(Auth::guard('worker-api')->user()->id);
+                $ids = Auth::guard('worker-api')->user()->supervisedWorkers->pluck('id');
+                $ids->push(Auth::guard('worker-api')->user()->id);
+                $orgs = VirOrgs::with(['user' => function ($query) {
+                    $query->select('id', 'fullname');
+                }])->WhereIn('user_id',$ids)->select('id','org_name','owner_name','is_moved','user_id')->get();
+            }
+            $orgs = $orgs->map(function ($org) {
+                $org['user_name'] = $org->user->fullname;
+                return $org;
+            });
             return $this->returnData('data',$orgs);
         }
         catch (\Exception $ex) {
@@ -94,7 +111,7 @@ class UserDataContoller extends Controller
             $org->billboard = $board;
             $clip_board = ClipBoard::where('org_id',$id)->select('el_gate','local_fee','clip_status','clean_pay','total_ad')->latest()->first();
             $org->clip_board = $clip_board;
-            
+
             return $this->returnData('data',$org);
         }
         catch (\Exception $ex) {

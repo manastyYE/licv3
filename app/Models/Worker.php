@@ -19,6 +19,8 @@ class Worker extends Authenticatable implements JWTSubject
         // 'hood_id',
         'hood_units',
         'office_id',
+        'role_no',
+        'supervisor_id',
     ];
     public function directorate(){
         return $this->belongsTo(Directorate::class);

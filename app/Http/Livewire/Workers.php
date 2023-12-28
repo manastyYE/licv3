@@ -35,6 +35,7 @@ class Workers extends Component
     }
     public function save()
     {
+
         //on form submit validation
         $this->validate([
             'fullname' => 'required|unique:users,fullname',
@@ -57,11 +58,12 @@ class Workers extends Component
         $worker->password = Hash::make($this->password);
         $worker->hood_units=json_encode($this->hood_unit);
         $worker->office_id= $this->office_id;
-        $worker->supervisor_id = $this->supervisor_id;
+        if($this->supervisor_id){
+            $worker->supervisor_id = $this->supervisor_id;
+        }
         $worker->role_no = $this->role_no;
         $worker->save();
 
-        session()->flash('message', 'تمت عملية اضافة المفتش الجديد');
 
         $this->fullname = '';
         $this->password = '';
@@ -69,7 +71,9 @@ class Workers extends Component
         $this->username='';
         $this->hood_unit='';
         $this->office_id='';
-        $this->supervisor_id='';
+        $this->supervisor_id=null;
+
+        session()->flash('message', 'تمت عملية اضافة المفتش الجديد');
         //For hide modal after add user success
         $this->dispatchBrowserEvent('close-modal');
     }
@@ -82,7 +86,7 @@ class Workers extends Component
         $this->username='';
         $this->hood_unit='';
         $this->office_id='';
-        $this->supervisor_id='';
+        $this->supervisor_id=null;
         $this->edit_id = '';
         $this->role_no = '';
     }

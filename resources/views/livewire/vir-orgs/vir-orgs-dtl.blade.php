@@ -93,6 +93,15 @@
             <label class="block " style="">
                 <span> رقم المالك</span>
                 <h5 class="font-semibold text-md text-slate-700 dark:text-navy-100">
+                    {{ $org->owner_phone }}
+                </h5>
+            </label>
+        </div>
+
+        <div>
+            <label class="block " style="">
+                <span> الشارع</span>
+                <h5 class="font-semibold text-md text-slate-700 dark:text-navy-100">
                     {{ $org->street->name }}
                 </h5>
             </label>
@@ -129,6 +138,14 @@
         </div>
         @endif
     </div>
+    <br>
+    <br>
+    <button
+    x-data
+    x-on:click="$dispatch('open-modal',{name:'show-org-files'})"
+        class="font-medium border btn border-slate-300 text-slate-800 hover:bg-slate-150 focus:bg-slate-150 active:bg-slate-150/80 dark:border-navy-450 dark:text-navy-50 dark:hover:bg-navy-500 dark:focus:bg-navy-500 dark:active:bg-navy-500/90">
+        عرض المرفقات
+    </button>
         {{-- <div>
 
         </div> --}}
@@ -353,7 +370,100 @@
             لقد تم اكمال بيانات المنشأة بالفعل
     </button>
     @endif
+    <div wire:ignore.self>
+        <x-modaladd title="  عرض الملفات المرفقة" name="show-org-files">
+            @slot('body')
+            <div class="card lg:p-6">
 
+
+                <!-- Blog Post -->
+                @if ($org->org_image)
+                    <div class="text-base font-inter text-slate-600 dark:text-navy-200">
+                        <h1 class="text-xl font-medium text-slate-900 dark:text-navy-50 lg:text-2xl">
+                            صورة المنشاة
+                        </h1>
+
+                        <img class="object-cover object-center w-full mt-5 rounded-lg h-80" src="{{ asset($org->org_image) }}"
+                            alt="image">
+
+
+                    </div>
+                @endif
+                <!-- Blog Post -->
+                {{-- @if ($org->rent_contract)
+                    <div class="text-base font-inter text-slate-600 dark:text-navy-200">
+                        <h1 class="text-xl font-medium text-slate-900 dark:text-navy-50 lg:text-2xl">
+                            صورة عقد الايجار
+                        </h1>
+
+                        <img class="object-cover object-center w-full mt-5 rounded-lg h-80" src="{{ asset($org->rent_contract) }}"
+                            alt="image">
+
+
+                    </div>
+                @endif
+                <!-- Blog Post -->
+                @if ($org->ad_board)
+                    <div class="text-base font-inter text-slate-600 dark:text-navy-200">
+                        <h1 class="text-xl font-medium text-slate-900 dark:text-navy-50 lg:text-2xl">
+                            صورة اللوحة الاعلانية
+                        </h1>
+
+                        <img class="object-cover object-center w-full mt-5 rounded-lg h-80" src="{{ asset($org->ad_board) }}"
+                            alt="image">
+
+
+                    </div>
+                @endif
+                <!-- Blog Post -->
+                @if ($org->previous_license)
+                    <div class="text-base font-inter text-slate-600 dark:text-navy-200">
+                        <h1 class="text-xl font-medium text-slate-900 dark:text-navy-50 lg:text-2xl">
+                            صورة الرخصة السابقة
+                        </h1>
+
+                        <img class="object-cover object-center w-full mt-5 rounded-lg h-80" src="{{ asset($org->previous_license) }}"
+                            alt="image">
+
+
+                    </div>
+                @endif
+                <!-- Blog Post -->
+                @if ($org->comm_record)
+                    <div class="text-base font-inter text-slate-600 dark:text-navy-200">
+                        <h1 class="text-xl font-medium text-slate-900 dark:text-navy-50 lg:text-2xl">
+                            صورة السجل التجاري
+                        </h1>
+
+                        <img class="object-cover object-center w-full mt-5 rounded-lg h-80" src="{{ asset($org->comm_record) }}"
+                            alt="image">
+
+
+                    </div>
+                @endif
+                <!-- Blog Post -->
+                @if ($org->outher)
+                    <div class="text-base font-inter text-slate-600 dark:text-navy-200">
+                        <h1 class="text-xl font-medium text-slate-900 dark:text-navy-50 lg:text-2xl">
+                            صورة موافقة الجهة المختصة
+                        </h1>
+
+                        <img class="object-cover object-center w-full mt-5 rounded-lg h-80" src="{{ asset($org->outher) }}"
+                            alt="image">
+
+
+                    </div>
+                @endif --}}
+
+
+                <!-- Footer Blog Post -->
+                <div class="flex mt-5 space-x-3 space-x-reverse">
+
+                </div>
+            </div>
+            @endslot
+        </x-modaladd>
+    </div>
 
 
 
