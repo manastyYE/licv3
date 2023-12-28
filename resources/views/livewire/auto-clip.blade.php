@@ -362,7 +362,7 @@
                         <td class="whitespace-nowrap border border-slate-200 px-3 py-3 dark:border-navy-500 lg:px-5">
                             <label class="block">
                                 <span>   </span>
-                                <input wire:model='clean_reseve'
+                                <input wire:model='ad_reseve'
                                     class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
                                     placeholder=" ادخل رقم سند رسوم النظافة" type="text" />
                             </label>
@@ -370,7 +370,7 @@
                         </td>
                         <td class="whitespace-nowrap border border-slate-200 px-3 py-3 dark:border-navy-500 lg:px-5">
                             <label class="relative flex">
-                                <input wire:model='clean_reseve_date' x-init="$el._x_flatpickr = flatpickr($el)"
+                                <input wire:model='ad_reseve_date' x-init="$el._x_flatpickr = flatpickr($el)"
                                     class="w-full px-3 py-2 bg-transparent border rounded-lg form-input peer border-slate-300 pr-9 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
                                     placeholder=" اختر تاريخ..." type="text" />
                                 <span
@@ -449,7 +449,7 @@
                             طباعة
             </a>
             <button type="button"
-
+                wire:click='update_clip'
 
                 class="font-medium btn bg-slate-150 text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90">
                 حفظ وطباعة
