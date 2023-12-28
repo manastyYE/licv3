@@ -73,7 +73,7 @@ class UserDataContoller extends Controller
                 // $ids->merge(Auth::guard('worker-api')->user()->id);
                 $ids = Auth::guard('worker-api')->user()->supervisedWorkers->pluck('id');
                 $ids->push(Auth::guard('worker-api')->user()->id);
-                $orgs = VirOrgs::WhereIn('user_id',$ids)->with('user')->select('id','org_name','owner_name','is_moved')->get();
+                $orgs = VirOrgs::with('user')->WhereIn('user_id',$ids)->select('id','org_name','owner_name','is_moved')->get();
             }
             return $this->returnData('data',$orgs);
         }
