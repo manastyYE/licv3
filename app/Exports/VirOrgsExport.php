@@ -69,6 +69,7 @@ class VirOrgsExport implements FromQuery, WithHeadings, WithMapping, WithCustomS
             $user->log_x,
             $user->log_y,
             $user->user->fullname,
+            $this->ismoved
 
         ];
     }
