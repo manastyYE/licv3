@@ -32,7 +32,7 @@ class ShowOrgs extends Component
     public function export()
     {
         $users = $this->selectedUserIds;
-        return Excel::download(new OrgsExport($users), 'users.xlsx');
+        return Excel::download(new OrgsExport($users), 'orgs.xlsx');
         // return Excel::download(new OrgsExport, 'users.xlsx');
     }
 
