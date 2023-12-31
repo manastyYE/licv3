@@ -18,4 +18,7 @@ class ReportPDFContoller extends Controller
         return view('reports.autoclip',['clip'=>$clip,'ar_total'=>$string_total]);
 
     }
+    public function printCard(){
+        return view('reports.card');
+    }
 }

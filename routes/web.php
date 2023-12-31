@@ -74,6 +74,7 @@ Route::get('/login', [ShowPagesController::class,'userlogin'])->name('user.login
 Route::controller(ReportPDFContoller::class)->prefix('admin/report/')->middleware('admin.auth')->group(
     function(){
         Route::get('clip/{id}','printClip')->name('reporn.printClip');
+        Route::get('card','printCard');
     }
 );
 

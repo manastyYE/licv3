@@ -1,6 +1,6 @@
 @extends('layouts.admin',['name' => 'hoods'])
 @section('title')
-الاحساء السكنية
+الأحياء السكنية
 @endsection
 @section("css")
 {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" /> --}}
