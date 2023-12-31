@@ -11,6 +11,7 @@
     <style>
         body{
             font-family: 'Times New Roman', Times, serif;
+            font-weight: 700;
         }
         .hop{
             margin: 10em;
