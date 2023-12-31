@@ -34,16 +34,16 @@ class OrgsExport implements FromQuery, WithHeadings, WithMapping, WithCustomStar
     public function headings(): array
     {
         return [
-            'ID',
-            'org_name',
-            'owner_name',
-            'owner_phone',
-            'card_type',
-            'card_number',
-            'street',
-            'org_type',
-            'start_date',
-            'license_status',
+            'رقم المنشأة',
+            'اسم المنشأة',
+            'اسم المالك',
+            'رقم المالك',
+            'نوع البطاقة',
+            'رقم البطاقة',
+            'الشارع',
+            'نوع النشاط',
+            'تاريخ البدء',
+            'حالة الترخيص',
         ];
     }
 

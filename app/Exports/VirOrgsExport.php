@@ -34,16 +34,16 @@ class VirOrgsExport implements FromQuery, WithHeadings, WithMapping, WithCustomS
     public function headings(): array
     {
         return [
-            'ID',
-            'org_name',
-            'owner_name',
-            'owner_phone',
-            'street',
-            'org_type',
-            'log_x',
-            'log_y',
-            'user',
-            'is_moved',
+            'رقم المنشأة',
+            'اسم المنشأة',
+            'اسم المالك',
+            'رقم المالك',
+            'الشارع',
+            'نوع النشاط',
+            'دوائر العرض',
+            'خطوط الطول',
+            'المستخدم',
+            'الحالة',
         ];
     }
 
