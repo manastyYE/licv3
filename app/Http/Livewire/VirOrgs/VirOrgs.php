@@ -6,6 +6,7 @@ use App\Models\VirOrgs as ModelsVirOrgs;
 use Livewire\Component;
 use Livewire\WithPagination;
 use App\Exports\OrgsExport;
+use App\Exports\VirOrgsExport;
 use Maatwebsite\Excel\Facades\Excel;
 
 class VirOrgs extends Component
@@ -33,7 +34,7 @@ class VirOrgs extends Component
     public function export()
     {
         $users = $this->selectedUserIds;
-        return Excel::download(new OrgsExport($users), 'vir_orgs.xlsx');
+        return Excel::download(new VirOrgsExport($users), 'vir_orgs.xlsx');
         // return Excel::download(new OrgsExport, 'users.xlsx');
     }
 
