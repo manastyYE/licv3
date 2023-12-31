@@ -46,12 +46,13 @@ class VirOrgsExport implements FromQuery, WithHeadings, WithMapping, WithCustomS
             'log_y',
             'user',
             'is_moved',
+            'is_moved',
         ];
     }
 
     public function map($user): array
     {
-        if ($user->is_moved === 1) {
+        if ($user->is_moved == 1) {
             $this->ismoved = "تم النقل";
         }
         else{
@@ -69,7 +70,8 @@ class VirOrgsExport implements FromQuery, WithHeadings, WithMapping, WithCustomS
             $user->log_x,
             $user->log_y,
             $user->user->fullname,
-            $this->ismoved
+            $this->ismoved,
+            $user->is_moved,
 
         ];
     }
