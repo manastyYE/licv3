@@ -2,24 +2,24 @@
 
 namespace App\Exports;
 
-use App\Models\Org;
+use App\Models\VirOrgs;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\FromQuery;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithMapping;
 use Maatwebsite\Excel\Concerns\WithCustomStartCell;
 
-class OrgsExport implements FromQuery, WithHeadings, WithMapping, WithCustomStartCell
+class VirOrgsExport implements FromQuery, WithHeadings, WithMapping, WithCustomStartCell
 {
     /**
     * @return \Illuminate\Support\Collection
     */
     // public function collection()
     // {
-    //     return Org::all();
+    //     return VirOrgs::all();
     // }
-
     protected $users;
+    protected $ismoved = "لم تنقل";
 
     public function __construct($users)
     {
@@ -28,7 +28,7 @@ class OrgsExport implements FromQuery, WithHeadings, WithMapping, WithCustomStar
 
     public function query()
     {
-        return Org::with(['street','org_type'])->whereIn('id', $this->users);
+        return VirOrgs::with(['street','org_type','user'])->whereIn('id', $this->users);
     }
 
     public function headings(): array
@@ -42,13 +42,21 @@ class OrgsExport implements FromQuery, WithHeadings, WithMapping, WithCustomStar
             'card_number',
             'street',
             'org_type',
-            'start_date',
-            'license_status',
+            'log_x',
+            'log_y',
+            'user',
+            'is_moved',
         ];
     }
 
     public function map($user): array
     {
+        if ($user->is_moved === 1) {
+            $this->ismoved = "تم النقل";
+        }
+        else{
+            $this->ismoved = "لم تنقل";
+        }
         return [
             $user->id,
             $user->org_name,
@@ -58,8 +66,10 @@ class OrgsExport implements FromQuery, WithHeadings, WithMapping, WithCustomStar
             $user->card_number,
             $user->street->name,
             $user->org_type->name,
-            $user->start_date,
-            $user->license_status,
+            $user->log_x,
+            $user->log_y,
+            $user->user->fullname,
+
         ];
     }
     public function startCell(): string
