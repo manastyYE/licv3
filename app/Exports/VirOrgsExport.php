@@ -38,14 +38,11 @@ class VirOrgsExport implements FromQuery, WithHeadings, WithMapping, WithCustomS
             'org_name',
             'owner_name',
             'owner_phone',
-            'card_type',
-            'card_number',
             'street',
             'org_type',
             'log_x',
             'log_y',
             'user',
-            'is_moved',
             'is_moved',
         ];
     }
@@ -63,16 +60,12 @@ class VirOrgsExport implements FromQuery, WithHeadings, WithMapping, WithCustomS
             $user->org_name,
             $user->owner_name,
             $user->owner_phone,
-            $user->card_type,
-            $user->card_number,
             $user->street->name,
             $user->org_type->name,
             $user->log_x,
             $user->log_y,
             $user->user->fullname,
             $this->ismoved,
-            $user->is_moved,
-
         ];
     }
     public function startCell(): string
