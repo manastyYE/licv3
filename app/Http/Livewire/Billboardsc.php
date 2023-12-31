@@ -32,6 +32,11 @@ class Billboardsc extends Component
             'name' => 'required|unique:billboards,name',
             'price'=>'required|numeric'
 
+        ],[
+            'name.required'=>'لا يمكن ترك اسم اللوحة فارغاً',
+            'name.unique'=>'هذا الاسم متواجد بالفعل لا يمكن التكرار ',
+            'price.required'=>'لا يمكنك ترك سعر المتر فارغاً',
+            'price.numeric'=>'يجب ان لا يحتوي حقل سعر المتر المربع على احرف او رموز',
         ]);
 
         //Add Student Data
@@ -40,7 +45,7 @@ class Billboardsc extends Component
         $bill_board->price = $this->price;
         $bill_board->save();
 
-        session()->flash('message', 'تمت عملية اضافة وحدة الجوار الجديدة');
+        session()->flash('message', 'تمت عملية اضافة اللوحة الجديدة');
 
         $this->name = '';
         $this->price = '';
@@ -73,11 +78,16 @@ class Billboardsc extends Component
     public function editBillBoardData()
     {
         //on form submit validation
-        // $this->validate([
-        //     'no' => 'required|numeric|unique:bill_boards,no,'.$this->student_id.'', //Validation with ignoring own data
-        //     'name' => 'required',
+        $this->validate([
+            'ed_name' => 'required|unique:billboards,name,'.$this->bill_board_edit_id, //Validation with ignoring own data
+            'ed_price' => 'required|numeric',
 
-        // ]);
+        ],[
+            'ed_name.required'=>'لا يمكن ترك اسم اللوحة فارغاً',
+            'ed_name.unique'=>'هذا الاسم موجود بالفعل ',
+            'ed_price.required'=>'لا يمكن ترك سعر المتر فارغاً',
+            'ed_price.numeric'=>'يجب أن لا يحتوي السعر على احرف او رموز',
+        ]);
 
         $bill_board = BillBoard::where('id', $this->bill_board_edit_id)->first();
         $bill_board->name = $this->ed_name;

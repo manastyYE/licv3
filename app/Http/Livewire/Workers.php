@@ -45,6 +45,18 @@ class Workers extends Component
             'hood_unit'=>'required',
             'office_id'=>'required',
             'role_no'=>'required',
+        ],[
+            'fullname.required'=>'لا يمكنك ترك حقل الاسم الكامل فارغاً',
+            'fullname.unique'=>'هذا الاسم متواجد بالفعل ',
+            'phone.required'=>'لا يمكنك ترك حقل رقم الهاتف فارغاً',
+            'phone.numeric'=>'لا يمكن ان يحتوي حقل رقم الهاتف على احرف او رموز',
+            'phone.min'=>'يجب ان يكون رقم الهاتف مكون من 9 ارقام ',
+            'password.required'=>'لا يمكن ترك حقل كلمة المرور فارغاً',
+            'password.min'=>'يجب ان تكون كلمة المرور من 8 احرف او اكثر ',
+            'username.required'=>'لا يمكن ترك حقل اسم المستخدم فارغاً',
+            'username.unique'=>'اسم المستخدم موجود بالفعل ',
+            'hood_unit.required'=>'يجب عليك تحديد وحدات الجوار',
+            'role_no.required'=>'يجب عليك اختيار نوع المستخدم',
         ]);
         if ($this->role_no == 1) {
             $this->validate(['supervisor_id' => 'required']);
@@ -114,11 +126,27 @@ class Workers extends Component
     public function editWorkerData()
     {
         //on form submit validation
-        // $this->validate([
-        //     'no' => 'required|numeric|unique:hood_units,no,'.$this->student_id.'', //Validation with ignoring own data
-        //     'name' => 'required',
-
-        // ]);
+        $this->validate([
+            'fullname' => 'required|unique:users,fullname,'.$this->edit_id,
+            'phone' => 'required|numeric|min:9',
+            'password'=>'required|min:8',
+            'username'=>'required|unique:workers,username,'.$this->edit_id,
+            'hood_unit'=>'required',
+            'office_id'=>'required',
+            'role_no'=>'required',
+        ],[
+            'fullname.required'=>'لا يمكنك ترك حقل الاسم الكامل فارغاً',
+            'fullname.unique'=>'هذا الاسم متواجد بالفعل ',
+            'phone.required'=>'لا يمكنك ترك حقل رقم الهاتف فارغاً',
+            'phone.numeric'=>'لا يمكن ان يحتوي حقل رقم الهاتف على احرف او رموز',
+            'phone.min'=>'يجب ان يكون رقم الهاتف مكون من 9 ارقام ',
+            'password.required'=>'لا يمكن ترك حقل كلمة المرور فارغاً',
+            'password.min'=>'يجب ان تكون كلمة المرور من 8 احرف او اكثر ',
+            'username.required'=>'لا يمكن ترك حقل اسم المستخدم فارغاً',
+            'username.unique'=>'اسم المستخدم موجود بالفعل ',
+            'hood_unit.required'=>'يجب عليك تحديد وحدات الجوار',
+            'role_no.required'=>'يجب عليك اختيار نوع المستخدم',
+        ]);
         if ($this->role_no == 1) {
             $this->validate(['supervisor_id' => 'required']);
         }

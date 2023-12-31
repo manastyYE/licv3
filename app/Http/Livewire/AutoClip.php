@@ -40,11 +40,19 @@ class AutoClip extends Component
     }
     public function update_clip(){
         $this->validate([
-            'ad_reseve'=>'min:1|numeric',
+            'ad_reseve'=>'required|min:1|numeric',
             'local_reseve'=>'required|numeric|min:1',
 
 
-        ]);
+        ],
+    [
+        'ad_reseve.min'=>'قيمة السند خاطئة يجب ان تكون ارقاما صحيحة',
+        'ad_reseve.numeric'=>'يجب ان لا يحتوي حقل رقم السند على أحرف أو رموز ',
+        'ad_reseve.required'=>'لا يمكن ترك رقم سند رسوم الدعاية والاعلان فارغاً',
+        'local_reseve.required'=>'لا يمكن ترك رقم سند الرسوم المحلية فارغاً',
+        'local_reseve.numeric'=>'يجب ان تحتوي قيمة رقم السند على احرف او رموز',
+        'local_reseve.min'=>'قيمة السند خاطئة يجب ان تكون ارقاماً صحيحة ',
+    ]);
 
         $ed_chip=ClipBoard::find($this->clip_id);
         $ed_chip->ad_reseve = $this->ad_reseve;

@@ -160,9 +160,9 @@
     </div>
 
     <div wire:ignor.self>
-        <x-modaladd title="تعديل بيانات وحدة الجوار" name="edit-bill-board-modal">
+        <x-modaladd title="تعديل بيانات اللوحة" name="edit-bill-board-modal">
             <x-slot:body>
-                <form>
+                <form wire:submit.prevent='editBillBoardData'>
                     <div class="p-2 space-y-6">
 
                         <label class="block">
@@ -196,7 +196,7 @@
                             class="font-medium btn bg-slate-150 text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90">
                             الغاء
                         </button>
-                        <button type="button" wire:click.prevent='editBillBoardData'
+                        <button type="submit"
                             class="font-medium text-white btn bg-primary hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90">
                             تأكيد
                         </button>

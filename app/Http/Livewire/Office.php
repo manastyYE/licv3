@@ -26,6 +26,9 @@ class Office extends Component
         $this->validate([
             'name' => 'required|unique:offices,name',
 
+        ],[
+            'name.required'=>'لا يمكنك ترك اسم القطاع فارغاً',
+            'name.unique'=>'اسم القطاع موجود بالفعل ',
         ]);
 
         //Add Student Data
@@ -33,7 +36,7 @@ class Office extends Component
         $office->name = $this->name;
         $office->save();
 
-        session()->flash('message', 'تمت عملية اضافة القطاع الجديد');
+        session()->flash('message', 'تمت عملية اضافة القطاع الجديد بنجاح');
 
         $this->name = '';
         $this->ed_name='';
@@ -65,18 +68,20 @@ class Office extends Component
     public function editOfficeData()
     {
         //on form submit validation
-        // $this->validate([
-        //     'no' => 'required|numeric|unique:hood_units,no,'.$this->student_id.'', //Validation with ignoring own data
-        //     'name' => 'required',
+        $this->validate([
+            'ed_name' => 'required|unique:offices,name,'.$this->office_edit_id,
 
-        // ]);
+        ],[
+            'ed_name.required'=>'لا يمكنك ترك حقل اسم القطاع فارغاً',
+            'ed_name.unique'=>'هذا الاسم متواجد بالفعل ',
+        ]);
 
         $office = AAA::where('id', $this->office_edit_id)->first();
         $office->name = $this->ed_name;
 
         $office->save();
 
-        session()->flash('message', 'تم تعديل بيانات وحدة الجوار بنجاح ');
+        session()->flash('message', 'تم تعديل بيانات القطاع بنجاح  ');
 
         $this->resetInputs();
 

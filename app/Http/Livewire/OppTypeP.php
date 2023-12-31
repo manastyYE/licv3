@@ -33,10 +33,16 @@ class OppTypeP extends Component
         $this->validate([
             'office_id'=>'required',
             'name' => 'required|unique:org_types,name',
-            'price' => 'required',
+            'price' => 'required|numeric',
 
 
 
+        ],[
+            'office_id.required'=>'يجب عليك اختيار القطاع الخاص بنوع النشاط',
+            'name.required'=>'لا يمكنك ترك اسم النشاط  فارغاً',
+            'name.unique'=>'اسم النشاط موجود بالفعل ',
+            'price.required'=>'لا يمكنك ترك حقل رسوم النظافة فارغاً',
+            'price.numeric'=>'حقل رسوم النظافة لا يقبل الاحرف او الرموز',
         ]);
 
         //Add Student Data
@@ -74,18 +80,29 @@ class OppTypeP extends Component
         $this->orgtype_id = $orgtype->id;
         $this->edname = $orgtype->name;
         $this->edprice = $orgtype->price;
-        $this->office_id= $orgtype->office_id;
+        $this->ed_office_id= $orgtype->office_id;
     }
 
 
     public function editStudentData()
     {
         //on form submit validation
-        // $this->validate([
-        //     'no' => 'required|numeric|unique:hood_units,no,'.$this->student_id.'', //Validation with ignoring own data
-        //     'name' => 'required',
+        $this->validate(
+            [
+            'ed_office_id'=>'required',
+            'edname' => 'required|unique:org_types,name,'.$this->orgtype_edit_id,
+            'edprice' => 'required|numeric',
 
-        // ]);
+
+
+            ],[
+                'ed_office_id.required'=>'يجب عليك اختيار القطاع الخاص بنوع النشاط',
+                'edname.required'=>'لا يمكنك ترك اسم النشاط  فارغاً',
+                'edname.unique'=>'اسم النشاط موجود بالفعل ',
+                'edprice.required'=>'لا يمكنك ترك حقل رسوم النظافة فارغاً',
+                'edprice.numeric'=>'حقل رسوم النظافة لا يقبل الاحرف او الرموز',
+            ]
+        );
 
         $orgtype = OrgType::where('id', $this->orgtype_edit_id)->first();
         $orgtype->name = $this->edname;

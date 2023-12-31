@@ -40,6 +40,22 @@ class AddOrg extends Component
             'outher'=>'image|mimes:jpeg,png,jpg,gif,svg',
             'isowner'=>'required'
         ];
+        $mes =[
+            'org_name.required'=>'اسم المنشأة او الاسم التجاري مطلوب',
+            'org_type_id.required' => 'يجب عليك اختيار نوع النشاط التجاري ',
+            'start_date.required'=>'تاريخ بدء النشاط مطلوب ',
+            'owner_name.required' => 'اسم المالك مطلوب لا يمكن تركه فارغاً',
+            'owner_phone.required'=>'يجب عليك ادخال رقم هاتف مالك المنشأة',
+            'owner_phone.numeric'=>'حقل رقم الهاتف لا يقبل الا ارقام فقط ',
+            'card_type.required'=>'يجب عليك اختيار نوع البطاقة ',
+            'card_number.numeric'=>'حقل رقم البطاقة يجب ان يكون ارقاماً فقط',
+            'street_id.required'=>'يجب عليك اختيار الشارع ',
+            'building_type_id.required'=>'يجب عليك اختيار نوع البناء الذي فيه المشأة',
+            'isowner.required'=>'لا يمكنك ترك هذا الحقل فارغاً',
+            
+
+
+        ];
         if (!$this->rent_contract) {
             unset($rules['rent_contract']);
         }
@@ -64,7 +80,7 @@ class AddOrg extends Component
 
 
 
-        $this->validate($rules);
+        $this->validate($rules,$mes);
 
 
         if ($this->owner_img){

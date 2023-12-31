@@ -34,6 +34,11 @@ class HoodUnits extends Component
             'hood_id'=>'required',
 
 
+        ],[
+            'no.required'=>'لا يمكنك ترك رقم وحدة الجوار فارغاً',
+            'no.unique'=>'وحدة الجوار هذه موجودة بالفعل ',
+            'hood_id.required'=>'يجب عليك اختيار الحي ',
+
         ]);
 
         //Add Student Data
@@ -68,20 +73,27 @@ class HoodUnits extends Component
 
         $this->hood_unit_edit_id = $hood_unit->id;
         $this->ed_no = $hood_unit->no;
+        $this->ed_hood_id = $hood_unit->hood_id;
     }
 
 
     public function editHoodUnitData()
     {
         //on form submit validation
-        // $this->validate([
-        //     'no' => 'required|numeric|unique:hood_units,no,'.$this->student_id.'', //Validation with ignoring own data
-        //     'name' => 'required',
+        $this->validate([
+            'ed_no' => 'required|unique:hood_units,no,'.$this->hood_unit_edit_id.'', //Validation with ignoring own data
+            'ed_hood_id'=>'required',
 
-        // ]);
+        ],[
+            'ed_no.required'=>'لا يمكنك ترك رقم وحدة الجوار فارغاً',
+            'ed_no.unique'=>'رقم وحدة الجوار هذه موجودة بالفعل',
+            'ed_hood_id.required'=>'يجب عليك اختيار الحي ',
+        ]
+    );
 
         $hood_unit = HoodUnit::where('id', $this->hood_unit_edit_id)->first();
-        $hood_unit->no = $this->no;
+        $hood_unit->no = $this->ed_no;
+        $hood_unit->hood_id=$this->ed_hood_id;
         $hood_unit->save();
 
         session()->flash('message', 'تم تعديل بيانات وحدة الجوار بنجاح ');

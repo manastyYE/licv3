@@ -31,11 +31,15 @@ class Streets extends Component
     {
         //on form submit validation
         $this->validate([
-            'name' => 'required',
+            'name' => 'required|unique:streets,name',
             'hood_unit_id' => 'required',
 
 
 
+        ],[
+            'name.required'=>'لا يمكنك ترك اسم الشارع فارغاً' ,
+            'name.unique'=>'اسم الشارع موجود بالفعل ',
+            'hood_unit_id.required'=>'يجب عليك اختيار وحدة الجوار '
         ]);
 
         //Add Student Data
@@ -58,6 +62,8 @@ class Streets extends Component
     {
         $this->name = '';
         $this->hood_unit_id = '';
+        $this->edname='';
+        $this->edhood_unit_id='';
     }
 
     public function close()
@@ -70,18 +76,24 @@ class Streets extends Component
         $this->street_edit_id = $street->id;
         $this->street_id = $street->id;
         $this->edname = $street->name;
-        $this->edhood_unit_id = $street->edhood_unit_id;
+        $this->edhood_unit_id = $street->hood_unit_id;
     }
 
 
     public function editStudentData()
     {
         //on form submit validation
-        // $this->validate([
-        //     'no' => 'required|numeric|unique:hood_units,no,'.$this->student_id.'', //Validation with ignoring own data
-        //     'name' => 'required',
+        $this->validate([
+            'edname' => 'required|unique:streets,name,'.$this->street_edit_id,
+            'edhood_unit_id' => 'required',
 
-        // ]);
+
+
+        ],[
+            'edname.required'=>'لا يمكنك ترك اسم الشارع فارغاً' ,
+            'edname.unique'=>'اسم الشارع موجود بالفعل ',
+            'edhood_unit_id.required'=>'يجب عليك اختيار وحدة الجوار '
+        ]);
 
         $street = Street::where('id', $this->street_edit_id)->first();
         $street->name = $this->edname;

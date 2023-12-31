@@ -31,7 +31,11 @@ class Hoods extends Component
         $this->validate([
             'name' => 'required|unique:hoods,name',
 
-        ]);
+        ],
+    [
+        'name.required'=>'لا يمكنك ترك اسم الحي فارغاً',
+        'name.unique'=>'هذا الاسم موجود بالفعل '
+    ]);
 
         //Add Student Data
         $hood = new Hood();
@@ -39,7 +43,7 @@ class Hoods extends Component
         $hood->directorate_id=auth()->guard('admin')->user()->directorate_id;
         $hood->save();
 
-        session()->flash('message', 'تمت عملية اضافة وحدة الجوار الجديدة');
+        session()->flash('message', 'تمت عملية اضافة الحي الجديد بنجاح');
 
         $this->name = '';
 
@@ -68,19 +72,23 @@ class Hoods extends Component
 
     public function editHoodData()
     {
-        //on form submit validation
-        // $this->validate([
-        //     'no' => 'required|numeric|unique:hood_units,no,'.$this->student_id.'', //Validation with ignoring own data
-        //     'name' => 'required',
+        // on form submit validation
+        $this->validate([
+            'name' => 'required|unique:hoods,name,'.$this->hood_edit_id, //Validation with ignoring own data
 
-        // ]);
+        ],
+        [
+            'name.required'=>' لا يمكنك ترك اسم الحي فارغاً',
+            'name.unique'=>'هذا الاسم موجود بالفعل ',
+        ]
+    );
 
         $hood = Hood::where('id', $this->hood_edit_id)->first();
         $hood->name = $this->name;
 
         $hood->save();
 
-        session()->flash('message', 'تم تعديل بيانات وحدة الجوار بنجاح ');
+        session()->flash('message', 'تم تعديل بيانات الحي  بنجاح ');
 
         $this->resetInputs();
 
@@ -101,7 +109,7 @@ class Hoods extends Component
         $hood = Hood::where('id', $this->hood_delete_id)->first();
         $hood->delete();
 
-        session()->flash('message', 'تم حذف وحدة الجوار  بنجاح');
+        session()->flash('message', 'تم حذف الحي  بنجاح');
 
         $this->dispatchBrowserEvent('close-modal');
 

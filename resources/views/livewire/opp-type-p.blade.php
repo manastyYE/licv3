@@ -171,15 +171,15 @@
                             <span> القطاع </span>
                             <select wire:model='ed_office_id'
                                 class="form-select mt-1.5 w-full rounded-lg border border-slate-300 bg-white px-3 py-2 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:bg-navy-700 dark:hover:border-navy-400 dark:focus:border-accent">
-
+                                <option value=""> اختر قطاع...</option>
                                 @forelse ($off as $o)
-                                    @if ($ed_office_id == $o->id)
-                                        <option value="{{ $o->id }}" selected> {{ $o->name }} </option>
-                                    @else
+
+
                                         <option value="{{ $o->id }}"> {{ $o->name }} </option>
-                                    @endif
+
 
                                 @empty
+                                <option value=""> لا توجد اي قطاعات...</option>
                                 @endforelse
                             </select>
                         </label>
