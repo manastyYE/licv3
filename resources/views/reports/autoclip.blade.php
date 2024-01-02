@@ -16,18 +16,24 @@
             border: 1px solid;
 
         }
+        .org tr :nth-child(odd){
+            font-weight: bold;
+        }
+        .bill {
+            font-weight: bold;
+        }
     </style>
 </head>
 
 <body dir="rtl">
     <div class="container">
-        <div class="row text-center mt-4">
-            <div class=" col  ">
+        <div class="row text-center mt-4 mb-2">
+            <div class="col">
                 <img src="{{asset('report/الحمهورية اليمنية.png')}}" width="150" alt="الجمهورية اليمنية">
-                <h4>
+                <h4 class="mt-2">
                     أمانة العاصمة
                 </h4>
-                <h5>
+                <h5 class="">
                     مديرية الوحدة
                 </h5>
                 <h6>
@@ -41,7 +47,7 @@
                 <img src="{{ asset('report/yemen.png') }}" alt="yemen" width="150">
 
             </div>
-            <div class="col">
+            <div class="col d-flex justify-content-center flex-column">
                 <h4>
                     ادارة النظم والمعلومات
                 </h4>
@@ -50,8 +56,26 @@
                 </h4>
             </div>
         </div>
-        <div class="   ">
-            <table class="table   text-center">
+        <hr>
+        <div class="">
+            <div class="container m-2 d-flex justify-content-between" >
+                <div class="d-flex flex-grow-1 gap-2 justify-content-center">
+                    <span>اليوم:</span>
+                    @php
+                        \Carbon\Carbon::setLocale('ar');
+                    @endphp
+                    <span>{{ \Carbon\Carbon::now()->dayName }}</span>
+                </div>
+                <div class="d-flex flex-grow-1 gap-2 justify-content-center">
+                    <span>التاريخ:</span>
+                    <span>{{now()->timezone('Asia/Aden')->format('Y-m-d H:i')}}</span>
+                </div>
+                <div class="d-flex flex-grow-1 gap-2 justify-content-center">
+                    <span>الرقم الالي:</span>
+                    <span>{{$clip->id}}</span>
+                </div>
+            </div>
+            <table class="table text-center">
                 <tr class="table-warning">
                     <td>
                         <h3>
@@ -60,12 +84,12 @@
                     </td>
                 </tr>
                 <tr>
-                    <td scope="col">
+                    <td class="col fw-bold">
                         بيانات تعريفية
                     </td>
                 </tr>
             </table>
-            <table class="table table-bordered border-dark text-center">
+            <table id="tabel" class="org table table-bordered border-dark text-center">
                 <tr>
                     <td class="bg-info col-1">
                     الاسم رباعيا
@@ -116,7 +140,7 @@
                 </tr>
 
             </table>
-            <table class="table border-dark  text-center ">
+            <table class="fw-bold table border-dark  text-center ">
                 <tr>
                     <td class="">
                         بيانات اللوحة الدعاية
@@ -128,9 +152,9 @@
                     </td>
                 </tr>
             </table>
-            <table class="table table-bordered border-dark    text-center " style="margin-top: -5mm;">
+            <table class="table table-bordered border-dark text-center " style="margin-top: -5mm;">
 
-                <tr class="bg-info">
+                <tr class="bill bg-info">
                     <td>
                         امامي
                     </td>
@@ -193,9 +217,9 @@
                     بيانات مالية مستحقة
                 </td>
             </tr></table>
-            <table class="table  table-bordered border-dark text-center" style="margin-top: -5mm;" >
+            <table class="table table-bordered border-dark text-center" style="margin-top: -5mm;" >
 
-                    <tr class="bg-info">
+                    <tr class="bill bg-info">
                         <td class="col-2">
                             الرسوم
                         </td>
@@ -334,25 +358,7 @@
 
                     </tr>
             </table>
-            <table class="table table-borderless text-center">
-                <tr>
-                    <td>
-                        النظام الالي
-                    </td>
-                    <td>
-                        المفتش
-                    </td>
-                    <td>
-                        مندوب الصندوق
-                    </td>
-                    <td>
-                        رئيس القسم
-                    </td>
-                    <td>
-                        النائب للبلديات
-                    </td>
-                </tr>
-            </table>
+
 
         </div>
     </div>
