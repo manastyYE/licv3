@@ -289,9 +289,9 @@
                                 <th data-column-id="actions" class="gridjs-th">
                                     <div class="gridjs-th-content">الاجمالي</div>
                                 </th>
-                                {{-- <th data-column-id="actions" class="gridjs-th">
-                                    <div class="gridjs-th-content">العمليات</div>
-                                </th> --}}
+                                <th data-column-id="actions" class="gridjs-th">
+                                    <div class="gridjs-th-content">تعديل</div>
+                                </th>
                             </tr>
                         </thead>
                         <tbody class="gridjs-tbody">
@@ -315,23 +315,23 @@
                                         <td class="gridjs-td">
                                             {{ $p->height * $p->width * $p->billboard->price * $p->count }}
                                         </td>
-                                        {{-- <td class="gridjs-td"><span>
+                                        <td class="gridjs-td"><span>
                                                 <div class="flex justify-center space-x-2">
-                                                    <button type="button" wire:click='setname({{ $p->id }})'
+                                                    <button type="button" wire:click='setvirbill({{ $p->id }})'
                                                         x-data
-                                                        x-on:click="$dispatch('open-modal',{name:'edit-org-billboard-modal'})"
+                                                        x-on:click="$dispatch('open-modal',{name:'edit-virorg-board-modal'})"
                                                         class="w-8 h-8 p-0 btn text-info hover:bg-info/20 focus:bg-info/20 active:bg-info/25">
                                                         <i class="fa fa-edit"></i>
                                                     </button>
-                                                    <button type="button"
+                                                    {{-- <button type="button"
                                                         wire:click='deleteConfirmation({{ $p->id }})' x-data
                                                         x-on:click="$dispatch('open-modal',{name:'del-org-billboard-modal'})"
                                                         class="w-8 h-8 p-0 btn text-error hover:bg-error/20 focus:bg-error/20 active:bg-error/25">
                                                         <i class="fa fa-trash- "></i>
-                                                    </button>
+                                                    </button> --}}
                                                 </div>
                                             </span>
-                                        </td> --}}
+                                        </td>
                                     </tr>
                                 @endforeach
                             @endif
@@ -464,6 +464,93 @@
             @endslot
         </x-modaladd>
     </div>
+    <div wire:ignore.self>
+        <x-modaladd title="تعديل  لوحة لمنشأة{{ $org->org_name }} " name="edit-virorg-board-modal">
+            @slot('body')
+                {{-- <x-slot:body> --}}
+                <form>
+                    <div class="p-2 space-y-6">
+                        <label class="block">
+                            <span> نوع اللوحة </span>
+                            <select wire:model='billboard_id'
+                                class="form-select mt-1.5 w-full rounded-lg border border-slate-300 bg-white px-3 py-2 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:bg-navy-700 dark:hover:border-navy-400 dark:focus:border-accent">
+                                <option value=""> اختر نوع اللوحة </option>
+                                @forelse ($bill as $b)
+                                    <option value="{{ $b->id }}">{{ $b->name }}</option>
+                                @empty
+                                @endforelse
+                            </select>
+                        </label>
+                        @error('billboard_id')
+                            <span class="text-tiny+ text-error">
+                                {{ $message }}
+                            </span>
+                        @enderror
+                        <label class="block">
+                            <span> الطول </span>
+                            <input wire:model='height'
+                                class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
+                                placeholder=" الطول" type="text" />
+                        </label>
+                        @error('height')
+                            <span class="text-tiny+ text-error">
+                                {{ $message }}
+                            </span>
+                        @enderror
+                        <label class="block">
+                            <span> العرض </span>
+                            <input wire:model='wideth'
+                                class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
+                                placeholder="العرض" type="text" />
+                        </label>
+                        @error('wideth')
+                            <span class="text-tiny+ text-error">
+                                {{ $message }}
+                            </span>
+                        @enderror
+                        <label class="block">
+                            <span> العدد </span>
+                            <input wire:model='count'
+                                class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
+                                placeholder=" العدد" type="text" />
+                        </label>
+                        @error('count')
+                            <span class="text-tiny+ text-error">
+                                {{ $message }}
+                            </span>
+                        @enderror
+
+
+                    </div>
+
+                    <!-- Modal footer -->
+                    <div class="items-center p-4 border-gray-200 rounded-b dark:border-gray-700">
+                        <button type="button" data-dismiss="modal"
+                            class="font-medium btn bg-slate-150 text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90">
+                            الغاء
+                        </button>
+                        <button type="button" wire:click.prevent='editOrgBillboardData'
+                            class="font-medium text-white btn bg-primary hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90">
+                            حفظ
+                        </button>
+                    </div>
+
+                </form>
+                <div>
+                    @if (session('sec'))
+                        <span class="text-xs text-green-500">{{ session('sec') }}</span>
+                    @endif
+                </div>
+
+            @endslot
+            {{--
+            </x-slot:body> --}}
+            {{-- @slot('footer')
+
+            @endslot --}}
+        </x-modaladd>
+    </div>
+
 
 
 
