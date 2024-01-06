@@ -69,12 +69,12 @@ Route::get('/login', [ShowPagesController::class,'userlogin'])->name('user.login
 //     $response = Response::make($file, 200);
 //     $response->header("Content-Type", $type);
 
-//     return $response;
+//     return $response;rt/
 // })->where('filename', '.*');
 Route::controller(ReportPDFContoller::class)->prefix('admin/report/')->middleware('admin.auth')->group(
     function(){
         Route::get('clip/{id}','printClip')->name('reporn.printClip');
-        Route::get('card','printCard');
+        Route::get('card/{id}','printCard');
     }
 );
 

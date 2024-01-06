@@ -250,6 +250,7 @@
 
 
     </div>
+
     <div>
         <div x-data="pages.tables.initGridTableExapmle">
             <div role="complementary" class="gridjs gridjs-container" style="width: 100%;">
@@ -400,6 +401,9 @@
                                 <th data-column-id="actions" class="gridjs-th">
                                     <div class="gridjs-th-content"> أنشأها المستخدم </div>
                                 </th>
+                                <th class="gridjs-th">
+                                    طباعة كرت الرخصة
+                                </th>
                             </tr>
                         </thead>
                         <tbody class="gridjs-tbody">
@@ -424,6 +428,19 @@
 
                                                 <td class="gridjs-td">{{ $p->created_at }}</td>
                                                 <td class="gridjs-td">{{ $p->admin->fullname }}</td>
+                                                <td class="gridjs-td">
+                                                    <a
+                                                    @if ($p->clip_status == 'مدفوعة' )
+                                                    href="admin/report/card/{{ $p->id }}"
+                                                    @else
+
+                                                    @endif
+
+                                                        class="font-medium border btn border-primary text-primary hover:bg-primary hover:text-white focus:bg-primary focus:text-white active:bg-primary/90 dark:border-accent dark:text-accent-light dark:hover:bg-accent dark:hover:text-white dark:focus:bg-accent dark:focus:text-white dark:active:bg-accent/90">
+                                                        طباعة كرت الرخصة
+                                                    </a>
+                                                </td>
+
                                             </span>
 
 
@@ -584,6 +601,17 @@
                                 placeholder="ادخل رسوم البوابة الالكترونية" type="text" />
                         </label>
                         @error('el_gate')
+                            <span class="text-tiny+ text-error">
+                                {{ $message }}
+                            </span>
+                        @enderror
+                        <label class="block">
+                            <span> رسوم النظافة </span>
+                            <input wire:model='clean'
+                                class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
+                                placeholder=" ادخل رسوم النظافة" type="text" />
+                        </label>
+                        @error('clean')
                             <span class="text-tiny+ text-error">
                                 {{ $message }}
                             </span>

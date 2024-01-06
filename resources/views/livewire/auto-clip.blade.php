@@ -347,11 +347,39 @@
                         </td>
 
                     </tr>
+
                     <tr>
 
                         <td
                             class="whitespace-nowrap border border-slate-900 bg-info px-4 py-3 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-5">
                             نظافة
+                        </td>
+
+                        <td class="whitespace-nowrap border border-slate-200 px-3 py-3 dark:border-navy-500 lg:px-5">
+                            {{ $clip->clean}}
+                            {{-- المبلغ --}}
+                        </td>
+
+                        <td class="whitespace-nowrap border border-slate-200 px-3 py-3 dark:border-navy-500 lg:px-5">
+
+                            {{-- رقم السند --}}
+                        </td>
+                        <td class="whitespace-nowrap border border-slate-200 px-3 py-3 dark:border-navy-500 lg:px-5">
+
+                            {{-- التاريخ --}}
+                        </td>
+
+                        <td class="whitespace-nowrap border border-slate-200 px-3 py-3 dark:border-navy-500 lg:px-5">
+
+                            {{-- ملاحظات --}}
+                        </td>
+
+                    </tr>
+                    <tr>
+
+                        <td
+                            class="whitespace-nowrap border border-slate-900 bg-info px-4 py-3 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-5">
+                            نظافة مهن
                         </td>
 
                         <td class="whitespace-nowrap border border-slate-200 px-3 py-3 dark:border-navy-500 lg:px-5">
@@ -400,38 +428,11 @@
 
                         <td
                             class="whitespace-nowrap border border-slate-900 bg-info px-4 py-3 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-5">
-                            نظافة المهن
-                        </td>
-
-                        <td class="whitespace-nowrap border border-slate-200 px-3 py-3 dark:border-navy-500 lg:px-5">
-                            0
-                            {{-- المبلغ --}}
-                        </td>
-
-                        <td class="whitespace-nowrap border border-slate-200 px-3 py-3 dark:border-navy-500 lg:px-5">
-                            0
-                            {{-- رقم السند --}}
-                        </td>
-                        <td class="whitespace-nowrap border border-slate-200 px-3 py-3 dark:border-navy-500 lg:px-5">
-                            0
-                            {{-- التاريخ --}}
-                        </td>
-
-                        <td class="whitespace-nowrap border border-slate-200 px-3 py-3 dark:border-navy-500 lg:px-5">
-                            0
-                            {{-- ملاحظات --}}
-                        </td>
-
-                    </tr>
-                    <tr>
-
-                        <td
-                            class="whitespace-nowrap border border-slate-900 bg-info px-4 py-3 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-5">
                             الاجمالي
                         </td>
 
                             <td >
-                                {{ $clip->total_ad + $clip->local_fee + $clip->el_gate + $clip->clean_pay }}
+                                {{ $clip->total_ad + $clip->local_fee + $clip->el_gate + $clip->clean_pay +$clip->clean }}
                                 {{-- الاجمالي --}}
                             </td>
 

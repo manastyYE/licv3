@@ -26,7 +26,7 @@
 </head>
 
 <body dir="rtl">
-    <div class="container">
+    <div class="">
         <div class="row text-center mt-4 mb-2">
             <div class="col">
                 <img src="{{asset('report/الحمهورية اليمنية.png')}}" width="150" alt="الجمهورية اليمنية">
@@ -309,6 +309,26 @@
                             نظافة
                         </td>
                         <td class="col-2">
+                            {{
+                                $clip->clean}}
+                            <!-- المبلغ -->
+                        </td>
+                        <td class="col-4">
+                            <!-- ارقام السندات -->
+                        </td>
+                        <td class="col-2">
+                            <!-- التاريخ -->
+                        </td>
+                        <td class="col-2">
+
+                            <!-- ملاحظات -->
+                        </td>
+                    </tr>
+                    <tr class="">
+                        <td class="col-2 bg-info">
+                            نظافة مهن
+                        </td>
+                        <td class="col-2">
                             {{$clip->clean_pay}}
                             <!-- المبلغ -->
                         </td>
@@ -325,31 +345,14 @@
                             <!-- ملاحظات -->
                         </td>
                     </tr>
-                    <tr class="">
-                        <td class="col-2 bg-info">
-                            نظافة مهن
-                        </td>
-                        <td class="col-2">
-                            <!-- المبلغ -->
-                        </td>
-                        <td class="col-4">
-                            <!-- ارقام السندات -->
-                        </td>
-                        <td class="col-2">
-                            <!-- التاريخ -->
-                        </td>
-                        <td class="col-2">
 
-                            <!-- ملاحظات -->
-                        </td>
-                    </tr>
                     <tr class="">
                         <td class="col-2 bg-info">
                             الاجمالي
                         </td>
                         <td class="col-2">
                             <!-- المبلغ -->
-                            {{ $clip->total_ad + $clip->local_fee + $clip->el_gate + $clip->clean_pay }}
+                            {{ $clip->total_ad + $clip->local_fee + $clip->el_gate + $clip->clean_pay +$clip->clean }}
                         </td>
                         <td colspan="3" >
                             {{$ar_total}}

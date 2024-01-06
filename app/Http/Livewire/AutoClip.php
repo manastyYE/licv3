@@ -35,7 +35,7 @@ class AutoClip extends Component
     public function mount($id){
         $this->clip_id = $id;
         $clip = ClipBoard::find($id);
-        $ar = $clip->total_ad + $clip->local_fee + $clip->el_gate + $clip->clean_pay;
+        $ar = $clip->total_ad + $clip->local_fee + $clip->el_gate + $clip->clean_pay +$clip->clean;
         $this->ar_str=Numbers::TafqeetMoney($ar,'YER');
     }
     public function update_clip(){
