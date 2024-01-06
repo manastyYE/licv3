@@ -47,4 +47,7 @@ class Org extends Model
 	public function building_type(){
         return $this->belongsTo(BuildingType::class);
     }
+    public function hood_unit(){
+        return $this->belongsTo(HoodUnit::class);
+    }
 }

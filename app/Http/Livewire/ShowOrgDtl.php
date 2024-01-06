@@ -23,6 +23,7 @@ class ShowOrgDtl extends Component
     public $el_gate, $local_fee;
     public $billboard_id, $height, $wideth, $count, $edit_billboard_id, $del_billboard_id;
     public $ed_billboard_id, $ed_height, $ed_wideth, $ed_count;
+    public $clean;
     public function render()
     {
         $org_billBoard = OrgBillboard::where('org_id', $this->org_id)->get();
@@ -235,6 +236,7 @@ class ShowOrgDtl extends Component
             [
                 'local_fee' => 'required|numeric|min:0',
                 'el_gate' => 'required|numeric|min:0',
+                'clean'=> 'numeric|min:0',
             ]
         );
 
@@ -244,6 +246,7 @@ class ShowOrgDtl extends Component
         $new_clip->clean_pay = $this->get_clean_fee();
         $new_clip->local_fee = $this->local_fee;
         $new_clip->el_gate = $this->el_gate;
+        $new_clip->clean = $this->clean;
         $new_clip->admin_id = auth()->guard('admin')->id();
         $new_clip->edit_admin_id = auth()->guard('admin')->id();
         $new_clip->directorate_id = auth()->guard('admin')->user()->directorate_id;

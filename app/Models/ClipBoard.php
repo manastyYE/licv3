@@ -37,6 +37,7 @@ class ClipBoard extends Model
         'wall_count',
         'glass_stickers',
         'door_stickers',
+        'clean',
 
     ];
 
