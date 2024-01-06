@@ -14,6 +14,9 @@ class ShowPagesController extends Controller
     public function show_add_vir_to_org($id){
         return view('vir_orgs.ConfiremToOrgs',['id'=>$id]);
     }
+    public function outherclip($id){
+        return view('outher_clip',['id'=>$id]);
+    }
     //
     public function show_workers_view(){
         return view('workers');

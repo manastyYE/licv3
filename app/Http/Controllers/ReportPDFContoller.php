@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\App;
 use App\Models\ClipBoard;
 use App\models\Org;
 use Alkoumi\LaravelArabicNumbers\Numbers;
+use App\Models\OutherClip;
 use Illuminate\Support\Carbon;
 
 class ReportPDFContoller extends Controller
@@ -26,5 +27,12 @@ class ReportPDFContoller extends Controller
 
         return view('reports.card',['clip'=>$clip,'date'=> $today]);
 
+    }
+    public function outherClip($id){
+        $clip = OutherClip::find($id);
+        $today = Carbon::now();
+        $ar = $clip->price+$clip->other_price ;
+        $string_total=Numbers::TafqeetMoney($ar,'YER');
+        return view('reports.outherclip',['clip'=>$clip,'date'=> $today,'ar_total'=> $string_total]);
     }
 }

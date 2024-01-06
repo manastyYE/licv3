@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\Billboard;
+use App\Models\OutherClip;
 use Livewire\Component;
 use App\Models\Org;
 use App\Models\OrgBillboard;
@@ -24,10 +25,13 @@ class ShowOrgDtl extends Component
     public $billboard_id, $height, $wideth, $count, $edit_billboard_id, $del_billboard_id;
     public $ed_billboard_id, $ed_height, $ed_wideth, $ed_count;
     public $clean;
+    public $office_id;
+    public $price,$other_price;
     public function render()
     {
         $org_billBoard = OrgBillboard::where('org_id', $this->org_id)->get();
         $org = Org::find($this->org_id);
+        $this->office_id = $org->org_type->office->id;
         $bill_board = Billboard::all();
         $clip = ClipBoard::where('org_id', $this->org_id)->orderBy('created_at', 'desc')->get();
         if ($this->street_id) {
@@ -39,8 +43,28 @@ class ShowOrgDtl extends Component
         } else {
             $this->hood_unit_id = '';
         }
+        $outher_clip =OutherClip::where('org_id', $this->org_id)->orderBy('created_at','desc')
+        ->get();
         $this->getselect();
-        return view('livewire.show-org-dtl', ['org' => $org, 'type' => $org_billBoard, 'bill' => $bill_board, 'clip' => $clip]);
+        return view('livewire.show-org-dtl', ['org' => $org, 'type' => $org_billBoard, 'bill' => $bill_board, 'clip' => $clip,'oclip'=>$outher_clip]);
+    }
+    public function storeOtClipData(){
+        $outher_clip = new OutherClip();
+        $this->validate([
+            'price'=>'required|numeric|min:0',
+            'other_price'=>'numeric|min:0'
+        ]);
+        $outher_clip->price = $this->price;
+        $outher_clip->other_price = $this->other_price;
+        $outher_clip->admin_id =auth()->guard('admin')->user()->id;
+        $outher_clip->org_id = $this->org_id;
+        $outher_clip->office_id =$this->office_id;
+        $outher_clip->save();
+
+        $this->price = null;
+        $this->other_price = null;
+        $this->dispatchBrowserEvent('close-modal');
+
     }
     public function dowmloadpdf($pdf)
     {

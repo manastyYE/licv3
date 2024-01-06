@@ -43,6 +43,7 @@ Route::controller(ShowPagesController::class)->prefix('admin')->middleware('admi
         Route::get('/workers','show_workers_view')->name('workers.show');
         Route::get('/vir-to-orgs/{id}','show_add_vir_to_org');
         Route::get('/building','show_buildings_view')->name('show_buildings_view');
+        Route::get('/org/outherclip/{id}','outherclip')->name('org.outherclip');
     }
 );
 Route::controller(ShowPagesController::class)->prefix('admin')->middleware('admin.guest')->group(
@@ -75,6 +76,9 @@ Route::controller(ReportPDFContoller::class)->prefix('admin/report/')->middlewar
     function(){
         Route::get('clip/{id}','printClip')->name('reporn.printClip');
         Route::get('card/{id}','printCard');
+        Route::get('outherclip/{id}','outherClip');
+
+
     }
 );
 
