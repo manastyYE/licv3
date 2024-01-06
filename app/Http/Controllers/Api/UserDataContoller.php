@@ -65,20 +65,21 @@ class UserDataContoller extends Controller
     }
     public function get_vir_orgs(){
         try{
-            if(Auth::guard('worker-api')->user()->role_no == 1){
-                $orgs = VirOrgs::with(['user' => function ($query) {
-                    $query->select('id', 'fullname');
-                }])->where('user_id',Auth::guard('worker-api')->user()->id)->select('id','org_name','owner_name','is_moved','user_id')->get();
-            }
-            else{
-                // $ids =Auth::guard('worker-api')->user()->supervisedWorkers->pluck('id');
-                // $ids->merge(Auth::guard('worker-api')->user()->id);
-                $ids = Auth::guard('worker-api')->user()->supervisedWorkers->pluck('id');
-                $ids->push(Auth::guard('worker-api')->user()->id);
-                $orgs = VirOrgs::with(['user' => function ($query) {
-                    $query->select('id', 'fullname');
-                }])->WhereIn('user_id',$ids)->select('id','org_name','owner_name','is_moved','user_id')->get();
-            }
+            // if(Auth::guard('worker-api')->user()->role_no == 1){
+            //     $orgs = VirOrgs::with(['user' => function ($query) {
+            //         $query->select('id', 'fullname');
+            //     }])->select('id','org_name','owner_name','is_moved','user_id')->get();
+            // }
+            // else{
+            //     $ids = Auth::guard('worker-api')->user()->supervisedWorkers->pluck('id');
+            //     $ids->push(Auth::guard('worker-api')->user()->id);
+            //     $orgs = VirOrgs::with(['user' => function ($query) {
+            //         $query->select('id', 'fullname');
+            //     }])->WhereIn('user_id',$ids)->select('id','org_name','owner_name','is_moved','user_id')->get();
+            // }
+            $orgs = VirOrgs::with(['user' => function ($query) {
+                        $query->select('id', 'fullname');
+                    }])->select('id','org_name','owner_name','is_moved','user_id')->get();
             $orgs = $orgs->map(function ($org) {
                 $org['user_name'] = $org->user->fullname;
                 return $org;
@@ -328,6 +329,55 @@ class UserDataContoller extends Controller
             $orgbillboard->width = $request->width;
             $orgbillboard->count = $request->count;
             $orgbillboard->save();
+
+            return $this->returnSuccessMessage("تمت الاضافة");
+        }
+        catch (\Exception $ex) {
+            return $this->returnError($ex->getCode(), $ex->getMessage());
+        }
+    }
+    public function insert_iamge(Request $request){
+        try{
+            if ( Auth::guard('worker-api')->user()->office_id != 4) {
+                return $this->returnError("E001","لا تمتلك الصلاحية");
+            }
+            $rules = [
+                'vir_org_id' => 'required',
+                'org_iamge' => 'required',
+            ];
+
+            $validator = Validator::make($request->all(), $rules);
+
+            if ($validator->fails()) {
+                $code = $this->returnCodeAccordingToInput($validator);
+                return $this->returnValidationError($code, $validator);
+            }
+            $org = VirOrgs::find($request->vir_org_id);
+            if (Auth::guard('worker-api')->user()->id != $org->user_id) {
+                return $this->returnError("E000","لا تمتلك الصلاحية");
+            }
+
+                $image = $request->org_image;
+                $realImage = base64_decode($image);
+                $owner_img_tostore = uniqid() . '.jpg';
+
+                $directory = 'public/uploads/orgs/';
+                if (!is_dir($directory)) {
+                    mkdir($directory, 0755, true); // create the directory if it doesn't exist
+                }
+
+                $full_path = $directory . 'owner_img ' . $owner_img_tostore;
+                $file_put = file_put_contents($full_path, $realImage);
+                if (isset($file_put) && $file_put === false) {
+                    return response()->json([
+                        'success' => false,
+                        'msg' => "File uploading error",
+                        'path' => ""
+                    ]);
+                }
+
+                $org->org_image = $full_path;
+                $org->save();
 
             return $this->returnSuccessMessage("تمت الاضافة");
         }
