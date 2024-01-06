@@ -24,7 +24,10 @@ class ShowOrgs extends Component
             ->paginate(8)
             : Org::with(['street','org_type'])->orderBy('created_at', 'desc')->paginate(8);
 
-            $this->selectedUserIds = $orgs->pluck('id');
+            $this->selectedUserIds = $this->search ? Org::with(['street','org_type'])->orderBy('created_at', 'desc')->where('org_name', 'like', '%' . $this->search . '%')
+            ->orWhere('owner_name', 'like', '%' . $this->search . '%')
+            ->orWhere('owner_phone', 'like', '%' . $this->search . '%')->pluck('id')
+            : Org::with(['street','org_type'])->orderBy('created_at', 'desc')->pluck('id');
 
         return view('livewire.show-orgs',['type'=>$orgs ]);
     }
