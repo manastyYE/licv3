@@ -14,8 +14,8 @@ class Login extends Component
     }
     public function adminlogin(){
         $validatedData = $this->validate([
-            'username' => 'required|min:4',
-            'password' => 'required|string|min:5',
+            'username' => 'required',
+            'password' => 'required|string',
         ], [
             'username.required' => 'يجب تعبئة حقل اسم المستخدم.',
             'username.min' => 'يجب ان يكون اسم المستخدم من 4 احرف على الاقل',
