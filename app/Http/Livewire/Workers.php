@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Exports\WorkerExport;
 use Livewire\Component;
 use App\Models\Office;
 use App\Models\Hood;
@@ -9,6 +10,7 @@ use App\Models\HoodUnit;
 use App\Models\Worker;
 use Illuminate\Support\Facades\Hash;
 use Livewire\WithPagination;
+use Maatwebsite\Excel\Facades\Excel;
 
 class Workers extends Component
 {
@@ -20,19 +22,34 @@ class Workers extends Component
     public $username,$fullname,$phone,$password,$edit_id,$del_id;
     public $search;
     public $supervisor_id,$role_no;
+    public $selectedUserIds = [];
 
     public function render()
     {
         $office = Office::all();
         $hood_units = HoodUnit::all();
-        $workers = $this->search ? Worker::with('supervisor')->orderBy('created_at','desc')
+        $workers = $this->search ? Worker::with(['supervisor','office'])->orderBy('created_at','desc')
         ->where('fullname','like','%'.$this->search . '%')
         ->orWhere('phone','like','%'.$this->search . '%')
         ->orwhere('username','like','%'.$this->search . '%')
-        ->paginate(8) : Worker::with('supervisor')->orderBy('created_at','desc')->paginate(8);
+        ->paginate(8) : Worker::with(['supervisor','office'])->orderBy('created_at','desc')->paginate(8);
         $supervisors = Worker::where('role_no',2)->where('id','!=',$this->edit_id)->select('id','fullname')->get();
+        $this->selectedUserIds =  $this->search ? Worker::orderBy('created_at','desc')
+        ->where('fullname','like','%'.$this->search . '%')
+        ->orWhere('phone','like','%'.$this->search . '%')
+        ->orwhere('username','like','%'.$this->search . '%')
+        ->pluck('id') : Worker::orderBy('created_at','desc')->pluck('id');
+
         return view('livewire.workers',['hood_units' => $hood_units,'office'=>$office,'workers'=>$workers,'supervisors' => $supervisors]);
     }
+
+    public function export()
+    {
+        $users = $this->selectedUserIds;
+        return Excel::download(new WorkerExport($users), 'workers.xlsx');
+        // return Excel::download(new OrgsExport, 'users.xlsx');
+    }
+
     public function save()
     {
 
