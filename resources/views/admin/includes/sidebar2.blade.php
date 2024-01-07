@@ -2,7 +2,7 @@
     <!-- Main Sidebar -->
     <div class="main-sidebar">
         <div
-            class="flex h-full w-full flex-col items-center border-l border-slate-150 bg-white dark:border-navy-700 dark:bg-navy-800">
+            class="flex flex-col items-center w-full h-full bg-white border-l border-slate-150 dark:border-navy-700 dark:bg-navy-800">
             <!-- Application Logo -->
             <div class="flex pt-4">
                 <a href="">
@@ -12,10 +12,10 @@
             </div>
 
             <!-- Main Sections Links -->
-            <div x-data="{ condition: '{{$name}}' }" class="is-scrollbar-hidden flex grow flex-col space-y-4 overflow-y-auto pt-6">
+            <div x-data="{ condition: '{{$name}}' }" class="flex flex-col pt-6 space-y-4 overflow-y-auto is-scrollbar-hidden grow">
                 <!-- Dashobards -->
                 <a href="{{route('dashboard')}}" x-bind:class="condition == 'dashboard' ? 'bg-primary/10 text-primary dark:bg-navy-600 dark:text-accent-light' : ''"
-                    class="flex h-11 w-11 items-center justify-center rounded-lg outline-none transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
+                    class="flex items-center justify-center transition-colors duration-200 rounded-lg outline-none h-11 w-11 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
                     x-tooltip.placement.right="'لوحة التحكم'">
                     <svg class="h-7 w-7" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                         <path fill="currentColor" fill-opacity=".3"
@@ -31,8 +31,8 @@
 
                 <!-- Apps -->
                 <a href="{{route('orgs.show')}}" x-bind:class="condition == 'orgs' ? 'bg-primary/10 text-primary dark:bg-navy-600 dark:text-accent-light' : ''"
-                    class="flex h-11 w-11 items-center justify-center rounded-lg outline-none transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
-                    x-tooltip.placement.right="'المنشئات'">
+                    class="flex items-center justify-center transition-colors duration-200 rounded-lg outline-none h-11 w-11 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
+                    x-tooltip.placement.right="'عرض المنشئات'">
                     <svg class="h-7 w-7" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path
                             d="M5 8H19V16C19 17.8856 19 18.8284 18.4142 19.4142C17.8284 20 16.8856 20 15 20H9C7.11438 20 6.17157 20 5.58579 19.4142C5 18.8284 5 17.8856 5 16V8Z"
@@ -48,9 +48,26 @@
                     </svg>
                 </a>
 
+                <!-- Forms -->
+                <a href="{{route('addorg')}}" x-bind:class="condition == 'hoods' ? 'bg-primary/10 text-primary dark:bg-navy-600 dark:text-accent-light' : ''"
+                    class="flex items-center justify-center transition-colors duration-200 rounded-lg outline-none h-11 w-11 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
+                    x-tooltip.placement.right="'اضافة منشاة'">
+                    <svg class="h-7 w-7" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-opacity="0.25"
+                            d="M21.0001 16.05V18.75C21.0001 20.1 20.1001 21 18.7501 21H6.6001C6.9691 21 7.3471 20.946 7.6981 20.829C7.7971 20.793 7.89609 20.757 7.99509 20.712C8.31009 20.586 8.61611 20.406 8.88611 20.172C8.96711 20.109 9.05711 20.028 9.13811 19.947L9.17409 19.911L15.2941 13.8H18.7501C20.1001 13.8 21.0001 14.7 21.0001 16.05Z"
+                            fill="currentColor" />
+                        <path fill-opacity="0.5"
+                            d="M17.7324 11.361L15.2934 13.8L9.17334 19.9111C9.80333 19.2631 10.1993 18.372 10.1993 17.4V8.70601L12.6384 6.26701C13.5924 5.31301 14.8704 5.31301 15.8244 6.26701L17.7324 8.17501C18.6864 9.12901 18.6864 10.407 17.7324 11.361Z"
+                            fill="currentColor" />
+                        <path
+                            d="M7.95 3H5.25C3.9 3 3 3.9 3 5.25V17.4C3 17.643 3.02699 17.886 3.07199 18.12C3.09899 18.237 3.12599 18.354 3.16199 18.471C3.20699 18.606 3.252 18.741 3.306 18.867C3.315 18.876 3.31501 18.885 3.31501 18.885C3.32401 18.885 3.32401 18.885 3.31501 18.894C3.44101 19.146 3.585 19.389 3.756 19.614C3.855 19.731 3.95401 19.839 4.05301 19.947C4.15201 20.055 4.26 20.145 4.377 20.235L4.38601 20.244C4.61101 20.415 4.854 20.559 5.106 20.685C5.115 20.676 5.11501 20.676 5.11501 20.685C5.25001 20.748 5.385 20.793 5.529 20.838C5.646 20.874 5.76301 20.901 5.88001 20.928C6.11401 20.973 6.357 21 6.6 21C6.969 21 7.347 20.946 7.698 20.829C7.797 20.793 7.89599 20.757 7.99499 20.712C8.30999 20.586 8.61601 20.406 8.88601 20.172C8.96701 20.109 9.05701 20.028 9.13801 19.947L9.17399 19.911C9.80399 19.263 10.2 18.372 10.2 17.4V5.25C10.2 3.9 9.3 3 7.95 3ZM6.6 18.75C5.853 18.75 5.25 18.147 5.25 17.4C5.25 16.653 5.853 16.05 6.6 16.05C7.347 16.05 7.95 16.653 7.95 17.4C7.95 18.147 7.347 18.75 6.6 18.75Z"
+                            fill="currentColor" />
+                    </svg>
+                </a>
+
                 <!-- Pages And Layouts -->
                 <a href="{{route('org_type')}}" x-bind:class="condition == 'org_type' ? 'bg-primary/10 text-primary dark:bg-navy-600 dark:text-accent-light' : ''"
-                class="flex h-11 w-11 items-center justify-center rounded-lg outline-none transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90"
+                class="flex items-center justify-center transition-colors duration-200 rounded-lg outline-none h-11 w-11 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90"
                     x-tooltip.placement.right="'الأنشطة التجارية'">
                     <svg class="h-7 w-7" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path
@@ -68,27 +85,11 @@
                     </svg>
                 </a>
 
-                <!-- Forms -->
-                <a href="{{route('hoods')}}" x-bind:class="condition == 'hoods' ? 'bg-primary/10 text-primary dark:bg-navy-600 dark:text-accent-light' : ''"
-                    class="flex h-11 w-11 items-center justify-center rounded-lg outline-none transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
-                    x-tooltip.placement.right="'الأحياء'">
-                    <svg class="h-7 w-7" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-opacity="0.25"
-                            d="M21.0001 16.05V18.75C21.0001 20.1 20.1001 21 18.7501 21H6.6001C6.9691 21 7.3471 20.946 7.6981 20.829C7.7971 20.793 7.89609 20.757 7.99509 20.712C8.31009 20.586 8.61611 20.406 8.88611 20.172C8.96711 20.109 9.05711 20.028 9.13811 19.947L9.17409 19.911L15.2941 13.8H18.7501C20.1001 13.8 21.0001 14.7 21.0001 16.05Z"
-                            fill="currentColor" />
-                        <path fill-opacity="0.5"
-                            d="M17.7324 11.361L15.2934 13.8L9.17334 19.9111C9.80333 19.2631 10.1993 18.372 10.1993 17.4V8.70601L12.6384 6.26701C13.5924 5.31301 14.8704 5.31301 15.8244 6.26701L17.7324 8.17501C18.6864 9.12901 18.6864 10.407 17.7324 11.361Z"
-                            fill="currentColor" />
-                        <path
-                            d="M7.95 3H5.25C3.9 3 3 3.9 3 5.25V17.4C3 17.643 3.02699 17.886 3.07199 18.12C3.09899 18.237 3.12599 18.354 3.16199 18.471C3.20699 18.606 3.252 18.741 3.306 18.867C3.315 18.876 3.31501 18.885 3.31501 18.885C3.32401 18.885 3.32401 18.885 3.31501 18.894C3.44101 19.146 3.585 19.389 3.756 19.614C3.855 19.731 3.95401 19.839 4.05301 19.947C4.15201 20.055 4.26 20.145 4.377 20.235L4.38601 20.244C4.61101 20.415 4.854 20.559 5.106 20.685C5.115 20.676 5.11501 20.676 5.11501 20.685C5.25001 20.748 5.385 20.793 5.529 20.838C5.646 20.874 5.76301 20.901 5.88001 20.928C6.11401 20.973 6.357 21 6.6 21C6.969 21 7.347 20.946 7.698 20.829C7.797 20.793 7.89599 20.757 7.99499 20.712C8.30999 20.586 8.61601 20.406 8.88601 20.172C8.96701 20.109 9.05701 20.028 9.13801 19.947L9.17399 19.911C9.80399 19.263 10.2 18.372 10.2 17.4V5.25C10.2 3.9 9.3 3 7.95 3ZM6.6 18.75C5.853 18.75 5.25 18.147 5.25 17.4C5.25 16.653 5.853 16.05 6.6 16.05C7.347 16.05 7.95 16.653 7.95 17.4C7.95 18.147 7.347 18.75 6.6 18.75Z"
-                            fill="currentColor" />
-                    </svg>
-                </a>
 
                 <!-- Components -->
-                <a href="/admin/streets" x-bind:class="condition == 'street' ? 'bg-primary/10 text-primary dark:bg-navy-600 dark:text-accent-light' : ''"
-                    class="flex h-11 w-11 items-center justify-center rounded-lg outline-none transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
-                    x-tooltip.placement.right="'الشوارع'">
+                <a href="{{route('vir_orgs.show')}}" x-bind:class="condition == 'street' ? 'bg-primary/10 text-primary dark:bg-navy-600 dark:text-accent-light' : ''"
+                    class="flex items-center justify-center transition-colors duration-200 rounded-lg outline-none h-11 w-11 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
+                    x-tooltip.placement.right="'المنشئات المضافة'">
                     <svg class="h-7 w-7" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path fill-opacity="0.5"
                             d="M14.2498 16C14.2498 17.5487 13.576 18.9487 12.4998 19.9025C11.5723 20.7425 10.3473 21.25 8.99976 21.25C6.10351 21.25 3.74976 18.8962 3.74976 16C3.74976 13.585 5.39476 11.5375 7.61726 10.9337C8.22101 12.4562 9.51601 13.6287 11.1173 14.0662C11.5548 14.1887 12.0185 14.25 12.4998 14.25C12.981 14.25 13.4448 14.1887 13.8823 14.0662C14.1185 14.6612 14.2498 15.3175 14.2498 16Z"
@@ -103,9 +104,9 @@
                 </a>
 
                 <!-- Elements -->
-                <a href=""
-                    class="flex h-11 w-11 items-center justify-center rounded-lg outline-none transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
-                    x-tooltip.placement.right="'Elements'">
+                <a href="{{route('workers.show')}}"
+                    class="flex items-center justify-center transition-colors duration-200 rounded-lg outline-none h-11 w-11 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
+                    x-tooltip.placement.right="'المفتشين'">
                     <svg class="h-7 w-7" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path
                             d="M13.3111 14.75H5.03356C3.36523 14.75 2.30189 12.9625 3.10856 11.4958L5.24439 7.60911L7.24273 3.96995C8.07689 2.45745 10.2586 2.45745 11.0927 3.96995L13.1002 7.60911L14.0627 9.35995L15.2361 11.4958C16.0427 12.9625 14.9794 14.75 13.3111 14.75Z"
@@ -118,10 +119,10 @@
             </div>
 
             <!-- Bottom Links -->
-            <div class="flex flex-col items-center space-y-3 py-3">
+            <div class="flex flex-col items-center py-3 space-y-3">
                 <!-- Settings -->
                 <a href="/admin/system"
-                    class="flex h-11 w-11 items-center justify-center rounded-lg outline-none transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25">
+                    class="flex items-center justify-center transition-colors duration-200 rounded-lg outline-none h-11 w-11 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25">
                     <svg class="h-7 w-7" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path fill-opacity="0.3" fill="currentColor"
                             d="M2 12.947v-1.771c0-1.047.85-1.913 1.899-1.913 1.81 0 2.549-1.288 1.64-2.868a1.919 1.919 0 0 1 .699-2.607l1.729-.996c.79-.474 1.81-.192 2.279.603l.11.192c.9 1.58 2.379 1.58 3.288 0l.11-.192c.47-.795 1.49-1.077 2.279-.603l1.73.996a1.92 1.92 0 0 1 .699 2.607c-.91 1.58-.17 2.868 1.639 2.868 1.04 0 1.899.856 1.899 1.912v1.772c0 1.047-.85 1.912-1.9 1.912-1.808 0-2.548 1.288-1.638 2.869.52.915.21 2.083-.7 2.606l-1.729.997c-.79.473-1.81.191-2.279-.604l-.11-.191c-.9-1.58-2.379-1.58-3.288 0l-.11.19c-.47.796-1.49 1.078-2.279.605l-1.73-.997a1.919 1.919 0 0 1-.699-2.606c.91-1.58.17-2.869-1.639-2.869A1.911 1.911 0 0 1 2 12.947Z" />
@@ -132,17 +133,17 @@
 
                 <!-- Profile -->
                 <div x-data="usePopper({ placement: 'right-end', offset: 12 })" @click.outside="if(isShowPopper) isShowPopper = false" class="flex">
-                    <button @click="isShowPopper = !isShowPopper" x-ref="popperRef" class="avatar h-12 w-12">
+                    <button @click="isShowPopper = !isShowPopper" x-ref="popperRef" class="w-12 h-12 avatar">
                         <img class="rounded-full" src="{{ asset('images/200x200.png') }}" alt="avatar" />
                         <span
                             class="absolute right-0 h-3.5 w-3.5 rounded-full border-2 border-white bg-success dark:border-navy-700"></span>
                     </button>
 
-                    <div :class="isShowPopper && 'show'" class="popper-root fixed" x-ref="popperRoot">
+                    <div :class="isShowPopper && 'show'" class="fixed popper-root" x-ref="popperRoot">
                         <div
-                            class="popper-box w-64 rounded-lg border border-slate-150 bg-white shadow-soft dark:border-navy-600 dark:bg-navy-700">
+                            class="w-64 bg-white border rounded-lg popper-box border-slate-150 shadow-soft dark:border-navy-600 dark:bg-navy-700">
                             <div
-                                class="flex items-center space-x-4 space-x-reverse rounded-t-lg bg-slate-100 py-5 px-4 dark:bg-navy-800">
+                                class="flex items-center px-4 py-5 space-x-4 space-x-reverse rounded-t-lg bg-slate-100 dark:bg-navy-800">
                                 <div class="avatar h-14 w-14">
                                     <img class="rounded-full" src="{{ asset('images/200x200.png') }}" alt="avatar" />
                                 </div>
@@ -158,9 +159,9 @@
                             </div>
                             <div class="flex flex-col pt-2 pb-5">
                                 <a href="#"
-                                    class="group flex items-center space-x-3 space-x-reverse py-2 px-4 tracking-wide outline-none transition-all hover:bg-slate-100 focus:bg-slate-100 dark:hover:bg-navy-600 dark:focus:bg-navy-600">
+                                    class="flex items-center px-4 py-2 space-x-3 space-x-reverse tracking-wide transition-all outline-none group hover:bg-slate-100 focus:bg-slate-100 dark:hover:bg-navy-600 dark:focus:bg-navy-600">
                                     <div
-                                        class="flex h-8 w-8 items-center justify-center rounded-lg bg-warning text-white">
+                                        class="flex items-center justify-center w-8 h-8 text-white rounded-lg bg-warning">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-4.5 w-4.5" fill="none"
                                             viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                             <path stroke-linecap="round" stroke-linejoin="round"
@@ -170,7 +171,7 @@
 
                                     <div>
                                         <h2
-                                            class="font-medium text-slate-700 transition-colors group-hover:text-primary group-focus:text-primary dark:text-navy-100 dark:group-hover:text-accent-light dark:group-focus:text-accent-light">
+                                            class="font-medium transition-colors text-slate-700 group-hover:text-primary group-focus:text-primary dark:text-navy-100 dark:group-hover:text-accent-light dark:group-focus:text-accent-light">
                                             Profile
                                         </h2>
                                         <div class="text-xs text-slate-400 line-clamp-1 dark:text-navy-300">
@@ -179,9 +180,9 @@
                                     </div>
                                 </a>
                                 <a href="#"
-                                    class="group flex items-center space-x-3 space-x-reverse py-2 px-4 tracking-wide outline-none transition-all hover:bg-slate-100 focus:bg-slate-100 dark:hover:bg-navy-600 dark:focus:bg-navy-600">
+                                    class="flex items-center px-4 py-2 space-x-3 space-x-reverse tracking-wide transition-all outline-none group hover:bg-slate-100 focus:bg-slate-100 dark:hover:bg-navy-600 dark:focus:bg-navy-600">
                                     <div
-                                        class="flex h-8 w-8 items-center justify-center rounded-lg bg-info text-white">
+                                        class="flex items-center justify-center w-8 h-8 text-white rounded-lg bg-info">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-4.5 w-4.5" fill="none"
                                             viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                             <path stroke-linecap="round" stroke-linejoin="round"
@@ -191,7 +192,7 @@
 
                                     <div>
                                         <h2
-                                            class="font-medium text-slate-700 transition-colors group-hover:text-primary group-focus:text-primary dark:text-navy-100 dark:group-hover:text-accent-light dark:group-focus:text-accent-light">
+                                            class="font-medium transition-colors text-slate-700 group-hover:text-primary group-focus:text-primary dark:text-navy-100 dark:group-hover:text-accent-light dark:group-focus:text-accent-light">
                                             Messages
                                         </h2>
                                         <div class="text-xs text-slate-400 line-clamp-1 dark:text-navy-300">
@@ -200,9 +201,9 @@
                                     </div>
                                 </a>
                                 <a href="#"
-                                    class="group flex items-center space-x-3 space-x-reverse py-2 px-4 tracking-wide outline-none transition-all hover:bg-slate-100 focus:bg-slate-100 dark:hover:bg-navy-600 dark:focus:bg-navy-600">
+                                    class="flex items-center px-4 py-2 space-x-3 space-x-reverse tracking-wide transition-all outline-none group hover:bg-slate-100 focus:bg-slate-100 dark:hover:bg-navy-600 dark:focus:bg-navy-600">
                                     <div
-                                        class="flex h-8 w-8 items-center justify-center rounded-lg bg-secondary text-white">
+                                        class="flex items-center justify-center w-8 h-8 text-white rounded-lg bg-secondary">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-4.5 w-4.5" fill="none"
                                             viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                             <path stroke-linecap="round" stroke-linejoin="round"
@@ -212,7 +213,7 @@
 
                                     <div>
                                         <h2
-                                            class="font-medium text-slate-700 transition-colors group-hover:text-primary group-focus:text-primary dark:text-navy-100 dark:group-hover:text-accent-light dark:group-focus:text-accent-light">
+                                            class="font-medium transition-colors text-slate-700 group-hover:text-primary group-focus:text-primary dark:text-navy-100 dark:group-hover:text-accent-light dark:group-focus:text-accent-light">
                                             Team
                                         </h2>
                                         <div class="text-xs text-slate-400 line-clamp-1 dark:text-navy-300">
@@ -221,9 +222,9 @@
                                     </div>
                                 </a>
                                 <a href="#"
-                                    class="group flex items-center space-x-3 space-x-reverse py-2 px-4 tracking-wide outline-none transition-all hover:bg-slate-100 focus:bg-slate-100 dark:hover:bg-navy-600 dark:focus:bg-navy-600">
+                                    class="flex items-center px-4 py-2 space-x-3 space-x-reverse tracking-wide transition-all outline-none group hover:bg-slate-100 focus:bg-slate-100 dark:hover:bg-navy-600 dark:focus:bg-navy-600">
                                     <div
-                                        class="flex h-8 w-8 items-center justify-center rounded-lg bg-error text-white">
+                                        class="flex items-center justify-center w-8 h-8 text-white rounded-lg bg-error">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-4.5 w-4.5" fill="none"
                                             viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                             <path stroke-linecap="round" stroke-linejoin="round"
@@ -233,7 +234,7 @@
 
                                     <div>
                                         <h2
-                                            class="font-medium text-slate-700 transition-colors group-hover:text-primary group-focus:text-primary dark:text-navy-100 dark:group-hover:text-accent-light dark:group-focus:text-accent-light">
+                                            class="font-medium transition-colors text-slate-700 group-hover:text-primary group-focus:text-primary dark:text-navy-100 dark:group-hover:text-accent-light dark:group-focus:text-accent-light">
                                             Activity
                                         </h2>
                                         <div class="text-xs text-slate-400 line-clamp-1 dark:text-navy-300">
@@ -242,9 +243,9 @@
                                     </div>
                                 </a>
                                 <a href="#"
-                                    class="group flex items-center space-x-3 space-x-reverse py-2 px-4 tracking-wide outline-none transition-all hover:bg-slate-100 focus:bg-slate-100 dark:hover:bg-navy-600 dark:focus:bg-navy-600">
+                                    class="flex items-center px-4 py-2 space-x-3 space-x-reverse tracking-wide transition-all outline-none group hover:bg-slate-100 focus:bg-slate-100 dark:hover:bg-navy-600 dark:focus:bg-navy-600">
                                     <div
-                                        class="flex h-8 w-8 items-center justify-center rounded-lg bg-success text-white">
+                                        class="flex items-center justify-center w-8 h-8 text-white rounded-lg bg-success">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-4.5 w-4.5" fill="none"
                                             viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                             <path stroke-linecap="round" stroke-linejoin="round"
@@ -256,7 +257,7 @@
 
                                     <div>
                                         <h2
-                                            class="font-medium text-slate-700 transition-colors group-hover:text-primary group-focus:text-primary dark:text-navy-100 dark:group-hover:text-accent-light dark:group-focus:text-accent-light">
+                                            class="font-medium transition-colors text-slate-700 group-hover:text-primary group-focus:text-primary dark:text-navy-100 dark:group-hover:text-accent-light dark:group-focus:text-accent-light">
                                             Settings
                                         </h2>
                                         <div class="text-xs text-slate-400 line-clamp-1 dark:text-navy-300">
@@ -264,10 +265,10 @@
                                         </div>
                                     </div>
                                 </a>
-                                <div class="mt-3 px-4">
+                                <div class="px-4 mt-3">
                                     <a href="/admin/logout"
-                                        class="btn h-9 w-full space-x-2 space-x-reverse bg-primary text-white hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
+                                        class="w-full space-x-2 space-x-reverse text-white btn h-9 bg-primary hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none"
                                             viewBox="0 0 24 24" stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
                                                 d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
@@ -288,24 +289,24 @@
 
         <div class="flex h-full grow flex-col bg-white pr-[var(--main-sidebar-width)] dark:bg-navy-750">
             <!-- Sidebar Panel Header -->
-            <div class="flex h-18 w-full items-center justify-between pr-4 pl-1">
+            <div class="flex items-center justify-between w-full pl-1 pr-4 h-18">
                 <p class="text-base tracking-wider text-slate-800 dark:text-navy-100">
                     Layouts
                 </p>
                 <button @click="$store.global.isSidebarExpanded = false"
-                    class="btn h-7 w-7 rounded-full p-0 text-primary hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:text-accent-light/80 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25 xl:hidden">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                    class="p-0 rounded-full btn h-7 w-7 text-primary hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:text-accent-light/80 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25 xl:hidden">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
                     </svg>
                 </button>
             </div>
-            <div class="  h-px bg-slate-200 dark:bg-navy-500"></div>
+            <div class="h-px bg-slate-200 dark:bg-navy-500"></div>
 
             <!-- Sidebar Panel Body -->
             <div x-data="{ expandedItem: 'menu-item-3' }" class="h-[calc(100%-4.5rem)] overflow-x-hidden pb-6" x-init="$el._x_simplebar = new SimpleBar($el);"
                 data-simplebar-direction="rtl">
-                <ul class="flex flex-1 flex-col px-4 font-inter">
+                <ul class="flex flex-col flex-1 px-4 font-inter">
                     <li x-data="accordionItem('menu-item-1')">
                         <a :class="expanded ? 'text-slate-800 font-semibold dark:text-navy-50' :
                             'text-slate-600 hover:text-slate-800 dark:text-navy-200 dark:hover:text-navy-50'"
@@ -314,7 +315,7 @@
                             href="javascript:void(0);">
                             <span>Onboarding</span>
                             <svg :class="expanded && 'rotate-90'" xmlns="http://www.w3.org/2000/svg"
-                                class="h-4 w-4 text-slate-400 transition-transform ease-in-out" fill="none"
+                                class="w-4 h-4 transition-transform ease-in-out text-slate-400" fill="none"
                                 viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M15 19l-7-7 7-7" />
@@ -354,7 +355,7 @@
                             href="javascript:void(0);">
                             <span>Blog Card</span>
                             <svg :class="expanded && 'rotate-90'" xmlns="http://www.w3.org/2000/svg"
-                                class="h-4 w-4 text-slate-400 transition-transform ease-in-out" fill="none"
+                                class="w-4 h-4 transition-transform ease-in-out text-slate-400" fill="none"
                                 viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M15 19l-7-7 7-7" />
@@ -382,9 +383,9 @@
 
                 </ul>
 
-                <div class="my-3 mx-4 h-px bg-slate-200 dark:bg-navy-500"></div>
+                <div class="h-px mx-4 my-3 bg-slate-200 dark:bg-navy-500"></div>
 
-                <ul class="flex flex-1 flex-col px-4 font-inter">
+                <ul class="flex flex-col flex-1 px-4 font-inter">
                     <li x-data="accordionItem('menu-item-7')">
                         <a :class="expanded ? 'text-slate-800 font-semibold dark:text-navy-50' :
                             'text-slate-600 hover:text-slate-800 dark:text-navy-200 dark:hover:text-navy-50'"
@@ -393,7 +394,7 @@
                             href="javascript:void(0);">
                             <span>Sign In</span>
                             <svg :class="expanded && 'rotate-90'" xmlns="http://www.w3.org/2000/svg"
-                                class="h-4 w-4 text-slate-400 transition-transform ease-in-out" fill="none"
+                                class="w-4 h-4 transition-transform ease-in-out text-slate-400" fill="none"
                                 viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M15 19l-7-7 7-7" />
@@ -423,7 +424,7 @@
                             href="javascript:void(0);">
                             <span>Sign Up</span>
                             <svg :class="expanded && 'rotate-90'" xmlns="http://www.w3.org/2000/svg"
-                                class="h-4 w-4 text-slate-400 transition-transform ease-in-out" fill="none"
+                                class="w-4 h-4 transition-transform ease-in-out text-slate-400" fill="none"
                                 viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M15 19l-7-7 7-7" />
