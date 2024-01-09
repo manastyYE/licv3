@@ -10,14 +10,38 @@
     <style>
         body{
             font-family: 'Times New Roman', Times, serif;
+            position: relative;
         }
+        .table-container {
+            overflow-y: auto;
+            max-height: calc(100vh - 50px); /* احسب الارتفاع القصوى باستثناء رأس الصفحة */
+            position: sticky;
+            bottom: 0;
+            background-color: white;
+            z-index: 1000;
+        }
+        thead {
+            position: sticky;
+            top: 0;
+            background-color: #f8f9fa; /* Background color for the sticky header */
+            z-index: 1; /* Ensure the header stays above other content */
+        }
+
         .sticky-top {
             position: -webkit-sticky;
             position: sticky;
             top: 0;
             z-index: 1020; /* Ensure the element stays above Bootstrap's navbar */
         }
+        .header {
+            position: sticky;
+            top: 0;
+            background-color: white;
+            z-index: 1000;
+            text-align: center;
+        }
         table {
+
             border-color: black;
             border: 1px solid;
             width: 100%;
@@ -55,7 +79,7 @@
 
 <body dir="rtl">
     <div class="">
-        <div style="background-color: white" class="row text-center mt-4 mb-2 sticky-top">
+        <div style="background-color: white" class="row header text-center mt-4 mb-2 sticky-top">
             <div  class="col ">
                 <div >
                     <img src="{{asset('report/الحمهورية اليمنية.png')}}" width="150" alt="الجمهورية اليمنية">
@@ -97,7 +121,7 @@
             </div>
         </div>
         <hr  >
-        <div >
+        <div class="table-container" >
 
             <table class="table  table-bordered border-dark ">
                 <div class="">
