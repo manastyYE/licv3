@@ -8,24 +8,12 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <style>
-        body{
+        body {
             font-family: 'Times New Roman', Times, serif;
             position: relative;
         }
-        .table-container {
-            overflow-y: auto;
-            max-height: calc(100vh - 50px); /* احسب الارتفاع القصوى باستثناء رأس الصفحة */
-            position: sticky;
-            bottom: 0;
-            background-color: white;
-            z-index: 1000;
-        }
-        thead {
-            position: sticky;
-            top: 0;
-            background-color: #f8f9fa; /* Background color for the sticky header */
-            z-index: 1; /* Ensure the header stays above other content */
-        }
+
+        
 
 
         .header {
@@ -35,14 +23,20 @@
             z-index: 1000;
             text-align: center;
         }
+        .table-container {
+            overflow-y: auto;
+            max-height: calc(100vh - 50px);
+            position: sticky;
+            bottom: 0;
+            background-color: white;
+            z-index: 1001; /* زيادة قيمة z-index */
+        }
         table {
-
             border-color: black;
             border: 1px solid;
             width: 100%;
             border-collapse: collapse;
-            margin-bottom: 0; /* To remove default table margin in Bootstrap */
-
+            margin-bottom: 0;
         }
         .org tr :nth-child(odd){
             font-weight: bold;
@@ -50,24 +44,24 @@
         .bill {
             font-weight: bold;
         }
-
+        thead {
+            position: sticky;
+            top: 0;
+            background-color: #f8f9fa;
+            z-index: 1000;
+        }
 
         th, td {
             padding: 8px;
             border-bottom: 1px solid #ddd;
         }
 
-        thead th {
-            position: sticky;
-            top: 0;
-            background-color: #f8f9fa; /* Background color for the sticky header */
-            z-index: 1; /* Ensure the header stays above other content */
-        }
 
-    tbody {
-      overflow-y: scroll; /* Enable vertical scrolling for the tbody */
-      max-height: 300px; /* Set a max height for the tbody */
-    }
+
+        tbody {
+            overflow-y: scroll;
+            max-height: 300px;
+        }
 
     </style>
 </head>
