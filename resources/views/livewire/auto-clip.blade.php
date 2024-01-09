@@ -2,6 +2,35 @@
 
     {{-- Care about people's approval and you will be their prisoner. --}}
     <div>
+        <label class="block">
+            <span> عدد السنوات  </span>
+            <input wire:model='year_count'
+                class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
+                placeholder=" ادخل عدد السنوات" type="text" />
+        </label>
+        @if ($clip->clip_status == 'غير مدفوعة')
+        <button type="button"
+        wire:click='setYear'
+
+        class="font-medium btn bg-slate-150 text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90">
+        تاكيد السنوات
+        </button>
+        @else
+        <button type="button"
+
+        class="font-medium btn bg-slate-150 text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90">
+        لا يمكن تحديد عدد السنوات بعد ادخال السندات
+        </button>
+        @endif
+
+        <div dir="ltr">
+            <button
+                                        type="button"  x-data
+                                                x-on:click="$dispatch('open-modal',{name:'edit-clip-modal'})"
+                                        class="w-8 h-8 p-0 btn text-info hover:bg-info/20 focus:bg-info/20 active:bg-info/25">
+                                            <i class="fa fa-edit"></i>
+                                        </button>
+        </div>
         <div class="is-scrollbar-hidden min-w-full overflow-x-auto rounded-lg border  dark:border-navy-900">
             <div class="flex h-8 w-full items-center justify-center bg-slate-200 dark:bg-navy-500">
                 <p class="text-xl">بيانات تعريفية</p>
@@ -459,5 +488,82 @@
                 حفظ وطباعة
             </button>
         </div>
+    </div>
+    <div wire:ignore.self>
+        <x-modaladd  title="  تعديل بيانات الحافظة " name="edit-clip-modal">
+            @slot('body')
+            <form>
+                <div class="p-2 space-y-6">
+                    <label class="block">
+                        <span>   الرسوم المحلية </span>
+                        <input wire:model='local_fee'
+                            class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
+                            placeholder=" ادخل الرسوم المحلية هنا...  " type="text" />
+                    </label>
+                    @error('local_fee')
+                    <span class="text-tiny+ text-error">
+                        {{ $message }}
+                    </span>
+                    @enderror
+                    <label class="block">
+                        <span>  رسوم الدعاية والاعلام  </span>
+                        <input wire:model='total_ad'
+                            class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
+                            placeholder="  ادخل رسوم الدعاية والاعلان...  " type="text" />
+                    </label>
+                    @error('total_ad')
+                    <span class="text-tiny+ text-error">
+                        {{ $message }}
+                    </span>
+                    @enderror
+                    <label class="block">
+                        <span>  رسوم النظافة (التحسين)  </span>
+                        <input wire:model='clean'
+                            class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
+                            placeholder="  ادخل رسوم النظافة ( التحسين )...  " type="text" />
+                    </label>
+                    @error('clean')
+                    <span class="text-tiny+ text-error">
+                        {{ $message }}
+                    </span>
+                    @enderror
+                    <label class="block">
+                        <span>  رسوم نظافة المهن  </span>
+                        <input wire:model='clean_pay'
+                            class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
+                            placeholder="  ادخل رسوم نظافة المهن...  " type="text" />
+                    </label>
+                    @error('clean_pay')
+                    <span class="text-tiny+ text-error">
+                        {{ $message }}
+                    </span>
+                    @enderror
+
+                </div>
+
+                <!-- Modal footer -->
+                <div class="items-center p-4 border-gray-200 rounded-b dark:border-gray-700">
+                    <button type="button" x-on:click="show = false"
+                        class="font-medium btn bg-slate-150 text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90">
+                        الغاء
+                    </button>
+                    <button type="button" wire:click.prevent='updateClip'
+                        class="font-medium text-white btn bg-primary hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90">
+                        تأكيد
+                    </button>
+                </div>
+            </form>
+            <div>
+                @if (session('sec'))
+                <span class="text-xs text-green-500">{{ session('sec') }}</span>
+
+                @endif
+            </div>
+
+            @endslot
+            {{-- @slot('footer')
+
+            @endslot --}}
+        </x-modaladd>
     </div>
 </div>
