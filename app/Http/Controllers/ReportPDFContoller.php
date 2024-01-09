@@ -21,6 +21,10 @@ class ReportPDFContoller extends Controller
         return view('reports.autoclip',['clip'=>$clip,'ar_total'=>$string_total]);
 
     }
+    public function getPayedclip(){
+        $clips = ClipBoard::where('clip_status','مدفوعة')->get();
+        return view('reports.allautoclip',['clips'=>$clips]);
+    }
     public function printCard($id){
         $clip = ClipBoard::find($id);
         $today = Carbon::now();
