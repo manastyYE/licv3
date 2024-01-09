@@ -13,14 +13,14 @@
             position: relative;
         }
 
-        
+
 
 
         .header {
             position: sticky;
             top: 0;
             background-color: white;
-            z-index: 1000;
+            z-index: 1001;
             text-align: center;
         }
         .table-container {
@@ -29,7 +29,7 @@
             position: sticky;
             bottom: 0;
             background-color: white;
-            z-index: 1001; /* زيادة قيمة z-index */
+            z-index: 1000; /* زيادة قيمة z-index */
         }
         table {
             border-color: black;
@@ -48,7 +48,7 @@
             position: sticky;
             top: 0;
             background-color: #f8f9fa;
-            z-index: 1000;
+            z-index: 999;
         }
 
         th, td {
