@@ -36,7 +36,7 @@
 
         .header,
         .table-container {
-            overflow: hidden;
+
             background-color: white;
         }
 
@@ -46,7 +46,7 @@
 
         .table-container {
             max-height: calc(100vh - 60px); /* احسب الارتفاع القصوى باستثناء رأس الصفحة */
-            overflow-y: auto;
+            
         }
 
         table {
@@ -70,7 +70,7 @@
             border-bottom: 1px solid #ddd;
         }
 
-        
+
     </style>
 </head>
 
