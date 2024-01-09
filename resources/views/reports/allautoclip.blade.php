@@ -72,41 +72,43 @@
         <div style="margin-top: 70mm;">
 
             <table class="table  table-bordered border-dark text-center">
-                <thead>
-                    <tr  class="  table-warning">
-                        <th>
-                            #
-                        </th>
-                        <th>
-                            الرقم الالي
-                        </th>
-                        <th>
-                            اسم النشاط
-                        </th>
-                        <th>
-                            اسم المالك
-                        </th>
-                        <th>
-                            دعاية واعلان
-                        </th>
-                        <th>
-                            رقم السند
-                        </th>
-                        <th>
-                            التاريخ
-                        </th>
-                        <th>
-                            محلية
-                        </th>
-                        <th>
-                            رقم السند
-                        </th>
-                        <th>
-                            التاريخ
-                        </th>
+                <div class="position-fixed">
+                    <thead class="" >
+                        <tr  class="  table-warning">
+                            <th>
+                                #
+                            </th>
+                            <th>
+                                الرقم الالي
+                            </th>
+                            <th>
+                                اسم النشاط
+                            </th>
+                            <th>
+                                اسم المالك
+                            </th>
+                            <th>
+                                دعاية واعلان
+                            </th>
+                            <th>
+                                رقم السند
+                            </th>
+                            <th>
+                                التاريخ
+                            </th>
+                            <th>
+                                محلية
+                            </th>
+                            <th>
+                                رقم السند
+                            </th>
+                            <th>
+                                التاريخ
+                            </th>
 
-                    </tr>
-                </thead>
+                        </tr>
+                    </thead>
+                </div>
                 <?php $i=1 ?>
                 @forelse ($clips as $clip )
                 <tr class="">
