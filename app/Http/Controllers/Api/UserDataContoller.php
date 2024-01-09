@@ -51,12 +51,12 @@ class UserDataContoller extends Controller
         try{
             $office_id = Auth::guard('worker-api')->user()->office_id;
             if ($office_id == 4) {//الاشغال
-                $orgs = Org::select('id','org_name','license_status','owner_name')->get();
+                $orgs = Org::select('id','org_name','license_status','owner_name')->orderBy('created_at', 'desc')->get();
             } else {
                 $org_type_ids = OrgType::where('office_id',$office_id)->pluck('id');
-                Org::whereIn('org_type_id', $org_type_ids)->select('id','org_name','license_status','owner_name')->get();
+                Org::whereIn('org_type_id', $org_type_ids)->select('id','org_name','license_status','owner_name')->orderBy('created_at', 'desc')->get();
             }
-            $orgs = Org::select('id','org_name','license_status','owner_name')->get();
+            $orgs = Org::select('id','org_name','license_status','owner_name')->orderBy('created_at', 'desc')->get();
             return $this->returnData('data',$orgs);
         }
         catch (\Exception $ex) {
@@ -79,7 +79,7 @@ class UserDataContoller extends Controller
             // }
             $orgs = VirOrgs::with(['user' => function ($query) {
                         $query->select('id', 'fullname');
-                    }])->select('id','org_name','owner_name','is_moved','user_id')->get();
+                    }])->select('id','org_name','owner_name','is_moved','user_id')->orderBy('created_at', 'desc')->get();
             $orgs = $orgs->map(function ($org) {
                 $org['user_name'] = $org->user->fullname;
                 return $org;
