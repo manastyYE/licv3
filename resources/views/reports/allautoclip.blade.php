@@ -14,7 +14,7 @@
         @media print {
             .header,
             .table-container {
-                position: fixed;
+
                 width: 100%;
                 top: 0;
                 z-index: 1000;
@@ -70,10 +70,7 @@
             border-bottom: 1px solid #ddd;
         }
 
-        tbody {
-            overflow-y: scroll;
-            max-height: 300px;
-        }
+        
     </style>
 </head>
 
