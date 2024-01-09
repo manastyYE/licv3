@@ -46,7 +46,7 @@
 
         .table-container {
             max-height: calc(100vh - 60px); /* احسب الارتفاع القصوى باستثناء رأس الصفحة */
-            overflow-y: auto;
+            
         }
 
         table {
