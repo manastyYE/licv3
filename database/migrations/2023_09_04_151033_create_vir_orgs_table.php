@@ -32,6 +32,11 @@ return new class extends Migration
             $table->foreign('user_id')->references('id')->on('workers')->onDelete('restrict');
             $table->tinyInteger('is_moved')->default(0);//هل تم النقل الى جدول المنشئات
             $table->timestamps();
+            $table->string('personal_card')->nullable()->comment('صورة البطاقة الشخصية');
+            $table->string('rent_contract')->nullable()->comment('صورة عقد الايجار اوفاتورة الكهرباء او الماء في حالة كان المالك');
+            $table->string('previous_license')->nullable()->comment('الرخصة السابقة');
+            $table->string('comm_record')->nullable()->comment('السجل التجاي');
+            $table->string('outher')->nullable()->comment('موافقة الجهة المختصة');
         });
     }
 

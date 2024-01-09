@@ -276,6 +276,7 @@ class UserDataContoller extends Controller
             $rules = [
                 'vir_org_id' => 'required',
                 'org_image' => 'required',
+                'image_type' => 'required',
             ];
 
             $validator = Validator::make($request->all(), $rules);
@@ -288,6 +289,28 @@ class UserDataContoller extends Controller
             if (Auth::guard('worker-api')->user()->id != $org->user_id) {
                 return $this->returnError("E000","لا تمتلك الصلاحية");
             }
+            $name = 'owner_img';
+            switch ($request->image_type) {
+                case '2':
+                    $name = 'personal_card';
+                    break;
+                case '3':
+                    $name = 'previous_license';
+                    break;
+                case '4':
+                    $name = 'rent_contract';
+                    break;
+                    case '5':
+                    $name = 'comm_record';
+                    break;
+                    break;
+                case '6':
+                    $name = 'outher';
+                    break;
+                default:
+                    break;
+            }
+
 
                 $image = $request->org_image;
                 $realImage = base64_decode($image);
@@ -298,7 +321,7 @@ class UserDataContoller extends Controller
                     mkdir($directory, 0755, true); // create the directory if it doesn't exist
                 }
 
-                $full_path = $directory . 'owner_img ' . $owner_img_tostore;
+                $full_path = $directory . $name . $owner_img_tostore;
                 $file_put = file_put_contents($full_path, $realImage);
                 if (isset($file_put) && $file_put === false) {
                     return response()->json([
@@ -307,8 +330,29 @@ class UserDataContoller extends Controller
                         'path' => ""
                     ]);
                 }
+                switch ($name) {
+                    case 'owner_img':
+                        $org->org_image = $full_path;
+                        break;
+                    case 'personal_card':
+                        $org->personal_card = $full_path;
+                        break;
+                    case 'previous_license':
+                        $org->previous_license = $full_path;
+                        break;
+                    case 'rent_contract':
+                        $org->rent_contract = $full_path;
+                        break;
+                    case 'comm_record':
+                        $org->comm_record = $full_path;
+                        break;
+                    case 'outher':
+                        $org->outher = $full_path;
+                        break;
+                    default:
+                        break;
+                }
 
-                $org->org_image = $full_path;
                 $org->save();
 
             return $this->returnSuccessMessage("تمت الاضافة");
