@@ -14,6 +14,9 @@
         table {
             border-color: black;
             border: 1px solid;
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 0; /* To remove default table margin in Bootstrap */
 
         }
         .org tr :nth-child(odd){
@@ -22,12 +25,31 @@
         .bill {
             font-weight: bold;
         }
+
+
+        th, td {
+            padding: 8px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        thead th {
+            position: sticky;
+            top: 0;
+            background-color: #f8f9fa; /* Background color for the sticky header */
+            z-index: 1; /* Ensure the header stays above other content */
+        }
+
+    tbody {
+      overflow-y: scroll; /* Enable vertical scrolling for the tbody */
+      max-height: 300px; /* Set a max height for the tbody */
+    }
+
     </style>
 </head>
 
 <body dir="rtl">
     <div class="">
-        <div  class="row text-center mt-4 mb-2 position-fixed">
+        <div style="background-color: white" class="row text-center mt-4 mb-2 position-fixed">
             <div  class="col position-fixed top-10 start-100 translate-middle">
                 <div style="margin-top: 20mm; margin-right: 90mm;">
                     <img src="{{asset('report/الحمهورية اليمنية.png')}}" width="150" alt="الجمهورية اليمنية">
@@ -71,39 +93,52 @@
         <hr  >
         <div style="margin-top: 70mm;">
 
-            <table class="table  table-bordered border-dark text-center">
-                <tr  class="table-warning">
-                    <td>
-                        الرقم الالي
-                    </td>
-                    <td>
-                        اسم النشاط
-                    </td>
-                    <td>
-                        اسم المالك
-                    </td>
-                    <td>
-                        دعاية واعلان
-                    </td>
-                    <td>
-                        رقم السند
-                    </td>
-                    <td>
-                        التاريخ
-                    </td>
-                    <td>
-                        محلية
-                    </td>
-                    <td>
-                        رقم السند
-                    </td>
-                    <td>
-                        التاريخ
-                    </td>
+            <table class="table  table-bordered border-dark ">
+                <div class="">
+                    <thead style="position: static " >
+                        <tr  class="  table-warning text-center">
+                            <th>
+                                #
+                            </th>
+                            <th>
+                                الرقم الالي
+                            </th>
+                            <th>
+                                اسم النشاط
+                            </th>
+                            <th>
+                                اسم المالك
+                            </th>
+                            <th>
+                                دعاية واعلان
+                            </th>
+                            <th>
+                                رقم السند
+                            </th>
+                            <th>
+                                التاريخ
+                            </th>
+                            <th>
+                                محلية
+                            </th>
+                            <th>
+                                رقم السند
+                            </th>
+                            <th>
+                                التاريخ
+                            </th>
 
-                </tr>
+                        </tr>
+                    </thead>
+                </div>
+                <tbody>
+                    <?php $i=1 ?>
                 @forelse ($clips as $clip )
                 <tr class="">
+                    <td>
+                        {{ $i++ }}
+                    </td>
+
                     <td>
                         {{ $clip->id }}
                     </td>
@@ -136,6 +171,7 @@
                 @empty
 
                 @endforelse
+                </tbody>
 
             </table>
 
