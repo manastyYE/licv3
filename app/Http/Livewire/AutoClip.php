@@ -25,6 +25,7 @@ class AutoClip extends Component
     public $el_gate_reseve_note;//ملاحظة سند رسوم البوابة الالكترونية
     public $ar_str;
 
+    public $local_fee,$total_ad,$clean,$clean_pay;
 
     public function render()
     {
@@ -37,6 +38,10 @@ class AutoClip extends Component
         $clip = ClipBoard::find($id);
         $ar = $clip->total_ad + $clip->local_fee + $clip->el_gate + $clip->clean_pay +$clip->clean;
         $this->ar_str=Numbers::TafqeetMoney($ar,'YER');
+        $this->local_fee = $clip->local_fee;
+        $this->clean = $clip->clean;
+        $this->total_ad = $clip->total_ad;
+        $this->clean_pay = $clip->clean_pay;
     }
     public function update_clip(){
         $this->validate([
@@ -75,5 +80,36 @@ class AutoClip extends Component
         $org->save();
         return redirect()->to('/admin/report/clip/'.$ed_chip->id)->with('success', ' تم اضافة ارقام السندات الى الحافظة بنجاح');
 
+    }
+    public $year_count;
+    public function setYear(){
+        $clip= ClipBoard::find($this->clip_id);
+        $clip->year_count = $this->year_count;
+        $clip->total_ad = $clip->total_ad * $this->year_count;
+        $clip->clean_pay =$clip->clean_pay * $this->year_count;
+        $clip->save();
+        return redirect()->to('/admin/org/clip/'.$this->clip_id)->with('success', ' تم تحديد عدد السنوات للحافظة  بنجاح');
+    }
+
+    public function updateClip(){
+        $this->validate([
+            'local_fee'=>'required|numeric|min:0',
+            'total_ad'=>'required|min:3000|numeric',
+            'clean'=>'required|min:0|numeric',
+            'clean_pay'=>'required|numeric|min:0',
+        ]);
+
+        $clip = ClipBoard::find($this->clip_id);
+        $clip->local_fee = $this->local_fee;
+        $clip->total_ad = $this->total_ad;
+        $clip->clean = $this->clean;
+        $clip->clean_pay = $this->clean_pay;
+
+        $clip->save();
+        return redirect()->to('/admin/org/clip/'.$this->clip_id)->with('success', ' تم اضافة  تم تعديل بيانات الحافظة بنجاح');
+    }
+    public function close()
+    {
+        $this->dispatchBrowserEvent('close-modal');
     }
 }

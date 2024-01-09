@@ -431,7 +431,7 @@
                                                 <td class="gridjs-td">
                                                     <a
                                                     @if ($p->clip_status == 'مدفوعة' )
-                                                    href="admin/report/card/{{ $p->id }}"
+                                                    href="/admin/report/card/{{ $p->id }}"
                                                     @else
 
                                                     @endif
