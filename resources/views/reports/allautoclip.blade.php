@@ -20,7 +20,7 @@
             position: sticky;
             top: 0;
             background-color: white;
-            z-index: 1001;
+            z-index: 1000;
             text-align: center;
         }
         .table-container {
@@ -29,7 +29,7 @@
             position: sticky;
             bottom: 0;
             background-color: white;
-            z-index: 1000; /* زيادة قيمة z-index */
+            z-index: 1001; /* زيادة قيمة z-index */
         }
         table {
             border-color: black;
