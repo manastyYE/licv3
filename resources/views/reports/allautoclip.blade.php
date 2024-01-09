@@ -72,38 +72,48 @@
         <div style="margin-top: 70mm;">
 
             <table class="table  table-bordered border-dark text-center">
-                <tr  class="table-warning">
-                    <td>
-                        الرقم الالي
-                    </td>
-                    <td>
-                        اسم النشاط
-                    </td>
-                    <td>
-                        اسم المالك
-                    </td>
-                    <td>
-                        دعاية واعلان
-                    </td>
-                    <td>
-                        رقم السند
-                    </td>
-                    <td>
-                        التاريخ
-                    </td>
-                    <td>
-                        محلية
-                    </td>
-                    <td>
-                        رقم السند
-                    </td>
-                    <td>
-                        التاريخ
-                    </td>
+                <thead>
+                    <tr  class="  table-warning">
+                        <th>
+                            #
+                        </th>
+                        <th>
+                            الرقم الالي
+                        </th>
+                        <th>
+                            اسم النشاط
+                        </th>
+                        <th>
+                            اسم المالك
+                        </th>
+                        <th>
+                            دعاية واعلان
+                        </th>
+                        <th>
+                            رقم السند
+                        </th>
+                        <th>
+                            التاريخ
+                        </th>
+                        <th>
+                            محلية
+                        </th>
+                        <th>
+                            رقم السند
+                        </th>
+                        <th>
+                            التاريخ
+                        </th>
 
-                </tr>
+                    </tr>
+                </thead>
+                <?php $i=1 ?>
                 @forelse ($clips as $clip )
                 <tr class="">
+                    <td>
+                        {{ $i++ }}
+                    </td>
+
                     <td>
                         {{ $clip->id }}
                     </td>
