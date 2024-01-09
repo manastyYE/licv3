@@ -11,6 +11,12 @@
         body{
             font-family: 'Times New Roman', Times, serif;
         }
+        .sticky-top {
+            position: -webkit-sticky;
+            position: sticky;
+            top: 0;
+            z-index: 1020; /* Ensure the element stays above Bootstrap's navbar */
+        }
         table {
             border-color: black;
             border: 1px solid;
@@ -49,9 +55,9 @@
 
 <body dir="rtl">
     <div class="">
-        <div style="background-color: white" class="row text-center mt-4 mb-2 position-fixed">
-            <div  class="col position-fixed top-10 start-100 translate-middle">
-                <div style="margin-top: 20mm; margin-right: 90mm;">
+        <div style="background-color: white" class="row text-center mt-4 mb-2 sticky-top">
+            <div  class="col ">
+                <div >
                     <img src="{{asset('report/الحمهورية اليمنية.png')}}" width="150" alt="الجمهورية اليمنية">
                 <h4 class="mt-2">
                     أمانة العاصمة
@@ -65,13 +71,13 @@
                 </div>
 
             </div>
-            <div class="col position-fixed top-10 start-50 translate-middle">
-                <div style="margin-top: 50mm;">
+            <div class="col ">
+                <div >
                     <img src="{{asset('report/بسم الله.png')}}" width="150" alt="بسم الله ">
                     <br>
 
                     <img src="{{ asset('report/yemen.png') }}" alt="yemen" width="150">
-                    <div style="margin-top: 20mm;">
+                    <div >
                         <h2>
                             المنشاءات التي تم ترخيصها الى تاريخ
                         </h2>
@@ -79,8 +85,8 @@
                 </div>
 
             </div>
-            <div class="col position-fixed top-10 start-0 translate-middle d-flex justify-content-center flex-column">
-                <div style="margin-top: 20mm; margin-left: 90mm;">
+            <div class="col  d-flex justify-content-center flex-column">
+                <div >
                     <h4>
                         ادارة النظم والمعلومات
                     </h4>
@@ -91,7 +97,7 @@
             </div>
         </div>
         <hr  >
-        <div style="margin-top: 70mm;">
+        <div >
 
             <table class="table  table-bordered border-dark ">
                 <div class="">
