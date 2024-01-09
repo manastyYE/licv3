@@ -27,7 +27,7 @@
 
 <body dir="rtl">
     <div class="">
-        <div  class="row text-center mt-4 mb-2 position-fixed">
+        <div style="background-color: white" class="row text-center mt-4 mb-2 position-fixed">
             <div  class="col position-fixed top-10 start-100 translate-middle">
                 <div style="margin-top: 20mm; margin-right: 90mm;">
                     <img src="{{asset('report/الحمهورية اليمنية.png')}}" width="150" alt="الجمهورية اليمنية">
@@ -72,8 +72,8 @@
         <div style="margin-top: 70mm;">
 
             <table class="table  table-bordered border-dark text-center">
-                <div class="position-fixed">
-                    <thead class="" >
+                <div class="">
+                    <thead style="position: static" >
                         <tr  class="  table-warning">
                             <th>
                                 #
