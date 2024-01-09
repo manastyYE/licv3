@@ -45,6 +45,8 @@ Route::group(['middleware' => ['api']], function () {
 
         Route::get('get_hood_units', [UserDataContoller::class, 'get_hood_units'])->middleware(['auth.guard:worker-api']);
 
+        Route::post('insert_iamge', [UserDataContoller::class, 'insert_iamge'])->middleware(['auth.guard:worker-api']);
+
         //broken access controller user enumeration
     });
 //    Route::post('login', [AuthController::class, 'login']);
