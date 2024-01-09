@@ -14,6 +14,9 @@
         table {
             border-color: black;
             border: 1px solid;
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 0; /* To remove default table margin in Bootstrap */
 
         }
         .org tr :nth-child(odd){
@@ -22,6 +25,25 @@
         .bill {
             font-weight: bold;
         }
+
+
+        th, td {
+            padding: 8px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        thead th {
+            position: sticky;
+            top: 0;
+            background-color: #f8f9fa; /* Background color for the sticky header */
+            z-index: 1; /* Ensure the header stays above other content */
+        }
+
+    tbody {
+      overflow-y: scroll; /* Enable vertical scrolling for the tbody */
+      max-height: 300px; /* Set a max height for the tbody */
+    }
+
     </style>
 </head>
 
@@ -71,10 +93,10 @@
         <hr  >
         <div style="margin-top: 70mm;">
 
-            <table class="table  table-bordered border-dark text-center">
+            <table class="table  table-bordered border-dark ">
                 <div class="">
-                    <thead style="position: static" >
-                        <tr  class="  table-warning">
+                    <thead style="position: static " >
+                        <tr  class="  table-warning text-center">
                             <th>
                                 #
                             </th>
@@ -109,7 +131,8 @@
                         </tr>
                     </thead>
                 </div>
-                <?php $i=1 ?>
+                <tbody>
+                    <?php $i=1 ?>
                 @forelse ($clips as $clip )
                 <tr class="">
                     <td>
@@ -148,6 +171,7 @@
                 @empty
 
                 @endforelse
+                </tbody>
 
             </table>
 
