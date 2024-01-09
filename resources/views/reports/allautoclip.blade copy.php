@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -27,10 +28,6 @@
 
             .table-container {
                 top: 60mm; /* تحديد ارتفاع رأس الصفحة */
-            }
-
-            table {
-                page-break-before: always;
             }
         }
 
@@ -105,37 +102,36 @@
         <table class="table table-bordered border-dark">
             <thead>
                 <tr class="table-warning text-center">
-                    <!-- هنا تضيف رأس الجدول -->
-                    <th>
-                        #
-                    </th>
-                    <th>
-                        الرقم الالي
-                    </th>
-                    <th>
-                        اسم النشاط
-                    </th>
-                    <th>
-                        اسم المالك
-                    </th>
-                    <th>
-                        دعاية واعلان
-                    </th>
-                    <th>
-                        رقم السند
-                    </th>
-                    <th>
-                        التاريخ
-                    </th>
-                    <th>
-                        محلية
-                    </th>
-                    <th>
-                        رقم السند
-                    </th>
-                    <th>
-                        التاريخ
-                    </th>
+                    <!-- هنا تضيف رأس الجدول --><th>
+                                #
+                            </th>
+                            <th>
+                                الرقم الالي
+                            </th>
+                            <th>
+                                اسم النشاط
+                            </th>
+                            <th>
+                                اسم المالك
+                            </th>
+                            <th>
+                                دعاية واعلان
+                            </th>
+                            <th>
+                                رقم السند
+                            </th>
+                            <th>
+                                التاريخ
+                            </th>
+                            <th>
+                                محلية
+                            </th>
+                            <th>
+                                رقم السند
+                            </th>
+                            <th>
+                                التاريخ
+                            </th>
                 </tr>
             </thead>
             <tbody>
@@ -189,3 +185,4 @@
 </body>
 
 </html>
+
