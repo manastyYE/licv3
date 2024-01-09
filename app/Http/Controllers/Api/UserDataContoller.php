@@ -270,9 +270,9 @@ class UserDataContoller extends Controller
     }
     public function insert_image(Request $request){
         try{
-            if ( Auth::guard('worker-api')->user()->office_id != 4) {
-                return $this->returnError("E001","لا تمتلك الصلاحية");
-            }
+            // if ( Auth::guard('worker-api')->user()->office_id != 4) {
+            //     return $this->returnError("E001","لا تمتلك الصلاحية");
+            // }
             $rules = [
                 'vir_org_id' => 'required',
                 'org_image' => 'required',
