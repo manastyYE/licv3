@@ -27,12 +27,7 @@
             z-index: 1; /* Ensure the header stays above other content */
         }
 
-        .sticky-top {
-            position: -webkit-sticky;
-            position: sticky;
-            top: 0;
-            z-index: 1020; /* Ensure the element stays above Bootstrap's navbar */
-        }
+
         .header {
             position: sticky;
             top: 0;
@@ -79,7 +74,7 @@
 
 <body dir="rtl">
     <div class="">
-        <div style="background-color: white" class="row header text-center mt-4 mb-2 sticky-top">
+        <div style="background-color: white" class="row header text-center mt-4 mb-2 ">
             <div  class="col ">
                 <div >
                     <img src="{{asset('report/الحمهورية اليمنية.png')}}" width="150" alt="الجمهورية اليمنية">
