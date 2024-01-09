@@ -268,14 +268,14 @@ class UserDataContoller extends Controller
             return $this->returnError($ex->getCode(), $ex->getMessage());
         }
     }
-    public function insert_iamge(Request $request){
+    public function insert_image(Request $request){
         try{
             if ( Auth::guard('worker-api')->user()->office_id != 4) {
                 return $this->returnError("E001","لا تمتلك الصلاحية");
             }
             $rules = [
                 'vir_org_id' => 'required',
-                'org_iamge' => 'required',
+                'org_image' => 'required',
             ];
 
             $validator = Validator::make($request->all(), $rules);
