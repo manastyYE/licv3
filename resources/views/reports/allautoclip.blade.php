@@ -143,7 +143,9 @@ body {
             </tr>
         </thead>
         <tbody class="print-content">
-            <?php $i=1 ?>
+            <?php $i=1
+
+            ?>
             @forelse ($clips as $clip )
             <tr class="">
                 <td>{{ $i++ }}</td>
@@ -151,15 +153,37 @@ body {
                 <td>{{ $clip->org->org_name }}</td>
                 <td>{{ $clip->org->owner_name }}</td>
                 <td>{{ $clip->total_ad + $clip->clean_pay + $clip->clean }}</td>
+
                 <td>{{ $clip->ad_reseve }}</td>
                 <td>{{ $clip->ad_reseve_date }}</td>
                 <td>{{ $clip->local_fee}}</td>
+
                 <td>{{ $clip->local_reseve }}</td>
                 <td>{{ $clip->local_reseve_date}}</td>
             </tr>
             @empty
 
             @endforelse
+            <tr>
+                <td>
+                    #
+                </td>
+                <td>
+                    الاجمالي
+                </td>
+                <td colspan="2">
+                    اجمالي النظافة والتحسين والدعاية والاعلان
+                </td>
+                <td>
+                    {{ $total['clean']}}
+                </td>
+                <td colspan="2">
+                    اجمالي الرسوم المحلية
+                </td>
+                <td colspan="3">
+                    {{ $total['local'] }}
+                </td>
+            </tr>
         </tbody>
     </table>
 

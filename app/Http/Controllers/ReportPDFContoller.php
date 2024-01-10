@@ -23,7 +23,19 @@ class ReportPDFContoller extends Controller
     }
     public function getPayedclip(){
         $clips = ClipBoard::where('clip_status','مدفوعة')->get();
-        return view('reports.allautoclip',['clips'=>$clips]);
+        $total_local=0;
+        $total_clean =0;
+        if($clips){
+            foreach( $clips as $clip){
+                $total_local +=$clip->local_fee ;
+                $total_clean += $clip->clean + $clip->total_ad +$clip->clean_pay ;
+            }
+        }
+        $total=[
+            'clean'=>$total_clean,
+            'local'=>$total_local,
+        ];
+        return view('reports.allautoclip',['clips'=>$clips,'total'=>$total]);
     }
     public function printCard($id){
         $clip = ClipBoard::find($id);
