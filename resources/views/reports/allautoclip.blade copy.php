@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,25 +14,34 @@
         @media print {
             .header,
             .table-container {
-                position: fixed;
                 width: 100%;
-                top: 0;
                 z-index: 1000;
             }
 
             .header {
                 background-color: white;
                 text-align: center;
+                position: fixed;
+                top: 0;
             }
 
+
             .table-container {
-                top: 60mm; /* تحديد ارتفاع رأس الصفحة */
+                top: 70mm; /* تحديد ارتفاع رأس الصفحة */
+            }
+
+            table {
+                margin-top: 50mm;
+                page-break-before: always;
+            }
+
+            tbody.print-content {
+                page-break-inside: avoid;
             }
         }
 
         .header,
         .table-container {
-            overflow: hidden;
             background-color: white;
         }
 
@@ -66,11 +74,6 @@
             padding: 8px;
             border-bottom: 1px solid #ddd;
         }
-
-        tbody {
-            overflow-y: scroll;
-            max-height: 300px;
-        }
     </style>
 </head>
 
@@ -98,86 +101,42 @@
         </div>
     </div>
 
-    <div class="table-container">
-        <table class="table table-bordered border-dark">
-            <thead>
-                <tr class="table-warning text-center">
-                    <!-- هنا تضيف رأس الجدول --><th>
-                                #
-                            </th>
-                            <th>
-                                الرقم الالي
-                            </th>
-                            <th>
-                                اسم النشاط
-                            </th>
-                            <th>
-                                اسم المالك
-                            </th>
-                            <th>
-                                دعاية واعلان
-                            </th>
-                            <th>
-                                رقم السند
-                            </th>
-                            <th>
-                                التاريخ
-                            </th>
-                            <th>
-                                محلية
-                            </th>
-                            <th>
-                                رقم السند
-                            </th>
-                            <th>
-                                التاريخ
-                            </th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php $i=1 ?>
-                @forelse ($clips as $clip )
-                <tr class="">
-                    <td>
-                        {{ $i++ }}
-                    </td>
+    <table class="table table-bordered border-dark">
+        <thead>
+            <tr class="table-warning text-center">
+                <!-- هنا تضيف رأس الجدول -->
+                <th>#</th>
+                <th>الرقم الالي</th>
+                <th>اسم النشاط</th>
+                <th>اسم المالك</th>
+                <th>دعاية واعلان</th>
+                <th>رقم السند</th>
+                <th>التاريخ</th>
+                <th>محلية</th>
+                <th>رقم السند</th>
+                <th>التاريخ</th>
+            </tr>
+        </thead>
+        <tbody class="print-content">
+            <?php $i=1 ?>
+            @forelse ($clips as $clip )
+            <tr class="">
+                <td>{{ $i++ }}</td>
+                <td>{{ $clip->id }}</td>
+                <td>{{ $clip->org->org_name }}</td>
+                <td>{{ $clip->org->owner_name }}</td>
+                <td>{{ $clip->total_ad + $clip->clean_pay + $clip->clean }}</td>
+                <td>{{ $clip->ad_reseve }}</td>
+                <td>{{ $clip->ad_reseve_date }}</td>
+                <td>{{ $clip->local_fee}}</td>
+                <td>{{ $clip->local_reseve }}</td>
+                <td>{{ $clip->local_reseve_date}}</td>
+            </tr>
+            @empty
 
-                    <td>
-                        {{ $clip->id }}
-                    </td>
-                    <td>
-                        {{ $clip->org->org_name }}
-                    </td>
-                    <td>
-                        {{ $clip->org->owner_name }}
-                    </td>
-                    <td>
-                        {{ $clip->total_ad + $clip->clean_pay + $clip->clean }}
-                    </td>
-                    <td>
-                        {{ $clip->ad_reseve }}
-                    </td>
-                    <td>
-                        {{ $clip->ad_reseve_date }}
-                    </td>
-                    <td>
-                        {{ $clip->local_fee}}
-                    </td>
-                    <td>
-                        {{ $clip->local_reseve }}
-                    </td>
-                    <td>
-                        {{ $clip->local_reseve_date}}
-                    </td>
-
-                </tr>
-                @empty
-
-                @endforelse
-
-            </tbody>
-        </table>
-    </div>
+            @endforelse
+        </tbody>
+    </table>
 
     <!-- Include your footer content here -->
 
@@ -185,4 +144,3 @@
 </body>
 
 </html>
-
