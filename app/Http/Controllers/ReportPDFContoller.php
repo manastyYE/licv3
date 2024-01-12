@@ -18,6 +18,9 @@ class ReportPDFContoller extends Controller
         $clip = ClipBoard::find($id);
         $ar = $clip->total_ad + $clip->local_fee + $clip->el_gate + $clip->clean_pay + $clip->clean;
         $string_total=Numbers::TafqeetMoney($ar,'YER');
+        // if(auth()->guard('admin')->user()->id == 4 || auth()->guard('admin')->user()->id == 5 ||auth()->guard('admin')->user()->id == 7 ){
+        //     return view('Automated_clipboard',['id'=>$id])->with('errors','لا يمكنك الوصول الى الصفحة السابقة ');
+        // }
         return view('reports.autoclip',['clip'=>$clip,'ar_total'=>$string_total]);
 
     }

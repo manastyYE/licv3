@@ -4,192 +4,220 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>حافظة النظام الالي    </title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <title> تقرير بالمنشأت المسددة </title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+    </script>
+
     <style>
-
-
-
-
-body {
-      font-family: 'Times New Roman', Times, serif;
-    }
-
-    @media print {
-      .header,
-      .table-container {
-        width: 100%;
-        z-index: 1000;
-      }
-
-      .header {
-        background-color: white;
-        text-align: center;
-        position: fixed;
-        top: 0;
-
-      }
-
-
-
-
-      table {
-        /* page-break-after: always; */
-        page-break-before: avoid;
-      }
-
-      tbody.print-content {
-        page-break-inside: avoid;
-      }
-      @media print {
-    .header {
-        position: fixed;
-        top: 0;
-    }
-
-    thead {
-        position: sticky;
-        top: 0;
-    }
-
-    /* باقي الشفرة */
-}
-
-    }
-    .header,
-    .table-container {
-      background-color: white;
-    }
-
-    img {
-            width: 150px;
+        body {
+            font-family: Arial, sans-serif;
+            /* Add any other styles you need for your content */
         }
 
+        @media print {
 
-    table {
-      border-color: black;
-      border: 1px solid;
-      width: 100%;
-      border-collapse: collapse;
-      margin-bottom: 0;
-    }
+            table{
+                page-break-after: always;
+            }
 
-    .header {
-      position: sticky;
-      top: 0;
-      background-color: #f8f9fa;
 
-    }
+            .cloned-header {
+                position: sticky;
+                top: 0;
+                left: 0;
+                right: 0;
+                padding: 10px;
+                text-align: center;
+                border-bottom: 1px solid #ccc;
+            }
 
-    th,
-    td {
-      padding: 8px;
-      border-bottom: 1px solid #ddd;
-    }
-  </style>
-
+            table {
+                position: relative;
+                top=5cm;
+            }
+        }
+    </style>
 </head>
 
 <body dir="rtl">
-    <div class="row header text-center mt-4 mb-2">
-        <div class="col">
-            <img src="{{asset('report/الحمهورية اليمنية.png')}}" width="150" alt="الجمهورية اليمنية">
-            <h4 class="mt-2">
-                أمانة العاصمة
-            </h4>
-            <h5 class="">
-                مديرية الوحدة
-            </h5>
-            <h6>
-                مكتب الاشغال
-            </h6>
-        </div>
-        <div class="col">
-            <img src="{{asset('report/بسم الله.png')}}" width="150" alt="بسم الله ">
-            <br>
+    <div class="print-header">
+        <!-- Your header content goes here -->
+        <div class="row header text-center mt-4 mb-2">
+            <div class="col">
+                <img src="{{ asset('report/الحمهورية اليمنية.png') }}" width="150" alt="الجمهورية اليمنية">
+                <h4 class="mt-2">
+                    أمانة العاصمة
+                </h4>
+                <h5 class="">
+                    مديرية الوحدة
+                </h5>
+                <h6>
+                    مكتب الاشغال
+                </h6>
+            </div>
+            <div class="col">
+                <img src="{{ asset('report/بسم الله.png') }}" width="150" alt="بسم الله ">
+                <br>
 
-            <img src="{{ asset('report/yemen.png') }}" alt="yemen" width="150">
+                <img src="{{ asset('report/yemen.png') }}" alt="yemen" width="150">
 
+            </div>
+            <div class="col d-flex justify-content-center flex-column">
+                <h4>
+                    ادارة النظم والمعلومات
+                </h4>
+                <h4>
+                    النظام الالي
+                </h4>
+            </div>
         </div>
-        <div class="col d-flex justify-content-center flex-column">
-            <h4>
-                ادارة النظم والمعلومات
-            </h4>
-            <h4>
-                النظام الالي
-            </h4>
-        </div>
+
     </div>
+    <div>
+        <?php $page =1 ?>
 
-    <table class="table table-bordered border-dark">
-        <thead class="header " style="top: 35mm ">
+        <p>
+            صفحة رقم {{ $page++ }}
+        </p>
+        <!-- Rest of your content -->
+        <table class="table table-bordered border-dark ">
+            <thead>
 
 
 
-            <tr class="table-warning text-center">
+                <tr class="table-warning text-center">
 
-                <!-- هنا تضيف رأس الجدول -->
-                <th>#</th>
-                <th>الرقم الالي</th>
-                <th>اسم النشاط</th>
-                <th>اسم المالك</th>
-                <th>دعاية واعلان</th>
-                <th>رقم السند</th>
-                <th>التاريخ</th>
-                <th>محلية</th>
-                <th>رقم السند</th>
-                <th>التاريخ</th>
-            </tr>
-        </thead>
-        <tbody class="print-content">
-            <?php $i=1
+                    <!-- هنا تضيف رأس الجدول -->
+                    <th>#</th>
+                    <th>الرقم الالي</th>
+                    <th>اسم النشاط</th>
+                    <th>اسم المالك</th>
+                    <th>دعاية واعلان</th>
+                    <th>رقم السند</th>
+                    <th>التاريخ</th>
+                    <th>محلية</th>
+                    <th>رقم السند</th>
+                    <th>التاريخ</th>
+                </tr>
+            </thead>
+            <tbody class="print-content">
+                <?php $i = 1;
 
-            ?>
-            @forelse ($clips as $clip )
-            <tr class="">
-                <td>{{ $i++ }}</td>
-                <td>{{ $clip->id }}</td>
-                <td>{{ $clip->org->org_name }}</td>
-                <td>{{ $clip->org->owner_name }}</td>
-                <td>{{ $clip->total_ad + $clip->clean_pay + $clip->clean }}</td>
+                ?>
+                @forelse ($clips as $clip)
+                    <tr class="">
+                        <td>{{ $i++ }}</td>
+                        <td>{{ $clip->id }}</td>
+                        <td>{{ $clip->org->org_name }}</td>
+                        <td>{{ $clip->org->owner_name }}</td>
+                        <td>{{ $clip->total_ad + $clip->clean_pay + $clip->clean }}</td>
 
-                <td>{{ $clip->ad_reseve }}</td>
-                <td>{{ $clip->ad_reseve_date }}</td>
-                <td>{{ $clip->local_fee}}</td>
+                        <td>{{ $clip->ad_reseve }}</td>
+                        <td>{{ $clip->ad_reseve_date }}</td>
+                        <td>{{ $clip->local_fee }}</td>
 
-                <td>{{ $clip->local_reseve }}</td>
-                <td>{{ $clip->local_reseve_date}}</td>
-            </tr>
-            @empty
+                        <td>{{ $clip->local_reseve }}</td>
+                        <td>{{ $clip->local_reseve_date }}</td>
+                    </tr>
+                    @if ($i%18 == 1)
+            </tbody>
+        </table>
 
-            @endforelse
-            <tr>
-                <td>
-                    #
-                </td>
-                <td>
-                    الاجمالي
-                </td>
-                <td colspan="2">
-                    اجمالي النظافة والتحسين والدعاية والاعلان
-                </td>
-                <td>
-                    {{ $total['clean']}}
-                </td>
-                <td colspan="2">
-                    اجمالي الرسوم المحلية
-                </td>
-                <td colspan="3">
-                    {{ $total['local'] }}
-                </td>
-            </tr>
-        </tbody>
-    </table>
+                        <div class="page-break"></div>
+                        <p>
+                            صفحة رقم {{ $page++ }}
+                        </p>
+                        <table  class="table table-bordered border-dark tb-page ">
+                            <thead>
 
-    <!-- Include your footer content here -->
 
-    <!-- Include your Bootstrap and other scripts here -->
+
+                                <tr class="table-warning text-center">
+
+                                    <!-- هنا تضيف رأس الجدول -->
+                                    <th>#</th>
+                                    <th>الرقم الالي</th>
+                                    <th>اسم النشاط</th>
+                                    <th>اسم المالك</th>
+                                    <th>دعاية واعلان</th>
+                                    <th>رقم السند</th>
+                                    <th>التاريخ</th>
+                                    <th>محلية</th>
+                                    <th>رقم السند</th>
+                                    <th>التاريخ</th>
+                                </tr>
+                            </thead>
+                            <tbody class="print-content">
+
+
+
+
+                    @endif
+
+                    <!-- Page break -->
+
+
+                    <!-- More content -->
+
+                    <!-- Page break -->
+
+
+                    <!-- More content -->
+
+                    <!-- Add more page breaks as needed -->
+
+
+
+                @empty
+                @endforelse
+                <tr>
+                    <td>
+                        #
+                    </td>
+                    <td>
+                        الاجمالي
+                    </td>
+                    <td colspan="2">
+                        اجمالي النظافة والتحسين والدعاية والاعلان
+                    </td>
+                    <td>
+                        {{ $total['clean'] }}
+                    </td>
+                    <td colspan="2">
+                        اجمالي الرسوم المحلية
+                    </td>
+                    <td colspan="3">
+                        {{ $total['local'] }}
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+    <script>
+        function cloneHeaderOnPrint() {
+            const originalHeader = document.querySelector('.print-header');
+
+            // Clone the header
+            const clonedHeader = originalHeader.cloneNode(true);
+            clonedHeader.classList.add('cloned-header');
+
+            // Insert the cloned header before each page break
+            const pageBreaks = document.querySelectorAll('.page-break');
+            pageBreaks.forEach(pageBreak => {
+                pageBreak.insertAdjacentElement('beforebegin', clonedHeader.cloneNode(true));
+            });
+        }
+
+        // Attach the function to the print event
+        window.onbeforeprint = cloneHeaderOnPrint;
+    </script>
+
+    <!-- Content with page breaks -->
+
 </body>
 
 </html>
