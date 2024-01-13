@@ -79,9 +79,9 @@ Route::controller(ReportPDFContoller::class)->prefix('admin/report/')->middlewar
         Route::get('clip/{id}','printClip')->name('reporn.printClip');
         Route::get('card/{id}','printCard');
         Route::get('outherclip/{id}','outherClip');
-        Route::get('clip/all','getAllclip');
-        Route::get('clip/pay','getPayedclip');
-        Route::get('clip/npay','getNPayedclip');
+        Route::get('clips/all','getAllclip');
+        Route::get('clips/pay','getPayedclip');
+        Route::get('clips/npay','getNPayedclip');
 
     }
 );
