@@ -47,7 +47,7 @@ class ReportPDFContoller extends Controller
         return view('reports.allautoclip',['clips'=>$clips,'total'=>$total]);
     }
     public function getNPayedclip(){
-        $clips = ClipBoard::where('clip_status','غير مدفوعة')->get();
+        $clips = ClipBoard::whereHas('org')->where('clip_status','غير مدفوعة')->orderBy('org_id')->get();
         $total_local=0;
         $total_clean =0;
         if($clips){
@@ -63,14 +63,15 @@ class ReportPDFContoller extends Controller
         return view('reports.allautoclip',['clips'=>$clips,'total'=>$total]);
     }
     public function getAllclip(){
-        $allclip = ClipBoard::where('org_id','>=',1 )->get();
-        $clips = ClipBoard::where('org_id','>=',1 )->get();
+        $allclip = ClipBoard::whereHas('org')->orderBy('org_id')->get();
+
         $total_local=0;
         $total_clean =0;
-        if($clips){
-            foreach( $clips as $clip){
+        if($allclip){
+            foreach( $allclip as $clip){
                 $total_local +=$clip->local_fee ;
                 $total_clean += $clip->clean + $clip->total_ad +$clip->clean_pay ;
+
             }
         }
         $total=[
