@@ -31,6 +31,8 @@ Route::group(['middleware' => ['api']], function () {
 
         Route::get('get_vir_orgs', [UserDataContoller::class, 'get_vir_orgs'])->middleware(['auth.guard:worker-api']);
 
+        Route::get('get_vir_orgsv2', [UserDataContoller::class, 'get_vir_orgsv2'])->middleware(['auth.guard:worker-api']);
+
         Route::post('user_get_org', [UserDataContoller::class, 'user_get_org'])->middleware(['auth.guard:worker-api']);
 
         Route::post('user_get_vir_org', [UserDataContoller::class, 'user_get_vir_org'])->middleware(['auth.guard:worker-api']);
