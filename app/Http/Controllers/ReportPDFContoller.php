@@ -13,17 +13,71 @@ use Illuminate\Support\Carbon;
 
 class ReportPDFContoller extends Controller
 {
+    public function mainReport(){
+        return view('dashboard.admin.reports');
+    }
+    public function showOrgReportView(){
+        return view('dashboard.reports.orgs_report_');
+    }
     //
     public function printClip($id){
         $clip = ClipBoard::find($id);
         $ar = $clip->total_ad + $clip->local_fee + $clip->el_gate + $clip->clean_pay + $clip->clean;
         $string_total=Numbers::TafqeetMoney($ar,'YER');
+        // if(auth()->guard('admin')->user()->id == 4 || auth()->guard('admin')->user()->id == 5 ||auth()->guard('admin')->user()->id == 7 ){
+        //     return view('Automated_clipboard',['id'=>$id])->with('errors','لا يمكنك الوصول الى الصفحة السابقة ');
+        // }
         return view('reports.autoclip',['clip'=>$clip,'ar_total'=>$string_total]);
 
     }
     public function getPayedclip(){
         $clips = ClipBoard::where('clip_status','مدفوعة')->get();
-        return view('reports.allautoclip',['clips'=>$clips]);
+        $total_local=0;
+        $total_clean =0;
+        if($clips){
+            foreach( $clips as $clip){
+                $total_local +=$clip->local_fee ;
+                $total_clean += $clip->clean + $clip->total_ad +$clip->clean_pay ;
+            }
+        }
+        $total=[
+            'clean'=>$total_clean,
+            'local'=>$total_local,
+        ];
+        return view('reports.allautoclip',['clips'=>$clips,'total'=>$total]);
+    }
+    public function getNPayedclip(){
+        $clips = ClipBoard::where('clip_status','غير مدفوعة')->get();
+        $total_local=0;
+        $total_clean =0;
+        if($clips){
+            foreach( $clips as $clip){
+                $total_local +=$clip->local_fee ;
+                $total_clean += $clip->clean + $clip->total_ad +$clip->clean_pay ;
+            }
+        }
+        $total=[
+            'clean'=>$total_clean,
+            'local'=>$total_local,
+        ];
+        return view('reports.allautoclip',['clips'=>$clips,'total'=>$total]);
+    }
+    public function getAllclip(){
+        $allclip = ClipBoard::where('org_id','>=',1 )->get();
+        $clips = ClipBoard::where('org_id','>=',1 )->get();
+        $total_local=0;
+        $total_clean =0;
+        if($clips){
+            foreach( $clips as $clip){
+                $total_local +=$clip->local_fee ;
+                $total_clean += $clip->clean + $clip->total_ad +$clip->clean_pay ;
+            }
+        }
+        $total=[
+            'clean'=>$total_clean,
+            'local'=>$total_local,
+        ];
+        return view('reports.all_clips',['allclips'=>$allclip,'total'=>$total]);
     }
     public function printCard($id){
         $clip = ClipBoard::find($id);

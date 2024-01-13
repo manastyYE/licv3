@@ -47,6 +47,8 @@ return new class extends Migration
             $table->unsignedDouble('wall_count')->nullable()->comment('عدد الامتار للوحات الجدارية');
             $table->unsignedDouble('glass_stickers')->nullable()->comment('عدد الامتار للواصق على الزجاج');
             $table->unsignedDouble('door_stickers')->nullable()->comment('عدد الامتار للواصق على الابواب ');
+            $table->unsignedBigInteger('clean');
+            $table->double('year_count');
             $table->timestamps();
         });
     }

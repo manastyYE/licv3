@@ -74,11 +74,14 @@ Route::get('/login', [ShowPagesController::class,'userlogin'])->name('user.login
 // })->where('filename', '.*');
 Route::controller(ReportPDFContoller::class)->prefix('admin/report/')->middleware('admin.auth')->group(
     function(){
+        Route::get('/','mainReport');
+        Route::get('/orgs','showOrgReportView');
         Route::get('clip/{id}','printClip')->name('reporn.printClip');
         Route::get('card/{id}','printCard');
         Route::get('outherclip/{id}','outherClip');
-        Route::get('allclip','getPayedclip');
-
+        Route::get('clips/all','getAllclip');
+        Route::get('clips/pay','getPayedclip');
+        Route::get('clips/npay','getNPayedclip');
 
     }
 );

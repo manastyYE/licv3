@@ -384,7 +384,7 @@ class ShowOrgDtl extends Component
         if (!$this->personal_card) {
             unset($rules['personal_card']);
         }
-        if($this->personal_card || $this->outher || $this->previous_license || $this->comm_record || $this->addError || $this->rent_contract )
+        if($this->personal_card || $this->outher || $this->previous_license || $this->comm_record || $this->ad_board || $this->rent_contract )
         $this->validate($rules);
 
         //تحميل ملف البطاقة
