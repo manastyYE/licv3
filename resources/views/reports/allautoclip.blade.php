@@ -111,7 +111,7 @@
                     <tr class="">
                         <td>{{ $i++ }}</td>
                         <td>{{ $clip->id }}</td>
-                        <td>{{ $clip->org->org_name }}</td>
+                        {{-- <td>{{ $clip->org->org_name }}</td> --}}
                         <td>{{ $clip->org->owner_name }}</td>
                         <td>{{ $clip->total_ad + $clip->clean_pay + $clip->clean }}</td>
 
