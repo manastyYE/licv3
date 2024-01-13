@@ -22,6 +22,11 @@ class VirOrgs extends Model
         'user_id',
         'org_image',
         'is_moved',
+        'rent_contract',
+        'comm_record',
+        'outher',
+        'previous_license',
+        'personal_card',
     ];
 
 	public function org_type(){
