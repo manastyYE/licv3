@@ -47,7 +47,7 @@ class ReportPDFContoller extends Controller
         return view('reports.allautoclip',['clips'=>$clips,'total'=>$total]);
     }
     public function getNPayedclip(){
-        $clips = ClipBoard::whereHas('org')->where('clip_status','غير مدفوعة')->get();
+        $clips = ClipBoard::whereHas('org')->where('clip_status','غير مدفوعة')->orderBy('org_id')->get();
         $total_local=0;
         $total_clean =0;
         if($clips){
