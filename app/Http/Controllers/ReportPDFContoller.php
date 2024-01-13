@@ -63,7 +63,7 @@ class ReportPDFContoller extends Controller
         return view('reports.allautoclip',['clips'=>$clips,'total'=>$total]);
     }
     public function getAllclip(){
-        $clip = ClipBoard::where('org_id','>=',1 )->get();
+        $allclip = ClipBoard::where('org_id','>=',1 )->get();
         $clips = ClipBoard::where('org_id','>=',1 )->get();
         $total_local=0;
         $total_clean =0;
@@ -77,7 +77,7 @@ class ReportPDFContoller extends Controller
             'clean'=>$total_clean,
             'local'=>$total_local,
         ];
-        return view('reports.all_clips',['clips'=>$clip,'total'=>$total]);
+        return view('reports.all_clips',['allclips'=>$allclip,'total'=>$total]);
     }
     public function printCard($id){
         $clip = ClipBoard::find($id);

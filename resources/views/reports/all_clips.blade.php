@@ -107,7 +107,7 @@
                 <?php $i = 1;
 
                 ?>
-                @forelse ($clips as $clip)
+                @forelse ($allclips as $clip)
                     <tr class="">
                         <td>{{ $i++ }}</td>
                         <td>{{ $clip->id }}</td>
