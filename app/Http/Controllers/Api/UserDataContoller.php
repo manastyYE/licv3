@@ -64,31 +64,50 @@ class UserDataContoller extends Controller
         }
     }
     public function get_vir_orgs(){
-        try{
-            // if(Auth::guard('worker-api')->user()->role_no == 1){
-            //     $orgs = VirOrgs::with(['user' => function ($query) {
-            //         $query->select('id', 'fullname');
-            //     }])->select('id','org_name','owner_name','is_moved','user_id')->get();
-            // }
-            // else{
-            //     $ids = Auth::guard('worker-api')->user()->supervisedWorkers->pluck('id');
-            //     $ids->push(Auth::guard('worker-api')->user()->id);
-            //     $orgs = VirOrgs::with(['user' => function ($query) {
-            //         $query->select('id', 'fullname');
-            //     }])->WhereIn('user_id',$ids)->select('id','org_name','owner_name','is_moved','user_id')->get();
-            // }
-            $orgs = VirOrgs::with(['user' => function ($query) {
-                        $query->select('id', 'fullname');
-                    }])->select('id','org_name','owner_name','is_moved','user_id')->orderBy('created_at', 'desc')->get();
-            $orgs = $orgs->map(function ($org) {
-                $org['user_name'] = $org->user->fullname;
-                return $org;
-            });
-            return $this->returnData('data',$orgs);
-        }
-        catch (\Exception $ex) {
-            return $this->returnError($ex->getCode(), $ex->getMessage());
-        }
+        // try{
+        //     // if(Auth::guard('worker-api')->user()->role_no == 1){
+        //     //     $orgs = VirOrgs::with(['user' => function ($query) {
+        //     //         $query->select('id', 'fullname');
+        //     //     }])->select('id','org_name','owner_name','is_moved','user_id')->get();
+        //     // }
+        //     // else{
+        //     //     $ids = Auth::guard('worker-api')->user()->supervisedWorkers->pluck('id');
+        //     //     $ids->push(Auth::guard('worker-api')->user()->id);
+        //     //     $orgs = VirOrgs::with(['user' => function ($query) {
+        //     //         $query->select('id', 'fullname');
+        //     //     }])->WhereIn('user_id',$ids)->select('id','org_name','owner_name','is_moved','user_id')->get();
+        //     // }
+        //     $orgs = VirOrgs::with(['user' => function ($query) {
+        //                 $query->select('id', 'fullname');
+        //             }])->select('id','org_name','owner_name','is_moved','user_id')->orderBy('created_at', 'desc')->get();
+        //     $orgs = $orgs->map(function ($org) {
+        //         $org['user_name'] = $org->user->fullname;
+        //         return $org;
+        //     });
+        //     return $this->returnData('data',$orgs);
+        // }
+        // catch (\Exception $ex) {
+        //     return $this->returnError($ex->getCode(), $ex->getMessage());
+        // }
+        try {
+        $perPage = 10; // Set the number of items per page as needed
+        $orgs = VirOrgs::with(['user' => function ($query) {
+                    $query->select('id', 'fullname');
+                }])
+                ->select('id', 'org_name', 'owner_name', 'is_moved', 'user_id')
+                ->orderBy('created_at', 'desc')
+                ->paginate($perPage);
+
+        $orgs->getCollection()->transform(function ($org) {
+            $org['user_name'] = $org->user->fullname;
+            unset($org->user); // Remove the 'user' attribute from each item
+            return $org;
+        });
+
+        return $this->returnData('data', $orgs);
+    } catch (\Exception $ex) {
+        return $this->returnError($ex->getCode(), $ex->getMessage());
+    }
     }
     public function user_get_org(Request $request){
 
