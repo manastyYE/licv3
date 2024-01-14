@@ -172,8 +172,8 @@
                             {{-- جداري --}}
                         </td>
                         <td class="whitespace-nowrap border border-slate-200 px-3 py-3 dark:border-navy-500 lg:px-5">
-                            @if ($clip->sideof_count)
-                                {{ $clip->sideof_count }}
+                            @if ($clip->roof_count)
+                                {{ $clip->roof_count }}
                             @else
                                 0
                             @endif
