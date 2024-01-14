@@ -414,7 +414,7 @@ class UserDataContoller extends Controller
             if ($office_id == 4) {// الاشغال
                 $orgs = Org::select('id', 'org_name', 'license_status', 'owner_name')
                     ->orderBy('created_at', 'desc')
-                    ->get();
+                    ->paginate(10); // Change 10 to the number of items you want per page
             } else {
                 $org_type_ids = OrgType::where('office_id', $office_id)->pluck('id');
 
@@ -422,13 +422,14 @@ class UserDataContoller extends Controller
                 $orgs = Org::whereIn('org_type_id', $org_type_ids)
                     ->select('id', 'org_name', 'license_status', 'owner_name')
                     ->orderBy('created_at', 'desc')
-                    ->get();
+                    ->paginate(10); // Change 10 to the number of items you want per page
             }
 
             return $this->returnData('data', $orgs);
         } catch (\Exception $ex) {
             return $this->returnError($ex->getCode(), $ex->getMessage());
         }
+
 
     }
 }
