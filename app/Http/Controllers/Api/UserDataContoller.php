@@ -48,20 +48,42 @@ class UserDataContoller extends Controller
         }
     }
     public function get_orgs(){
-        try{
+        // try{
+        //     $office_id = Auth::guard('worker-api')->user()->office_id;
+        //     if ($office_id == 4) {//الاشغال
+        //         $orgs = Org::select('id','org_name','license_status','owner_name')->orderBy('created_at', 'desc')->get();
+        //     } else {
+        //         $org_type_ids = OrgType::where('office_id',$office_id)->pluck('id');
+        //         Org::whereIn('org_type_id', $org_type_ids)->select('id','org_name','license_status','owner_name')->orderBy('created_at', 'desc')->get();
+        //     }
+        //     $orgs = Org::select('id','org_name','license_status','owner_name')->orderBy('created_at', 'desc')->get();
+        //     return $this->returnData('data',$orgs);
+        // }
+        // catch (\Exception $ex) {
+        //     return $this->returnError($ex->getCode(), $ex->getMessage());
+        // }
+        try {
             $office_id = Auth::guard('worker-api')->user()->office_id;
-            if ($office_id == 4) {//الاشغال
-                $orgs = Org::select('id','org_name','license_status','owner_name')->orderBy('created_at', 'desc')->get();
+
+            if ($office_id == 4) {// الاشغال
+                $orgs = Org::select('id', 'org_name', 'license_status', 'owner_name')
+                    ->orderBy('created_at', 'desc')
+                    ->get();
             } else {
-                $org_type_ids = OrgType::where('office_id',$office_id)->pluck('id');
-                Org::whereIn('org_type_id', $org_type_ids)->select('id','org_name','license_status','owner_name')->orderBy('created_at', 'desc')->get();
+                $org_type_ids = OrgType::where('office_id', $office_id)->pluck('id');
+
+                // Use whereIn to filter by org_type_ids
+                $orgs = Org::whereIn('org_type_id', $org_type_ids)
+                    ->select('id', 'org_name', 'license_status', 'owner_name')
+                    ->orderBy('created_at', 'desc')
+                    ->get();
             }
-            $orgs = Org::select('id','org_name','license_status','owner_name')->orderBy('created_at', 'desc')->get();
-            return $this->returnData('data',$orgs);
-        }
-        catch (\Exception $ex) {
+
+            return $this->returnData('data', $orgs);
+        } catch (\Exception $ex) {
             return $this->returnError($ex->getCode(), $ex->getMessage());
         }
+
     }
     public function get_vir_orgs(){
         try{
@@ -383,5 +405,30 @@ class UserDataContoller extends Controller
         } catch (\Exception $ex) {
             return $this->returnError($ex->getCode(), $ex->getMessage());
         }
+    }
+
+    public function get_orgs_v2(){
+        try {
+            $office_id = Auth::guard('worker-api')->user()->office_id;
+
+            if ($office_id == 4) {// الاشغال
+                $orgs = Org::select('id', 'org_name', 'license_status', 'owner_name')
+                    ->orderBy('created_at', 'desc')
+                    ->get();
+            } else {
+                $org_type_ids = OrgType::where('office_id', $office_id)->pluck('id');
+
+                // Use whereIn to filter by org_type_ids
+                $orgs = Org::whereIn('org_type_id', $org_type_ids)
+                    ->select('id', 'org_name', 'license_status', 'owner_name')
+                    ->orderBy('created_at', 'desc')
+                    ->get();
+            }
+
+            return $this->returnData('data', $orgs);
+        } catch (\Exception $ex) {
+            return $this->returnError($ex->getCode(), $ex->getMessage());
+        }
+
     }
 }
