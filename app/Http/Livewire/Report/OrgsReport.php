@@ -18,13 +18,13 @@ class OrgsReport extends Component
             'report_type.required'=>'يجب عليك اختيار نوع التقرير'
         ]);
         if($this->report_type==1){
-            return redirect()->to('/admin/report/allclip');
+            return redirect()->to('/admin/report/clips/all');
         }
         if($this->report_type==2){
-            return redirect()->to('/admin/report/payclip');
+            return redirect()->to('/admin/report/clips/pay');
         }
         if($this->report_type==3){
-            return redirect()->to('/admin/report/npayclip');
+            return redirect()->to('/admin/report/clips/npay');
         }
 
     }
