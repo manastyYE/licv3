@@ -89,6 +89,7 @@ class UserDataContoller extends Controller
         catch (\Exception $ex) {
             return $this->returnError($ex->getCode(), $ex->getMessage());
         }
+
     }
     public function user_get_org(Request $request){
 
@@ -358,6 +359,28 @@ class UserDataContoller extends Controller
             return $this->returnSuccessMessage("تمت الاضافة");
         }
         catch (\Exception $ex) {
+            return $this->returnError($ex->getCode(), $ex->getMessage());
+        }
+    }
+
+    public function get_vir_orgsv2(){
+        try {
+            $perPage = 10; // Set the number of items per page as needed
+            $orgs = VirOrgs::with(['user' => function ($query) {
+                        $query->select('id', 'fullname');
+                    }])
+                    ->select('id', 'org_name', 'owner_name', 'is_moved', 'user_id')
+                    ->orderBy('created_at', 'desc')
+                    ->paginate($perPage);
+
+            $orgs->getCollection()->transform(function ($org) {
+                $org['user_name'] = $org->user->fullname;
+                unset($org->user); // Remove the 'user' attribute from each item
+                return $org;
+            });
+
+            return $this->returnData('data', $orgs);
+        } catch (\Exception $ex) {
             return $this->returnError($ex->getCode(), $ex->getMessage());
         }
     }
