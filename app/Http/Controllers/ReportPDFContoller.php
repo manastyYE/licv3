@@ -83,8 +83,10 @@ class ReportPDFContoller extends Controller
     public function printCard($id){
         $clip = ClipBoard::find($id);
         $today = Carbon::now();
+        $ar = $clip->total_ad + $clip->local_fee + $clip->el_gate + $clip->clean_pay + $clip->clean;
+        $string_total=Numbers::TafqeetMoney($ar,'YER');
 
-        return view('reports.card',['clip'=>$clip,'date'=> $today]);
+        return view('reports.card',['clip'=>$clip,'date'=> $today,'total'=>$string_total]);
 
     }
     public function outherClip($id){
