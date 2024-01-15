@@ -49,6 +49,7 @@ class ConfiermToOrgs extends Component
         $this->store();
         $this->emit('store');
     }
+    public $come_name,$come_phone;
     public function mount($id){
         $this->vier_org_id = $id;
         $vir_org=VirOrgs::find($id);
@@ -64,6 +65,8 @@ class ConfiermToOrgs extends Component
         $this->log_y=$vir_org->log_y;
         $this->note=$vir_org->note;
         $this->vir_org_billboard = VirOrgBillboard::where('vir_org_id',$vir_org->id)->get();
+        $this->come_name = $vir_org->user->fullname;
+        $this->come_phone =$vir_org->user->phone;
 
 
     }
@@ -373,6 +376,8 @@ class ConfiermToOrgs extends Component
                 'log_y'=>$this->log_y,
                 'note'=>$this->note,
                 'admin_id'=>auth()->guard('admin')->user()->id,
+                'come_name'=>$this->come_name,
+                'come_phone'=>$this->come_phone,
             ]
             );
             if ($this->vir_org_billboard) {
