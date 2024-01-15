@@ -579,7 +579,7 @@
         <x-modaladd title="  لا يمكن تعديل بيانات الحافظة " name="cant-edit-clip-modal">
             @slot('body')
                 <div>
-                    <img src="{{ asset('img/no.png') }}" height="100" >
+                    <img src="{{ asset('img/no.png') }}" class="h-50 w-50" >
                 </div>
                 لا يمكنك تعديل بيانات الحافظة بعد ان يتم ارفاق ارقام السندات الى النظام الالي
                 <div>
