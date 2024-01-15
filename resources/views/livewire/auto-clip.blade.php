@@ -578,29 +578,32 @@
     <div wire:ignore.self>
         <x-modaladd title="  لا يمكن تعديل بيانات الحافظة " name="cant-edit-clip-modal">
             @slot('body')
-                <div>
-                    <img src="{{ asset('img/no.png') }}" style="height: 300px" >
-                </div>
-                لا يمكنك تعديل بيانات الحافظة بعد ان يتم ارفاق ارقام السندات الى النظام الالي
-                <div>
-                    <div class="items-center p-4 border-gray-200 rounded-b dark:border-gray-700">
-                        <button type="button" x-on:click="show = false"
-                            class="font-medium btn bg-slate-150 text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90">
-                            اغلاق
-                        </button>
-
+                <center>
+                    <div>
+                        <img src="{{ asset('img/no.png') }}" style="height: 300px">
                     </div>
-                    @if (session('sec'))
-                        <span class="text-xs text-green-500">{{ session('sec') }}</span>
-                    @endif
-                </div>
+                    لا يمكنك تعديل بيانات الحافظة بعد ان يتم ارفاق ارقام السندات الى النظام الالي
+                    <div>
+                        <div class="items-center p-4 border-gray-200 rounded-b dark:border-gray-700">
+                            <button type="button" x-on:click="show = false"
+                                class="font-medium btn bg-slate-150 text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90">
+                                اغلاق
+                            </button>
 
-            @endslot
-            {{-- @slot('footer')
+                        </div>
+                </center>
+
+                @if (session('sec'))
+                    <span class="text-xs text-green-500">{{ session('sec') }}</span>
+                @endif
+        </div>
+
+    @endslot
+    {{-- @slot('footer')
 
             @endslot --}}
-        </x-modaladd>
-    </div>
+    </x-modaladd>
+</div>
 
 
 </div>
