@@ -494,7 +494,7 @@
             @else
                 <button type="button"
                     class="font-medium btn bg-slate-150 text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90">
-                    لقد تم ادخال ارقام السندات بالفعل 
+                    لقد تم ادخال ارقام السندات بالفعل
                 </button>
             @endif
         </div>
@@ -576,23 +576,30 @@
         </x-modaladd>
     </div>
     <div wire:ignore.self>
-        <x-modaldel name="cant-edit-clip-modal">
-            @slot('delbody')
-                <div class="mt-4">
-                    <h2 class="text-2xl text-slate-700 dark:text-navy-100">
-                        لا يمكن التعديل
-                    </h2>
-                    <p class="mt-2">
-                        لا يمكنك تعديل بيانات الحافظة بعد ادخال ارقام السندات
-                    </p>
-
-                    <button wire:click='close'
-                        class="font-medium btn bg-slate-150 text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90">
-                        الغاء
-                    </button>
+        <x-modaladd title="  لا يمكن تعديل بيانات الحافظة " name="cant-edit-clip-modal">
+            @slot('body')
+                <div>
+                    <img src="{{ asset('img/no.png') }}" >
                 </div>
+                لا يمكنك تعديل بيانات الحافظة بعد ان يتم ارفاق ارقام السندات الى النظام الالي
+                <div>
+                    <div class="items-center p-4 border-gray-200 rounded-b dark:border-gray-700">
+                        <button type="button" x-on:click="show = false"
+                            class="font-medium btn bg-slate-150 text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90">
+                            الغاء
+                        </button>
+                        
+                    </div>
+                    @if (session('sec'))
+                        <span class="text-xs text-green-500">{{ session('sec') }}</span>
+                    @endif
+                </div>
+
             @endslot
-        </x-modaldel>
+            {{-- @slot('footer')
+
+            @endslot --}}
+        </x-modaladd>
     </div>
 
 
