@@ -50,6 +50,7 @@ class ConfiermToOrgs extends Component
         $this->emit('store');
     }
     public $come_name,$come_phone;
+    public $temp_rent_contract,$temp_comm_record,$temp_outher,$temp_previous_license,$temp_personal_card;
     public function mount($id){
         $this->vier_org_id = $id;
         $vir_org=VirOrgs::find($id);
@@ -67,6 +68,11 @@ class ConfiermToOrgs extends Component
         $this->vir_org_billboard = VirOrgBillboard::where('vir_org_id',$vir_org->id)->get();
         $this->come_name = $vir_org->user->fullname;
         $this->come_phone =$vir_org->user->phone;
+        $this->temp_comm_record = $vir_org->comm_record;
+        $this->temp_rent_contract =$vir_org->rent_contract;
+        $this->temp_outher = $vir_org->outher;
+        $this->temp_previous_license = $vir_org->previous_license;
+        $this->temp_personal_card = $vir_org->personal_card;
 
 
     }
@@ -364,14 +370,14 @@ class ConfiermToOrgs extends Component
                 'org_type_id'=>$this->org_type_id,
                 'hood_unit_id'=>$this->hood_unit_id,
                 'street_id'=>$this->street_id,
-                'personal_card'=> $this->personal_card ?$rules['personal_card'] :null,
-                'rent_contract'=>$this->rent_contract ?$rules['rent_contract'] : null,
+                'personal_card'=> $this->personal_card ?$rules['personal_card'] :$this->temp_personal_card,
+                'rent_contract'=>$this->rent_contract ?$rules['rent_contract'] : $this->temp_rent_contract,
                 'ad_board'=>$this->ad_board ? $rules['ad_board'] : $this->temp_img,
-                'previous_license'=>$this->previous_license ? $rules['previous_license'] : null ,
-                'comm_record'=>$this->comm_record ? $rules['comm_record'] : null,
+                'previous_license'=>$this->previous_license ? $rules['previous_license'] : $this->temp_previous_license ,
+                'comm_record'=>$this->comm_record ? $rules['comm_record'] : $this->temp_comm_record,
                 'start_date'=>$this->start_date,
                 'fire_ext'=>$this->fire_ext,
-                'outher'=>$this->outher ? $rules['outher'] :null,
+                'outher'=>$this->outher ? $rules['outher'] :$this->temp_outher,
                 'log_x'=>$this->log_x,
                 'log_y'=>$this->log_y,
                 'note'=>$this->note,
