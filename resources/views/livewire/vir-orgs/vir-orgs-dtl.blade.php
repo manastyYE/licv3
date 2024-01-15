@@ -389,6 +389,66 @@
 
                     </div>
                 @endif
+                @if ($org->rent_contract)
+                    <div class="text-base font-inter text-slate-600 dark:text-navy-200">
+                        <h1 class="text-xl font-medium text-slate-900 dark:text-navy-50 lg:text-2xl">
+                            عقد الايجار
+                        </h1>
+
+                        <img class="object-cover object-center w-full mt-5 rounded-lg h-80" src="{{ asset($org->rent_contract) }}"
+                            alt="image">
+
+
+                    </div>
+                @endif
+                @if ($org->comm_record)
+                    <div class="text-base font-inter text-slate-600 dark:text-navy-200">
+                        <h1 class="text-xl font-medium text-slate-900 dark:text-navy-50 lg:text-2xl">
+                            السجل التجاري
+                        </h1>
+
+                        <img class="object-cover object-center w-full mt-5 rounded-lg h-80" src="{{ asset($org->comm_record) }}"
+                            alt="image">
+
+
+                    </div>
+                @endif
+                @if ($org->previous_license)
+                    <div class="text-base font-inter text-slate-600 dark:text-navy-200">
+                        <h1 class="text-xl font-medium text-slate-900 dark:text-navy-50 lg:text-2xl">
+                            الرخصة السابقة
+                        </h1>
+
+                        <img class="object-cover object-center w-full mt-5 rounded-lg h-80" src="{{ asset($org->previous_license) }}"
+                            alt="image">
+
+
+                    </div>
+                @endif
+                @if ($org->personal_card)
+                    <div class="text-base font-inter text-slate-600 dark:text-navy-200">
+                        <h1 class="text-xl font-medium text-slate-900 dark:text-navy-50 lg:text-2xl">
+                            البطاقة الشخصية
+                        </h1>
+
+                        <img class="object-cover object-center w-full mt-5 rounded-lg h-80" src="{{ asset($org->personal_card) }}"
+                            alt="image">
+
+
+                    </div>
+                @endif
+                @if ($org->outher)
+                    <div class="text-base font-inter text-slate-600 dark:text-navy-200">
+                        <h1 class="text-xl font-medium text-slate-900 dark:text-navy-50 lg:text-2xl">
+                            موافقة الجهة المختصة
+                        </h1>
+
+                        <img class="object-cover object-center w-full mt-5 rounded-lg h-80" src="{{ asset($org->outher) }}"
+                            alt="image">
+
+
+                    </div>
+                @endif
                 <!-- Blog Post -->
                 {{-- @if ($org->rent_contract)
                     <div class="text-base font-inter text-slate-600 dark:text-navy-200">
