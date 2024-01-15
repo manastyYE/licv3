@@ -52,7 +52,7 @@ class AddOrg extends Component
             'street_id.required'=>'يجب عليك اختيار الشارع ',
             'building_type_id.required'=>'يجب عليك اختيار نوع البناء الذي فيه المشأة',
             'isowner.required'=>'لا يمكنك ترك هذا الحقل فارغاً',
-            
+
 
 
         ];
@@ -315,6 +315,7 @@ class AddOrg extends Component
                 'start_date'=>$this->start_date,
                 'fire_ext'=>$this->fire_ext,
                 'outher'=>$this->outher ? $rules['outher'] :null,
+                'admin_id'=>auth()->guard('admin')->user()->id,
             ]
             );
         $this->rest_inputs();

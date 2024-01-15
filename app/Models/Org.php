@@ -35,8 +35,14 @@ class Org extends Model
         'log_y',
         'license_status',
         'note',
+        'admin_id',
+        'come_name',// اسم الشخص الذي يقوم بالمعاملة
+        'come_phone',// رقم هاتف الشخص الذي يقوم بالمعاملة
 
     ];
+    public function admin(){
+        return $this->belongsTo(Admin::class);
+    }
 
 	public function org_type(){
         return $this->belongsTo(OrgType::class);

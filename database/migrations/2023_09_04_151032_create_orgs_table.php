@@ -45,6 +45,10 @@ return new class extends Migration
             $table->string('fire_ext',20)->default('لا');
             $table->string('license_status')->default('غير مرخص');
             $table->text('note')->nullable();
+            $table->unsignedBigInteger('admin_id');
+            $table->foreign('admin_id')->references('id')->on('admins')->onDelete('restrict');
+            $table->string('come_name')->nullable();
+            $table->string('come_phone')->nullable();
             $table->timestamps();
         });
     }
