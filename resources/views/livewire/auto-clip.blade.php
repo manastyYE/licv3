@@ -579,16 +579,16 @@
         <x-modaladd title="  لا يمكن تعديل بيانات الحافظة " name="cant-edit-clip-modal">
             @slot('body')
                 <div>
-                    <img src="{{ asset('img/no.png') }}" >
+                    <img src="{{ asset('img/no.png') }}" height="100" >
                 </div>
                 لا يمكنك تعديل بيانات الحافظة بعد ان يتم ارفاق ارقام السندات الى النظام الالي
                 <div>
                     <div class="items-center p-4 border-gray-200 rounded-b dark:border-gray-700">
                         <button type="button" x-on:click="show = false"
                             class="font-medium btn bg-slate-150 text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90">
-                            الغاء
+                            اغلاق
                         </button>
-                        
+
                     </div>
                     @if (session('sec'))
                         <span class="text-xs text-green-500">{{ session('sec') }}</span>
