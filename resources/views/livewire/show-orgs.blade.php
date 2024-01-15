@@ -44,6 +44,9 @@
                                 <th data-column-id="actions" class="gridjs-th">
                                     <div class="gridjs-th-content">الشارع</div>
                                 </th>
+                                <th data-column-id="actions" class="gridjs-th">
+                                    <div class="gridjs-th-content">اضيفت بواسطة</div>
+                                </th>
                             </tr>
                         </thead>
                         <tbody class="gridjs-tbody">
@@ -64,6 +67,7 @@
                                     <td class="gridjs-td">{{ $p->owner_phone }}</td>
                                     <td class="gridjs-td">{{ $p->org_type->name }}</td>
                                     <td class="gridjs-td">{{ $p->street->name }}</td>
+                                    <td class="gridjs-td">{{ $p->admin->fullname }}</td>
 
 
                                 </tr>
@@ -80,7 +84,7 @@
                 <div class="gridjs-footer">
                     <div class="gridjs-pagination">
                         <div role="status" aria-live="polite" class="gridjs-summary" title="Page 1 of 2">Showing
-                             {{ $type->links() }} 
+                             {{ $type->links() }}
                         </div>
                         <div class="gridjs-pages"><button tabindex="0" role="button" disabled="" title="Previous"
                                 aria-label="Previous" class="">Previous</button><button tabindex="0" role="button"
