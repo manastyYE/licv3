@@ -372,6 +372,7 @@ class ConfiermToOrgs extends Component
                 'log_x'=>$this->log_x,
                 'log_y'=>$this->log_y,
                 'note'=>$this->note,
+                'admin_id'=>auth()->guard('admin')->user()->id,
             ]
             );
             if ($this->vir_org_billboard) {
