@@ -19,6 +19,7 @@ class AddOrg extends Component
     public $is_outher;
     public $hood_unit_no;
     public $org_types, $building_types, $streets, $street, $hood_unit;
+    public $come_name,$come_phone;
     public function store(){
 
 
@@ -316,6 +317,8 @@ class AddOrg extends Component
                 'fire_ext'=>$this->fire_ext,
                 'outher'=>$this->outher ? $rules['outher'] :null,
                 'admin_id'=>auth()->guard('admin')->user()->id,
+                'come_name'=>$this->come_name,
+                'come_phone'=>$this->come_phone,
             ]
             );
         $this->rest_inputs();
