@@ -485,10 +485,18 @@
                 class="font-medium btn bg-slate-150 text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90">
                 طباعة
             </a>
-            <button type="button" wire:click='update_clip'
-                class="font-medium btn bg-slate-150 text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90">
-                حفظ وطباعة
-            </button>
+
+            @if ($clip->clip_status == 'غير مدفوعة')
+                <button type="button" wire:click='update_clip'
+                    class="font-medium btn bg-slate-150 text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90">
+                    حفظ وطباعة
+                </button>
+            @else
+                <button type="button"
+                    class="font-medium btn bg-slate-150 text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90">
+                    لقد تم ادخال ارقام السندات بالفعل 
+                </button>
+            @endif
         </div>
     </div>
     <div wire:ignore.self>
@@ -567,25 +575,24 @@
             @endslot --}}
         </x-modaladd>
     </div>
-    <div  wire:ignore.self>
+    <div wire:ignore.self>
         <x-modaldel name="cant-edit-clip-modal">
-                @slot('delbody')
-                    <div class="mt-4">
-                        <h2 class="text-2xl text-slate-700 dark:text-navy-100">
-                            لا يمكن التعديل
-                        </h2>
-                        <p class="mt-2">
-                            لا يمكنك تعديل بيانات الحافظة بعد ادخال ارقام السندات
-                        </p>
+            @slot('delbody')
+                <div class="mt-4">
+                    <h2 class="text-2xl text-slate-700 dark:text-navy-100">
+                        لا يمكن التعديل
+                    </h2>
+                    <p class="mt-2">
+                        لا يمكنك تعديل بيانات الحافظة بعد ادخال ارقام السندات
+                    </p>
 
-                        <button
-                            wire:click='close'
-                            class="font-medium btn bg-slate-150 text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90">
-                            الغاء
-                        </button>
-                    </div>
-                @endslot
-            </x-modaldel>
+                    <button wire:click='close'
+                        class="font-medium btn bg-slate-150 text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90">
+                        الغاء
+                    </button>
+                </div>
+            @endslot
+        </x-modaldel>
     </div>
 
 
