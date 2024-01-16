@@ -31,7 +31,7 @@ class ReportPDFContoller extends Controller
 
     }
     public function getPayedclip(){
-        $clips = ClipBoard::where('clip_status','مدفوعة')->get();
+        $clips = ClipBoard::where('clip_status','مدفوعة')->orderBy('ad_reseve')->get();
         $total_local=0;
         $total_clean =0;
         if($clips){

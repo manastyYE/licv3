@@ -127,7 +127,7 @@
                         </td>
                         <td class="whitespace-nowrap border border-slate-200 px-3 py-3 dark:border-navy-500 lg:px-5">
                             <label class="relative flex">
-                                <input wire:model.defer='$reseve_date' x-init="$el._x_flatpickr = flatpickr($el)"
+                                <input wire:model.defer='reseve_date' x-init="$el._x_flatpickr = flatpickr($el)"
                                     class="w-full px-3 py-2 bg-transparent border rounded-lg form-input peer border-slate-300 pr-9 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
                                     placeholder=" اختر تاريخ..." type="text" />
                                 <span
