@@ -158,7 +158,7 @@
             <div>
                 <label class="block " >
                     <span> اسم المعامل</span>
-                    <input name="come_name" wire:model.defer='comm_name' id="comm_name"
+                    <input name="come_name" wire:model.defer='come_name' id="comm_name"
                         class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
                         placeholder="ادخل اسم الشخص الذي يقوم بالمعاملة" type="text" />
                 </label>
