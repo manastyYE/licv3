@@ -21,14 +21,14 @@ class OClip extends Component
         $clip = OutherClip::find($id);
         $ar = $clip->price + $clip->other_price;
         $this->ar_str = Numbers::TafqeetMoney($ar,'YER');
-    
+
 
     }
     public function update_clip(){
         $clip = OutherClip::find($this->clip_id);
         $this->validate([
             'reseve' =>'required|numeric',
-            '$reseve_date' =>'required',
+            'reseve_date' =>'required',
         ]);
         $clip->reseve = $this->reseve;
         $clip->reseve_date = $this->reseve_date;
