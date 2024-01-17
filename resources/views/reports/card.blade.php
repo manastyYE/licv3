@@ -127,7 +127,7 @@
                             </span>
                         </div>
                     </div>
-                    <div class="row" style="margin-right: 1.5mm;margin-top: 1.5mm">
+                    <div class="row" style="margin-right: 1.5mm;margin-top: 2mm">
                         <div class="col">
                             <span style="margin-right: 6.5mm;">
                                 {{ $clip->id }}
