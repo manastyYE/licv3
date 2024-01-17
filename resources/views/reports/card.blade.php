@@ -157,7 +157,7 @@
 
                         </div>
                     </div>
-                    <div class="row" style="margin-right: 3mm;">
+                    <div class="row" style="margin-right: 7mm;">
                         <div class="col">
                             <span style="margin-right: 3mm">
                                 {{ $date->format('y-m-d') }}
