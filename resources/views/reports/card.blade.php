@@ -157,7 +157,7 @@
 
                         </div>
                     </div>
-                    <div class="row" style="margin-right: 10mm;margin-top: 1mm">
+                    <div class="row" style="margin-right: 10mm;margin-top: 1.5mm">
                         <div class="col">
                             <span style="margin-right: 3mm">
                                 {{ $date->format('y-m-d') }}
@@ -176,7 +176,7 @@
 
                 </div>
                 <div class="col">
-                    <table style="margin-top: 15mm;margin-right: 11mm">
+                    <table style="margin-top: 17mm;margin-right: 11mm">
                         {{-- الرسوم المحلية --}}
                         <tr>
                             <td style="width: 10%">
