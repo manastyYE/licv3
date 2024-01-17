@@ -157,7 +157,7 @@
 
                         </div>
                     </div>
-                    <div class="row" style="margin-right: 10mm;">
+                    <div class="row" style="margin-right: 10mm;margin-top: 2mm">
                         <div class="col">
                             <span style="margin-right: 3mm">
                                 {{ $date->format('y-m-d') }}
@@ -353,13 +353,13 @@
                             </td>
                             <td style="width: 10%">
                                 {{-- المبلغ --}}
-                                <span style="margin-top: 6mm">
+                                <span style="margin-top: 9mm">
                                     {{ $clip->total_ad + $clip->local_fee + $clip->el_gate + $clip->clean_pay + $clip->clean }}
                                 </span>
                             </td>
                             <td colspan="2" style="width: 7%">
                                 {{-- ارقام السندات --}}
-                                <span style="margin-right: 20mm ; margin-top: 6mm">
+                                <span style="margin-right: 20mm ; margin-top: 9mm">
                                     {{ $total }}
                                 </span>
                             </td>
