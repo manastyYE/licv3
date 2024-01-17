@@ -176,7 +176,7 @@
 
                 </div>
                 <div class="col">
-                    <table style="margin-top: 17mm;margin-right: 10mm">
+                    <table style="margin-top: 15mm;margin-right: 11mm">
                         {{-- الرسوم المحلية --}}
                         <tr>
                             <td style="width: 10%">
@@ -347,7 +347,7 @@
                             </td>
 
                         </tr>
-                        <tr style="margin-top: 3mm">
+                        <tr style="margin-top: 6mm">
                             <td style="width: 10%">
 
                             </td>
