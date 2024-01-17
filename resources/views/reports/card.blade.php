@@ -157,14 +157,14 @@
 
                         </div>
                     </div>
-                    <div class="row" style="margin-right: 10mm;margin-top: 2mm">
+                    <div class="row" style="margin-right: 10mm;margin-top: 1mm">
                         <div class="col">
                             <span style="margin-right: 3mm">
                                 {{ $date->format('y-m-d') }}
                             </span>
                         </div>
                         <div class="col">
-                            <span style="margin-right: 8mm;">
+                            <span style="margin-right: 10mm;">
                                 31 12 {{ $date->format('y') }}
                             </span>
                         </div>
