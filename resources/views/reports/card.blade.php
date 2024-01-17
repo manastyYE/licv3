@@ -48,7 +48,7 @@
                             </span>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row" style="margin-top: 2mm">
                         <div class="col-3">
                             {{ $clip->org->card_type }}
                         </div>
@@ -61,9 +61,9 @@
                             {{ $clip->org->street->name }}
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row" style="margin-top: 2mm">
                         <div class="col">
-                            <span style="margin-right: -1.5mm;">
+                            <span style="margin-right: -4mm;">
                                 {{ $clip->org->owner_phone }}
                             </span>
                         </div>
@@ -176,7 +176,7 @@
 
                 </div>
                 <div class="col">
-                    <table style="margin-top: 12mm;margin-right: 10mm">
+                    <table style="margin-top: 17mm;margin-right: 10mm">
                         {{-- الرسوم المحلية --}}
                         <tr>
                             <td style="width: 10%">
@@ -357,7 +357,7 @@
                             </td>
                             <td colspan="2" style="width: 7%">
                                 {{-- ارقام السندات --}}
-                                <span style="margin-right: 7mm">
+                                <span style="margin-right: 20mm">
                                     {{ $total }}
                                 </span>
                             </td>
