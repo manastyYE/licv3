@@ -359,7 +359,7 @@
                             </td>
                             <td colspan="2" style="width: 7%">
                                 {{-- ارقام السندات --}}
-                                <span style="margin-right: 20mm ; margin-top: 9mm">
+                                <span style="margin-right: 15mm ; margin-top: 9mm">
                                     {{ $total }}
                                 </span>
                             </td>
