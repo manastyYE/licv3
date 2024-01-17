@@ -100,7 +100,7 @@
                             </span>
                         </div>
                     </div>
-                    <div class="row" style="margin-top: 15mm;margin-right: 1mm;">
+                    <div class="row" style="margin-top: 16mm;margin-right: 1mm;">
                         <div class="col">
                             <span style="margin-right: 3mm;">
                                 {{ $clip->org->org_name }}
