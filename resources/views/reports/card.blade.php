@@ -48,7 +48,7 @@
                             </span>
                         </div>
                     </div>
-                    <div class="row" style="margin-top: 2mm">
+                    <div class="row" style="margin-top: 1mm">
                         <div class="col-3">
                             {{ $clip->org->card_type }}
                         </div>
@@ -61,9 +61,9 @@
                             {{ $clip->org->street->name }}
                         </div>
                     </div>
-                    <div class="row" style="margin-top: 2mm">
+                    <div class="row" style="margin-top: 1mm">
                         <div class="col">
-                            <span style="margin-right: -4mm;">
+                            <span style="margin-right: -7mm;">
                                 {{ $clip->org->owner_phone }}
                             </span>
                         </div>
