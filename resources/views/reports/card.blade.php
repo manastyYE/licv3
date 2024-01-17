@@ -353,11 +353,13 @@
                             </td>
                             <td style="width: 10%">
                                 {{-- المبلغ --}}
-                                {{ $clip->total_ad + $clip->local_fee + $clip->el_gate + $clip->clean_pay + $clip->clean }}
+                                <span style="margin-top: 6mm">
+                                    {{ $clip->total_ad + $clip->local_fee + $clip->el_gate + $clip->clean_pay + $clip->clean }}
+                                </span>
                             </td>
                             <td colspan="2" style="width: 7%">
                                 {{-- ارقام السندات --}}
-                                <span style="margin-right: 20mm">
+                                <span style="margin-right: 20mm ; margin-top: 6mm">
                                     {{ $total }}
                                 </span>
                             </td>
