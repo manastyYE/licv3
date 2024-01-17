@@ -24,7 +24,7 @@
 </head>
 
 <body dir="rtl">
-    <div style="margin-right: -10mm" >
+    <div style="margin-right: -20mm" >
         <div class="container" >
             <div >
                 <div style="margin-top: 53mm;">
