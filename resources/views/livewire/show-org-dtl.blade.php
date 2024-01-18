@@ -700,7 +700,7 @@
                 @if ($can_have_clip)
                     يجب ان يتم دفع الحافظة السابقة
                 @endif
-                @if($have_pay_clip  || !$can_have_clip && !$have_pay_clip)
+                @if($have_pay_clip  || !$clip)
                 <form>
                     <div class="p-2 space-y-6">
                         <label class="block">
