@@ -698,6 +698,8 @@
             @slot('body')
                 {{-- <x-slot:body> --}}
                 @if ($can_have_clip)
+                    يجب ان يتم دفع الحافظة السابقة
+                @else
                 <form>
                     <div class="p-2 space-y-6">
                         <label class="block">
@@ -763,8 +765,6 @@
                     </div>
 
                 </form>
-                @else
-                    يجب ان يتم دفع الحافظة السابقة
                 @endif
                 <div>
                     @if (session('sec'))
