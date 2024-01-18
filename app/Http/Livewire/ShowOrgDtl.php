@@ -28,7 +28,7 @@ class ShowOrgDtl extends Component
     public $office_id;
     public $price,$other_price;
 
-    public $can_have_clip;
+    public $can_have_clip,$have_pay_clip;
 
 
     public function render()
@@ -40,7 +40,7 @@ class ShowOrgDtl extends Component
         $bill_board = Billboard::all();
         $clip = ClipBoard::where('org_id', $this->org_id)->orderBy('created_at', 'desc')->get();
         $this->can_have_clip = ClipBoard::where('org_id',$this->org_id)->where('clip_status','غير مدفوعة')->get();
-
+        $this->have_pay_clip = ClipBoard::where('org_id',$this->org_id)->where('clip_status','!=','غير مدفوعة')->get();
         if ($this->street_id) {
 
             $hood_unit = Street::find($this->street_id);
