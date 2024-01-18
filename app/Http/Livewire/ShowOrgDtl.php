@@ -64,6 +64,8 @@ class ShowOrgDtl extends Component
             foreach($clip as $c){
                 if($c->clip_status == 'غير مدفوعة'){
                     $is = 1;
+                    return $is;
+                    
                 }
             }
 
