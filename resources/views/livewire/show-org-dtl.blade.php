@@ -697,7 +697,7 @@
         <x-modaladd title="إضافة  حافظة لمنشأة{{ $org->org_name }} " name="add-org-clip-modal">
             @slot('body')
                 {{-- <x-slot:body> --}}
-                @if (!$can_have_clip)
+                @if ($can_have_clip)
                 <form>
                     <div class="p-2 space-y-6">
                         <label class="block">
