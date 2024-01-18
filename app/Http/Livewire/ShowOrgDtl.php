@@ -34,12 +34,12 @@ class ShowOrgDtl extends Component
     public function render()
     {
 
+        $this->can_have_clip = $this->cantClip();
         $org_billBoard = OrgBillboard::where('org_id', $this->org_id)->get();
         $org = Org::find($this->org_id);
         $this->office_id = $org->org_type->office->id;
         $bill_board = Billboard::all();
         $clip = ClipBoard::where('org_id', $this->org_id)->orderBy('created_at', 'desc')->get();
-        $this->can_have_clip = ClipBoard::where('org_id',$this->org_id)->where('clip_status','غير مدفوعة')->get();
 
         if ($this->street_id) {
 
@@ -54,6 +54,16 @@ class ShowOrgDtl extends Component
         ->get();
         $this->getselect();
         return view('livewire.show-org-dtl', ['org' => $org, 'type' => $org_billBoard, 'bill' => $bill_board, 'clip' => $clip,'oclip'=>$outher_clip]);
+    }
+
+    public function cantClip(){
+        $can_have_clip = ClipBoard::where('org_id',$this->org_id)->where('clip_status','غير مدفوعة')->get();
+        if($can_have_clip){
+            return 1;
+        }
+        if(!$can_have_clip){
+            return 0;
+        }
     }
     public function storeOtClipData(){
         $outher_clip = new OutherClip();
