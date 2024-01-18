@@ -195,7 +195,9 @@
     <h4 class="text-xl font-semibold text-slate-700 dark:text-navy-100">
         المرفقات
     </h4>
-    <button x-data x-on:click="$dispatch('open-modal',{name:'show-org-files'})"
+    <button
+    x-data
+    x-on:click="$dispatch('open-modal',{name:'show-org-files'})"
         class="btn border border-slate-300 font-medium text-slate-800 hover:bg-slate-150 focus:bg-slate-150 active:bg-slate-150/80 dark:border-navy-450 dark:text-navy-50 dark:hover:bg-navy-500 dark:focus:bg-navy-500 dark:active:bg-navy-500/90">
         عرض المرفقات
     </button>
@@ -427,8 +429,13 @@
                                                 <td class="gridjs-td">{{ $p->created_at }}</td>
                                                 <td class="gridjs-td">{{ $p->admin->fullname }}</td>
                                                 <td class="gridjs-td">
-                                                    <a @if ($p->clip_status == 'مدفوعة') href="/admin/report/card/{{ $p->id }}"
-                                                    @else @endif
+                                                    <a
+                                                    @if ($p->clip_status == 'مدفوعة' )
+                                                    href="/admin/report/card/{{ $p->id }}"
+                                                    @else
+
+                                                    @endif
+
                                                         class="font-medium border btn border-primary text-primary hover:bg-primary hover:text-white focus:bg-primary focus:text-white active:bg-primary/90 dark:border-accent dark:text-accent-light dark:hover:bg-accent dark:hover:text-white dark:focus:bg-accent dark:focus:text-white dark:active:bg-accent/90">
                                                         طباعة كرت الرخصة
                                                     </a>
@@ -483,78 +490,77 @@
         </div>
     </div>
     @if ($office_id != 4)
-        <div>
-            <h3>
-                حافظة مكنب {{ $org->org_type->office->name }}
-            </h3>
-            <div x-data="pages.tables.initGridTableExapmle">
+    <div>
+        <h3>
+            حافظة مكنب {{ $org->org_type->office->name }}
+        </h3>
+        <div x-data="pages.tables.initGridTableExapmle">
 
-                <div role="complementary" class="gridjs gridjs-container" style="width: 100%;">
-                    <div class="gridjs-head">
-                        <div class="gridjs-search">
-                            <button type="button" x-data
-                                x-on:click="$dispatch('open-modal',{name:'add-outher-clip-modal'})"
-                                class="font-medium btn bg-slate-150 text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90">
-                                انشاء حافظة
-                            </button>
-                        </div>
+            <div role="complementary" class="gridjs gridjs-container" style="width: 100%;">
+                <div class="gridjs-head">
+                    <div class="gridjs-search">
+                        <button type="button" x-data x-on:click="$dispatch('open-modal',{name:'add-outher-clip-modal'})"
+                            class="font-medium btn bg-slate-150 text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90">
+                            انشاء حافظة
+                        </button>
                     </div>
-                    <div class="gridjs-wrapper" style="height: auto;">
-                        <table role="grid" class="gridjs-table" style="height: auto;">
-                            <thead class="gridjs-thead">
-                                <tr class="gridjs-tr">
-                                    <th class="gridjs-th ">
-                                        <div class="gridjs-th-content">#</div>
-                                    </th>
-                                    <th data-column-id="name" class="gridjs-th">
-                                        <div class="gridjs-th-content"> الرقم الالي </div>
-                                    </th>
+                </div>
+                <div class="gridjs-wrapper" style="height: auto;">
+                    <table role="grid" class="gridjs-table" style="height: auto;">
+                        <thead class="gridjs-thead">
+                            <tr class="gridjs-tr">
+                                <th class="gridjs-th ">
+                                    <div class="gridjs-th-content">#</div>
+                                </th>
+                                <th data-column-id="name" class="gridjs-th">
+                                    <div class="gridjs-th-content"> الرقم الالي </div>
+                                </th>
 
-                                    <th data-column-id="email" class="gridjs-th">
-                                        <div class="gridjs-th-content"> الحالة </div>
-                                    </th>
+                                <th data-column-id="email" class="gridjs-th">
+                                    <div class="gridjs-th-content"> الحالة </div>
+                                </th>
 
-                                    <th data-column-id="actions" class="gridjs-th">
-                                        <div class="gridjs-th-content"> تاريخ الانشاء </div>
-                                    </th>
-
-
-                                    <th data-column-id="actions" class="gridjs-th">
-                                        <div class="gridjs-th-content"> أنشأها المستخدم </div>
-                                    </th>
-
-                                </tr>
-                            </thead>
-                            <tbody class="gridjs-tbody">
-                                <?php $i = 0; ?>
-                                @if ($oclip->count() > 0)
-                                    @foreach ($oclip as $p)
-                                        <?php $i++; ?>
-                                        <a href="/admin/org/clip/{{ $p->id }}">
-                                            <tr class="gridjs-tr">
-
-                                                <span>
-                                                    <td class="gridjs-td"><span><span
-                                                                class="mx-2">{{ $i }}</span></span></td>
+                                <th data-column-id="actions" class="gridjs-th">
+                                    <div class="gridjs-th-content"> تاريخ الانشاء </div>
+                                </th>
 
 
-                                                    <td class="gridjs-td">
-                                                        <a href="/admin/org/outherclip/{{ $p->id }}">
-                                                            {{ $p->id }}
-                                                        </a>
-                                                    </td>
-                                                    <td class="gridjs-td">{{ $p->clip_status }}</td>
+                                <th data-column-id="actions" class="gridjs-th">
+                                    <div class="gridjs-th-content"> أنشأها المستخدم </div>
+                                </th>
 
-                                                    <td class="gridjs-td">{{ $p->created_at }}</td>
-                                                    <td class="gridjs-td">{{ $p->admin->fullname }}</td>
+                            </tr>
+                        </thead>
+                        <tbody class="gridjs-tbody">
+                            <?php $i = 0; ?>
+                            @if ($oclip->count() > 0)
+                                @foreach ($oclip as $p)
+                                    <?php $i++; ?>
+                                    <a href="/admin/org/clip/{{ $p->id }}">
+                                        <tr class="gridjs-tr">
+
+                                            <span>
+                                                <td class="gridjs-td"><span><span
+                                                            class="mx-2">{{ $i }}</span></span></td>
 
 
-                                                </span>
+                                                <td class="gridjs-td">
+                                                    <a href="/admin/org/outherclip/{{ $p->id }}">
+                                                        {{ $p->id }}
+                                                    </a>
+                                                </td>
+                                                <td class="gridjs-td">{{ $p->clip_status }}</td>
+
+                                                <td class="gridjs-td">{{ $p->created_at }}</td>
+                                                <td class="gridjs-td">{{ $p->admin->fullname }}</td>
+
+
+                                            </span>
 
 
 
 
-                                                {{-- <td class="gridjs-td"><span>
+                                            {{-- <td class="gridjs-td"><span>
                                                 <div class="flex justify-center space-x-2">
                                                     <button type="button" wire:click='setname({{ $p->id }})'
                                                         x-data
@@ -571,34 +577,32 @@
                                                 </div>
                                             </span>
                                         </td> --}}
-                                            </tr>
-                                        </a>
-                                    @endforeach
-                                @endif
+                                        </tr>
+                                    </a>
+                                @endforeach
+                            @endif
 
 
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="gridjs-footer">
-                        <div class="gridjs-pagination">
-                            <div role="status" aria-live="polite" class="gridjs-summary" title="Page 1 of 2">
-                                Showing
-                                <b>1</b> to <b>10</b> of <b>15</b> results
-                            </div>
-                            <div class="gridjs-pages"><button tabindex="0" role="button" disabled=""
-                                    title="Previous" aria-label="Previous" class="">Previous</button><button
-                                    tabindex="0" role="button" class="gridjs-currentPage" title="Page 1"
-                                    aria-label="Page 1">1</button><button tabindex="0" role="button"
-                                    class="" title="Page 2" aria-label="Page 2">2</button><button
-                                    tabindex="0" role="button" title="Next" aria-label="Next"
-                                    class="">Next</button></div>
-                        </div>
-                    </div>
-                    <div id="gridjs-temp" class="gridjs-temp"></div>
+                        </tbody>
+                    </table>
                 </div>
+                <div class="gridjs-footer">
+                    <div class="gridjs-pagination">
+                        <div role="status" aria-live="polite" class="gridjs-summary" title="Page 1 of 2">Showing
+                            <b>1</b> to <b>10</b> of <b>15</b> results
+                        </div>
+                        <div class="gridjs-pages"><button tabindex="0" role="button" disabled=""
+                                title="Previous" aria-label="Previous" class="">Previous</button><button
+                                tabindex="0" role="button" class="gridjs-currentPage" title="Page 1"
+                                aria-label="Page 1">1</button><button tabindex="0" role="button" class=""
+                                title="Page 2" aria-label="Page 2">2</button><button tabindex="0" role="button"
+                                title="Next" aria-label="Next" class="">Next</button></div>
+                    </div>
+                </div>
+                <div id="gridjs-temp" class="gridjs-temp"></div>
             </div>
         </div>
+    </div>
     @endif
 
 
@@ -690,80 +694,9 @@
     </div>
 
     <div wire:ignore.self>
-        <x-modaladd title="إضافة  حافظة لمنشأة{{ $org->org_name }} " name="add-org-clip-modal">
+        <x-modaladd title="إضافة  لوحة لمنشأة{{ $org->org_name }} " name="add-org-clip-modal">
             @slot('body')
                 {{-- <x-slot:body> --}}
-                @if ($clip)
-                    {{-- @if ($can_have_clip)
-                        يجب ان يتم دفع الحافظة السابقة
-                    @else
-                        <form>
-                            <div class="p-2 space-y-6">
-                                <label class="block">
-                                    <span> الرسوم المحلية </span>
-                                    <input wire:model='local_fee'
-                                        class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
-                                        placeholder=" ادخل الرسوم المحلية" type="text" />
-                                </label>
-                                @error('local_fee')
-                                    <span class="text-tiny+ text-error">
-                                        {{ $message }}
-                                    </span>
-                                @enderror
-                                <label class="block">
-                                    <span> رسوم البوابة الالكترونية </span>
-                                    <input wire:model='el_gate'
-                                        class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
-                                        placeholder="ادخل رسوم البوابة الالكترونية" type="text" />
-                                </label>
-                                @error('el_gate')
-                                    <span class="text-tiny+ text-error">
-                                        {{ $message }}
-                                    </span>
-                                @enderror
-                                <label class="block">
-                                    <span> التحسين </span>
-                                    <input wire:model='clean'
-                                        class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
-                                        placeholder=" ادخل رسوم التحسين" type="text" />
-                                </label>
-                                @error('clean')
-                                    <span class="text-tiny+ text-error">
-                                        {{ $message }}
-                                    </span>
-                                @enderror
-                                <label class="block">
-                                    <span> رسوم نظافة المهن </span>
-                                    <input wire:model='clean_pay'
-                                        class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
-                                        placeholder=" ادخل رسوم نظافة المهن" type="text" />
-                                </label>
-                                @error('clean_pay')
-                                    <span class="text-tiny+ text-error">
-                                        {{ $message }}
-                                    </span>
-                                @enderror
-
-
-
-
-                            </div>
-
-                            <!-- Modal footer -->
-                            <div class="items-center p-4 border-gray-200 rounded-b dark:border-gray-700">
-                                <button type="button" data-dismiss="modal"
-                                    class="font-medium btn bg-slate-150 text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90">
-                                    الغاء
-                                </button>
-                                <button type="button" wire:click.prevent='storeClipData'
-                                    class="font-medium text-white btn bg-primary hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90">
-                                    حفظ
-                                </button>
-                            </div>
-
-                        </form>
-                    @endif --}}
-                @else
                 <form>
                     <div class="p-2 space-y-6">
                         <label class="block">
@@ -829,7 +762,6 @@
                     </div>
 
                 </form>
-                @endif
                 <div>
                     @if (session('sec'))
                         <span class="text-xs text-green-500">{{ session('sec') }}</span>
@@ -952,6 +884,35 @@
     </x-modaldel>
 
 
+    <div wire:ignore.self>
+
+        <x-modaladd title=" nbgoeh;ofk " name="show-personal-card">
+            @slot('body')
+                {{-- <x-slot:body> --}}
+
+
+
+                <h1>PDF.js Previous/Next example</h1>
+
+                <p>Please use <a href="https://mozilla.github.io/pdf.js/getting_started/#download"><i>official
+                            releases</i></a> in production environments.</p>
+
+                <div>
+                    <button id="prev">Previous</button>
+                    <button id="next">Next</button>
+                    &nbsp; &nbsp;
+                    <span>Page: <span id="page_num"></span> / <span id="page_count"></span></span>
+                </div>
+
+                <canvas id="the-canvas"></canvas>
+            @endslot
+            {{--
+            </x-slot:body> --}}
+            {{-- @slot('footer')
+
+            @endslot --}}
+        </x-modaladd>
+    </div>
 
 
     <div wire:ignore.self>
@@ -1459,159 +1420,160 @@
     <div wire:ignore.self>
         <x-modaladd title="  عرض الملفات المرفقة" name="show-org-files">
             @slot('body')
-                <div class="card lg:p-6">
+            <div class="card lg:p-6">
 
 
-                    <!-- Blog Post -->
-                    @if ($org->personal_card)
-                        <div class=" font-inter text-base text-slate-600 dark:text-navy-200">
-                            <h1 class="text-xl font-medium text-slate-900 dark:text-navy-50 lg:text-2xl">
-                                صورة البطاقة الشخصية
-                            </h1>
+                <!-- Blog Post -->
+                @if ($org->personal_card)
+                    <div class=" font-inter text-base text-slate-600 dark:text-navy-200">
+                        <h1 class="text-xl font-medium text-slate-900 dark:text-navy-50 lg:text-2xl">
+                            صورة البطاقة الشخصية
+                        </h1>
 
-                            <img class="mt-5 h-80 w-full rounded-lg object-cover object-center"
-                                src="{{ asset($org->personal_card) }}" alt="image">
+                        <img class="mt-5 h-80 w-full rounded-lg object-cover object-center" src="{{ asset($org->personal_card) }}"
+                            alt="image">
 
-
-                        </div>
-                    @endif
-                    <!-- Blog Post -->
-                    @if ($org->rent_contract)
-                        <div class=" font-inter text-base text-slate-600 dark:text-navy-200">
-                            <h1 class="text-xl font-medium text-slate-900 dark:text-navy-50 lg:text-2xl">
-                                صورة عقد الايجار
-                            </h1>
-
-                            <img class="mt-5 h-80 w-full rounded-lg object-cover object-center"
-                                src="{{ asset($org->rent_contract) }}" alt="image">
-
-
-                        </div>
-                    @endif
-                    <!-- Blog Post -->
-                    @if ($org->ad_board)
-                        <div class=" font-inter text-base text-slate-600 dark:text-navy-200">
-                            <h1 class="text-xl font-medium text-slate-900 dark:text-navy-50 lg:text-2xl">
-                                صورة اللوحة الاعلانية
-                            </h1>
-
-                            <img class="mt-5 h-80 w-full rounded-lg object-cover object-center"
-                                src="{{ asset($org->ad_board) }}" alt="image">
-
-
-                        </div>
-                    @endif
-                    <!-- Blog Post -->
-                    @if ($org->previous_license)
-                        <div class=" font-inter text-base text-slate-600 dark:text-navy-200">
-                            <h1 class="text-xl font-medium text-slate-900 dark:text-navy-50 lg:text-2xl">
-                                صورة الرخصة السابقة
-                            </h1>
-
-                            <img class="mt-5 h-80 w-full rounded-lg object-cover object-center"
-                                src="{{ asset($org->previous_license) }}" alt="image">
-
-
-                        </div>
-                    @endif
-                    <!-- Blog Post -->
-                    @if ($org->comm_record)
-                        <div class=" font-inter text-base text-slate-600 dark:text-navy-200">
-                            <h1 class="text-xl font-medium text-slate-900 dark:text-navy-50 lg:text-2xl">
-                                صورة السجل التجاري
-                            </h1>
-
-                            <img class="mt-5 h-80 w-full rounded-lg object-cover object-center"
-                                src="{{ asset($org->comm_record) }}" alt="image">
-
-
-                        </div>
-                    @endif
-                    <!-- Blog Post -->
-                    @if ($org->outher)
-                        <div class=" font-inter text-base text-slate-600 dark:text-navy-200">
-                            <h1 class="text-xl font-medium text-slate-900 dark:text-navy-50 lg:text-2xl">
-                                صورة موافقة الجهة المختصة
-                            </h1>
-
-                            <img class="mt-5 h-80 w-full rounded-lg object-cover object-center"
-                                src="{{ asset($org->outher) }}" alt="image">
-
-
-                        </div>
-                    @endif
-
-
-                    <!-- Footer Blog Post -->
-                    <div class="mt-5 flex space-x-3 space-x-reverse">
 
                     </div>
+                @endif
+                <!-- Blog Post -->
+                @if ($org->rent_contract)
+                    <div class=" font-inter text-base text-slate-600 dark:text-navy-200">
+                        <h1 class="text-xl font-medium text-slate-900 dark:text-navy-50 lg:text-2xl">
+                            صورة عقد الايجار
+                        </h1>
+
+                        <img class="mt-5 h-80 w-full rounded-lg object-cover object-center" src="{{ asset($org->rent_contract) }}"
+                            alt="image">
+
+
+                    </div>
+                @endif
+                <!-- Blog Post -->
+                @if ($org->ad_board)
+                    <div class=" font-inter text-base text-slate-600 dark:text-navy-200">
+                        <h1 class="text-xl font-medium text-slate-900 dark:text-navy-50 lg:text-2xl">
+                            صورة اللوحة الاعلانية
+                        </h1>
+
+                        <img class="mt-5 h-80 w-full rounded-lg object-cover object-center" src="{{ asset($org->ad_board) }}"
+                            alt="image">
+
+
+                    </div>
+                @endif
+                <!-- Blog Post -->
+                @if ($org->previous_license)
+                    <div class=" font-inter text-base text-slate-600 dark:text-navy-200">
+                        <h1 class="text-xl font-medium text-slate-900 dark:text-navy-50 lg:text-2xl">
+                            صورة الرخصة السابقة
+                        </h1>
+
+                        <img class="mt-5 h-80 w-full rounded-lg object-cover object-center" src="{{ asset($org->previous_license) }}"
+                            alt="image">
+
+
+                    </div>
+                @endif
+                <!-- Blog Post -->
+                @if ($org->comm_record)
+                    <div class=" font-inter text-base text-slate-600 dark:text-navy-200">
+                        <h1 class="text-xl font-medium text-slate-900 dark:text-navy-50 lg:text-2xl">
+                            صورة السجل التجاري
+                        </h1>
+
+                        <img class="mt-5 h-80 w-full rounded-lg object-cover object-center" src="{{ asset($org->comm_record) }}"
+                            alt="image">
+
+
+                    </div>
+                @endif
+                <!-- Blog Post -->
+                @if ($org->outher)
+                    <div class=" font-inter text-base text-slate-600 dark:text-navy-200">
+                        <h1 class="text-xl font-medium text-slate-900 dark:text-navy-50 lg:text-2xl">
+                            صورة موافقة الجهة المختصة
+                        </h1>
+
+                        <img class="mt-5 h-80 w-full rounded-lg object-cover object-center" src="{{ asset($org->outher) }}"
+                            alt="image">
+
+
+                    </div>
+                @endif
+
+
+                <!-- Footer Blog Post -->
+                <div class="mt-5 flex space-x-3 space-x-reverse">
+
                 </div>
+            </div>
             @endslot
         </x-modaladd>
     </div>
     @if ($office_id != 4)
-        <div wire:ignore.self>
-            <x-modaladd title="إضافة  حافظة مكتب {{ $org->org_type->office->name }} " name="add-outher-clip-modal">
-                @slot('body')
-                    {{-- <x-slot:body> --}}
-                    <form>
-                        <div class="p-2 space-y-6">
-                            <label class="block">
-                                <span> الرسوم </span>
-                                <input wire:model='price'
-                                    class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
-                                    placeholder=" ادخل الرسوم " type="text" />
-                            </label>
-                            @error('price')
-                                <span class="text-tiny+ text-error">
-                                    {{ $message }}
-                                </span>
-                            @enderror
-                            <label class="block">
-                                <span> الرسوم الاخرى </span>
-                                <input wire:model='other_price'
-                                    class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
-                                    placeholder="ادخل الرسوم الاخرى" type="text" />
-                            </label>
-                            @error('other_price')
-                                <span class="text-tiny+ text-error">
-                                    {{ $message }}
-                                </span>
-                            @enderror
+    <div wire:ignore.self>
+        <x-modaladd title="إضافة  حافظة مكتب {{ $org->org_type->office->name }} " name="add-outher-clip-modal">
+            @slot('body')
+                {{-- <x-slot:body> --}}
+                <form>
+                    <div class="p-2 space-y-6">
+                        <label class="block">
+                            <span> الرسوم  </span>
+                            <input wire:model='price'
+                                class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
+                                placeholder=" ادخل الرسوم " type="text" />
+                        </label>
+                        @error('price')
+                            <span class="text-tiny+ text-error">
+                                {{ $message }}
+                            </span>
+                        @enderror
+                        <label class="block">
+                            <span> الرسوم الاخرى </span>
+                            <input wire:model='other_price'
+                                class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
+                                placeholder="ادخل الرسوم الاخرى" type="text" />
+                        </label>
+                        @error('other_price')
+                            <span class="text-tiny+ text-error">
+                                {{ $message }}
+                            </span>
+                        @enderror
 
 
 
 
 
-                        </div>
-
-                        <!-- Modal footer -->
-                        <div class="items-center p-4 border-gray-200 rounded-b dark:border-gray-700">
-                            <button type="button" data-dismiss="modal"
-                                class="font-medium btn bg-slate-150 text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90">
-                                الغاء
-                            </button>
-                            <button type="button" wire:click.prevent='storeOtClipData'
-                                class="font-medium text-white btn bg-primary hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90">
-                                حفظ
-                            </button>
-                        </div>
-
-                    </form>
-                    <div>
-                        @if (session('sec'))
-                            <span class="text-xs text-green-500">{{ session('sec') }}</span>
-                        @endif
                     </div>
-                @endslot
-                {{--
+
+                    <!-- Modal footer -->
+                    <div class="items-center p-4 border-gray-200 rounded-b dark:border-gray-700">
+                        <button type="button" data-dismiss="modal"
+                            class="font-medium btn bg-slate-150 text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90">
+                            الغاء
+                        </button>
+                        <button type="button" wire:click.prevent='storeOtClipData'
+                            class="font-medium text-white btn bg-primary hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90">
+                            حفظ
+                        </button>
+                    </div>
+
+                </form>
+                <div>
+                    @if (session('sec'))
+                        <span class="text-xs text-green-500">{{ session('sec') }}</span>
+                    @endif
+                </div>
+
+            @endslot
+            {{--
             </x-slot:body> --}}
-                {{-- @slot('footer')
+            {{-- @slot('footer')
 
             @endslot --}}
-            </x-modaladd>
-        </div>
+        </x-modaladd>
+    </div>
     @endif
 
 
