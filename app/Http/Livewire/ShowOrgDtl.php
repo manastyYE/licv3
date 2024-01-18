@@ -57,17 +57,20 @@ class ShowOrgDtl extends Component
     }
 
     public function cantClip(){
-        $can_have_clip = ClipBoard::where('org_id',$this->org_id)->where('clip_status','غير مدفوعة')->get();
+
         $clip = ClipBoard::where('org_id',$this->org_id)->get();
+        $is =0;
         if($clip){
-            if($can_have_clip){
-                return 1;
+            foreach($clip as $c){
+                if($c->clip_status == 'غير مدفوعة'){
+                    $is = 1;
+                }
             }
-            else{
-                return 0;
-            }
+
+
         }
-        else return 0;
+        else
+        return $is;
 
     }
     public function storeOtClipData(){
