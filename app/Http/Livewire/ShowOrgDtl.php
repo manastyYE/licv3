@@ -40,7 +40,7 @@ class ShowOrgDtl extends Component
         $bill_board = Billboard::all();
         $clip = ClipBoard::where('org_id', $this->org_id)->orderBy('created_at', 'desc')->get();
         $this->can_have_clip = ClipBoard::where('org_id',$this->org_id)->where('clip_status','غير مدفوعة')->get();
-        $this->have_pay_clip = ClipBoard::where('org_id',$this->org_id)->where('clip_status','!=','غير مدفوعة')->get();
+        
         if ($this->street_id) {
 
             $hood_unit = Street::find($this->street_id);
