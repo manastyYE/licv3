@@ -699,8 +699,7 @@
                 {{-- <x-slot:body> --}}
                 @if ($can_have_clip)
                     يجب ان يتم دفع الحافظة السابقة
-                @endif
-                @if($have_pay_clip)
+                @else
                 <form>
                     <div class="p-2 space-y-6">
                         <label class="block">
