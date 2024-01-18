@@ -372,10 +372,23 @@
             <div role="complementary" class="gridjs gridjs-container" style="width: 100%;">
                 <div class="gridjs-head">
                     <div class="gridjs-search">
+                        @if (!$clip)
                         <button type="button" x-data x-on:click="$dispatch('open-modal',{name:'add-org-clip-modal'})"
                             class="font-medium btn bg-slate-150 text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90">
                             انشاء حافظة
                         </button>
+                        @endif
+                        @if ($clip && $can_have_clip)
+                            <button type="button" x-data x-on:click="$dispatch('open-modal',{name:'add-org-clip-modal'})"
+                            class="font-medium btn bg-slate-150 text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90">
+                            انشاء حافظة
+                        </button>
+                        @else
+                        <button type="button" x-data x-on:click="$dispatch('open-modal',{name:'add-org-clip-modal'})"
+                        class="font-medium btn bg-slate-150 text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90">
+                        لا يمكن انشاء حافظة يجب تسديد الرسوم الغير مدفوعة
+                    </button>
+                        @endif
                     </div>
                 </div>
                 <div class="gridjs-wrapper" style="height: auto;">
@@ -694,7 +707,7 @@
     </div>
 
     <div wire:ignore.self>
-        <x-modaladd title="إضافة  لوحة لمنشأة{{ $org->org_name }} " name="add-org-clip-modal">
+        <x-modaladd title="إضافة  حافظة لمنشأة{{ $org->org_name }} " name="add-org-clip-modal">
             @slot('body')
                 {{-- <x-slot:body> --}}
                 <form>
