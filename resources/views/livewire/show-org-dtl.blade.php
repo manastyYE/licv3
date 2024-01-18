@@ -694,9 +694,10 @@
     </div>
 
     <div wire:ignore.self>
-        <x-modaladd title="إضافة  لوحة لمنشأة{{ $org->org_name }} " name="add-org-clip-modal">
+        <x-modaladd title="إضافة  حافظة لمنشأة{{ $org->org_name }} " name="add-org-clip-modal">
             @slot('body')
                 {{-- <x-slot:body> --}}
+                @if (!$can_have_clip)
                 <form>
                     <div class="p-2 space-y-6">
                         <label class="block">
@@ -722,12 +723,23 @@
                             </span>
                         @enderror
                         <label class="block">
-                            <span> رسوم النظافة </span>
+                            <span> التحسين </span>
                             <input wire:model='clean'
                                 class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
-                                placeholder=" ادخل رسوم النظافة" type="text" />
+                                placeholder=" ادخل رسوم التحسين" type="text" />
                         </label>
                         @error('clean')
+                            <span class="text-tiny+ text-error">
+                                {{ $message }}
+                            </span>
+                        @enderror
+                        <label class="block">
+                            <span> رسوم نظافة المهن </span>
+                            <input wire:model='clean_pay'
+                                class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
+                                placeholder=" ادخل رسوم نظافة المهن" type="text" />
+                        </label>
+                        @error('clean_pay')
                             <span class="text-tiny+ text-error">
                                 {{ $message }}
                             </span>
@@ -751,6 +763,9 @@
                     </div>
 
                 </form>
+                @else
+                    يجب ان يتم دفع الحافظة السابقة
+                @endif
                 <div>
                     @if (session('sec'))
                         <span class="text-xs text-green-500">{{ session('sec') }}</span>
@@ -873,35 +888,6 @@
     </x-modaldel>
 
 
-    <div wire:ignore.self>
-
-        <x-modaladd title=" nbgoeh;ofk " name="show-personal-card">
-            @slot('body')
-                {{-- <x-slot:body> --}}
-
-
-
-                <h1>PDF.js Previous/Next example</h1>
-
-                <p>Please use <a href="https://mozilla.github.io/pdf.js/getting_started/#download"><i>official
-                            releases</i></a> in production environments.</p>
-
-                <div>
-                    <button id="prev">Previous</button>
-                    <button id="next">Next</button>
-                    &nbsp; &nbsp;
-                    <span>Page: <span id="page_num"></span> / <span id="page_count"></span></span>
-                </div>
-
-                <canvas id="the-canvas"></canvas>
-            @endslot
-            {{--
-            </x-slot:body> --}}
-            {{-- @slot('footer')
-
-            @endslot --}}
-        </x-modaladd>
-    </div>
 
 
     <div wire:ignore.self>

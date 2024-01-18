@@ -18,7 +18,7 @@ class ShowOrgDtl extends Component
 {
     use WithFileUploads;
     public $org_types, $building_types, $streets;
-
+    public $clean_pay;
     public $hood_unit_no;
     public $org_id;
     public $el_gate, $local_fee;
@@ -27,13 +27,19 @@ class ShowOrgDtl extends Component
     public $clean;
     public $office_id;
     public $price,$other_price;
+
+    public $can_have_clip;
+
+
     public function render()
     {
+
         $org_billBoard = OrgBillboard::where('org_id', $this->org_id)->get();
         $org = Org::find($this->org_id);
         $this->office_id = $org->org_type->office->id;
         $bill_board = Billboard::all();
         $clip = ClipBoard::where('org_id', $this->org_id)->orderBy('created_at', 'desc')->get();
+        $this->can_have_clip = ClipBoard::where('org_id',$this->org_id)->where('clip_status','غير مدفوعة')->get();
         if ($this->street_id) {
 
             $hood_unit = Street::find($this->street_id);
@@ -74,6 +80,9 @@ class ShowOrgDtl extends Component
     public function mount($id)
     {
         $this->org_id = $id;
+        $clean_fee = Org::find($id);
+        $fee = $clean_fee->org_type->price;
+        $this->clean_pay = $fee;
     }
     public function storeOrgBillBoardData()
     {
@@ -205,12 +214,7 @@ class ShowOrgDtl extends Component
         }
 
     }
-    public function get_clean_fee()
-    {
-        $clean_fee = Org::find($this->org_id);
-        $fee = $clean_fee->org_type->price;
-        return $fee;
-    }
+
     public function storeClipData()
     {
 
@@ -261,13 +265,14 @@ class ShowOrgDtl extends Component
                 'local_fee' => 'required|numeric|min:0',
                 'el_gate' => 'required|numeric|min:0',
                 'clean'=> 'numeric|min:0',
+                'clean_pay' =>'numeric|min:0',
             ]
         );
 
         $new_clip = new ClipBoard();
         $new_clip->org_id = $this->org_id;
         $new_clip->total_ad = $this->git_total_ad_fee();
-        $new_clip->clean_pay = $this->get_clean_fee();
+        $new_clip->clean_pay = $this->clean_pay;
         $new_clip->local_fee = $this->local_fee;
         $new_clip->el_gate = $this->el_gate;
         $new_clip->clean = $this->clean;
@@ -486,4 +491,5 @@ class ShowOrgDtl extends Component
         return redirect()->to('/admin/org/show/' . $this->org_id)->with('success', ' تم اضافة المرفقات للمنشأة بنجاح');
 
     }
+
 }
