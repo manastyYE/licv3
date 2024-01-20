@@ -173,7 +173,7 @@
 
                 @empty
                 @endforelse
-                <tr>
+                {{-- <tr>
                     <td>
                         #
                     </td>
@@ -192,7 +192,7 @@
                     <td colspan="3">
                         {{ $total['local'] }}
                     </td>
-                </tr>
+                </tr> --}}
 
             </tbody>
         </table>
