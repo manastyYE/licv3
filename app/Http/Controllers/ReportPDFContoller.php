@@ -23,7 +23,7 @@ class ReportPDFContoller extends Controller
         return view('dashboard.reports.orgs_report_date');
     }
     public function show_dayly_report($data){
-        $reportdata = ClipBoard::whereHas('org')->whereBetween('created_at', [$data . ' 00:00:00', $data . ' 23:59:59'])->get();
+        $reportdata = ClipBoard::whereBetween('created_at', [$data . ' 00:00:00', $data . ' 23:59:59'])->get();
         return view('reports.orgs-date.orgs_clips_date',['clips'=>$reportdata]);
     }
     //
