@@ -19,6 +19,12 @@ class ReportPDFContoller extends Controller
     public function showOrgReportView(){
         return view('dashboard.reports.orgs_report_');
     }
+    public function show_org_date_view(){
+        return view('dashboard.reports.orgs_report_date');
+    }
+    public function show_dayly_report($data){
+        return view('reports.orgs-date.orgs_clips_date',['clips'=>$data]);
+    }
     //
     public function printClip($id){
         $clip = ClipBoard::find($id);

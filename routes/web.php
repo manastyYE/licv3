@@ -76,12 +76,14 @@ Route::controller(ReportPDFContoller::class)->prefix('admin/report/')->middlewar
     function(){
         Route::get('/','mainReport');
         Route::get('/orgs','showOrgReportView');
+        Route::get('orgs-date','show_org_date_view');
         Route::get('clip/{id}','printClip')->name('reporn.printClip');
         Route::get('card/{id}','printCard');
         Route::get('outherclip/{id}','outherClip');
         Route::get('clips/all','getAllclip');
         Route::get('clips/pay','getPayedclip');
         Route::get('clips/npay','getNPayedclip');
+        Route::get('orgs-date/{data}','show_dayly_report');
 
     }
 );
