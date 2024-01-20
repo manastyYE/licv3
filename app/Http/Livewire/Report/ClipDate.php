@@ -13,7 +13,7 @@ class ClipDate extends Component
         return view('livewire..report.clip-date');
     }
     public function showDayly(){
-        $data = ClipBoard::whereBetween('created_at', [$this->start_date . ' 00:00:00', $this->start_date . ' 23:59:59'])->get();
-        return redirect()->to('/admin/report/orgs-date/'.$data);
+
+        return redirect()->to('/admin/report/orgs-date/'.$this->start_date);
     }
 }
