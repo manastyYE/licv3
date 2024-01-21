@@ -450,7 +450,7 @@ class UserDataContoller extends Controller
         ->orwhere('owner_name','like','%'.$request->search_value . '%')
         ->select('id','org_name','owner_name','is_moved','user_id')
         ->orderBy('created_at', 'desc')
-        ->paginate(10);
+        ->get();
         $orgs->getCollection()->transform(function ($org) {
             $org['user_name'] = $org->user->fullname;
             unset($org->user); // Remove the 'user' attribute from each item
@@ -483,7 +483,7 @@ class UserDataContoller extends Controller
                     ->orWhere('owner_name', 'like', '%' . $request->search_value . '%')
                     ->select('id', 'org_name', 'license_status', 'owner_name')
                     ->orderBy('created_at', 'desc')
-                    ->paginate(10); // Change 10 to the number of items you want per page
+                    ->get(); // Change 10 to the number of items you want per page
             } else {
                 $org_type_ids = OrgType::where('office_id', $office_id)->pluck('id');
 
@@ -493,7 +493,7 @@ class UserDataContoller extends Controller
                     ->whereIn('org_type_id', $org_type_ids)
                     ->select('id', 'org_name', 'license_status', 'owner_name')
                     ->orderBy('created_at', 'desc')
-                    ->paginate(10); // Change 10 to the number of items you want per page
+                    ->get(); // Change 10 to the number of items you want per page
             }
 
             return $this->returnData('data', $orgs);
