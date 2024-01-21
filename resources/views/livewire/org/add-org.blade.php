@@ -281,7 +281,7 @@
                         x-init="$el._x_tom = new Tom($el,{sortField: {field: 'text',direction: 'asc'}})">>
                         <option value="">اختر </option>
                         @forelse ($streets as $s )
-                        <option value="{{ $s->id }}">{{ $s->name }} </option>
+                        <option value="{{ $s->id }}">{{ $s->name }} {{ $s->hood_unit->no }} </option>
                         @empty
                         <option value="">لا توجد اي بيانات </option>
                         @endforelse

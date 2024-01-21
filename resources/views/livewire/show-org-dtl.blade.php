@@ -105,7 +105,7 @@
         </div>
 
         <div>
-            <label class="block" style="margin-top: -15mm">
+            <label class="block" >
                 <span> النشاط التجاري</span>
                 <h5 class="font-semibold text-md text-slate-700 dark:text-navy-100">
                     {{ $org->org_type->name }}
@@ -119,7 +119,7 @@
         </div>
 
         <div>
-            <label class="block " style="margin-top: -15mm">
+            <label class="block " >
                 <span> رقم المالك</span>
                 <h5 class="font-semibold text-md text-slate-700 dark:text-navy-100">
                     {{ $org->owner_phone }}
@@ -130,7 +130,18 @@
         </div>
 
         <div>
-
+            <label class="block ">
+                <span> اسم المعامل</span>
+                <h5 class="font-semibold text-md text-slate-700 dark:text-navy-100">
+                    {{ $org->come_name }}
+                </h5>
+            </label>
+            <label class="block " >
+                <span> رقم المعامل</span>
+                <h5 class="font-semibold text-md text-slate-700 dark:text-navy-100">
+                    {{ $org->come_phone }}
+                </h5>
+            </label>
         </div>
 
         <div>
@@ -384,7 +395,7 @@
                             لا يمكن انشاء حافظة يجب تسديد الرسوم الغير مدفوعة
                             </button>
                         @endif
-                        
+
 
                     </div>
                 </div>
