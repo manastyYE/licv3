@@ -444,14 +444,16 @@ class UserDataContoller extends Controller
             return $this->returnValidationError($code, $validator);
         }
 
-        $orgs=VirOrgs::with(['user' => function ($query) {
+        $orgs = VirOrgs::with(['user' => function ($query) {
             $query->select('id', 'fullname');
-        }])->where('org_name','like','%'.$request->search_value . '%')
-        ->orwhere('owner_name','like','%'.$request->search_value . '%')
-        ->select('id','org_name','owner_name','is_moved','user_id')
+        }])
+        ->where('org_name', 'like', '%' . $request->search_value . '%')
+        ->orWhere('owner_name', 'like', '%' . $request->search_value . '%')
+        ->select('id', 'org_name', 'owner_name', 'is_moved', 'user_id')
         ->orderBy('created_at', 'desc')
         ->get();
-        $orgs->getCollection()->transform(function ($org) {
+
+        $orgs->transform(function ($org) {
             $org['user_name'] = $org->user->fullname;
             unset($org->user); // Remove the 'user' attribute from each item
             return $org;
