@@ -11,8 +11,7 @@
             <div>
                 <label >
                     <span> فلترة حسب المفتش</span>
-                    <select wire:model='worker_id' class="mt-1.5 w-full " x-init="$el._x_tom = new Tom($el, { sortField: { field: 'text', direction: 'asc' } })">>
-                        <option value="*">اختر </option>
+                    <select wire:model='worker_id' placeholder="اختر المفتش" class="mt-1.5 w-full " x-init="$el._x_tom = new Tom($el, { sortField: { field: 'text', direction: 'asc' } })">>
                         <option value="*">الكل </option>
 
                         @forelse ($workers as $s)
