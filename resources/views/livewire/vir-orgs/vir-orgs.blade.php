@@ -13,6 +13,8 @@
                     <span> فلترة حسب المفتش</span>
                     <select wire:model='worker_id' class="mt-1.5 w-full " x-init="$el._x_tom = new Tom($el, { sortField: { field: 'text', direction: 'asc' } })">>
                         <option value="*">اختر </option>
+                        <option value="*">الكل </option>
+
                         @forelse ($workers as $s)
                         <option value="{{ $s->id }}">{{ $s->fullname }} </option>
                         @empty
