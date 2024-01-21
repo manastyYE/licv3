@@ -429,7 +429,76 @@ class UserDataContoller extends Controller
         } catch (\Exception $ex) {
             return $this->returnError($ex->getCode(), $ex->getMessage());
         }
+    }
 
+    public function search_vir_orgs(Request $request){
+        try{
+        $rules = [
+            'search_value' => 'required',
+        ];
 
+        $validator = Validator::make($request->all(), $rules);
+
+        if ($validator->fails()) {
+            $code = $this->returnCodeAccordingToInput($validator);
+            return $this->returnValidationError($code, $validator);
+        }
+
+        $orgs=VirOrgs::with(['user' => function ($query) {
+            $query->select('id', 'fullname');
+        }])->where('org_name','like','%'.$request->search_value . '%')
+        ->orwhere('owner_name','like','%'.$request->search_value . '%')
+        ->select('id','org_name','owner_name','is_moved','user_id')
+        ->orderBy('created_at', 'desc')
+        ->paginate(10);
+        $orgs->getCollection()->transform(function ($org) {
+            $org['user_name'] = $org->user->fullname;
+            unset($org->user); // Remove the 'user' attribute from each item
+            return $org;
+        });
+
+        return $this->returnData('data', $orgs);
+    } catch (\Exception $ex) {
+        return $this->returnError($ex->getCode(), $ex->getMessage());
+    }
+    }
+
+    public function search_orgs(Request $request){
+        try{
+            $rules = [
+                'search_value' => 'required',
+            ];
+
+        $validator = Validator::make($request->all(), $rules);
+
+        if ($validator->fails()) {
+            $code = $this->returnCodeAccordingToInput($validator);
+            return $this->returnValidationError($code, $validator);
+        }
+
+        $office_id = Auth::guard('worker-api')->user()->office_id;
+
+        if ($office_id == 4) {// الاشغال
+                $orgs = Org::where('org_name', 'like', '%' . $request->search_value . '%')
+                    ->orWhere('owner_name', 'like', '%' . $request->search_value . '%')
+                    ->select('id', 'org_name', 'license_status', 'owner_name')
+                    ->orderBy('created_at', 'desc')
+                    ->paginate(10); // Change 10 to the number of items you want per page
+            } else {
+                $org_type_ids = OrgType::where('office_id', $office_id)->pluck('id');
+
+                // Use whereIn to filter by org_type_ids
+                $orgs = Org::where('org_name', 'like', '%' . $request->search_value . '%')
+                    ->orWhere('owner_name', 'like', '%' . $request->search_value . '%')
+                    ->whereIn('org_type_id', $org_type_ids)
+                    ->select('id', 'org_name', 'license_status', 'owner_name')
+                    ->orderBy('created_at', 'desc')
+                    ->paginate(10); // Change 10 to the number of items you want per page
+            }
+
+            return $this->returnData('data', $orgs);
+        } catch (\Exception $ex) {
+            return $this->returnError($ex->getCode(), $ex->getMessage());
+        }
     }
 }
