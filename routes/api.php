@@ -51,6 +51,10 @@ Route::group(['middleware' => ['api']], function () {
 
         Route::post('insert_image', [UserDataContoller::class, 'insert_image'])->middleware(['auth.guard:worker-api']);
 
+        Route::post('search_vir_orgs', [UserDataContoller::class, 'search_vir_orgs'])->middleware(['auth.guard:worker-api']);
+
+        Route::post('search_orgs', [UserDataContoller::class, 'search_orgs'])->middleware(['auth.guard:worker-api']);
+
         //broken access controller user enumeration
     });
 //    Route::post('login', [AuthController::class, 'login']);
