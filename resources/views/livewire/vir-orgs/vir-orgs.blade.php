@@ -4,24 +4,26 @@
         class="font-medium border btn border-slate-300 text-slate-800 hover:bg-slate-150 focus:bg-slate-150 active:bg-slate-150/80 dark:border-navy-450 dark:text-navy-50 dark:hover:bg-navy-500 dark:focus:bg-navy-500 dark:active:bg-navy-500/90">
         تصدير كملف اكسل
     </button>
+
     <div>
         <div x-data="pages.tables.initGridTableExapmle">
             <div role="complementary" class="gridjs gridjs-container" style="width: 100%;">
                 <div class="gridjs-head">
                     <div class="gridjs-search"><input type="search" wire:model='search' placeholder="ابحث من هنا ... "
                             aria-label="ابحث من هنا... " class="gridjs-input gridjs-search-input">
-                            <label class="block">
-                                <span> فلترة حسب المفتش</span>
-                                <select wire:model='worker_id' class="mt-1.5 w-full " x-init="$el._x_tom = new Tom($el, { sortField: { field: 'text', direction: 'asc' } })">>
-                                    <option value="*">اختر </option>
-                                    @forelse ($workers as $s)
-                                    <option value="{{ $s->id }}">{{ $s->fullname }} </option>
-                                    @empty
-                                        <option value="">لا توجد اي بيانات </option>
-                                    @endforelse
-                                </select>
-                            </label>
+
                         </div>
+                        <label class="block">
+                            <span> فلترة حسب المفتش</span>
+                            <select wire:model='worker_id' class="mt-1.5 w-full " x-init="$el._x_tom = new Tom($el, { sortField: { field: 'text', direction: 'asc' } })">>
+                                <option value="*">اختر </option>
+                                @forelse ($workers as $s)
+                                <option value="{{ $s->id }}">{{ $s->fullname }} </option>
+                                @empty
+                                    <option value="">لا توجد اي بيانات </option>
+                                @endforelse
+                            </select>
+                        </label>
                 </div>
                 <div class="gridjs-wrapper" style="height: auto;">
                     <table role="grid" class="gridjs-table" style="height: auto;">
