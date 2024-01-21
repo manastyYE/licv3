@@ -31,7 +31,7 @@
                     {{ auth()->guard('admin')->user()->directorate->name }}
                 </div>
                 <div>
-                    الامانة
+                    الخامسة
                 </div>
             </div>
             <div style="margin-top: 13.5mm;" class="row">
