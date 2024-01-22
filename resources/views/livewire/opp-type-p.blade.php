@@ -29,6 +29,9 @@
                                     <div class="gridjs-th-content">رسوم النظافة</div>
                                 </th>
                                 <th data-column-id="email" class="gridjs-th">
+                                    <div class="gridjs-th-content">الرسوم المحلية</div>
+                                </th>
+                                <th data-column-id="email" class="gridjs-th">
                                     <div class="gridjs-th-content"> القطاع</div>
                                 </th>
 
@@ -50,6 +53,7 @@
                                         </td>
 
                                         <td class="gridjs-td">{{ $p->price }}</td>
+                                        <td class="gridjs-td">{{ $p->local_fee }}</td>
                                         <td class="gridjs-td">{{ $p->office->name }}</td>
                                         <td class="gridjs-td"><span>
                                                 <div class="flex justify-center space-x-2">
@@ -127,6 +131,17 @@
                                 placeholder="رسوم النظافة" type="text" />
                         </label>
                         @error('price')
+                            <span class="text-tiny+ text-error">
+                                {{ $message }}
+                            </span>
+                        @enderror
+                        <label class="block">
+                            <span> الرسوم الحلية </span>
+                            <input wire:model='local_fee'
+                                class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
+                                placeholder="ادخل الرسوم المحلية" type="text" />
+                        </label>
+                        @error('local_fee')
                             <span class="text-tiny+ text-error">
                                 {{ $message }}
                             </span>
@@ -210,7 +225,17 @@
                                 {{ $message }}
                             </span>
                         @enderror
-
+                        <label class="block">
+                            <span> الرسوم المحلية </span>
+                            <input wire:model='ed_local_fee'
+                                class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
+                                placeholder="ادخل الرسوم المحلية هنا" type="text" />
+                        </label>
+                        @error('ed_local_fee')
+                            <span class="text-tiny+ text-error">
+                                {{ $message }}
+                            </span>
+                        @enderror
                     </div>
 
                     <!-- Modal footer -->

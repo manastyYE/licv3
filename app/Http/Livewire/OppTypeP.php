@@ -20,8 +20,8 @@ class OppTypeP extends Component
             : OrgType::paginate(12);
         return view('livewire.opp-type-p',['type'=>$opp_type,'off'=>$off]);
     }
-    public $orgtype_id, $name,$office_id, $price, $orgtype_edit_id, $orgtype_delete_id;
-    public $edname,$edprice,$ed_office_id;
+    public $orgtype_id, $name,$office_id, $price ,$local_fee, $orgtype_edit_id, $orgtype_delete_id;
+    public $edname,$edprice,$ed_office_id,$ed_local_fee;
 
     //Input fields on update validation
 
@@ -34,6 +34,7 @@ class OppTypeP extends Component
             'office_id'=>'required',
             'name' => 'required|unique:org_types,name',
             'price' => 'required|numeric',
+            'local_fee'=>'required|numeric',
 
 
 
@@ -43,6 +44,8 @@ class OppTypeP extends Component
             'name.unique'=>'اسم النشاط موجود بالفعل ',
             'price.required'=>'لا يمكنك ترك حقل رسوم النظافة فارغاً',
             'price.numeric'=>'حقل رسوم النظافة لا يقبل الاحرف او الرموز',
+            'local_fee.required'=>'لا يمكن ترك حقل الرسوم المحلية فارغاً',
+            'local_fee.numeric'=>'لا يمكن ان يحتوي حقل الرسوم المحلية على احرف او رموز'
         ]);
 
         //Add Student Data
@@ -50,6 +53,7 @@ class OppTypeP extends Component
         $orgtype->name = $this->name;
         $orgtype->price = $this->price;
         $orgtype->office_id = $this->office_id;
+        $orgtype->local_fee = $this->local_fee;
         $orgtype->save();
 
         session()->flash('message', 'تمت عملية اضافة النشاط التجاري');
@@ -57,6 +61,7 @@ class OppTypeP extends Component
         $this->name = '';
         $this->price = '';
         $this->office_id = '';
+        $this->local_fee = '';
 
         //For hide modal after add user success
         $this->dispatchBrowserEvent('close-modal');
@@ -67,6 +72,11 @@ class OppTypeP extends Component
         $this->name = '';
         $this->price = '';
         $this->office_id = '';
+        $this->local_fee = '';
+        $this->ed_local_fee ='';
+        $this->edname = '';
+        $this->ed_office_id = '';
+        $this->edprice ='';
     }
 
     public function close()
@@ -81,6 +91,7 @@ class OppTypeP extends Component
         $this->edname = $orgtype->name;
         $this->edprice = $orgtype->price;
         $this->ed_office_id= $orgtype->office_id;
+        $this->ed_local_fee = $orgtype->local_fee;
     }
 
 
@@ -92,6 +103,7 @@ class OppTypeP extends Component
             'ed_office_id'=>'required',
             'edname' => 'required|unique:org_types,name,'.$this->orgtype_edit_id,
             'edprice' => 'required|numeric',
+            'ed_local_fee'=>'required|numeric',
 
 
 
@@ -101,6 +113,8 @@ class OppTypeP extends Component
                 'edname.unique'=>'اسم النشاط موجود بالفعل ',
                 'edprice.required'=>'لا يمكنك ترك حقل رسوم النظافة فارغاً',
                 'edprice.numeric'=>'حقل رسوم النظافة لا يقبل الاحرف او الرموز',
+                'ed_local_fee.required'=>'لا يمكن ترك حقل الرسوم المحلية فارغاً',
+                'ed_local_fee.numeric'=>'لا يمكن ان يحتوي حقل الرسوم المحلية على احرف او رموز'
             ]
         );
 
@@ -108,6 +122,7 @@ class OppTypeP extends Component
         $orgtype->name = $this->edname;
         $orgtype->price = $this->edprice;
         $orgtype->office_id = $this->ed_office_id;
+        $orgtype->local_fee = $this->ed_local_fee;
         $orgtype->save();
 
         session()->flash('message', 'تم تعديل بيانات النشاط بنجاح');

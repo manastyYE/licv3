@@ -37,6 +37,7 @@ class ShowOrgDtl extends Component
         $this->can_have_clip = $this->cantClip();
         $org_billBoard = OrgBillboard::where('org_id', $this->org_id)->get();
         $org = Org::find($this->org_id);
+
         $this->office_id = $org->org_type->office->id;
         $bill_board = Billboard::all();
         $clip = ClipBoard::where('org_id', $this->org_id)->orderBy('created_at', 'desc')->get();
@@ -65,7 +66,7 @@ class ShowOrgDtl extends Component
                 if($c->clip_status == 'غير مدفوعة'){
                     $is = 1;
                     return $is;
-                    
+
                 }
             }
 
@@ -104,6 +105,7 @@ class ShowOrgDtl extends Component
         $clean_fee = Org::find($id);
         $fee = $clean_fee->org_type->price;
         $this->clean_pay = $fee;
+        $this->local_fee = $clean_fee->org_type->local_fee;
     }
     public function storeOrgBillBoardData()
     {

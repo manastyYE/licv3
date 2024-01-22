@@ -11,6 +11,7 @@ class OrgType extends Model
     protected $fillable=[
         'name',
         'price',
+        'local_fee',
         'office_id',
     ];
 
