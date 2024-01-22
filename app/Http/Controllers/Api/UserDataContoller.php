@@ -202,6 +202,20 @@ class UserDataContoller extends Controller
 
     public function insert_org_data(Request $request){
         try {
+            $rules = [
+                'org_name' => 'required|unique:vir_orgs',
+            ];
+            $customMessages = [
+                'org_name.unique' => 'هذه المنشأة موجودة مسبقا',
+                // Add other custom messages as needed...
+            ];
+
+            $validator = Validator::make($request->all(), $rules,$customMessages);
+
+            if ($validator->fails()) {
+                $code = $this->returnCodeAccordingToInput($validator);
+                return $this->returnValidationError($code, $validator);
+            }
             $hood_unit_id = Street::find($request->street_id)->hood_unit_id;
             $user_id = Auth::guard('worker-api')->user()->id;
 
