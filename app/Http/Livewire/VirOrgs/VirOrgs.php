@@ -60,6 +60,7 @@ class VirOrgs extends Component
         if($this->worker_id !=""){
         $this->selectedUserIds = $this->search ?ModelsVirOrgs::with(['street','org_type','user'])->orderBy('created_at', 'desc')
         ->where('org_name','like','%'.$this->search . '%')
+        ->where('user_id',$this->worker_id)
         ->orwhere('owner_name','like','%'.$this->search . '%')->pluck('id') :ModelsVirOrgs::with(['street','org_type','user'])->orderBy('created_at', 'desc')
         ->pluck('id');
         }else{
