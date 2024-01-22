@@ -20,13 +20,24 @@ class VirOrgs extends Component
     public function render()
     {
         $workers = Worker::all();
-        $orgs=$this->search ?ModelsVirOrgs::with(['street','org_type','user'])->orderBy('created_at', 'desc')
+        if($this->worker_id !=""){
+            $orgs=$this->search ?ModelsVirOrgs::with(['street','org_type','user'])->orderBy('created_at', 'desc')
         ->where('org_name','like','%'.$this->search . '%')
         ->where('user_id',$this->worker_id)
         ->orwhere('owner_name','like','%'.$this->search . '%')->where('user_id',$this->worker_id)
         ->paginate(8) :ModelsVirOrgs::with(['street','org_type','user'])->where('user_id',$this->worker_id)
         ->orderBy('created_at', 'desc')
         ->paginate(8);
+        }
+        else{
+            $orgs=$this->search ?ModelsVirOrgs::with(['street','org_type','user'])->orderBy('created_at', 'desc')
+        ->where('org_name','like','%'.$this->search . '%')
+        
+        ->orwhere('owner_name','like','%'.$this->search . '%')
+        ->paginate(8) :ModelsVirOrgs::with(['street','org_type','user'])
+        ->orderBy('created_at', 'desc')
+        ->paginate(8);
+        }
         $this->selectedUserIds = $this->search ?ModelsVirOrgs::with(['street','org_type','user'])->orderBy('created_at', 'desc')
         ->where('org_name','like','%'.$this->search . '%')
         ->orwhere('owner_name','like','%'.$this->search . '%')->pluck('id') :ModelsVirOrgs::with(['street','org_type','user'])->orderBy('created_at', 'desc')

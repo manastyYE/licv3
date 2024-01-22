@@ -5,25 +5,30 @@
         تصدير كملف اكسل
     </button>
 
+
     <div>
         <div x-data="pages.tables.initGridTableExapmle">
+            <div>
+                <label >
+                    <span> فلترة حسب المفتش</span>
+                    <select wire:model='worker_id' class="mt-1.5 w-full " x-init="$el._x_tom = new Tom($el, { sortField: { field: 'text', direction: 'asc' } })">>
+                        <option value="">اختر </option>
+
+                        @forelse ($workers as $s)
+                        <option value="{{ $s->id }}">{{ $s->fullname }} </option>
+                        @empty
+                            <option value="">لا توجد اي بيانات </option>
+                        @endforelse
+                    </select>
+                </label>
+            </div>
             <div role="complementary" class="gridjs gridjs-container" style="width: 100%;">
                 <div class="gridjs-head">
                     <div class="gridjs-search"><input type="search" wire:model='search' placeholder="ابحث من هنا ... "
                             aria-label="ابحث من هنا... " class="gridjs-input gridjs-search-input">
 
                         </div>
-                        <label class="block">
-                            <span> فلترة حسب المفتش</span>
-                            <select wire:model='worker_id' class="mt-1.5 w-full " x-init="$el._x_tom = new Tom($el, { sortField: { field: 'text', direction: 'asc' } })">>
-                                <option value="*">اختر </option>
-                                @forelse ($workers as $s)
-                                <option value="{{ $s->id }}">{{ $s->fullname }} </option>
-                                @empty
-                                    <option value="">لا توجد اي بيانات </option>
-                                @endforelse
-                            </select>
-                        </label>
+
                 </div>
                 <div class="gridjs-wrapper" style="height: auto;">
                     <table role="grid" class="gridjs-table" style="height: auto;">
