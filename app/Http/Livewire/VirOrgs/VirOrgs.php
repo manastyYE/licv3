@@ -37,7 +37,6 @@ class VirOrgs extends Component
         else{
             $orgs=$this->search ?ModelsVirOrgs::with(['street','org_type','user'])->orderBy('created_at', 'desc')
         ->where('org_name','like','%'.$this->search . '%')
-
         ->orwhere('owner_name','like','%'.$this->search . '%')
         ->paginate(8) :ModelsVirOrgs::with(['street','org_type','user'])
         ->orderBy('created_at', 'desc')
@@ -47,10 +46,6 @@ class VirOrgs extends Component
         ->orwhere('owner_name','like','%'.$this->search . '%')->pluck('id') :ModelsVirOrgs::with(['street','org_type','user'])->orderBy('created_at', 'desc')
         ->pluck('id');
         }
-        $this->selectedUserIds = $this->search ?ModelsVirOrgs::with(['street','org_type','user'])->orderBy('created_at', 'desc')
-        ->where('org_name','like','%'.$this->search . '%')
-        ->orwhere('owner_name','like','%'.$this->search . '%')->pluck('id') :ModelsVirOrgs::with(['street','org_type','user'])->orderBy('created_at', 'desc')
-        ->pluck('id');
         // $this->selectedUserIds = $org_exel->pluck('id');
         return view('livewire.vir-orgs.vir-orgs',['orgs'=>$orgs ,'workers'=>$workers]);
     }
