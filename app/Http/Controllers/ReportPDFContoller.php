@@ -34,7 +34,9 @@ class ReportPDFContoller extends Controller
         // if(auth()->guard('admin')->user()->id == 4 || auth()->guard('admin')->user()->id == 5 ||auth()->guard('admin')->user()->id == 7 ){
         //     return view('Automated_clipboard',['id'=>$id])->with('errors','لا يمكنك الوصول الى الصفحة السابقة ');
         // }
-        return view('reports.autoclip',['clip'=>$clip,'ar_total'=>$string_total]);
+        return view('Automated_clipboard',['id'=>$id])->with('errors','لا يمكنك الوصول الى الصفحة السابقة ');
+        // return view('reports.autoclip',['clip'=>$clip,'ar_total'=>$string_total]);
+
 
     }
     public function getPayedclip(){
