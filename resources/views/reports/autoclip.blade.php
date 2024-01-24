@@ -265,7 +265,7 @@
                     </tr>
                     <tr class="">
                         <td class="col-2 bg-info">
-                            اخرى
+                            غرامة
                         </td>
                         <td class="col-2">
                             {{$clip->el_gate}}
