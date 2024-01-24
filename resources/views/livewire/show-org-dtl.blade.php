@@ -422,6 +422,9 @@
                                 <th data-column-id="actions" class="gridjs-th">
                                     <div class="gridjs-th-content"> أنشأها المستخدم </div>
                                 </th>
+                                <th data-column-id="actions" class="gridjs-th">
+                                    <div class="gridjs-th-content">  ادخل سنداتها </div>
+                                </th>
                                 <th class="gridjs-th">
                                     طباعة كرت الرخصة
                                 </th>
@@ -449,6 +452,7 @@
 
                                                 <td class="gridjs-td">{{ $p->created_at }}</td>
                                                 <td class="gridjs-td">{{ $p->admin->fullname }}</td>
+                                                <td class="gridjs-td">{{ $p->edit_admin->fullname }}</td>
                                                 <td class="gridjs-td">
                                                     <a
                                                     @if ($p->clip_status == 'مدفوعة' )

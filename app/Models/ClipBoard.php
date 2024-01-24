@@ -52,4 +52,7 @@ class ClipBoard extends Model
     public function directorate(){
         return $this->belongsTo(Directorate::class);
     }
+    public function edit_admin(){
+        return $this->belongsTo(Admin::class);
+    }
 }

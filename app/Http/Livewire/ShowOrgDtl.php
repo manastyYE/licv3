@@ -241,74 +241,74 @@ class ShowOrgDtl extends Component
     public function storeClipData()
     {
 
-        // $board1 = OrgBillboard::where('org_id', $this->org_id)->where('billboard_id', 1)->get();
-        // $count1 = 0.0;
-        // foreach ($board1 as $ke) {
-        //     $hi = $ke->height;
-        //     $wi = $ke->width;
-        //     $count1 += $hi * $wi * $ke->count;
-        // }
-        // $board2 = OrgBillboard::where('org_id', $this->org_id)->where('billboard_id', 2)->get();
-        // $count2 = 0.0;
-        // foreach ($board2 as $ke) {
-        //     $hi = $ke->height;
-        //     $wi = $ke->width;
-        //     $count2 += $hi * $wi * $ke->count;
-        // }
-        // $board3 = OrgBillboard::where('org_id', $this->org_id)->where('billboard_id', 3)->get();
-        // $count3 = 0.0;
-        // foreach ($board3 as $ke) {
-        //     $hi = $ke->height;
-        //     $wi = $ke->width;
-        //     $count3 += $hi * $wi * $ke->count;
-        // }
-        // $board4 = OrgBillboard::where('org_id', $this->org_id)->where('billboard_id', 4)->get();
-        // $count4 = 0.0;
-        // foreach ($board4 as $ke) {
-        //     $hi = $ke->height;
-        //     $wi = $ke->width;
-        //     $count4 += $hi * $wi * $ke->count;
-        // }
-        // $board5 = OrgBillboard::where('org_id', $this->org_id)->where('billboard_id', 5)->get();
-        // $count5 = 0.0;
-        // foreach ($board5 as $ke) {
-        //     $hi = $ke->height;
-        //     $wi = $ke->width;
-        //     $count5 += $hi * $wi * $ke->count;
-        // }
-        // $board6 = OrgBillboard::where('org_id', $this->org_id)->where('billboard_id', 6)->get();
-        // $count6 = 0.0;
-        // foreach ($board6 as $ke) {
-        //     $hi = $ke->height;
-        //     $wi = $ke->width;
-        //     $count6 += $hi * $wi * $ke->count;
-        // }
-        // $this->validate(
-        //     [
-        //         'local_fee' => 'required|numeric|min:0',
-        //         'el_gate' => 'required|numeric|min:0',
-        //         'clean'=> 'numeric|min:0',
-        //         'clean_pay' =>'numeric|min:0',
-        //     ]
-        // );
+        $board1 = OrgBillboard::where('org_id', $this->org_id)->where('billboard_id', 1)->get();
+        $count1 = 0.0;
+        foreach ($board1 as $ke) {
+            $hi = $ke->height;
+            $wi = $ke->width;
+            $count1 += $hi * $wi * $ke->count;
+        }
+        $board2 = OrgBillboard::where('org_id', $this->org_id)->where('billboard_id', 2)->get();
+        $count2 = 0.0;
+        foreach ($board2 as $ke) {
+            $hi = $ke->height;
+            $wi = $ke->width;
+            $count2 += $hi * $wi * $ke->count;
+        }
+        $board3 = OrgBillboard::where('org_id', $this->org_id)->where('billboard_id', 3)->get();
+        $count3 = 0.0;
+        foreach ($board3 as $ke) {
+            $hi = $ke->height;
+            $wi = $ke->width;
+            $count3 += $hi * $wi * $ke->count;
+        }
+        $board4 = OrgBillboard::where('org_id', $this->org_id)->where('billboard_id', 4)->get();
+        $count4 = 0.0;
+        foreach ($board4 as $ke) {
+            $hi = $ke->height;
+            $wi = $ke->width;
+            $count4 += $hi * $wi * $ke->count;
+        }
+        $board5 = OrgBillboard::where('org_id', $this->org_id)->where('billboard_id', 5)->get();
+        $count5 = 0.0;
+        foreach ($board5 as $ke) {
+            $hi = $ke->height;
+            $wi = $ke->width;
+            $count5 += $hi * $wi * $ke->count;
+        }
+        $board6 = OrgBillboard::where('org_id', $this->org_id)->where('billboard_id', 6)->get();
+        $count6 = 0.0;
+        foreach ($board6 as $ke) {
+            $hi = $ke->height;
+            $wi = $ke->width;
+            $count6 += $hi * $wi * $ke->count;
+        }
+        $this->validate(
+            [
+                'local_fee' => 'required|numeric|min:0',
+                'el_gate' => 'required|numeric|min:0',
+                'clean'=> 'numeric|min:0',
+                'clean_pay' =>'numeric|min:0',
+            ]
+        );
 
-        // $new_clip = new ClipBoard();
-        // $new_clip->org_id = $this->org_id;
-        // $new_clip->total_ad = $this->git_total_ad_fee();
-        // $new_clip->clean_pay = $this->clean_pay;
-        // $new_clip->local_fee = $this->local_fee;
-        // $new_clip->el_gate = $this->el_gate;
-        // $new_clip->clean = $this->clean;
-        // $new_clip->admin_id = auth()->guard('admin')->id();
-        // $new_clip->edit_admin_id = auth()->guard('admin')->id();
-        // $new_clip->directorate_id = auth()->guard('admin')->user()->directorate_id;
-        // $new_clip->infront_count = $count2;
-        // $new_clip->sideof_count = $count1;
-        // $new_clip->roof_count = $count5;
-        // $new_clip->wall_count = $count3;
-        // $new_clip->glass_stickers = $count4;
-        // $new_clip->door_stickers = $count6;
-        // $new_clip->save();
+        $new_clip = new ClipBoard();
+        $new_clip->org_id = $this->org_id;
+        $new_clip->total_ad = $this->git_total_ad_fee();
+        $new_clip->clean_pay = $this->clean_pay;
+        $new_clip->local_fee = $this->local_fee;
+        $new_clip->el_gate = $this->el_gate;
+        $new_clip->clean = $this->clean;
+        $new_clip->admin_id = auth()->guard('admin')->id();
+        $new_clip->edit_admin_id = auth()->guard('admin')->id();
+        $new_clip->directorate_id = auth()->guard('admin')->user()->directorate_id;
+        $new_clip->infront_count = $count2;
+        $new_clip->sideof_count = $count1;
+        $new_clip->roof_count = $count5;
+        $new_clip->wall_count = $count3;
+        $new_clip->glass_stickers = $count4;
+        $new_clip->door_stickers = $count6;
+        $new_clip->save();
 
         session()->flash('message', 'تم انشاء الحافظة  بنجاح');
 
