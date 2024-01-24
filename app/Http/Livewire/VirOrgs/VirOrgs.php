@@ -28,20 +28,24 @@ class VirOrgs extends Component
         ->paginate(8) :ModelsVirOrgs::with(['street','org_type','user'])->where('user_id',$this->worker_id)
         ->orderBy('created_at', 'desc')
         ->paginate(8);
+        // $this->selectedUserIds = $this->search ?ModelsVirOrgs::with(['street','org_type','user'])->orderBy('created_at', 'desc')
+        // ->where('org_name','like','%'.$this->search . '%')
+        // ->where('user_id',$this->worker_id)
+        // ->orwhere('owner_name','like','%'.$this->search . '%')->pluck('id') :ModelsVirOrgs::with(['street','org_type','user'])->orderBy('created_at', 'desc')
+        // ->pluck('id');
         }
         else{
             $orgs=$this->search ?ModelsVirOrgs::with(['street','org_type','user'])->orderBy('created_at', 'desc')
         ->where('org_name','like','%'.$this->search . '%')
-        
         ->orwhere('owner_name','like','%'.$this->search . '%')
         ->paginate(8) :ModelsVirOrgs::with(['street','org_type','user'])
         ->orderBy('created_at', 'desc')
         ->paginate(8);
+        // $this->selectedUserIds = $this->search ?ModelsVirOrgs::with(['street','org_type','user'])->orderBy('created_at', 'desc')
+        // ->where('org_name','like','%'.$this->search . '%')
+        // ->orwhere('owner_name','like','%'.$this->search . '%')->pluck('id') :ModelsVirOrgs::with(['street','org_type','user'])->orderBy('created_at', 'desc')
+        // ->pluck('id');
         }
-        $this->selectedUserIds = $this->search ?ModelsVirOrgs::with(['street','org_type','user'])->orderBy('created_at', 'desc')
-        ->where('org_name','like','%'.$this->search . '%')
-        ->orwhere('owner_name','like','%'.$this->search . '%')->pluck('id') :ModelsVirOrgs::with(['street','org_type','user'])->orderBy('created_at', 'desc')
-        ->pluck('id');
         // $this->selectedUserIds = $org_exel->pluck('id');
         return view('livewire.vir-orgs.vir-orgs',['orgs'=>$orgs ,'workers'=>$workers]);
     }
@@ -53,6 +57,18 @@ class VirOrgs extends Component
 
     public function export()
     {
+        if($this->worker_id !=""){
+        $this->selectedUserIds = $this->search ?ModelsVirOrgs::with(['street','org_type','user'])->orderBy('created_at', 'desc')
+        ->where('org_name','like','%'.$this->search . '%')
+        ->where('user_id',$this->worker_id)
+        ->orwhere('owner_name','like','%'.$this->search . '%')->pluck('id') :ModelsVirOrgs::with(['street','org_type','user'])->where('user_id',$this->worker_id)->orderBy('created_at', 'desc')
+        ->pluck('id');
+        }else{
+            $this->selectedUserIds = $this->search ?ModelsVirOrgs::with(['street','org_type','user'])->orderBy('created_at', 'desc')
+        ->where('org_name','like','%'.$this->search . '%')
+        ->orwhere('owner_name','like','%'.$this->search . '%')->pluck('id') :ModelsVirOrgs::with(['street','org_type','user'])->orderBy('created_at', 'desc')
+        ->pluck('id');
+        }
         $users = $this->selectedUserIds;
         return Excel::download(new VirOrgsExport($users), 'vir_orgs.xlsx');
         // return Excel::download(new OrgsExport, 'users.xlsx');
