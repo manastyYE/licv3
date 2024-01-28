@@ -929,7 +929,7 @@
 
 
 
-    <x-modaldel wire:ignore.self name="del-org-board-modal">
+    <x-modaldel wire:ignore.self name="del-org-billboard-modal">
         @slot('delbody')
             <div class="mt-4">
                 <h2 class="text-2xl text-slate-700 dark:text-navy-100">
