@@ -1,9 +1,15 @@
 <div>
 
-    {{-- <a href="/admin/org/clip/{{ $org->id }}"
+    @if (auth()->guard('admin')->id() == 1 || auth()->guard('admin')->id() ==3)
+    <button type="button" wire:click='stopOrg'
         class="font-medium border btn border-primary text-primary hover:bg-primary hover:text-white focus:bg-primary focus:text-white active:bg-primary/90 dark:border-accent dark:text-accent-light dark:hover:bg-accent dark:hover:text-white dark:focus:bg-accent dark:focus:text-white dark:active:bg-accent/90">
-        عرض الحافظة
-    </a> --}}
+        ايقاف المنشأة
+    </button>
+    <button type="button" wire:click='unStopOrg'
+        class="font-medium border btn border-primary text-primary hover:bg-primary hover:text-white focus:bg-primary focus:text-white active:bg-primary/90 dark:border-accent dark:text-accent-light dark:hover:bg-accent dark:hover:text-white dark:focus:bg-accent dark:focus:text-white dark:active:bg-accent/90">
+        الغاء ايقاف المنشأة
+    </button>
+    @endif
     <div dir="ltr" class="ml-4">
         @if ($org->is_stoped == 0)
         <button type="button" wire:click='set_org_info()' x-data

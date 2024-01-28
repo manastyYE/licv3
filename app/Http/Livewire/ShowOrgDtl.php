@@ -204,6 +204,17 @@ class ShowOrgDtl extends Component
 
 
     }
+    public function stopOrg(){
+        $org = Org::find($this->org_id);
+        $org->is_stoped = 1;
+        $org->save();
+
+    }
+    public function unStopOrg(){
+        $org = Org::find($this->org_id);
+        $org->is_stoped = 0;
+        $org->save();
+    }
 
     public function deleteOrgBillboardData()
     {
