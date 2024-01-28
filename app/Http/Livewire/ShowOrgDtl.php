@@ -321,6 +321,11 @@ class ShowOrgDtl extends Component
         $new_clip->door_stickers = $count6;
         $new_clip->save();
 
+        $this->clean_pay = null;
+        $this->local_fee = null;
+        $this->el_gate = null;
+        $this->clean = null;
+
         session()->flash('message', 'تم انشاء الحافظة  بنجاح');
 
         $this->dispatchBrowserEvent('close-modal');
