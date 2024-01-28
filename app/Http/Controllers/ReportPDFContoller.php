@@ -35,7 +35,12 @@ class ReportPDFContoller extends Controller
         //     return view('Automated_clipboard',['id'=>$id])->with('errors','لا يمكنك الوصول الى الصفحة السابقة ');
         // }
         // return view('Automated_clipboard',['id'=>$id])->with('errors','لا يمكنك الوصول الى الصفحة السابقة ');
-        return view('reports.autoclip',['clip'=>$clip,'ar_total'=>$string_total]);
+        if($clip->org->is_stoped ==0){
+            return view('reports.autoclip',['clip'=>$clip,'ar_total'=>$string_total]);
+        }
+        else{
+            return redirect()->to('/admin/org/clip/'.$clip->id)->with('status', ' هذه المتشأة موقفة لا يمكن تنفيذ اي عملية عليها  ');
+        }
 
 
     }
