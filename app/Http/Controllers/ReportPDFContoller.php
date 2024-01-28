@@ -39,7 +39,7 @@ class ReportPDFContoller extends Controller
             return view('reports.autoclip',['clip'=>$clip,'ar_total'=>$string_total]);
         }
         else{
-            return redirect()->to('/admin/org/clip/'.$clip->id)->with('status', ' هذه المتشأة موقفة لا يمكن تنفيذ اي عملية عليها  ');
+            return redirect()->to('/admin/org/clip/'.$clip->id)->with('error', ' هذه المتشأة موقفة لا يمكن تنفيذ اي عملية عليها  ');
         }
 
 
