@@ -120,13 +120,20 @@ class ShowOrgDtl extends Component
         ]);
 
         //Add Student Data
-        $orgbillboard = new OrgBillboard();
+        $org = Org::find($this->org_id);
+
+        if($org->is_stoped==0){
+            $orgbillboard = new OrgBillboard();
         $orgbillboard->org_id = $this->org_id;
         $orgbillboard->billboard_id = $this->billboard_id;
         $orgbillboard->height = $this->height;
         $orgbillboard->width = $this->wideth;
         $orgbillboard->count = $this->count;
         $orgbillboard->save();
+        }
+        else{
+            return redirect()->to('/admin/org/show/'.$org->id)->with('error', ' هذه المتشأة موقفة لا يمكن تنفيذ اي عملية عليها  ');
+        }
 
         session()->flash('message', 'تمت عملية اضافة اللوحة الجديدة');
 
