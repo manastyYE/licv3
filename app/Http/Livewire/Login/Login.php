@@ -25,7 +25,15 @@ class Login extends Component
         if (Auth::guard('admin')->attempt(['username' => $validatedData['username'],'password' =>$this->password])) {
 
             $user_id = Auth::id();
+
             session()->put('id', $user_id);
+
+            // $admin = Auth::guard('admin')->user();
+            // $admin->update([
+            //     'session_id'=> session()->getId(),
+            // ]);
+
+
             return redirect()->route('dashboard');
         } else {
             throw ValidationException::withMessages([

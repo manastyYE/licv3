@@ -14,7 +14,9 @@ class Admin extends Authenticatable
         'phone',
         'username',
         'password',
+        'admin_img',
         'directorate_id',
+        'session_id',
     ];
     public function directorate(){
         return $this->belongsTo(Directorate::class);

@@ -38,6 +38,7 @@ class Org extends Model
         'admin_id',
         'come_name',// اسم الشخص الذي يقوم بالمعاملة
         'come_phone',// رقم هاتف الشخص الذي يقوم بالمعاملة
+        'is_stoped',
 
     ];
     public function admin(){

@@ -5,11 +5,18 @@
         عرض الحافظة
     </a> --}}
     <div dir="ltr" class="ml-4">
+        @if ($org->is_stoped == 0)
         <button type="button" wire:click='set_org_info()' x-data
-            x-on:click="$dispatch('open-modal',{name:'edit-org-data'})"
+        x-on:click="$dispatch('open-modal',{name:'edit-org-data'})"
+        class="w-8 h-8 p-0 btn text-info hover:bg-info/20 focus:bg-info/20 active:bg-info/25">
+        <i class="fa fa-edit"></i>
+    </button>
+        @else
+        <a
             class="w-8 h-8 p-0 btn text-info hover:bg-info/20 focus:bg-info/20 active:bg-info/25">
             <i class="fa fa-edit"></i>
-        </button>
+        </a>
+        @endif
     </div>
     @if (session()->has('message'))
         <div class="space-y-4">
@@ -197,11 +204,18 @@
 
     </div>
     <div dir="ltr" class="ml-4">
+        @if ($org->is_stoped == 0)
         <button type="button" wire:click='set_org_info()' x-data
-            x-on:click="$dispatch('open-modal',{name:'edit-org-files'})"
-            class="w-8 h-8 p-0 btn text-info hover:bg-info/20 focus:bg-info/20 active:bg-info/25">
-            <i class="fa fa-edit"></i>
-        </button>
+        x-on:click="$dispatch('open-modal',{name:'edit-org-files'})"
+        class="w-8 h-8 p-0 btn text-info hover:bg-info/20 focus:bg-info/20 active:bg-info/25">
+        <i class="fa fa-edit"></i>
+    </button>
+        @else
+        <a
+        class="w-8 h-8 p-0 btn text-info hover:bg-info/20 focus:bg-info/20 active:bg-info/25">
+        <i class="fa fa-edit"></i>
+    </a>
+        @endif
     </div>
     <h4 class="text-xl font-semibold text-slate-700 dark:text-navy-100">
         المرفقات
@@ -267,11 +281,21 @@
             <div role="complementary" class="gridjs gridjs-container" style="width: 100%;">
                 <div class="gridjs-head">
                     <div class="gridjs-search">
+
+                        @if ($org->is_stoped == 0)
                         <button type="button" x-data
-                            x-on:click="$dispatch('open-modal',{name:'add-org-board-modal'})"
-                            class="font-medium btn bg-slate-150 text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90">
-                            اضافة لوحة جديدة
-                        </button>
+                        x-on:click="$dispatch('open-modal',{name:'add-org-board-modal'})"
+                        class="font-medium btn bg-slate-150 text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90"
+                           > اضافة لوحة جديدة</button>
+                        @else
+                        <button type="button" x-data
+                        x-on:click="$dispatch('open-modal',{name:'add-org-board-modal'})"
+                        class="font-medium btn bg-slate-150 text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90"
+                           > هذه المنشأة موقفة</button>
+                        @endif
+
+
+
                     </div>
                 </div>
                 <div class="gridjs-wrapper" style="height: auto;">
@@ -333,6 +357,7 @@
                                             {{ $p->height * $p->width * $p->billboard->price * $p->count }}
                                         </td>
                                         <td class="gridjs-td"><span>
+                                                @if ($org->is_stoped == 0)
                                                 <div class="flex justify-center space-x-2">
                                                     <button type="button" wire:click='setname({{ $p->id }})'
                                                         x-data
@@ -347,6 +372,9 @@
                                                         <i class="fa fa-trash- "></i>
                                                     </button>
                                                 </div>
+                                                @else
+
+                                                @endif
                                             </span></td>
                                     </tr>
                                 @endforeach
@@ -381,6 +409,7 @@
         <div x-data="pages.tables.initGridTableExapmle">
 
             <div role="complementary" class="gridjs gridjs-container" style="width: 100%;">
+                @if ($org->is_stoped == 0)
                 <div class="gridjs-head">
                     <div class="gridjs-search">
 
@@ -399,6 +428,9 @@
 
                     </div>
                 </div>
+                @else
+                هذه المنشأة موقفة تواصل مع المدير
+                @endif
                 <div class="gridjs-wrapper" style="height: auto;">
                     <table role="grid" class="gridjs-table" style="height: auto;">
                         <thead class="gridjs-thead">

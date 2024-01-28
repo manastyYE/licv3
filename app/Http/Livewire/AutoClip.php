@@ -60,7 +60,8 @@ class AutoClip extends Component
     ]);
 
         $ed_chip=ClipBoard::find($this->clip_id);
-        $ed_chip->ad_reseve = $this->ad_reseve;
+        if($ed_chip->org->is_stoped ==0){
+            $ed_chip->ad_reseve = $this->ad_reseve;
         $ed_chip->clean_reseve =$this->ad_reseve;
         $ed_chip->local_reseve=$this->local_reseve;
 
@@ -80,15 +81,30 @@ class AutoClip extends Component
         $org->save();
         return redirect()->to('/admin/report/clip/'.$ed_chip->id)->with('success', ' تم اضافة ارقام السندات الى الحافظة بنجاح');
 
+        }
+        else {
+
+            return redirect()->to('/admin/org/clip/'.$ed_chip->id)->with('success', ' هذه المتشأة موقفة لا يمكن تنفيذ اي عملية عليها  ');
+
+        }
     }
     public $year_count;
     public function setYear(){
+
+
         $clip= ClipBoard::find($this->clip_id);
-        $clip->year_count = $this->year_count;
-        $clip->total_ad = $clip->total_ad * $this->year_count;
-        $clip->clean_pay =$clip->clean_pay * $this->year_count;
-        $clip->save();
-        return redirect()->to('/admin/org/clip/'.$this->clip_id)->with('success', ' تم تحديد عدد السنوات للحافظة  بنجاح');
+        if($clip->org->is_stoped == 0){
+
+
+            $clip->year_count = $this->year_count;
+            $clip->total_ad = $clip->total_ad * $this->year_count;
+            $clip->clean_pay =$clip->clean_pay * $this->year_count;
+            $clip->save();
+
+            return redirect()->to('/admin/org/clip/'.$this->clip_id)->with('success', ' تم تحديد عدد السنوات للحافظة  بنجاح');
+        }else{
+            return redirect()->to('/admin/org/clip/'.$clip->id)->with('success', ' هذه المتشأة موقفة لا يمكن تنفيذ اي عملية عليها  ');
+        }
     }
 
     public function updateClip(){
@@ -100,13 +116,17 @@ class AutoClip extends Component
         ]);
 
         $clip = ClipBoard::find($this->clip_id);
-        $clip->local_fee = $this->local_fee;
-        $clip->total_ad = $this->total_ad;
-        $clip->clean = $this->clean;
-        $clip->clean_pay = $this->clean_pay;
+        if($clip->org->is_stoped == 0){
+            $clip->local_fee = $this->local_fee;
+            $clip->total_ad = $this->total_ad;
+            $clip->clean = $this->clean;
+            $clip->clean_pay = $this->clean_pay;
 
-        $clip->save();
-        return redirect()->to('/admin/org/clip/'.$this->clip_id)->with('success', ' تم اضافة  تم تعديل بيانات الحافظة بنجاح');
+            $clip->save();
+            return redirect()->to('/admin/org/clip/'.$this->clip_id)->with('success', ' تم اضافة  تم تعديل بيانات الحافظة بنجاح');
+        }else{
+            return redirect()->to('/admin/org/clip/'.$clip->id)->with('success', ' هذه المتشأة موقفة لا يمكن تنفيذ اي عملية عليها  ');
+        }
     }
     public function close()
     {

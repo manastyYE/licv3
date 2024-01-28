@@ -8,6 +8,12 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 class ShowPagesController extends Controller
 {
+    public function showMyAccount(){
+        return view('users.user_personal_info');
+    }
+    public function changePassword(){
+        return view('users.user_password');
+    }
     public function show_buildings_view(){
         return view('buildings');
     }

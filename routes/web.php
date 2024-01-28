@@ -44,6 +44,8 @@ Route::controller(ShowPagesController::class)->prefix('admin')->middleware('admi
         Route::get('/vir-to-orgs/{id}','show_add_vir_to_org');
         Route::get('/building','show_buildings_view')->name('show_buildings_view');
         Route::get('/org/outherclip/{id}','outherclip')->name('org.outherclip');
+        Route::get('/myaccount/personal','showMyAccount')->name('admin.account.stting');
+        Route::get('/myaccount/password','changePassword')->name('admin.account.stting');
     }
 );
 Route::controller(ShowPagesController::class)->prefix('admin')->middleware('admin.guest')->group(
