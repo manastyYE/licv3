@@ -375,7 +375,7 @@
                                                         wire:click='deleteConfirmation({{ $p->id }})' x-data
                                                         x-on:click="$dispatch('open-modal',{name:'del-org-billboard-modal'})"
                                                         class="w-8 h-8 p-0 btn text-error hover:bg-error/20 focus:bg-error/20 active:bg-error/25">
-                                                        <i class="fa fa-trash- "></i>
+                                                        <i class="fa fa-trash "></i>
                                                     </button>
                                                 </div>
                                                 @else

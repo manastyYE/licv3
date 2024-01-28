@@ -71,6 +71,9 @@
                                 <th data-column-id="actions" class="gridjs-th">
                                     <div class="gridjs-th-content">الحالة</div>
                                 </th>
+                                <th data-column-id="actions" class="gridjs-th">
+                                    <div class="gridjs-th-content">حذف </div>
+                                </th>
 
                             </tr>
                         </thead>
@@ -98,6 +101,14 @@
                                     @else
                                     <td class="gridjs-td">لم تنقل </td>
                                     @endif
+                                    <td>
+                                        <button type="button"
+                                                        wire:click='deleteConfirmation({{ $p->id }})' x-data
+                                                        x-on:click="$dispatch('open-modal',{name:'del-vir-org-modal'})"
+                                                        class="w-8 h-8 p-0 btn text-error hover:bg-error/20 focus:bg-error/20 active:bg-error/25">
+                                                        <i class="fa fa-trash "></i>
+                                                    </button>
+                                    </td>
 
 
                                 </tr>
@@ -127,4 +138,20 @@
             </div>
         </div>
     </div>
+    <x-modaldel wire:ignore.self name="del-vir-org-modal">
+        @slot('delbody')
+            <div class="mt-4">
+                <h2 class="text-2xl text-slate-700 dark:text-navy-100">
+                    تأكيد الحذف
+                </h2>
+                <p class="mt-2">
+                    هل انت متأكد من انك تريد حذف هذه البيانات
+                </p>
+                <button wire:click="deleteVirOrg"
+                    class="mt-6 font-medium text-white btn bg-success hover:bg-success-focus focus:bg-success-focus active:bg-success-focus/90">
+                    نعم انا متأكد
+                </button>
+            </div>
+        @endslot
+    </x-modaldel>
 </div>

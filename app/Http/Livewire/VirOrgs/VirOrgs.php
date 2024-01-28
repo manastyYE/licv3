@@ -54,7 +54,19 @@ class VirOrgs extends Component
         $this->store();
         $this->emit('store');
     }
+    public $del_id;
+    public function deleteConfirmation($id){
+        $this->del_id = $id;
+    }
+    public function deleteVirOrg(){
+        $vir = VirOrgs::find($this->del_id);
+        $vir->delete();
+        session()->flash('message', 'تم حذف اللوحة بنجاح');
 
+        $this->dispatchBrowserEvent('close-modal');
+
+        $this->del_id = '';
+    }
     public function export()
     {
         if($this->worker_id !=""){
