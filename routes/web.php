@@ -74,7 +74,7 @@ Route::get('/login', [ShowPagesController::class,'userlogin'])->name('user.login
 
 //     return $response;rt/
 // })->where('filename', '.*');
-Route::controller(ReportPDFContoller::class)->prefix('admin/report/')->middleware('admin.auth')->group(
+Route::controller(ReportPDFContoller::class)->prefix('admin/report/works')->middleware('admin.auth')->group(
     function(){
         Route::get('/','mainReport');
         Route::get('/orgs','showOrgReportView');
@@ -87,6 +87,18 @@ Route::controller(ReportPDFContoller::class)->prefix('admin/report/')->middlewar
         Route::get('clips/npay','getNPayedclip');
         Route::get('orgs-date/{data}','show_dayly_report');
 
+    }
+);
+Route::controller(ReportPDFContoller::class)->prefix('admin/report/health')->middleware('admin.auth')->group(
+    function(){
+        Route::get('/','mainHealthReportView')->name('report.health.main');
+        Route::get('/all-health-orgs','allHealthOrgs')->name('report.health.orgs');
+
+    }
+);
+Route::controller(ReportPDFContoller::class)->prefix('admin/report')->middleware('admin.auth')->group(
+    function (){
+        Route::get('/','allReport')->name('report.office.all');
     }
 );
 

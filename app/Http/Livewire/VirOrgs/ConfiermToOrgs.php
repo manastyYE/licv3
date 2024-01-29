@@ -384,6 +384,7 @@ class ConfiermToOrgs extends Component
                 'come_phone'=>$this->come_phone,
             ]
             );
+            $org->office_id = $org->org_type->office->id ;
             if ($this->vir_org_billboard) {
                 foreach ($this->vir_org_billboard as $value) {
                     OrgBillboard::create([

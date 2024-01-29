@@ -8,11 +8,27 @@ use Illuminate\Support\Facades\App;
 use App\Models\ClipBoard;
 use App\models\Org;
 use Alkoumi\LaravelArabicNumbers\Numbers;
+
 use App\Models\OutherClip;
 use Illuminate\Support\Carbon;
 
 class ReportPDFContoller extends Controller
 {
+    public function allHealthOrgs(){
+        $org = Org::all();
+        foreach( $org as $o){
+            $o->office_id = $o->org_type->office->id;
+            $o->save();
+        }
+        // $org= Org::where('office_id',1)->get();
+        return view('reports.health.all-health-orgs',['health'=>$org]);
+    }
+    public function mainHealthReportView(){
+        return view('reports.health.health-report');
+    }
+    public function allReport(){
+        return view('reports.main-report.all-report-view');
+    }
     public function mainReport(){
         return view('dashboard.admin.reports');
     }

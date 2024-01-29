@@ -15,18 +15,17 @@
 @endsection
 @section('content')
 <hr>
-
 <br>
 <div>
     <div class="grid grid-cols-1 gap-4 text-center sm:grid-cols-4 sm:gap-5 lg:gap-6">
-        <a href="/admin/report/works/orgs">
+        <a href="/admin/report/works">
             <div class="card">
                 <div class="flex justify-center p-5">
                     <img class="w-9/12" src="{{asset('icons/institution.png')}}" alt="image">
                 </div>
                 <div class="px-4 pb-8 text-center sm:px-5">
                     <h4 class="text-lg font-semibold text-slate-700 dark:text-navy-100">
-                        تقارير المنشأت
+                        تقارير الاشغال
                     </h4>
                     <p class="pt-3">
 
@@ -39,14 +38,54 @@
 
             </div>
         </a>
-        <a href="/admin/report/works/orgs-date">
+        <a href="/admin/report/health">
             <div class="card">
                 <div class="flex justify-center p-5">
                     <img class="w-9/12" src="{{asset('icons/institution.png')}}" alt="image">
                 </div>
                 <div class="px-4 pb-8 text-center sm:px-5">
                     <h4 class="text-lg font-semibold text-slate-700 dark:text-navy-100">
-                        تقارير يومية او اسبوعية
+                        تقارير الصحة
+                    </h4>
+                    <p class="pt-3">
+
+                    </p>
+                    {{-- <button
+                        class="mt-8 font-medium text-white shadow-lg btn bg-primary shadow-primary/50 hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:shadow-accent/50 dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90">
+
+                    </button> --}}
+                </div>
+
+            </div>
+        </a>
+        <a href="/admin/report/culture">
+            <div class="card">
+                <div class="flex justify-center p-5">
+                    <img class="w-9/12" src="{{asset('icons/institution.png')}}" alt="image">
+                </div>
+                <div class="px-4 pb-8 text-center sm:px-5">
+                    <h4 class="text-lg font-semibold text-slate-700 dark:text-navy-100">
+                        تقارير الثقافة
+                    </h4>
+                    <p class="pt-3">
+
+                    </p>
+                    {{-- <button
+                        class="mt-8 font-medium text-white shadow-lg btn bg-primary shadow-primary/50 hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:shadow-accent/50 dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90">
+
+                    </button> --}}
+                </div>
+
+            </div>
+        </a>
+        <a href="/admin/report/tourism">
+            <div class="card">
+                <div class="flex justify-center p-5">
+                    <img class="w-9/12" src="{{asset('icons/institution.png')}}" alt="image">
+                </div>
+                <div class="px-4 pb-8 text-center sm:px-5">
+                    <h4 class="text-lg font-semibold text-slate-700 dark:text-navy-100">
+                        تقارير السياحة
                     </h4>
                     <p class="pt-3">
 

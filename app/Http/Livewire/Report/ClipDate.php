@@ -14,6 +14,6 @@ class ClipDate extends Component
     }
     public function showDayly(){
 
-        return redirect()->to('/admin/report/orgs-date/'.$this->start_date);
+        return redirect()->to('/admin/report/works/orgs-date/'.$this->start_date);
     }
 }

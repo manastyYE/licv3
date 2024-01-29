@@ -293,7 +293,7 @@ class AddOrg extends Component
     //     }
 
 
-    Org::create(
+    $org=Org::create(
             [
                 'org_name'=>$this->org_name,
                 'owner_name'=>$this->owner_name,
@@ -319,6 +319,8 @@ class AddOrg extends Component
                 'come_phone'=>$this->come_phone,
             ]
             );
+            $org->office_id = $org->org_type->office->id;
+            $org->save();
         $this->rest_inputs();
 
 

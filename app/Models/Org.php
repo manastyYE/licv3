@@ -39,6 +39,7 @@ class Org extends Model
         'come_name',// اسم الشخص الذي يقوم بالمعاملة
         'come_phone',// رقم هاتف الشخص الذي يقوم بالمعاملة
         'is_stoped',
+        'office_id',
 
     ];
     public function admin(){
@@ -56,5 +57,8 @@ class Org extends Model
     }
     public function hood_unit(){
         return $this->belongsTo(HoodUnit::class);
+    }
+    public function office(){
+        return $this->belongsTo(Office::class);
     }
 }
