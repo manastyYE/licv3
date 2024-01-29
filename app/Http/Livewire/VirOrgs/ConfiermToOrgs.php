@@ -20,7 +20,7 @@ class ConfiermToOrgs extends Component
     public $streets,$building_types,$org_types;
     public $vier_org_id;
     public $org_name,$owner_name,$owner_phone,$owner_img
-    ,$card_type,$card_number,$building_type_id,$isowner,
+    ,$card_number,$building_type_id,$isowner,
     $org_type_id,$hood_unit_id,$street_id,$personal_card,
     $rent_contract,$ad_board,$previous_license,$comm_record,
     $parcode,$address,$log_x,$log_y,$fire_ext,$start_date,$note,
@@ -91,7 +91,6 @@ class ConfiermToOrgs extends Component
             'start_date' => 'required|date',
             'owner_name' => 'required',
             'owner_phone' => 'required|numeric',
-            'card_type' => 'required',
             'card_number' => 'numeric',
             'street_id' => 'required',
             'isowner'=>'required',
@@ -110,7 +109,6 @@ class ConfiermToOrgs extends Component
             'owner_name.required' => 'اسم المالك مطلوب لا يمكن تركه فارغاً',
             'owner_phone.required'=>'يجب عليك ادخال رقم هاتف مالك المنشأة',
             'owner_phone.numeric'=>'حقل رقم الهاتف لا يقبل الا ارقام فقط ',
-            'card_type.required'=>'يجب عليك اختيار نوع البطاقة ',
             'card_number.numeric'=>'حقل رقم البطاقة يجب ان يكون ارقاماً فقط',
             'street_id.required'=>'يجب عليك اختيار الشارع ',
             'building_type_id.required'=>'يجب عليك اختيار نوع البناء الذي فيه المشأة',
@@ -363,7 +361,7 @@ class ConfiermToOrgs extends Component
                 'owner_name'=>$this->owner_name,
                 'owner_phone'=>$this->owner_phone,
                 'owner_img'=>$this->owner_img ? $rules['owner_img'] :null ,
-                'card_type'=>$this->card_type,
+                'card_type'=>'شخصية',
                 'card_number'=>$this->card_number,
                 'building_type_id'=>$this->building_type_id,
                 'isowner'=>$this->isowner,
@@ -376,7 +374,7 @@ class ConfiermToOrgs extends Component
                 'previous_license'=>$this->previous_license ? $rules['previous_license'] : $this->temp_previous_license ,
                 'comm_record'=>$this->comm_record ? $rules['comm_record'] : $this->temp_comm_record,
                 'start_date'=>$this->start_date,
-                'fire_ext'=>$this->fire_ext,
+                'fire_ext'=>'نعم ',
                 'outher'=>$this->outher ? $rules['outher'] :$this->temp_outher,
                 'log_x'=>$this->log_x,
                 'log_y'=>$this->log_y,

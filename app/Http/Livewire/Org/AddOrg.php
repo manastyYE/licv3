@@ -14,7 +14,7 @@ use Livewire\WithFileUploads;
 class AddOrg extends Component
 {
     use WithFileUploads;
-    public $org_name, $org_type_id, $start_date, $owner_name, $owner_phone, $card_type, $card_number, $owner_img, $building_type_id, $isowner, $street_id, $hood_unit_id, $fire_ext, $personal_card, $rent_contract, $ad_board, $previous_license, $comm_record;
+    public $org_name, $org_type_id, $start_date, $owner_name, $owner_phone, $card_number, $owner_img, $building_type_id, $isowner, $street_id, $hood_unit_id, $personal_card, $rent_contract, $ad_board, $previous_license, $comm_record;
     public $outher;
     public $is_outher;
     public $hood_unit_no;
@@ -29,7 +29,6 @@ class AddOrg extends Component
             'start_date' => 'required|date',
             'owner_name' => 'required',
             'owner_phone' => 'required|numeric',
-            'card_type' => 'required',
             'card_number' => 'numeric',
             'street_id' => 'required',
             'building_type_id' => 'required',
@@ -48,7 +47,6 @@ class AddOrg extends Component
             'owner_name.required' => 'اسم المالك مطلوب لا يمكن تركه فارغاً',
             'owner_phone.required'=>'يجب عليك ادخال رقم هاتف مالك المنشأة',
             'owner_phone.numeric'=>'حقل رقم الهاتف لا يقبل الا ارقام فقط ',
-            'card_type.required'=>'يجب عليك اختيار نوع البطاقة ',
             'card_number.numeric'=>'حقل رقم البطاقة يجب ان يكون ارقاماً فقط',
             'street_id.required'=>'يجب عليك اختيار الشارع ',
             'building_type_id.required'=>'يجب عليك اختيار نوع البناء الذي فيه المشأة',
@@ -301,7 +299,7 @@ class AddOrg extends Component
                 'owner_name'=>$this->owner_name,
                 'owner_phone'=>$this->owner_phone,
                 'owner_img'=>$this->owner_img ?$rules['owner_img'] :null,
-                'card_type'=>$this->card_type,
+                'card_type'=>'شخصية',
                 'card_number'=>$this->card_number,
                 'building_type_id'=>$this->building_type_id,
                 'isowner'=>$this->isowner,
@@ -314,7 +312,7 @@ class AddOrg extends Component
                 'previous_license'=>$this->previous_license ? $rules['previous_license'] : null ,
                 'comm_record'=>$this->comm_record ? $rules['comm_record'] : null,
                 'start_date'=>$this->start_date,
-                'fire_ext'=>$this->fire_ext,
+                'fire_ext'=>'نعم ',
                 'outher'=>$this->outher ? $rules['outher'] :null,
                 'admin_id'=>auth()->guard('admin')->user()->id,
                 'come_name'=>$this->come_name,
@@ -334,7 +332,6 @@ class AddOrg extends Component
                 $this->owner_name = '';
                 $this->owner_phone = '';
                 $this->owner_img = '';
-                $this->card_type = '';
                 $this->card_number = '';
                 $this->building_type_id = '';
                 $this->isowner = '';
@@ -347,7 +344,6 @@ class AddOrg extends Component
                 $this->previous_license = '';
                 $this->comm_record = '';
                 $this->start_date = '';
-                $this->fire_ext = '';
                 $this->outher='';
     }
     public function reloadPage()
@@ -363,7 +359,6 @@ class AddOrg extends Component
     }
     public function render()
     {
-        // $this->fire_ext ="لا";
 
         if ($this->street_id) {
 

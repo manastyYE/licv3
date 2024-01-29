@@ -186,7 +186,7 @@
             </div>
 
             <div>
-                <label class="block">
+                {{-- <label class="block">
                     <span>نوع البطاقة</span>
                     <select wire:model.defer='card_type' class="mt-1.5 "
                         x-init="$el._x_tom = new Tom($el,{sortField: {field: 'text',direction: 'asc'}})">
@@ -201,25 +201,27 @@
                 </label>
                 @error('card_type')
                 <span class="text-tiny+ text-error">{{ $message }}</span>
-                @enderror
-            </div>
-
-            <div>
-
-            </div>
-            <div>
-
-            </div>
-            <div>
+                @enderror --}}
                 <label class="block ">
-                    <span> رقم البطاقة</span>
+                    <span> الرقم الوطني</span>
                     <input name="card_number" wire:model.defer='card_number' id="card_number"
                         class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
-                        placeholder="ادخل رقم البطاقة" type="text" />
+                        placeholder="ادخل الرقم الوطني" type="text" />
                 </label>
                 @error('card_number')
                 <span class="text-tiny+ text-error">{{ $message }}</span>
                 @enderror
+
+            </div>
+
+            <div>
+
+            </div>
+            <div>
+
+            </div>
+            <div>
+
             </div>
         </div>
 
@@ -281,7 +283,7 @@
                 @enderror
             </div>
             <div>
-                <label class="block">
+                {{-- <label class="block">
                     <span>يمتلك طفاية حرق</span>
                     <select wire:model.defer='fire_ext'
                         class="form-select mt-1.5 w-full rounded-lg border border-slate-300 bg-white px-3 py-2 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:bg-navy-700 dark:hover:border-navy-400 dark:focus:border-accent">
@@ -289,7 +291,7 @@
                         <option value="لا">لا </option>
                         <option value="نعم">نعم </option>
                     </select>
-                </label>
+                </label> --}}
             </div>
             <div>
                 {{-- 1 --}}

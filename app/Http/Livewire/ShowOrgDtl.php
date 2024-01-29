@@ -343,7 +343,7 @@ class ShowOrgDtl extends Component
         $this->building_types = BuildingType::all();
         $this->streets = Street::all();
     }
-    public $org_name, $owner_name, $owner_phone, $owner_img, $card_type, $card_number, $building_type_id, $isowner, $org_type_id, $street_id, $fire_ext, $hood_unit_id;
+    public $org_name, $owner_name, $owner_phone, $owner_img,  $card_number, $building_type_id, $isowner, $org_type_id, $street_id,  $hood_unit_id;
     public function set_org_info()
     {
         $org = Org::find($this->org_id);
@@ -351,14 +351,14 @@ class ShowOrgDtl extends Component
         $this->owner_name = $org->owner_name;
         $this->owner_phone = $org->owner_phone;
         // $this->owner_img = $org->owner_img;
-        $this->card_type = $org->card_type;
+        // $this->card_type = $org->card_type;
         $this->card_number = $org->card_number;
         $this->building_type_id  = $org->building_type_id;
         $this->isowner = $org->isowner;
         $this->org_type_id = $org->org_type_id;
         $this->street_id = $org->street_id;
         $this->hood_unit_id = $org->street->hood_unit_id;
-        $this->fire_ext = $org->fire_ext;
+
     }
     public function update_org_info()
     {
@@ -370,7 +370,7 @@ class ShowOrgDtl extends Component
             'owner_phone' => 'numeric',
             'org_type_id' => 'required',
             'street_id' => 'required',
-            'fire_ext' => 'required',
+
 
         ]);
         if ($this->owner_img) {
@@ -392,14 +392,14 @@ class ShowOrgDtl extends Component
         $org->owner_name = $this->owner_name;
         $org->owner_phone = $this->owner_phone;
         $org->owner_img = $this->owner_img ?  $rules['owner_img'] : $org->owner_img;
-        $org->card_type = $this->card_type;
+        $org->card_type = 'شخصية';
         $org->card_number = $this->card_number;
         $org->building_type_id = $this->building_type_id;
         $org->isowner = $this->isowner;
         $org->org_type_id = $this->org_type_id;
         $org->street_id = $this->street_id;
         $org->hood_unit_id = $this->hood_unit_id;
-        $org->fire_ext = $this->fire_ext;
+        $org->fire_ext = 'نعم ';
         $org->save();
 
         return redirect()->to('/admin/org/show/' . $this->org_id)->with('success', ' تم تعديل بينات المنشأة بنجاح');

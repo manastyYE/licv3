@@ -59,9 +59,9 @@ class VirOrgs extends Component
         $this->del_id = $id;
     }
     public function deleteVirOrg(){
-        $vir = VirOrgs::find($this->del_id);
+        $vir = VirOrgs::where('id',$this->del_id)->first();
         $vir->delete();
-        session()->flash('message', 'تم حذف اللوحة بنجاح');
+        // session()->flash('message', 'تم حذف اللوحة بنجاح');
 
         $this->dispatchBrowserEvent('close-modal');
 

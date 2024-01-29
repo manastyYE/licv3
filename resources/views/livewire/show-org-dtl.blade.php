@@ -200,12 +200,12 @@
 
         </div>
         <div>
-            <label class="block">
+            {{-- <label class="block">
 
                 <h5 class="font-semibold text-md text-slate-700 dark:text-navy-100">
                     {{ $org->fire_ext }} يمتلك طفاية حريق
                 </h5>
-            </label>
+            </label> --}}
         </div>
 
     </div>
@@ -1113,7 +1113,7 @@
 
 
                         <div>
-                            <label class="block">
+                            {{-- <label class="block">
                                 <span>نوع البطاقة</span>
                                 <select wire:model.defer='card_type' class="mt-1.5 " x-init="$el._x_tom = new Tom($el, { sortField: { field: 'text', direction: 'asc' } })">
                                     <option value=""> . . اختر النوع</option>
@@ -1127,22 +1127,21 @@
                             </label>
                             @error('card_type')
                                 <span class="text-tiny+ text-error">{{ $message }}</span>
-                            @enderror
-                        </div>
-
-
-
-                        <div>
+                            @enderror --}}
                             <label class="block ">
-                                <span> رقم البطاقة</span>
+                                <span> الرقم الوطني</span>
                                 <input name="card_number" wire:model.defer='card_number' id="card_number"
                                     class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
-                                    placeholder="ادخل رقم البطاقة" type="text" />
+                                    placeholder="ادخل الرقم الوطني" type="text" />
                             </label>
                             @error('card_number')
                                 <span class="text-tiny+ text-error">{{ $message }}</span>
                             @enderror
                         </div>
+
+
+
+
                     </div>
 
 
@@ -1201,7 +1200,7 @@
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
-                        <div>
+                        {{-- <div>
                             <label class="block">
                                 <span>يمتلك طفاية حرق</span>
                                 <select wire:model.defer='fire_ext'
@@ -1211,7 +1210,7 @@
                                     <option value="نعم">نعم </option>
                                 </select>
                             </label>
-                        </div>
+                        </div> --}}
                         <div>
                             {{-- 1 --}}
 
