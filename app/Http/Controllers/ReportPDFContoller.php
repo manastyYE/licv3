@@ -6,7 +6,7 @@ use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use App\Models\ClipBoard;
-use App\models\Org;
+use App\models\Org as oooo;
 use Alkoumi\LaravelArabicNumbers\Numbers;
 
 use App\Models\OutherClip;
@@ -15,7 +15,7 @@ use Illuminate\Support\Carbon;
 class ReportPDFContoller extends Controller
 {
     public function allHealthOrgs(){
-        $org = Org::all();
+        $org = oooo::all();
         foreach( $org as $o){
             $o->office_id = $o->org_type->office->id;
             $o->save();
