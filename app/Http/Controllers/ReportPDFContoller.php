@@ -15,12 +15,12 @@ use Illuminate\Support\Carbon;
 class ReportPDFContoller extends Controller
 {
     public function allHealthOrgs(){
-        $org = Org::all();
-        foreach( $org as $o){
-            $o->office_id = $o->org_type->office->id;
-            $o->save();
-        }
-        // $org= Org::where('office_id',1)->get();
+        // $org = Org::all();
+        // foreach( $org as $o){
+        //     $o->office_id = $o->org_type->office->id;
+        //     $o->save();
+        // }
+        $org= Org::where('office_id',1)->get();
         return view('reports.health.all-health-orgs',['health'=>$org]);
     }
     public function mainHealthReportView(){
