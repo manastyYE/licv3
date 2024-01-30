@@ -79,7 +79,7 @@ class AutoClip extends Component
         $org=Org::find($ed_chip->org_id);
         $org->license_status= 'مرخص';
         $org->save();
-        return redirect()->to('/admin/report/clip/'.$ed_chip->id)->with('success', ' تم اضافة ارقام السندات الى الحافظة بنجاح');
+        return redirect()->to('/admin/report/works/clip/'.$ed_chip->id)->with('success', ' تم اضافة ارقام السندات الى الحافظة بنجاح');
 
         }
         else {
