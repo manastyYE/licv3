@@ -96,6 +96,20 @@ Route::controller(ReportPDFContoller::class)->prefix('admin/report/health')->mid
 
     }
 );
+Route::controller(ReportPDFContoller::class)->prefix('admin/report/tourism')->middleware('admin.auth')->group(
+    function(){
+        Route::get('/','mainTourismReportView')->name('report.tourism.main');
+        Route::get('/all-tourism-orgs','allTourismOrgs')->name('report.tourism.orgs');
+
+    }
+);
+Route::controller(ReportPDFContoller::class)->prefix('admin/report/culture')->middleware('admin.auth')->group(
+    function(){
+        Route::get('/','maiClutureReportView')->name('report.cluture.main');
+        Route::get('/all-cluture-orgs','allClutureOrgs')->name('report.cluture.orgs');
+
+    }
+);
 Route::controller(ReportPDFContoller::class)->prefix('admin/report')->middleware('admin.auth')->group(
     function (){
         Route::get('/','allReport')->name('report.office.all');

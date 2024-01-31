@@ -14,21 +14,21 @@
     <a href="#الرابط الذي ينقل الصفحة الى المنشأت"> التقارير </a>
 @endsection
 @section('contentheaderactive')
-    تقارير مكتب الصحة
+    تقارير مكتب الثقافة
 @endsection
 @section('content')
 <hr>
 <br>
 <div>
     <div class="grid grid-cols-1 gap-4 text-center sm:grid-cols-4 sm:gap-5 lg:gap-6">
-        <a href="/admin/report/health/all-health-orgs">
+        <a href="/admin/report/culture/all-cluture-orgs">
             <div class="card">
                 <div class="flex justify-center p-5">
                     <img class="w-9/12" src="{{asset('icons/institution.png')}}" alt="image">
                 </div>
                 <div class="px-4 pb-8 text-center sm:px-5">
                     <h4 class="text-lg font-semibold text-slate-700 dark:text-navy-100">
-                        تقرير بكل المنشأت التابعة لمكتب الصحة
+                        تقرير بكل المنشأت التابعة لمكتب الثقافة
                     </h4>
                     <p class="pt-3">
 
@@ -41,7 +41,7 @@
 
             </div>
         </a>
-
+       
 
 
     </div>

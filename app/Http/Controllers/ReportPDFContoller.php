@@ -14,6 +14,13 @@ use Illuminate\Support\Carbon;
 
 class ReportPDFContoller extends Controller
 {
+    public function maiClutureReportView(){
+        return view('reports.culture.cluture-report');
+    }
+    public function allClutureOrgs(){
+        $org = Org::where('office_id',3)->get();
+        return view('reports.culture.all-cluture-orgs',['cluture'=>$org]);
+    }
     public function allHealthOrgs(){
         // $org = Org::all();
         // foreach( $org as $o){
@@ -23,8 +30,18 @@ class ReportPDFContoller extends Controller
         $org= Org::where('office_id',1)->get();
         return view('reports.health.all-health-orgs',['health'=>$org]);
     }
+
+
+
     public function mainHealthReportView(){
         return view('reports.health.health-report');
+    }
+    public function mainTourismReportView(){
+        return view('reports.tourism.tourism-report');
+    }
+    public function allTourismOrgs(){
+        $org = Org::where('office_id',2)->get();
+        return view('reports.tourism.all-tourism-orgs',['tourism'=>$org]);
     }
     public function allReport(){
         return view('reports.main-report.all-report-view');
