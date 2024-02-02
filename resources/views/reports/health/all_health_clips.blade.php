@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> كل منشأت مكتب الصحة </title>
+    <title> حوافظ مكتب الصحة </title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
@@ -92,13 +92,13 @@
 
                     <!-- هنا تضيف رأس الجدول -->
                     <th>#</th>
-                    <th>رقم المنشأة</th>
-                    <th>اسم النشاط</th>
+                    <th>الرقم الالي</th>
+                    <th>اسم المنشأة</th>
                     <th>اسم المالك</th>
-                    <th>رقم المالك</th>
-                    <th>الشارع</th>
+                    <th>الرسوم</th>
+                    <th>رقم السند</th>
 
-                    <th>تاريخ الاضافة</th>
+                    <th>تاريخ تاريخ السند</th>
                 </tr>
             </thead>
             <tbody class="print-content">
@@ -109,12 +109,12 @@
                     <tr class="">
                         <td>{{ $i++ }}</td>
                         <td>{{ $h->id }}</td>
-                        <td>{{ $h->org_name }}</td>
-                        <td>{{ $h->owner_name }}</td>
-                        <td>{{ $h->owner_phone }}</td>
+                        <td>{{ $h->org->org_name }}</td>
+                        <td>{{ $h->org->owner_name }}</td>
+                        <td>{{ $h->price }}</td>
 
-                        <td>{{ $h->street->name }}</td>
-                        <td>{{ $h->start_date }}</td>
+                        <td>{{ $h->reseve }}</td>
+                        <td>{{ $h->reseve_date }}</td>
 
                     </tr>
                     @if ($i % 18 == 1)
@@ -133,14 +133,13 @@
                 <tr class="table-warning text-center">
 
                     <!-- هنا تضيف رأس الجدول -->
-                    <th>#</th>
-                    <th>رقم المنشأة</th>
-                    <th>اسم النشاط</th>
+                    <th>الرقم الالي</th>
+                    <th>اسم المنشأة</th>
                     <th>اسم المالك</th>
-                    <th>رقم المالك</th>
-                    <th>الشارع</th>
+                    <th>الرسوم</th>
+                    <th>رقم السند</th>
 
-                    <th>تاريخ الاضافة</th>
+                    <th>تاريخ السند</th>
                 </tr>
             </thead>
             <tbody class="print-content">
@@ -162,6 +161,11 @@
 
             @empty
                 @endforelse
+                <tr>
+                    <td>#</td>
+                    <td colspan="3" class="text-center">الاجمالي</td>
+                    <td colspan="3"> {{ $total }} </td>
+                </tr>
 
 
             </tbody>

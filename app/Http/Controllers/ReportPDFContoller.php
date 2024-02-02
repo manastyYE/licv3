@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Barryvdh\DomPDF\Facade\Pdf;
-use Illuminate\Http\Request;
+
+
 use Illuminate\Support\Facades\App;
 use App\Models\ClipBoard;
 use App\Models\Org;
@@ -14,6 +14,30 @@ use Illuminate\Support\Carbon;
 
 class ReportPDFContoller extends Controller
 {
+    public function showAllHealthClips(){
+        $clips =OutherClip::where('office_id',1)->get();
+        $total = 0;
+        foreach($clips as $clip){
+            $total+=$clip->price;
+        }
+        return view('reports.health.all_health_clips',['health'=>$clips,'total'=>$total]);
+    }
+    public function showAllCultureClips(){
+        $clips =OutherClip::where('office_id',3)->get();
+        $total = 0;
+        foreach($clips as $clip){
+            $total+=$clip->price;
+        }
+        return view('reports.culture.all_culture_clips',['health'=>$clips,'total'=>$total]);
+    }
+    public function showAllTourismClips(){
+        $clips =OutherClip::where('office_id',2)->get();
+        $total = 0;
+        foreach($clips as $clip){
+            $total+=$clip->price;
+        }
+        return view('reports.culture.all_culture_clips',['health'=>$clips,'total'=>$total]);
+    }
     public function maiClutureReportView(){
         return view('reports.culture.cluture-report');
     }

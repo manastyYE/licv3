@@ -93,6 +93,7 @@ Route::controller(ReportPDFContoller::class)->prefix('admin/report/health')->mid
     function(){
         Route::get('/','mainHealthReportView')->name('report.health.main');
         Route::get('/all-health-orgs','allHealthOrgs')->name('report.health.orgs');
+        Route::get('/health-clips','showAllHealthClips')->name('report.halth.allclips');
 
     }
 );
@@ -100,6 +101,7 @@ Route::controller(ReportPDFContoller::class)->prefix('admin/report/tourism')->mi
     function(){
         Route::get('/','mainTourismReportView')->name('report.tourism.main');
         Route::get('/all-tourism-orgs','allTourismOrgs')->name('report.tourism.orgs');
+        Route::get('/tourism-clips','showAllTourismClips')->name('report.tourism.allclips');
 
     }
 );
@@ -107,6 +109,7 @@ Route::controller(ReportPDFContoller::class)->prefix('admin/report/culture')->mi
     function(){
         Route::get('/','maiClutureReportView')->name('report.cluture.main');
         Route::get('/all-cluture-orgs','allClutureOrgs')->name('report.cluture.orgs');
+        Route::get('/cluture-clips','showAllCultureClips')->name('report.cluture.allclips');
 
     }
 );
