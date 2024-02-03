@@ -306,7 +306,7 @@
                     </tr>
                     <tr class="">
                         <td class="col-2 bg-info">
-                            نظافة
+                            تحسين
                         </td>
                         <td class="col-2">
                             {{
