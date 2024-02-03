@@ -113,10 +113,18 @@ class ShowOrgDtl extends Component
         $this->validate([
 
             'billboard_id' => 'required',
-            'height' => 'required',
+            'height' => 'required|numeric',
             'wideth' => 'required|numeric',
             'count' => 'required|numeric',
 
+        ],[
+            'billboard_id.required'=>'يجب عليك اختيار نوع اللوحة',
+            'height.required' => 'لا يمكن ترك حقل الطول فارغاً',
+            'height.numeric' => 'يجب ان لا يحتوي حقل الطول على احرف او رموز',
+            'wideth.required' => 'لايمكن ترك حقل العرض فارغاً',
+            'wideth.numeric' => 'لا يمكن ان يحتوي حقل العرض على احرف او رموز',
+            'count.required' => 'لا يمكن ترك حقل العدد فارغاً',
+            'count.numeric' => 'لا يمكن ان يحتوي حقل العدد على احرف او رموز',
         ]);
 
         //Add Student Data
@@ -177,12 +185,22 @@ class ShowOrgDtl extends Component
 
     public function editOrgBillboardData()
     {
-        //on form submit validation
-        // $this->validate([
-        //     'no' => 'required|numeric|unique:hood_units,no,'.$this->student_id.'', //Validation with ignoring own data
-        //     'name' => 'required',
+        // on form submit validation
+        $this->validate([
+            'edbillboard_id' => 'required',//Validation with ignoring own data
+            'ed_height' => 'required|numeric',
+            'ed_wideth' =>'required|numeric',
+            'ed_count' => 'required|integer'
 
-        // ]);
+        ],[
+            'ed_billboard_id.required'=>'يجب عليك اختيار نوع اللوحة',
+            'ed_height.required' => 'لا يمكن ترك حقل الطول فارغاً',
+            'ed_height.numeric' => 'يجب ان لا يحتوي حقل الطول على احرف او رموز',
+            'ed_wideth.required' => 'لايمكن ترك حقل العرض فارغاً',
+            'ed_wideth.numeric' => 'لا يمكن ان يحتوي حقل العرض على احرف او رموز',
+            'ed_count.required' => 'لا يمكن ترك حقل العدد فارغاً',
+            'ed_count.numeric' => 'لا يمكن ان يحتوي حقل العدد على احرف او رموز',
+        ]);
         // 'org_id',
         // 'billboard_id',
         // 'height',
