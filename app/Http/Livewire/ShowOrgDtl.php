@@ -176,7 +176,7 @@ class ShowOrgDtl extends Component
 
         $this->edit_billboard_id = $orgbillboard->id;
 
-        $this->ed_billboard_id = $orgbillboard->id;
+        $this->ed_billboard_id = $orgbillboard->billboard->id;
         $this->ed_height = $orgbillboard->height;
         $this->ed_wideth = $orgbillboard->width;
         $this->ed_count = $orgbillboard->count;
