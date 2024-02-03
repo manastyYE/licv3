@@ -187,7 +187,7 @@ class ShowOrgDtl extends Component
     {
         // on form submit validation
         $this->validate([
-            'edbillboard_id' => 'required',//Validation with ignoring own data
+            'ed_billboard_id' => 'required',//Validation with ignoring own data
             'ed_height' => 'required|numeric',
             'ed_wideth' =>'required|numeric',
             'ed_count' => 'required|integer'
