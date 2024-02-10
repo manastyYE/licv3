@@ -721,44 +721,9 @@
     </div>
 
 
-    <div id="map" style="height: 500px;width: 1000px;"></div>
-
-    <!--
-      The `defer` attribute causes the callback to execute after the full HTML
-      document has been parsed. For non-blocking uses, avoiding race conditions,
-      and consistent behavior across browsers, consider loading using Promises.
-      See https://developers.google.com/maps/documentation/javascript/load-maps-js-api
-      for more information.
-      -->
+  
 
 
-
-
-    <script>
-        map = new Map(document.getElementById('map'), {
-            center: {
-                lat: -34.397,
-                lng: 150.644
-            },
-            zoom: 8
-        });
-    </script>
-    <script>
-        // Create the script tag, set the appropriate attributes
-        var script = document.createElement('script');
-        script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyDKZAuxH9xTzD2DLY2nKSPKrgRi2_y0ejs&callback=initMap';
-        script.async = true;
-
-        // Attach your callback function to the `window` object
-        window.initMap = function() {
-            // JS API is loaded and available
-        };
-
-        // Append the 'script' element to 'head'
-        document.head.appendChild(script);
-    </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDKZAuxH9xTzD2DLY2nKSPKrgRi2_y0ejs&libraries=places&callback=initAutocomplete&language=ar&region=YE
-         async defer"></>
 
 
 
