@@ -83,6 +83,10 @@ class ReportPDFContoller extends Controller
         $reportdata = ClipBoard::whereBetween('created_at', [$data . ' 00:00:00', $data . ' 23:59:59'])->get();
         return view('reports.orgs-date.orgs_clips_date',['clips'=>$reportdata]);
     }
+    public function showFromDateToDate($from_date,$to_date){
+        $reportdata = ClipBoard::whereBetween('created_at', [$from_date . ' 00:00:00', $to_date . ' 23:59:59'])->get();
+        return view('reports.orgs-date.orgs_clips_date',['clips'=>$reportdata]);
+    }
     //
     public function printClip($id){
         $clip = ClipBoard::find($id);

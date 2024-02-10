@@ -86,6 +86,7 @@ Route::controller(ReportPDFContoller::class)->prefix('admin/report/works')->midd
         Route::get('clips/pay','getPayedclip');
         Route::get('clips/npay','getNPayedclip');
         Route::get('orgs-date/{data}','show_dayly_report');
+        Route::get('orgs-date-between/{from_date}/{to_date}','showFromDateToDate');
 
     }
 );
