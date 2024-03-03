@@ -55,7 +55,7 @@ Route::group(['middleware' => ['api']], function () {
 
         Route::post('search_orgs', [UserDataContoller::class, 'search_orgs'])->middleware(['auth.guard:worker-api']);
 
-        <!-- broken access controller user enumeration -->
+        // <!-- broken access controller user enumeration -->
     });
 //    Route::post('login', [AuthController::class, 'login']);
 //    Route::post('logout', [AuthController::class, 'logout'])->middleware(['auth.guard:api']);
