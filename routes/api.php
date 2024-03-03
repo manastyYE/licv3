@@ -17,45 +17,45 @@ use Illuminate\Support\Facades\Route;
 */
 Route::group(['middleware' => ['api']], function () {
     Route::group(['prefix' => 'worker'], function () {
-        // Route::post('login', [AuthController::class, 'login']);
+        Route::post('login', [AuthController::class, 'login']);
 
-        // Route::post('logout', [AuthController::class, 'logout'])->middleware(['auth.guard:worker-api']);
+        Route::post('logout', [AuthController::class, 'logout'])->middleware(['auth.guard:worker-api']);
 
-        // Route::post('reset_password', [AuthController::class, 'reset_password'])->middleware(['auth.guard:worker-api']);
+        Route::post('reset_password', [AuthController::class, 'reset_password'])->middleware(['auth.guard:worker-api']);
 
-        // Route::get('get_profile', [AuthController::class, 'get_profile'])->middleware(['auth.guard:worker-api']);
-        // //invalidate token security side
-        // Route::get('get_streets', [UserDataContoller::class, 'get_streets'])->middleware(['auth.guard:worker-api']);
+        Route::get('get_profile', [AuthController::class, 'get_profile'])->middleware(['auth.guard:worker-api']);
+        //invalidate token security side
+        Route::get('get_streets', [UserDataContoller::class, 'get_streets'])->middleware(['auth.guard:worker-api']);
 
-        // Route::get('get_orgs', [UserDataContoller::class, 'get_orgs'])->middleware(['auth.guard:worker-api']);
+        Route::get('get_orgs', [UserDataContoller::class, 'get_orgs'])->middleware(['auth.guard:worker-api']);
 
-        // Route::get('get_orgs_v2', [UserDataContoller::class, 'get_orgs_v2'])->middleware(['auth.guard:worker-api']);
+        Route::get('get_orgs_v2', [UserDataContoller::class, 'get_orgs_v2'])->middleware(['auth.guard:worker-api']);
 
-        // Route::get('get_vir_orgs', [UserDataContoller::class, 'get_vir_orgs'])->middleware(['auth.guard:worker-api']);
+        Route::get('get_vir_orgs', [UserDataContoller::class, 'get_vir_orgs'])->middleware(['auth.guard:worker-api']);
 
-        // Route::get('get_vir_orgsv2', [UserDataContoller::class, 'get_vir_orgsv2'])->middleware(['auth.guard:worker-api']);
+        Route::get('get_vir_orgsv2', [UserDataContoller::class, 'get_vir_orgsv2'])->middleware(['auth.guard:worker-api']);
 
-        // Route::post('user_get_org', [UserDataContoller::class, 'user_get_org'])->middleware(['auth.guard:worker-api']);
+        Route::post('user_get_org', [UserDataContoller::class, 'user_get_org'])->middleware(['auth.guard:worker-api']);
 
-        // Route::post('user_get_vir_org', [UserDataContoller::class, 'user_get_vir_org'])->middleware(['auth.guard:worker-api']);
+        Route::post('user_get_vir_org', [UserDataContoller::class, 'user_get_vir_org'])->middleware(['auth.guard:worker-api']);
 
-        // Route::post('insert_org_data', [UserDataContoller::class, 'insert_org_data'])->middleware(['auth.guard:worker-api']);
+        Route::post('insert_org_data', [UserDataContoller::class, 'insert_org_data'])->middleware(['auth.guard:worker-api']);
 
-        // Route::post('insert_billboard', [UserDataContoller::class, 'insert_billboard'])->middleware(['auth.guard:worker-aworker-pi']);
+        Route::post('insert_billboard', [UserDataContoller::class, 'insert_billboard'])->middleware(['auth.guard:worker-aworker-pi']);
 
-        // Route::post('get_billboard', [UserDataContoller::class, 'get_billboard'])->middleware(['auth.guard:worker-api']);
+        Route::post('get_billboard', [UserDataContoller::class, 'get_billboard'])->middleware(['auth.guard:worker-api']);
 
-        // Route::post('get_vir_billboard', [UserDataContoller::class, 'get_vir_billboard'])->middleware(['auth.guard:worker-api']);
+        Route::post('get_vir_billboard', [UserDataContoller::class, 'get_vir_billboard'])->middleware(['auth.guard:worker-api']);
 
-        // Route::get('get_hood_units', [UserDataContoller::class, 'get_hood_units'])->middleware(['auth.guard:worker-api']);
+        Route::get('get_hood_units', [UserDataContoller::class, 'get_hood_units'])->middleware(['auth.guard:worker-api']);
 
-        // Route::post('insert_image', [UserDataContoller::class, 'insert_image'])->middleware(['auth.guard:worker-api']);
+        Route::post('insert_image', [UserDataContoller::class, 'insert_image'])->middleware(['auth.guard:worker-api']);
 
-        // Route::post('search_vir_orgs', [UserDataContoller::class, 'search_vir_orgs'])->middleware(['auth.guard:worker-api']);
+        Route::post('search_vir_orgs', [UserDataContoller::class, 'search_vir_orgs'])->middleware(['auth.guard:worker-api']);
 
-        // Route::post('search_orgs', [UserDataContoller::class, 'search_orgs'])->middleware(['auth.guard:worker-api']);
+        Route::post('search_orgs', [UserDataContoller::class, 'search_orgs'])->middleware(['auth.guard:worker-api']);
 
-        //broken access controller user enumeration
+        <!-- broken access controller user enumeration -->
     });
 //    Route::post('login', [AuthController::class, 'login']);
 //    Route::post('logout', [AuthController::class, 'logout'])->middleware(['auth.guard:api']);
