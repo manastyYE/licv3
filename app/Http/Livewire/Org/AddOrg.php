@@ -325,7 +325,7 @@ class AddOrg extends Component
 
 
             session()->flash('message', 'تمت عملية اضافة المنشأة   ');
-            return redirect()->to('/admin/org')->with('success', 'تمت اضافة المنشأة بنجاح ');
+            return redirect()->to('/admin/org/show/'.$org->id)->with('success', 'تمت اضافة المنشأة بنجاح ');
 
     }
     public function rest_inputs(){

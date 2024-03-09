@@ -47,7 +47,9 @@
                             الاسم رباعياً
                         </td>
                         <td class="whitespace-nowrap border border-slate-200 px-3 py-3 dark:border-navy-500 lg:px-5">
-                            {{ $clip->org->owner_name }}
+                            <a href="/admin/org/show/{{$clip->org->id}}">
+                                {{ $clip->org->owner_name }}
+                            </a>
                         </td>
                         <td
                             class="whitespace-nowrap border border-slate-900 bg-info px-4 py-3 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-5">

@@ -1,6 +1,6 @@
 <div>
 
-    @if (auth()->guard('admin')->id() == 1 || auth()->guard('admin')->id() ==3)
+    @if (auth()->guard('admin')->id() == 1 || auth()->guard('admin')->id() ==3 || auth()->guard('admin')->id() ==2)
     <button type="button" wire:click='stopOrg'
         class="font-medium border btn border-primary text-primary hover:bg-primary hover:text-white focus:bg-primary focus:text-white active:bg-primary/90 dark:border-accent dark:text-accent-light dark:hover:bg-accent dark:hover:text-white dark:focus:bg-accent dark:focus:text-white dark:active:bg-accent/90">
         ايقاف المنشأة
