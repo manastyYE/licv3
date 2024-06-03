@@ -46,7 +46,7 @@ class AutoClip extends Component
     public function update_clip(){
         $this->validate([
             'ad_reseve'=>'required|min:1|numeric',
-            'local_reseve'=>'required|numeric|min:1',
+            // 'local_reseve'=>'required|numeric|min:1',
 
 
         ],
@@ -54,9 +54,9 @@ class AutoClip extends Component
         'ad_reseve.min'=>'قيمة السند خاطئة يجب ان تكون ارقاما صحيحة',
         'ad_reseve.numeric'=>'يجب ان لا يحتوي حقل رقم السند على أحرف أو رموز ',
         'ad_reseve.required'=>'لا يمكن ترك رقم سند رسوم الدعاية والاعلان فارغاً',
-        'local_reseve.required'=>'لا يمكن ترك رقم سند الرسوم المحلية فارغاً',
-        'local_reseve.numeric'=>'يجب ان تحتوي قيمة رقم السند على احرف او رموز',
-        'local_reseve.min'=>'قيمة السند خاطئة يجب ان تكون ارقاماً صحيحة ',
+        // 'local_reseve.required'=>'لا يمكن ترك رقم سند الرسوم المحلية فارغاً',
+        // 'local_reseve.numeric'=>'يجب ان تحتوي قيمة رقم السند على احرف او رموز',
+        // 'local_reseve.min'=>'قيمة السند خاطئة يجب ان تكون ارقاماً صحيحة ',
     ]);
 
         $ed_chip=ClipBoard::find($this->clip_id);
@@ -66,7 +66,11 @@ class AutoClip extends Component
         $ed_chip->local_reseve=$this->local_reseve;
 
         $ed_chip->edit_admin_id=auth()->guard('admin')->id();
+        if($ed_chip->local_fee==0)
         $ed_chip->clip_status="مدفوعة";
+        else
+        $ed_chip->clip_status="متبقي المحلي";
+
         $ed_chip->clean_reseve_date = $this->ad_reseve_date;
         $ed_chip->ad_reseve_date=$this->ad_reseve_date;
         $ed_chip->local_reseve_date =$this->local_reseve_date;
@@ -77,7 +81,11 @@ class AutoClip extends Component
         $ed_chip->save();
         session()->flash('message', 'تم حفظ بيانات الحافظة بنجاح');
         $org=Org::find($ed_chip->org_id);
+
+        if($ed_chip->local_fee==0)
         $org->license_status= 'مرخص';
+        else
+        $org->license_status= 'متبقي المحلي';
         $org->save();
         // return redirect()->to('/admin/report/works/clip/'.$ed_chip->id)->with('success', ' تم اضافة ارقام السندات الى الحافظة بنجاح');
 
